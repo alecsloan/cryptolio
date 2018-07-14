@@ -1,8 +1,8 @@
 
 ## Installation
 ``` sh
-$ git clone https://github.com/alecsloan/cryptodash
-$ install.sh
+git clone https://github.com/alecsloan/cryptodash
+install.sh
 ```
 
 ## Usage
