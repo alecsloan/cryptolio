@@ -1,0 +1,90 @@
+.App {
+  text-align: center;
+}
+
+body{
+  height: 100% !important;
+  background: #333840;
+}
+
+html{
+  height: 100% !important;
+}
+
+.Header{
+  background: #333840;
+  padding-left: 100px;
+  padding-right: 100px;
+}
+
+.col-xs-12.Header{
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.row{
+  margin: 0px;
+}
+
+.Title{
+  left: 0;
+  /*background: linear-gradient(to bottom right, #c7fdeb, #e2c2e3);*/
+  background: #9caaf3;
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+
+hr{
+  background: #9caaf3;
+  width: 60%;
+}
+
+input{
+  border-radius: 5px;
+  border-width: 1px;
+  vertical-align: middle;
+  height:65%;
+}
+
+.addButton{
+  height:65%;
+  margin-top: 10px;
+  background: linear-gradient(to bottom right, #c7fdeb, #e2c2e3);
+  border-color: transparent;
+  outline: none;
+  width: 100%;
+}
+.addButton:active{
+  background: linear-gradient(to bottom right, #e2c2e3, #c7fdeb) !important;
+  border-color: transparent !important;
+  opacity: 0.7;
+}
+
+.addInput{
+  margin-top: 10px;
+  width: 100%;
+}
+.plus{
+  font-size: 20px;
+  color: #333840;
+  display: inline-block;
+  width: 100%;
+}
+
+.addSection{
+  text-align: center;
+  vertical-align: middle;
+  right:25px;
+}
+
+.col-xs-12.addSection{
+  right: 0px;
+}
+
+.Select-input{
+  text-align: left !important;
+  display: block !important;
+}
