@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Select from 'react-select';
+import Select from '/node_modules/react-select';
 import 'react-select/dist/react-select.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../App.css';
