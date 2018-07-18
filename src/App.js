@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
-var CoinMarketCap = require('coinmarketcap-api');
 import Card from './Components/Card.js';
 import Header from './Components/Header.js';
 import './App.css';
@@ -32,6 +31,7 @@ class App extends Component {
   }
 
   fetchCoins(){
+    var CoinMarketCap = require('coinmarketcap-api');
     const client = new CoinMarketCap();
     var coinPromise = client.getTicker().catch(console.error);
     coinPromise.then(
