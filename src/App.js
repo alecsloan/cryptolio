@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
-import CoinMarketCap from './node_modules/coinmarketcap-api';
+import CoinMarketCap from '/node_modules/coinmarketcap-api';
 import Card from './Components/Card.js';
 import Header from './Components/Header.js';
 import './App.css';
