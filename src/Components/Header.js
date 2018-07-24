@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import Select from 'react-select';
-import 'react-select/dist/react-select.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../App.css';
 import 'font-awesome/css/font-awesome.min.css';
@@ -10,7 +9,7 @@ class Header extends Component {
     super(props);
 
     let coinOptArray = [];
-    Object.values(this.props.coins).map((key) => {
+    Object.values(this.props.coins).forEach((key) => {
       coinOptArray[key['rank']-1] = {'value': key['symbol'],'label': key['name'] + ' (' + key['symbol'] + ')'};
     });
 

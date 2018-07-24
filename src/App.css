@@ -88,3 +88,18 @@ input{
   text-align: left !important;
   display: block !important;
 }
+
+@media only screen and (max-width: 768px) {
+  .page{
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+  .cardRow{
+    margin-top: 0;
+  }
+  .card-container{
+    padding-left: 0;
+    padding-right: 0;
+    margin-bottom: 10px
+  }
+}

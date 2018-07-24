@@ -71,3 +71,37 @@
 b {
   font-weight: 600;
 }
+
+
+.card-img-top-small{
+  width: 50px !important;
+  height: 50px !important;
+  padding: 3px;
+  float: left;
+}
+
+.card-small {
+  height: 100%;
+  /*background: linear-gradient(to bottom right, #c7fdeb, #e2c2e3);*/
+  background: #9caaf3;
+  color: white;
+  border: 0;
+  transition: all 1s;
+  border-radius: 5px;
+}
+
+.card-body-small{
+  padding: 0;
+}
+
+.col{
+  padding:0 !important;
+  vertical-align: middle;
+  line-height: 50px;
+}
+
+.settings-small{
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-bottom: 10px;
+}
