@@ -11,7 +11,7 @@ Start the App: npm start
 Start the Server: node server.js
 ```
 
-##Images
+## Images
 Mobile
 ![Mobile Image](https://imgur.com/qwsyqS6)
 
