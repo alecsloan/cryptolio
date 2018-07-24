@@ -1,3 +1,3 @@
 .gitignore
 node_modules
-src/data.json
+build
