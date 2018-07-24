@@ -6,20 +6,20 @@
 			"symbol": "BTC",
 			"website_slug": "bitcoin",
 			"rank": 1,
-			"circulating_supply": 17167175,
-			"total_supply": 17167175,
+			"circulating_supply": 17167237,
+			"total_supply": 17167237,
 			"max_supply": 21000000,
 			"quotes": {
 				"USD": {
-					"price": 7775.81,
-					"volume_24h": 5104930000,
-					"market_cap": 133488691037,
-					"percent_change_1h": 0.57,
-					"percent_change_24h": 1.91,
-					"percent_change_7d": 15.75
+					"price": 7786.54,
+					"volume_24h": 5118690000,
+					"market_cap": 133673377590,
+					"percent_change_1h": 0.53,
+					"percent_change_24h": 1.96,
+					"percent_change_7d": 15.87
 				}
 			},
-			"last_updated": 1532404044,
+			"last_updated": 1532406083,
 			"holdings": 0
 		},
 		"2": {
@@ -28,20 +28,20 @@
 			"symbol": "LTC",
 			"website_slug": "litecoin",
 			"rank": 7,
-			"circulating_supply": 57540007,
-			"total_supply": 57540007,
+			"circulating_supply": 57540457,
+			"total_supply": 57540457,
 			"max_supply": 84000000,
 			"quotes": {
 				"USD": {
-					"price": 82.9774,
-					"volume_24h": 293561000,
-					"market_cap": 4774520181,
-					"percent_change_1h": 0.46,
-					"percent_change_24h": -3.14,
-					"percent_change_7d": -1.23
+					"price": 82.8751,
+					"volume_24h": 291569000,
+					"market_cap": 4768671132,
+					"percent_change_1h": 0.12,
+					"percent_change_24h": -3.24,
+					"percent_change_7d": -1.37
 				}
 			},
-			"last_updated": 1532404084,
+			"last_updated": 1532406067,
 			"holdings": 0
 		},
 		"52": {
@@ -55,15 +55,15 @@
 			"max_supply": 100000000000,
 			"quotes": {
 				"USD": {
-					"price": 0.442001,
-					"volume_24h": 189868000,
-					"market_cap": 17377571412,
-					"percent_change_1h": -0.14,
-					"percent_change_24h": -3.46,
-					"percent_change_7d": -7.24
+					"price": 0.440867,
+					"volume_24h": 191793000,
+					"market_cap": 17332987427,
+					"percent_change_1h": -0.64,
+					"percent_change_24h": -3.83,
+					"percent_change_7d": -7.5
 				}
 			},
-			"last_updated": 1532404094,
+			"last_updated": 1532406075,
 			"holdings": 527
 		},
 		"66": {
@@ -71,21 +71,21 @@
 			"name": "Nxt",
 			"symbol": "NXT",
 			"website_slug": "nxt",
-			"rank": 92,
+			"rank": 91,
 			"circulating_supply": 998999942,
 			"total_supply": 998999942,
 			"max_supply": 1000000000,
 			"quotes": {
 				"USD": {
-					"price": 0.101021,
-					"volume_24h": 2985320,
-					"market_cap": 100919973,
-					"percent_change_1h": -0.89,
-					"percent_change_24h": -3.12,
-					"percent_change_7d": 10.93
+					"price": 0.101376,
+					"volume_24h": 2839630,
+					"market_cap": 101274618,
+					"percent_change_1h": -0.45,
+					"percent_change_24h": -2.56,
+					"percent_change_7d": 11.42
 				}
 			},
-			"last_updated": 1532404095,
+			"last_updated": 1532406076,
 			"holdings": 0
 		},
 		"74": {
@@ -99,15 +99,15 @@
 			"max_supply": null,
 			"quotes": {
 				"USD": {
-					"price": 0.00341913,
-					"volume_24h": 8589100,
-					"market_cap": 394587475,
-					"percent_change_1h": -0.15,
-					"percent_change_24h": -4.87,
-					"percent_change_7d": 19.78
+					"price": 0.0034274,
+					"volume_24h": 8798220,
+					"market_cap": 395541881,
+					"percent_change_1h": 0.11,
+					"percent_change_24h": -4.58,
+					"percent_change_7d": 19.85
 				}
 			},
-			"last_updated": 1532404094,
+			"last_updated": 1532406079,
 			"holdings": 0
 		},
 		"109": {
@@ -115,21 +115,21 @@
 			"name": "DigiByte",
 			"symbol": "DGB",
 			"website_slug": "digibyte",
-			"rank": 31,
-			"circulating_supply": 10564941378,
-			"total_supply": 10564941378,
+			"rank": 30,
+			"circulating_supply": 10565056380,
+			"total_supply": 10565056380,
 			"max_supply": 21000000000,
 			"quotes": {
 				"USD": {
-					"price": 0.0465296,
-					"volume_24h": 7911870,
-					"market_cap": 491582496,
+					"price": 0.0466382,
+					"volume_24h": 7881940,
+					"market_cap": 492735212,
 					"percent_change_1h": 1.01,
-					"percent_change_24h": -2.29,
-					"percent_change_7d": 19.02
+					"percent_change_24h": -2.19,
+					"percent_change_7d": 19.3
 				}
 			},
-			"last_updated": 1532404096,
+			"last_updated": 1532406078,
 			"holdings": 0
 		},
 		"118": {
@@ -137,21 +137,21 @@
 			"name": "ReddCoin",
 			"symbol": "RDD",
 			"website_slug": "reddcoin",
-			"rank": 76,
+			"rank": 75,
 			"circulating_supply": 28808713174,
 			"total_supply": 28808713174,
 			"max_supply": null,
 			"quotes": {
 				"USD": {
-					"price": 0.00435099,
-					"volume_24h": 4097080,
-					"market_cap": 125346423,
-					"percent_change_1h": 0.44,
-					"percent_change_24h": -1.03,
-					"percent_change_7d": -1.43
+					"price": 0.00435535,
+					"volume_24h": 4014360,
+					"market_cap": 125472029,
+					"percent_change_1h": 0.49,
+					"percent_change_24h": -0.91,
+					"percent_change_7d": -1.25
 				}
 			},
-			"last_updated": 1532404096,
+			"last_updated": 1532406083,
 			"holdings": 0
 		},
 		"131": {
@@ -160,20 +160,20 @@
 			"symbol": "DASH",
 			"website_slug": "dash",
 			"rank": 14,
-			"circulating_supply": 8211625,
-			"total_supply": 8211625,
+			"circulating_supply": 8211675,
+			"total_supply": 8211675,
 			"max_supply": 18900000,
 			"quotes": {
 				"USD": {
-					"price": 241.272,
-					"volume_24h": 160196000,
-					"market_cap": 1981235104,
-					"percent_change_1h": 0.43,
-					"percent_change_24h": -4.51,
-					"percent_change_7d": -2.81
+					"price": 240.418,
+					"volume_24h": 153635000,
+					"market_cap": 1974234442,
+					"percent_change_1h": 0.13,
+					"percent_change_24h": -3.84,
+					"percent_change_7d": -3.21
 				}
 			},
-			"last_updated": 1532404046,
+			"last_updated": 1532406085,
 			"holdings": 0
 		},
 		"213": {
@@ -182,20 +182,20 @@
 			"symbol": "MONA",
 			"website_slug": "monacoin",
 			"rank": 72,
-			"circulating_supply": 61065025,
-			"total_supply": 61065025,
+			"circulating_supply": 61065625,
+			"total_supply": 61065625,
 			"max_supply": null,
 			"quotes": {
 				"USD": {
-					"price": 2.18173,
-					"volume_24h": 575564,
-					"market_cap": 133227397,
-					"percent_change_1h": -0.25,
-					"percent_change_24h": -1.92,
-					"percent_change_7d": -1.72
+					"price": 2.17347,
+					"volume_24h": 576076,
+					"market_cap": 132724304,
+					"percent_change_1h": -0.18,
+					"percent_change_24h": -2.46,
+					"percent_change_7d": -2.02
 				}
 			},
-			"last_updated": 1532404100,
+			"last_updated": 1532406081,
 			"holdings": 0
 		},
 		"291": {
@@ -209,15 +209,15 @@
 			"max_supply": null,
 			"quotes": {
 				"USD": {
-					"price": 0.440833,
-					"volume_24h": 2117180,
-					"market_cap": 199500037,
-					"percent_change_1h": 2.96,
-					"percent_change_24h": 2.33,
-					"percent_change_7d": 14.43
+					"price": 0.437096,
+					"volume_24h": 2091990,
+					"market_cap": 197808849,
+					"percent_change_1h": 1.97,
+					"percent_change_24h": 1.37,
+					"percent_change_7d": 13.41
 				}
 			},
-			"last_updated": 1532404049,
+			"last_updated": 1532406082,
 			"holdings": 0
 		},
 		"328": {
@@ -226,20 +226,20 @@
 			"symbol": "XMR",
 			"website_slug": "monero",
 			"rank": 12,
-			"circulating_supply": 16253144,
-			"total_supply": 16253144,
+			"circulating_supply": 16253240,
+			"total_supply": 16253240,
 			"max_supply": null,
 			"quotes": {
 				"USD": {
-					"price": 134.206,
-					"volume_24h": 50671400,
-					"market_cap": 2181269458,
-					"percent_change_1h": -0.44,
-					"percent_change_24h": 1.26,
-					"percent_change_7d": -1.92
+					"price": 134.29,
+					"volume_24h": 50078300,
+					"market_cap": 2182647645,
+					"percent_change_1h": -0.13,
+					"percent_change_24h": 1.03,
+					"percent_change_7d": -2.04
 				}
 			},
-			"last_updated": 1532404045,
+			"last_updated": 1532406088,
 			"holdings": 0
 		},
 		"372": {
@@ -253,15 +253,15 @@
 			"max_supply": 184470000000,
 			"quotes": {
 				"USD": {
-					"price": 0.00300839,
-					"volume_24h": 5800590,
-					"market_cap": 553214285,
-					"percent_change_1h": -0.12,
-					"percent_change_24h": -6.01,
-					"percent_change_7d": -6.47
+					"price": 0.00297172,
+					"volume_24h": 6208580,
+					"market_cap": 546471021,
+					"percent_change_1h": -1.13,
+					"percent_change_24h": -7.24,
+					"percent_change_7d": -7.59
 				}
 			},
-			"last_updated": 1532404044,
+			"last_updated": 1532406083,
 			"holdings": 0
 		},
 		"463": {
@@ -275,15 +275,15 @@
 			"max_supply": 3600570502,
 			"quotes": {
 				"USD": {
-					"price": 0.201094,
-					"volume_24h": 7122620,
-					"market_cap": 531730744,
-					"percent_change_1h": -0.17,
-					"percent_change_24h": -2.92,
-					"percent_change_7d": 1.1
+					"price": 0.199758,
+					"volume_24h": 7230880,
+					"market_cap": 528198106,
+					"percent_change_1h": -0.83,
+					"percent_change_24h": -3.88,
+					"percent_change_7d": 0.51
 				}
 			},
-			"last_updated": 1532404043,
+			"last_updated": 1532406086,
 			"holdings": 0
 		},
 		"512": {
@@ -297,15 +297,15 @@
 			"max_supply": null,
 			"quotes": {
 				"USD": {
-					"price": 0.284461,
-					"volume_24h": 89515400,
-					"market_cap": 5338562459,
-					"percent_change_1h": -0.74,
-					"percent_change_24h": -4.04,
-					"percent_change_7d": 21.6
+					"price": 0.283348,
+					"volume_24h": 89156500,
+					"market_cap": 5317674464,
+					"percent_change_1h": -0.73,
+					"percent_change_24h": -4.3,
+					"percent_change_7d": 21.09
 				}
 			},
-			"last_updated": 1532404046,
+			"last_updated": 1532406089,
 			"holdings": 0
 		},
 		"558": {
@@ -313,21 +313,21 @@
 			"name": "Emercoin",
 			"symbol": "EMC",
 			"website_slug": "emercoin",
-			"rank": 75,
+			"rank": 74,
 			"circulating_supply": 42059663,
 			"total_supply": 42059663,
 			"max_supply": null,
 			"quotes": {
 				"USD": {
-					"price": 2.98206,
-					"volume_24h": 2007930,
-					"market_cap": 125424438,
-					"percent_change_1h": 0.3,
-					"percent_change_24h": -0.73,
-					"percent_change_7d": 5.79
+					"price": 2.9877,
+					"volume_24h": 2019310,
+					"market_cap": 125661654,
+					"percent_change_1h": 0.39,
+					"percent_change_24h": -0.64,
+					"percent_change_7d": 5.97
 				}
 			},
-			"last_updated": 1532404045,
+			"last_updated": 1532406092,
 			"holdings": 0
 		},
 		"693": {
@@ -341,15 +341,15 @@
 			"max_supply": 16555000000,
 			"quotes": {
 				"USD": {
-					"price": 0.0227086,
-					"volume_24h": 7565860,
-					"market_cap": 344536833,
-					"percent_change_1h": -1.06,
-					"percent_change_24h": -2.9,
-					"percent_change_7d": -7.58
+					"price": 0.0228809,
+					"volume_24h": 7742390,
+					"market_cap": 347150984,
+					"percent_change_1h": 0.62,
+					"percent_change_24h": -2.12,
+					"percent_change_7d": -6.85
 				}
 			},
-			"last_updated": 1532404044,
+			"last_updated": 1532406086,
 			"holdings": 0
 		},
 		"825": {
@@ -363,15 +363,15 @@
 			"max_supply": null,
 			"quotes": {
 				"USD": {
-					"price": 0.996382,
-					"volume_24h": 2748050000,
-					"market_cap": 2597707712,
-					"percent_change_1h": -0.14,
-					"percent_change_24h": -0.08,
-					"percent_change_7d": -0.43
+					"price": 0.99757,
+					"volume_24h": 2764850000,
+					"market_cap": 2600804995,
+					"percent_change_1h": 0.09,
+					"percent_change_24h": 0.01,
+					"percent_change_7d": -0.32
 				}
 			},
-			"last_updated": 1532404048,
+			"last_updated": 1532406090,
 			"holdings": 0
 		},
 		"873": {
@@ -385,15 +385,15 @@
 			"max_supply": null,
 			"quotes": {
 				"USD": {
-					"price": 0.171951,
-					"volume_24h": 17327600,
-					"market_cap": 1547559000,
-					"percent_change_1h": -0.32,
-					"percent_change_24h": -3.24,
-					"percent_change_7d": -1.89
+					"price": 0.171288,
+					"volume_24h": 17531700,
+					"market_cap": 1541592000,
+					"percent_change_1h": -0.51,
+					"percent_change_24h": -3.96,
+					"percent_change_7d": -2.34
 				}
 			},
-			"last_updated": 1532404048,
+			"last_updated": 1532406090,
 			"holdings": 0
 		},
 		"1027": {
@@ -402,20 +402,20 @@
 			"symbol": "ETH",
 			"website_slug": "ethereum",
 			"rank": 2,
-			"circulating_supply": 100881467,
-			"total_supply": 100881467,
+			"circulating_supply": 100881984,
+			"total_supply": 100881984,
 			"max_supply": null,
 			"quotes": {
 				"USD": {
-					"price": 453.268,
-					"volume_24h": 1635160000,
-					"market_cap": 45726340741,
-					"percent_change_1h": 0.21,
-					"percent_change_24h": -3.05,
-					"percent_change_7d": -5.04
+					"price": 454.067,
+					"volume_24h": 1644230000,
+					"market_cap": 45807180013,
+					"percent_change_1h": 0.2,
+					"percent_change_24h": -2.91,
+					"percent_change_7d": -4.85
 				}
 			},
-			"last_updated": 1532404053,
+			"last_updated": 1532406095,
 			"holdings": 0
 		},
 		"1042": {
@@ -424,20 +424,20 @@
 			"symbol": "SC",
 			"website_slug": "siacoin",
 			"rank": 37,
-			"circulating_supply": 35843925174,
-			"total_supply": 35843925174,
+			"circulating_supply": 35844466460,
+			"total_supply": 35844466460,
 			"max_supply": null,
 			"quotes": {
 				"USD": {
-					"price": 0.0101153,
-					"volume_24h": 10506900,
-					"market_cap": 362572056,
-					"percent_change_1h": 0.26,
-					"percent_change_24h": -6.92,
-					"percent_change_7d": -8.92
+					"price": 0.00985969,
+					"volume_24h": 10663800,
+					"market_cap": 353415328,
+					"percent_change_1h": -2.87,
+					"percent_change_24h": -9.18,
+					"percent_change_7d": -11.21
 				}
 			},
-			"last_updated": 1532404048,
+			"last_updated": 1532406089,
 			"holdings": 0
 		},
 		"1104": {
@@ -451,15 +451,15 @@
 			"max_supply": null,
 			"quotes": {
 				"USD": {
-					"price": 31.028,
-					"volume_24h": 23656500,
-					"market_cap": 341308000,
-					"percent_change_1h": 0.12,
-					"percent_change_24h": -15.53,
-					"percent_change_7d": 2.96
+					"price": 30.6821,
+					"volume_24h": 22723400,
+					"market_cap": 337503100,
+					"percent_change_1h": -1.44,
+					"percent_change_24h": -17.03,
+					"percent_change_7d": 1.78
 				}
 			},
-			"last_updated": 1532404049,
+			"last_updated": 1532406090,
 			"holdings": 0
 		},
 		"1168": {
@@ -473,15 +473,15 @@
 			"max_supply": 21000000,
 			"quotes": {
 				"USD": {
-					"price": 67.1778,
-					"volume_24h": 3385300,
-					"market_cap": 547562302,
-					"percent_change_1h": 0.53,
-					"percent_change_24h": -4.94,
-					"percent_change_7d": -6.27
+					"price": 66.2432,
+					"volume_24h": 3410300,
+					"market_cap": 539944432,
+					"percent_change_1h": -0.79,
+					"percent_change_24h": -6.01,
+					"percent_change_7d": -7.72
 				}
 			},
-			"last_updated": 1532404046,
+			"last_updated": 1532406089,
 			"holdings": 0
 		},
 		"1169": {
@@ -495,15 +495,15 @@
 			"max_supply": null,
 			"quotes": {
 				"USD": {
-					"price": 1.81148,
-					"volume_24h": 1118380,
-					"market_cap": 102857947,
-					"percent_change_1h": -0.31,
-					"percent_change_24h": -5.4,
-					"percent_change_7d": -5.16
+					"price": 1.80628,
+					"volume_24h": 1099500,
+					"market_cap": 102562685,
+					"percent_change_1h": -0.03,
+					"percent_change_24h": -5.62,
+					"percent_change_7d": -5.49
 				}
 			},
-			"last_updated": 1532404049,
+			"last_updated": 1532406087,
 			"holdings": 0
 		},
 		"1214": {
@@ -512,20 +512,20 @@
 			"symbol": "LSK",
 			"website_slug": "lisk",
 			"rank": 27,
-			"circulating_supply": 108301352,
-			"total_supply": 123547800,
+			"circulating_supply": 108302308,
+			"total_supply": 123548756,
 			"max_supply": null,
 			"quotes": {
 				"USD": {
-					"price": 4.8245,
-					"volume_24h": 9633190,
-					"market_cap": 522499873,
-					"percent_change_1h": 0.1,
-					"percent_change_24h": -4.89,
-					"percent_change_7d": -10.42
+					"price": 4.83299,
+					"volume_24h": 9440700,
+					"market_cap": 523423972,
+					"percent_change_1h": -0.07,
+					"percent_change_24h": -4.7,
+					"percent_change_7d": -10.23
 				}
 			},
-			"last_updated": 1532404050,
+			"last_updated": 1532406088,
 			"holdings": 0
 		},
 		"1229": {
@@ -539,15 +539,15 @@
 			"max_supply": null,
 			"quotes": {
 				"USD": {
-					"price": 96.1658,
-					"volume_24h": 361528,
-					"market_cap": 192331600,
-					"percent_change_1h": -0.45,
-					"percent_change_24h": -0.7,
-					"percent_change_7d": -4.01
+					"price": 95.3696,
+					"volume_24h": 375877,
+					"market_cap": 190739200,
+					"percent_change_1h": -1.29,
+					"percent_change_24h": -1.54,
+					"percent_change_7d": -4.78
 				}
 			},
-			"last_updated": 1532404045,
+			"last_updated": 1532406089,
 			"holdings": 0
 		},
 		"1230": {
@@ -556,20 +556,20 @@
 			"symbol": "STEEM",
 			"website_slug": "steem",
 			"rank": 38,
-			"circulating_supply": 266223368,
-			"total_supply": 283197462,
+			"circulating_supply": 266225257,
+			"total_supply": 283199351,
 			"max_supply": null,
 			"quotes": {
 				"USD": {
-					"price": 1.31393,
-					"volume_24h": 3617540,
-					"market_cap": 349798870,
-					"percent_change_1h": -0.54,
-					"percent_change_24h": -11.14,
-					"percent_change_7d": -7.54
+					"price": 1.30535,
+					"volume_24h": 3475620,
+					"market_cap": 347517139,
+					"percent_change_1h": -1.23,
+					"percent_change_24h": -11.37,
+					"percent_change_7d": -8.13
 				}
 			},
-			"last_updated": 1532404047,
+			"last_updated": 1532406089,
 			"holdings": 0
 		},
 		"1274": {
@@ -577,21 +577,21 @@
 			"name": "Waves",
 			"symbol": "WAVES",
 			"website_slug": "waves",
-			"rank": 47,
+			"rank": 46,
 			"circulating_supply": 100000000,
 			"total_supply": 100000000,
 			"max_supply": null,
 			"quotes": {
 				"USD": {
-					"price": 2.58759,
-					"volume_24h": 15048200,
-					"market_cap": 258759000,
-					"percent_change_1h": -0.66,
-					"percent_change_24h": -8.26,
-					"percent_change_7d": -10.29
+					"price": 2.5834,
+					"volume_24h": 15199900,
+					"market_cap": 258340000,
+					"percent_change_1h": -0.14,
+					"percent_change_24h": -8.73,
+					"percent_change_7d": -10.42
 				}
 			},
-			"last_updated": 1532404048,
+			"last_updated": 1532406086,
 			"holdings": 0
 		},
 		"1320": {
@@ -605,15 +605,15 @@
 			"max_supply": 998999495,
 			"quotes": {
 				"USD": {
-					"price": 0.166555,
-					"volume_24h": 6313100,
-					"market_cap": 166388361,
-					"percent_change_1h": -1.78,
-					"percent_change_24h": -12.69,
-					"percent_change_7d": 2.62
+					"price": 0.164411,
+					"volume_24h": 6359840,
+					"market_cap": 164246506,
+					"percent_change_1h": -1.49,
+					"percent_change_24h": -13.47,
+					"percent_change_7d": 1.22
 				}
 			},
-			"last_updated": 1532404052,
+			"last_updated": 1532406090,
 			"holdings": 0
 		},
 		"1321": {
@@ -622,20 +622,20 @@
 			"symbol": "ETC",
 			"website_slug": "ethereum-classic",
 			"rank": 15,
-			"circulating_supply": 103254260,
-			"total_supply": 103254260,
+			"circulating_supply": 103254841,
+			"total_supply": 103254841,
 			"max_supply": null,
 			"quotes": {
 				"USD": {
-					"price": 15.9758,
-					"volume_24h": 157410000,
-					"market_cap": 1649569407,
-					"percent_change_1h": -0.23,
-					"percent_change_24h": -3.62,
-					"percent_change_7d": -7.2
+					"price": 15.8846,
+					"volume_24h": 169482000,
+					"market_cap": 1640161847,
+					"percent_change_1h": -0.86,
+					"percent_change_24h": -4.04,
+					"percent_change_7d": -7.69
 				}
 			},
-			"last_updated": 1532404050,
+			"last_updated": 1532406092,
 			"holdings": 0
 		},
 		"1343": {
@@ -643,21 +643,21 @@
 			"name": "Stratis",
 			"symbol": "STRAT",
 			"website_slug": "stratis",
-			"rank": 46,
-			"circulating_supply": 98946079,
-			"total_supply": 98946079,
+			"rank": 48,
+			"circulating_supply": 98946115,
+			"total_supply": 98946115,
 			"max_supply": null,
 			"quotes": {
 				"USD": {
-					"price": 2.66751,
-					"volume_24h": 2956180,
-					"market_cap": 263939656,
-					"percent_change_1h": -1.75,
-					"percent_change_24h": -6.09,
-					"percent_change_7d": 0.08
+					"price": 2.54682,
+					"volume_24h": 3606520,
+					"market_cap": 251997945,
+					"percent_change_1h": -4.73,
+					"percent_change_24h": -9.93,
+					"percent_change_7d": -4.53
 				}
 			},
-			"last_updated": 1532404051,
+			"last_updated": 1532406089,
 			"holdings": 0
 		},
 		"1376": {
@@ -671,15 +671,15 @@
 			"max_supply": 100000000,
 			"quotes": {
 				"USD": {
-					"price": 32.1384,
-					"volume_24h": 80397100,
-					"market_cap": 2088996000,
-					"percent_change_1h": -0.05,
-					"percent_change_24h": -6.11,
-					"percent_change_7d": -12.54
+					"price": 31.7915,
+					"volume_24h": 82802200,
+					"market_cap": 2066447500,
+					"percent_change_1h": -1,
+					"percent_change_24h": -7.19,
+					"percent_change_7d": -13.47
 				}
 			},
-			"last_updated": 1532404051,
+			"last_updated": 1532406091,
 			"holdings": 0
 		},
 		"1437": {
@@ -688,20 +688,20 @@
 			"symbol": "ZEC",
 			"website_slug": "zcash",
 			"rank": 21,
-			"circulating_supply": 4420306,
-			"total_supply": 4420306,
+			"circulating_supply": 4420506,
+			"total_supply": 4420506,
 			"max_supply": null,
 			"quotes": {
 				"USD": {
-					"price": 193.224,
-					"volume_24h": 100246000,
-					"market_cap": 854109255,
-					"percent_change_1h": -1.48,
-					"percent_change_24h": -2.83,
-					"percent_change_7d": 1.93
+					"price": 194.028,
+					"volume_24h": 99893300,
+					"market_cap": 857701987,
+					"percent_change_1h": -0.53,
+					"percent_change_24h": -2.06,
+					"percent_change_7d": 2.48
 				}
 			},
-			"last_updated": 1532404051,
+			"last_updated": 1532406089,
 			"holdings": 0
 		},
 		"1455": {
@@ -715,15 +715,15 @@
 			"max_supply": null,
 			"quotes": {
 				"USD": {
-					"price": 0.28742,
-					"volume_24h": 5065400,
-					"market_cap": 275705336,
-					"percent_change_1h": -0.64,
-					"percent_change_24h": -10.18,
-					"percent_change_7d": -7.69
+					"price": 0.286773,
+					"volume_24h": 5047130,
+					"market_cap": 275084706,
+					"percent_change_1h": -0.61,
+					"percent_change_24h": -10.47,
+					"percent_change_7d": -7.96
 				}
 			},
-			"last_updated": 1532404051,
+			"last_updated": 1532406094,
 			"holdings": 2826.27
 		},
 		"1518": {
@@ -737,15 +737,15 @@
 			"max_supply": null,
 			"quotes": {
 				"USD": {
-					"price": 607.779,
-					"volume_24h": 447664,
-					"market_cap": 406134806,
-					"percent_change_1h": 0.25,
-					"percent_change_24h": -1.92,
-					"percent_change_7d": 1.93
+					"price": 609.556,
+					"volume_24h": 448235,
+					"market_cap": 407322247,
+					"percent_change_1h": 0.32,
+					"percent_change_24h": -1.82,
+					"percent_change_7d": 2.18
 				}
 			},
-			"last_updated": 1532404054,
+			"last_updated": 1532406091,
 			"holdings": 0
 		},
 		"1521": {
@@ -754,20 +754,20 @@
 			"symbol": "KMD",
 			"website_slug": "komodo",
 			"rank": 65,
-			"circulating_supply": 108507470,
-			"total_supply": 108507470,
+			"circulating_supply": 108507624,
+			"total_supply": 108507624,
 			"max_supply": null,
 			"quotes": {
 				"USD": {
-					"price": 1.44589,
-					"volume_24h": 1102750,
-					"market_cap": 156889866,
-					"percent_change_1h": 0.33,
-					"percent_change_24h": -6.77,
-					"percent_change_7d": -9.68
+					"price": 1.43074,
+					"volume_24h": 1065700,
+					"market_cap": 155246198,
+					"percent_change_1h": -0.53,
+					"percent_change_24h": -7.52,
+					"percent_change_7d": -10.65
 				}
 			},
-			"last_updated": 1532404048,
+			"last_updated": 1532406092,
 			"holdings": 0
 		},
 		"1567": {
@@ -781,15 +781,15 @@
 			"max_supply": 133248290,
 			"quotes": {
 				"USD": {
-					"price": 2.21017,
-					"volume_24h": 5449710,
-					"market_cap": 294501371,
-					"percent_change_1h": -1.25,
-					"percent_change_24h": -7.85,
-					"percent_change_7d": -15.95
+					"price": 2.17085,
+					"volume_24h": 5547530,
+					"market_cap": 289262049,
+					"percent_change_1h": -2.85,
+					"percent_change_24h": -9.74,
+					"percent_change_7d": -17.52
 				}
 			},
-			"last_updated": 1532404052,
+			"last_updated": 1532406090,
 			"holdings": 0
 		},
 		"1586": {
@@ -798,20 +798,20 @@
 			"symbol": "ARK",
 			"website_slug": "ark",
 			"rank": 79,
-			"circulating_supply": 104040274,
-			"total_supply": 135290274,
+			"circulating_supply": 104040862,
+			"total_supply": 135290862,
 			"max_supply": null,
 			"quotes": {
 				"USD": {
-					"price": 1.17525,
-					"volume_24h": 2516730,
-					"market_cap": 122273332,
-					"percent_change_1h": 2.32,
-					"percent_change_24h": -14.48,
-					"percent_change_7d": -15.09
+					"price": 1.16668,
+					"volume_24h": 2579280,
+					"market_cap": 121382393,
+					"percent_change_1h": -0.25,
+					"percent_change_24h": -15.04,
+					"percent_change_7d": -15.67
 				}
 			},
-			"last_updated": 1532404050,
+			"last_updated": 1532406094,
 			"holdings": 0
 		},
 		"1684": {
@@ -825,15 +825,15 @@
 			"max_supply": null,
 			"quotes": {
 				"USD": {
-					"price": 7.76597,
-					"volume_24h": 177019000,
-					"market_cap": 688565971,
-					"percent_change_1h": -0.04,
-					"percent_change_24h": -3.53,
-					"percent_change_7d": -6.26
+					"price": 7.7314,
+					"volume_24h": 174876000,
+					"market_cap": 685500839,
+					"percent_change_1h": -0.27,
+					"percent_change_24h": -4.05,
+					"percent_change_7d": -6.62
 				}
 			},
-			"last_updated": 1532404052,
+			"last_updated": 1532406093,
 			"holdings": 0
 		},
 		"1697": {
@@ -847,15 +847,15 @@
 			"max_supply": null,
 			"quotes": {
 				"USD": {
-					"price": 0.369799,
-					"volume_24h": 116533000,
-					"market_cap": 369799000,
-					"percent_change_1h": 2.08,
-					"percent_change_24h": 10.44,
-					"percent_change_7d": 3.74
+					"price": 0.365222,
+					"volume_24h": 117010000,
+					"market_cap": 365222000,
+					"percent_change_1h": -0.72,
+					"percent_change_24h": 9.27,
+					"percent_change_7d": 2.36
 				}
 			},
-			"last_updated": 1532404050,
+			"last_updated": 1532406090,
 			"holdings": 0
 		},
 		"1698": {
@@ -864,20 +864,20 @@
 			"symbol": "ZEN",
 			"website_slug": "zencash",
 			"rank": 86,
-			"circulating_supply": 4341338,
-			"total_supply": 4341338,
+			"circulating_supply": 4341500,
+			"total_supply": 4341500,
 			"max_supply": 21000000,
 			"quotes": {
 				"USD": {
-					"price": 24.885,
-					"volume_24h": 1194830,
-					"market_cap": 108034184,
-					"percent_change_1h": 0.45,
-					"percent_change_24h": -3.89,
-					"percent_change_7d": 13.73
+					"price": 24.873,
+					"volume_24h": 1202360,
+					"market_cap": 107986130,
+					"percent_change_1h": 0.21,
+					"percent_change_24h": -3.83,
+					"percent_change_7d": 13.69
 				}
 			},
-			"last_updated": 1532404054,
+			"last_updated": 1532406099,
 			"holdings": 0
 		},
 		"1700": {
@@ -891,15 +891,37 @@
 			"max_supply": null,
 			"quotes": {
 				"USD": {
-					"price": 1.88117,
-					"volume_24h": 9255600,
-					"market_cap": 438351122,
-					"percent_change_1h": -0.44,
-					"percent_change_24h": -0.44,
-					"percent_change_7d": 0.75
+					"price": 1.88053,
+					"volume_24h": 9172760,
+					"market_cap": 438201988,
+					"percent_change_1h": 0.15,
+					"percent_change_24h": -1.01,
+					"percent_change_7d": 0.89
 				}
 			},
-			"last_updated": 1532404053,
+			"last_updated": 1532406090,
+			"holdings": 0
+		},
+		"1703": {
+			"id": 1703,
+			"name": "Metaverse ETP",
+			"symbol": "ETP",
+			"website_slug": "metaverse",
+			"rank": 100,
+			"circulating_supply": 45669710,
+			"total_supply": 55905056,
+			"max_supply": 100000000,
+			"quotes": {
+				"USD": {
+					"price": 1.97965,
+					"volume_24h": 8323650,
+					"market_cap": 90410042,
+					"percent_change_1h": -0.8,
+					"percent_change_24h": -4.83,
+					"percent_change_7d": 25.79
+				}
+			},
+			"last_updated": 1532406092,
 			"holdings": 0
 		},
 		"1710": {
@@ -913,15 +935,15 @@
 			"max_supply": null,
 			"quotes": {
 				"USD": {
-					"price": 46.279,
-					"volume_24h": 1368650,
-					"market_cap": 94253914,
-					"percent_change_1h": -0.74,
-					"percent_change_24h": -2.39,
+					"price": 46.3247,
+					"volume_24h": 1375490,
+					"market_cap": 94346989,
+					"percent_change_1h": 0.07,
+					"percent_change_24h": -2.63,
 					"percent_change_7d": -8.55
 				}
 			},
-			"last_updated": 1532404064,
+			"last_updated": 1532406094,
 			"holdings": 0
 		},
 		"1720": {
@@ -935,15 +957,15 @@
 			"max_supply": 2779530283,
 			"quotes": {
 				"USD": {
-					"price": 0.940499,
-					"volume_24h": 39657400,
-					"market_cap": 2614145452,
-					"percent_change_1h": 0.4,
-					"percent_change_24h": -6.46,
-					"percent_change_7d": -12.9
+					"price": 0.939047,
+					"volume_24h": 40248800,
+					"market_cap": 2610109574,
+					"percent_change_1h": 0.1,
+					"percent_change_24h": -6.56,
+					"percent_change_7d": -13.02
 				}
 			},
-			"last_updated": 1532404055,
+			"last_updated": 1532406094,
 			"holdings": 0
 		},
 		"1727": {
@@ -952,20 +974,20 @@
 			"symbol": "BNT",
 			"website_slug": "bancor",
 			"rank": 84,
-			"circulating_supply": 51248095,
-			"total_supply": 75919253,
+			"circulating_supply": 51244682,
+			"total_supply": 75915840,
 			"max_supply": null,
 			"quotes": {
 				"USD": {
-					"price": 2.21234,
-					"volume_24h": 11491900,
-					"market_cap": 113378210,
-					"percent_change_1h": 0.35,
-					"percent_change_24h": -2.14,
-					"percent_change_7d": -2.68
+					"price": 2.20652,
+					"volume_24h": 11181800,
+					"market_cap": 113072415,
+					"percent_change_1h": 0.06,
+					"percent_change_24h": -2.49,
+					"percent_change_7d": -2.93
 				}
 			},
-			"last_updated": 1532404056,
+			"last_updated": 1532406093,
 			"holdings": 0
 		},
 		"1750": {
@@ -973,21 +995,21 @@
 			"name": "GXChain",
 			"symbol": "GXS",
 			"website_slug": "gxchain",
-			"rank": 57,
+			"rank": 56,
 			"circulating_supply": 60000000,
 			"total_supply": 100000000,
 			"max_supply": 100000000,
 			"quotes": {
 				"USD": {
-					"price": 3.38363,
-					"volume_24h": 15019000,
-					"market_cap": 203017800,
-					"percent_change_1h": 1.49,
-					"percent_change_24h": 4.31,
-					"percent_change_7d": 15.81
+					"price": 3.40953,
+					"volume_24h": 14972100,
+					"market_cap": 204571800,
+					"percent_change_1h": 1.75,
+					"percent_change_24h": 4.88,
+					"percent_change_7d": 16.42
 				}
 			},
-			"last_updated": 1532404056,
+			"last_updated": 1532406096,
 			"holdings": 0
 		},
 		"1757": {
@@ -995,21 +1017,21 @@
 			"name": "FunFair",
 			"symbol": "FUN",
 			"website_slug": "funfair",
-			"rank": 74,
+			"rank": 77,
 			"circulating_supply": 5010848189,
 			"total_supply": 10999873621,
 			"max_supply": null,
 			"quotes": {
 				"USD": {
-					"price": 0.0251589,
-					"volume_24h": 938046,
-					"market_cap": 126067428,
-					"percent_change_1h": 0.78,
-					"percent_change_24h": -3.93,
-					"percent_change_7d": -5.36
+					"price": 0.0247598,
+					"volume_24h": 975324,
+					"market_cap": 124067599,
+					"percent_change_1h": -1.14,
+					"percent_change_24h": -5.67,
+					"percent_change_7d": -6.9
 				}
 			},
-			"last_updated": 1532404054,
+			"last_updated": 1532406094,
 			"holdings": 0
 		},
 		"1758": {
@@ -1023,15 +1045,15 @@
 			"max_supply": null,
 			"quotes": {
 				"USD": {
-					"price": 0.911701,
-					"volume_24h": 11005600,
-					"market_cap": 99558078,
-					"percent_change_1h": -0.61,
-					"percent_change_24h": -14.74,
-					"percent_change_7d": -27.2
+					"price": 0.90879,
+					"volume_24h": 11020000,
+					"market_cap": 99240196,
+					"percent_change_1h": -1.14,
+					"percent_change_24h": -15.45,
+					"percent_change_7d": -28.13
 				}
 			},
-			"last_updated": 1532404066,
+			"last_updated": 1532406092,
 			"holdings": 0
 		},
 		"1759": {
@@ -1039,21 +1061,21 @@
 			"name": "Status",
 			"symbol": "SNT",
 			"website_slug": "status",
-			"rank": 53,
+			"rank": 52,
 			"circulating_supply": 3470483788,
 			"total_supply": 6804870174,
 			"max_supply": null,
 			"quotes": {
 				"USD": {
-					"price": 0.0670777,
-					"volume_24h": 10522800,
-					"market_cap": 232792070,
-					"percent_change_1h": -0.46,
-					"percent_change_24h": -8.47,
-					"percent_change_7d": -8.92
+					"price": 0.0670017,
+					"volume_24h": 10664400,
+					"market_cap": 232528314,
+					"percent_change_1h": 0.11,
+					"percent_change_24h": -8.65,
+					"percent_change_7d": -9.1
 				}
 			},
-			"last_updated": 1532404056,
+			"last_updated": 1532406095,
 			"holdings": 0
 		},
 		"1765": {
@@ -1067,15 +1089,15 @@
 			"max_supply": 1000000000,
 			"quotes": {
 				"USD": {
-					"price": 7.89013,
-					"volume_24h": 615477000,
-					"market_cap": 7070735993,
-					"percent_change_1h": -0.07,
-					"percent_change_24h": -4.13,
-					"percent_change_7d": -1.27
+					"price": 7.83107,
+					"volume_24h": 600411000,
+					"market_cap": 7017809404,
+					"percent_change_1h": -0.58,
+					"percent_change_24h": -5.22,
+					"percent_change_7d": -1.96
 				}
 			},
-			"last_updated": 1532404052,
+			"last_updated": 1532406093,
 			"holdings": 0
 		},
 		"1776": {
@@ -1083,21 +1105,21 @@
 			"name": "MCO",
 			"symbol": "MCO",
 			"website_slug": "monaco",
-			"rank": 83,
+			"rank": 82,
 			"circulating_supply": 15793831,
 			"total_supply": 31587682,
 			"max_supply": null,
 			"quotes": {
 				"USD": {
-					"price": 7.29494,
-					"volume_24h": 13159500,
-					"market_cap": 115215050,
-					"percent_change_1h": -0.61,
-					"percent_change_24h": -8.26,
-					"percent_change_7d": -7.82
+					"price": 7.24263,
+					"volume_24h": 12308800,
+					"market_cap": 114388875,
+					"percent_change_1h": -1.12,
+					"percent_change_24h": -8.71,
+					"percent_change_7d": -8.13
 				}
 			},
-			"last_updated": 1532404056,
+			"last_updated": 1532406097,
 			"holdings": 0
 		},
 		"1785": {
@@ -1105,21 +1127,21 @@
 			"name": "Gas",
 			"symbol": "GAS",
 			"website_slug": "gas",
-			"rank": 88,
+			"rank": 89,
 			"circulating_supply": 10128375,
 			"total_supply": 17190378,
 			"max_supply": 100000000,
 			"quotes": {
 				"USD": {
-					"price": 10.2457,
-					"volume_24h": 3659250,
-					"market_cap": 103772293,
-					"percent_change_1h": 0.93,
-					"percent_change_24h": -7.35,
-					"percent_change_7d": -13.12
+					"price": 10.2021,
+					"volume_24h": 3682750,
+					"market_cap": 103330696,
+					"percent_change_1h": 0.11,
+					"percent_change_24h": -7.82,
+					"percent_change_7d": -13.48
 				}
 			},
-			"last_updated": 1532404054,
+			"last_updated": 1532406093,
 			"holdings": 0
 		},
 		"1789": {
@@ -1133,15 +1155,15 @@
 			"max_supply": 53252246,
 			"quotes": {
 				"USD": {
-					"price": 5.94098,
-					"volume_24h": 4726490,
-					"market_cap": 219840184,
-					"percent_change_1h": 0.8,
-					"percent_change_24h": -8.56,
-					"percent_change_7d": -13.17
+					"price": 5.93411,
+					"volume_24h": 4833020,
+					"market_cap": 219585966,
+					"percent_change_1h": 0.53,
+					"percent_change_24h": -8.72,
+					"percent_change_7d": -13.23
 				}
 			},
-			"last_updated": 1532404053,
+			"last_updated": 1532406095,
 			"holdings": 0
 		},
 		"1808": {
@@ -1155,15 +1177,15 @@
 			"max_supply": null,
 			"quotes": {
 				"USD": {
-					"price": 6.84097,
-					"volume_24h": 29078700,
-					"market_cap": 959414562,
-					"percent_change_1h": 1.05,
-					"percent_change_24h": -5.82,
-					"percent_change_7d": -7.29
+					"price": 6.79417,
+					"volume_24h": 29111300,
+					"market_cap": 952851077,
+					"percent_change_1h": -0.29,
+					"percent_change_24h": -6.49,
+					"percent_change_7d": -7.95
 				}
 			},
-			"last_updated": 1532404055,
+			"last_updated": 1532406093,
 			"holdings": 0
 		},
 		"1828": {
@@ -1177,15 +1199,15 @@
 			"max_supply": 5000000000,
 			"quotes": {
 				"USD": {
-					"price": 0.0911498,
-					"volume_24h": 3023500,
-					"market_cap": 96051203,
-					"percent_change_1h": 1.21,
-					"percent_change_24h": 0.95,
-					"percent_change_7d": 7.29
+					"price": 0.0905539,
+					"volume_24h": 2981310,
+					"market_cap": 95423260,
+					"percent_change_1h": -0.09,
+					"percent_change_24h": 0.57,
+					"percent_change_7d": 6.9
 				}
 			},
-			"last_updated": 1532404053,
+			"last_updated": 1532406094,
 			"holdings": 0
 		},
 		"1831": {
@@ -1194,20 +1216,20 @@
 			"symbol": "BCH",
 			"website_slug": "bitcoin-cash",
 			"rank": 4,
-			"circulating_supply": 17253750,
-			"total_supply": 17253750,
+			"circulating_supply": 17253850,
+			"total_supply": 17253850,
 			"max_supply": 21000000,
 			"quotes": {
 				"USD": {
-					"price": 784.622,
-					"volume_24h": 593793000,
-					"market_cap": 13537671833,
-					"percent_change_1h": 0.27,
-					"percent_change_24h": -4.65,
-					"percent_change_7d": -1.56
+					"price": 780.131,
+					"volume_24h": 587384000,
+					"market_cap": 13460263254,
+					"percent_change_1h": -0.45,
+					"percent_change_24h": -5.26,
+					"percent_change_7d": -2.11
 				}
 			},
-			"last_updated": 1532404057,
+			"last_updated": 1532406094,
 			"holdings": 0
 		},
 		"1839": {
@@ -1221,15 +1243,15 @@
 			"max_supply": null,
 			"quotes": {
 				"USD": {
-					"price": 11.9701,
-					"volume_24h": 27858600,
-					"market_cap": 1143294453,
-					"percent_change_1h": -0.3,
-					"percent_change_24h": -2.43,
-					"percent_change_7d": -8.93
+					"price": 11.8681,
+					"volume_24h": 29138500,
+					"market_cap": 1133552176,
+					"percent_change_1h": -0.79,
+					"percent_change_24h": -3.25,
+					"percent_change_7d": -9.66
 				}
 			},
-			"last_updated": 1532404055,
+			"last_updated": 1532406096,
 			"holdings": 0
 		},
 		"1866": {
@@ -1243,15 +1265,15 @@
 			"max_supply": null,
 			"quotes": {
 				"USD": {
-					"price": 0.348465,
-					"volume_24h": 58515500,
-					"market_cap": 349335910,
-					"percent_change_1h": 0.06,
-					"percent_change_24h": -3.05,
-					"percent_change_7d": 5.89
+					"price": 0.346328,
+					"volume_24h": 59283600,
+					"market_cap": 347193569,
+					"percent_change_1h": -0.59,
+					"percent_change_24h": -3.63,
+					"percent_change_7d": 5.25
 				}
 			},
-			"last_updated": 1532404059,
+			"last_updated": 1532406097,
 			"holdings": 0
 		},
 		"1876": {
@@ -1265,15 +1287,15 @@
 			"max_supply": 8000000000000,
 			"quotes": {
 				"USD": {
-					"price": 0.000344273,
-					"volume_24h": 131626,
-					"market_cap": 111966742,
-					"percent_change_1h": 0.67,
-					"percent_change_24h": -8.78,
-					"percent_change_7d": -4.03
+					"price": 0.000344663,
+					"volume_24h": 115743,
+					"market_cap": 112093580,
+					"percent_change_1h": 0.02,
+					"percent_change_24h": -8.89,
+					"percent_change_7d": -3.86
 				}
 			},
-			"last_updated": 1532404052,
+			"last_updated": 1532406097,
 			"holdings": 0
 		},
 		"1896": {
@@ -1287,15 +1309,15 @@
 			"max_supply": null,
 			"quotes": {
 				"USD": {
-					"price": 1.11488,
-					"volume_24h": 19440900,
-					"market_cap": 598369625,
-					"percent_change_1h": 0.05,
-					"percent_change_24h": -5.5,
-					"percent_change_7d": -1.19
+					"price": 1.07512,
+					"volume_24h": 20354400,
+					"market_cap": 577029950,
+					"percent_change_1h": -3.64,
+					"percent_change_24h": -8.72,
+					"percent_change_7d": -4.68
 				}
 			},
-			"last_updated": 1532404054,
+			"last_updated": 1532406099,
 			"holdings": 0
 		},
 		"1903": {
@@ -1304,20 +1326,20 @@
 			"symbol": "HSR",
 			"website_slug": "hshare",
 			"rank": 51,
-			"circulating_supply": 43268363,
-			"total_supply": 43268363,
+			"circulating_supply": 43268469,
+			"total_supply": 43268469,
 			"max_supply": 84000000,
 			"quotes": {
 				"USD": {
-					"price": 5.592,
-					"volume_24h": 54422100,
-					"market_cap": 241956687,
-					"percent_change_1h": -0.29,
-					"percent_change_24h": -4.21,
-					"percent_change_7d": 5.92
+					"price": 5.57797,
+					"volume_24h": 53688900,
+					"market_cap": 241350224,
+					"percent_change_1h": -0.87,
+					"percent_change_24h": -4.37,
+					"percent_change_7d": 5.72
 				}
 			},
-			"last_updated": 1532404053,
+			"last_updated": 1532406096,
 			"holdings": 0
 		},
 		"1904": {
@@ -1331,15 +1353,15 @@
 			"max_supply": null,
 			"quotes": {
 				"USD": {
-					"price": 1.86362,
-					"volume_24h": 9638050,
-					"market_cap": 1033462073,
-					"percent_change_1h": 0.76,
-					"percent_change_24h": 1.78,
-					"percent_change_7d": -1.3
+					"price": 1.85657,
+					"volume_24h": 9621500,
+					"market_cap": 1029552527,
+					"percent_change_1h": -0.35,
+					"percent_change_24h": 1.4,
+					"percent_change_7d": -1.57
 				}
 			},
-			"last_updated": 1532404055,
+			"last_updated": 1532406095,
 			"holdings": 0
 		},
 		"1908": {
@@ -1347,21 +1369,21 @@
 			"name": "Nebulas",
 			"symbol": "NAS",
 			"website_slug": "nebulas-token",
-			"rank": 66,
+			"rank": 67,
 			"circulating_supply": 45500000,
 			"total_supply": 100000000,
 			"max_supply": 100000000,
 			"quotes": {
 				"USD": {
-					"price": 3.41071,
-					"volume_24h": 18317400,
-					"market_cap": 155187305,
-					"percent_change_1h": -0.02,
-					"percent_change_24h": -4.47,
-					"percent_change_7d": -5.4
+					"price": 3.3488,
+					"volume_24h": 18354600,
+					"market_cap": 152370400,
+					"percent_change_1h": -1.95,
+					"percent_change_24h": -6.33,
+					"percent_change_7d": -7.07
 				}
 			},
-			"last_updated": 1532404056,
+			"last_updated": 1532406097,
 			"holdings": 0
 		},
 		"1925": {
@@ -1369,21 +1391,21 @@
 			"name": "Waltonchain",
 			"symbol": "WTC",
 			"website_slug": "waltonchain",
-			"rank": 52,
+			"rank": 53,
 			"circulating_supply": 40144099,
 			"total_supply": 70000000,
 			"max_supply": 100000000,
 			"quotes": {
 				"USD": {
-					"price": 5.89128,
-					"volume_24h": 5908830,
-					"market_cap": 236500130,
-					"percent_change_1h": -1.81,
-					"percent_change_24h": -8.05,
-					"percent_change_7d": -15.27
+					"price": 5.7524,
+					"volume_24h": 5844800,
+					"market_cap": 230924917,
+					"percent_change_1h": -2.19,
+					"percent_change_24h": -10.39,
+					"percent_change_7d": -17.25
 				}
 			},
-			"last_updated": 1532404054,
+			"last_updated": 1532406098,
 			"holdings": 0
 		},
 		"1934": {
@@ -1397,15 +1419,15 @@
 			"max_supply": null,
 			"quotes": {
 				"USD": {
-					"price": 0.261082,
-					"volume_24h": 4249230,
-					"market_cap": 149358235,
-					"percent_change_1h": -0.37,
-					"percent_change_24h": -5.61,
-					"percent_change_7d": -12.16
+					"price": 0.259596,
+					"volume_24h": 4311980,
+					"market_cap": 148508133,
+					"percent_change_1h": -0.45,
+					"percent_change_24h": -6.33,
+					"percent_change_7d": -12.88
 				}
 			},
-			"last_updated": 1532404056,
+			"last_updated": 1532406096,
 			"holdings": 0
 		},
 		"1958": {
@@ -1419,15 +1441,15 @@
 			"max_supply": null,
 			"quotes": {
 				"USD": {
-					"price": 0.0339366,
-					"volume_24h": 199396000,
-					"market_cap": 2231267366,
-					"percent_change_1h": 0.34,
-					"percent_change_24h": -5.33,
-					"percent_change_7d": -8.09
+					"price": 0.0333375,
+					"volume_24h": 198276000,
+					"market_cap": 2191877672,
+					"percent_change_1h": -1.62,
+					"percent_change_24h": -6.96,
+					"percent_change_7d": -9.7
 				}
 			},
-			"last_updated": 1532404058,
+			"last_updated": 1532406095,
 			"holdings": 0
 		},
 		"1966": {
@@ -1441,15 +1463,15 @@
 			"max_supply": null,
 			"quotes": {
 				"USD": {
-					"price": 0.133869,
-					"volume_24h": 10080500,
-					"market_cap": 140581394,
-					"percent_change_1h": 0.52,
-					"percent_change_24h": -2.02,
-					"percent_change_7d": 27.81
+					"price": 0.132235,
+					"volume_24h": 10704500,
+					"market_cap": 138865462,
+					"percent_change_1h": -1.97,
+					"percent_change_24h": -2.68,
+					"percent_change_7d": 26.04
 				}
 			},
-			"last_updated": 1532404056,
+			"last_updated": 1532406100,
 			"holdings": 0
 		},
 		"1982": {
@@ -1463,15 +1485,15 @@
 			"max_supply": null,
 			"quotes": {
 				"USD": {
-					"price": 0.915549,
-					"volume_24h": 4416840,
-					"market_cap": 122805057,
-					"percent_change_1h": 0.21,
-					"percent_change_24h": -5.13,
-					"percent_change_7d": -4.34
+					"price": 0.913047,
+					"volume_24h": 4385770,
+					"market_cap": 122469457,
+					"percent_change_1h": -0.24,
+					"percent_change_24h": -5.64,
+					"percent_change_7d": -4.6
 				}
 			},
-			"last_updated": 1532404055,
+			"last_updated": 1532406097,
 			"holdings": 0
 		},
 		"1993": {
@@ -1485,15 +1507,15 @@
 			"max_supply": null,
 			"quotes": {
 				"USD": {
-					"price": 0.000197039,
-					"volume_24h": 4492420,
-					"market_cap": 148980707,
-					"percent_change_1h": 0.55,
-					"percent_change_24h": -2.88,
-					"percent_change_7d": 28.02
+					"price": 0.000194178,
+					"volume_24h": 4270140,
+					"market_cap": 146817512,
+					"percent_change_1h": -1.01,
+					"percent_change_24h": -4.98,
+					"percent_change_7d": 26.03
 				}
 			},
-			"last_updated": 1532404057,
+			"last_updated": 1532406096,
 			"holdings": 0
 		},
 		"2010": {
@@ -1507,15 +1529,15 @@
 			"max_supply": 45000000000,
 			"quotes": {
 				"USD": {
-					"price": 0.163923,
-					"volume_24h": 141084000,
-					"market_cap": 4250043184,
-					"percent_change_1h": -0.73,
-					"percent_change_24h": -7.42,
-					"percent_change_7d": 6.68
+					"price": 0.161544,
+					"volume_24h": 141812000,
+					"market_cap": 4188362683,
+					"percent_change_1h": -1.79,
+					"percent_change_24h": -8.78,
+					"percent_change_7d": 5.23
 				}
 			},
-			"last_updated": 1532404057,
+			"last_updated": 1532406094,
 			"holdings": 0
 		},
 		"2011": {
@@ -1529,15 +1551,15 @@
 			"max_supply": null,
 			"quotes": {
 				"USD": {
-					"price": 2.20477,
-					"volume_24h": 2671940,
-					"market_cap": 1339373613,
-					"percent_change_1h": 0.26,
-					"percent_change_24h": -0.23,
-					"percent_change_7d": -3.58
+					"price": 2.20085,
+					"volume_24h": 2675700,
+					"market_cap": 1336992256,
+					"percent_change_1h": 0.14,
+					"percent_change_24h": -0.58,
+					"percent_change_7d": -3.85
 				}
 			},
-			"last_updated": 1532404057,
+			"last_updated": 1532406102,
 			"holdings": 0
 		},
 		"2021": {
@@ -1545,21 +1567,21 @@
 			"name": "RChain",
 			"symbol": "RHOC",
 			"website_slug": "rchain",
-			"rank": 48,
+			"rank": 47,
 			"circulating_supply": 360956217,
 			"total_supply": 870663574,
 			"max_supply": 1000000000,
 			"quotes": {
 				"USD": {
-					"price": 0.706626,
-					"volume_24h": 265525,
-					"market_cap": 255061048,
-					"percent_change_1h": -0.62,
-					"percent_change_24h": -7.54,
-					"percent_change_7d": 0.04
+					"price": 0.713665,
+					"volume_24h": 263524,
+					"market_cap": 257601819,
+					"percent_change_1h": 1.36,
+					"percent_change_24h": -6.71,
+					"percent_change_7d": 0.75
 				}
 			},
-			"last_updated": 1532404058,
+			"last_updated": 1532406097,
 			"holdings": 0
 		},
 		"2027": {
@@ -1567,21 +1589,21 @@
 			"name": "Cryptonex",
 			"symbol": "CNX",
 			"website_slug": "cryptonex",
-			"rank": 73,
-			"circulating_supply": 45384723,
-			"total_supply": 106822349,
+			"rank": 76,
+			"circulating_supply": 45384762,
+			"total_supply": 106822388,
 			"max_supply": 210000000,
 			"quotes": {
 				"USD": {
-					"price": 2.8682,
-					"volume_24h": 4228950,
-					"market_cap": 130172463,
-					"percent_change_1h": 2.47,
-					"percent_change_24h": 3.1,
-					"percent_change_7d": 18.3
+					"price": 2.76233,
+					"volume_24h": 4049280,
+					"market_cap": 125367690,
+					"percent_change_1h": -3.14,
+					"percent_change_24h": -1.36,
+					"percent_change_7d": 13.98
 				}
 			},
-			"last_updated": 1532404056,
+			"last_updated": 1532406097,
 			"holdings": 0
 		},
 		"2044": {
@@ -1595,15 +1617,15 @@
 			"max_supply": null,
 			"quotes": {
 				"USD": {
-					"price": 1.22113,
-					"volume_24h": 2119020,
-					"market_cap": 91384694,
-					"percent_change_1h": 0.42,
-					"percent_change_24h": -2.9,
-					"percent_change_7d": -9.79
+					"price": 1.21393,
+					"volume_24h": 2232410,
+					"market_cap": 90845873,
+					"percent_change_1h": -0.34,
+					"percent_change_24h": -3.32,
+					"percent_change_7d": -10.47
 				}
 			},
-			"last_updated": 1532404069,
+			"last_updated": 1532406095,
 			"holdings": 0
 		},
 		"2062": {
@@ -1611,21 +1633,21 @@
 			"name": "Aion",
 			"symbol": "AION",
 			"website_slug": "aion",
-			"rank": 67,
+			"rank": 66,
 			"circulating_supply": 188620869,
 			"total_supply": 465934587,
 			"max_supply": null,
 			"quotes": {
 				"USD": {
-					"price": 0.822265,
-					"volume_24h": 3005240,
-					"market_cap": 155096339,
-					"percent_change_1h": -0.94,
-					"percent_change_24h": -9.88,
-					"percent_change_7d": -21.66
+					"price": 0.816964,
+					"volume_24h": 3078500,
+					"market_cap": 154096460,
+					"percent_change_1h": -1.6,
+					"percent_change_24h": -10.49,
+					"percent_change_7d": -22.3
 				}
 			},
-			"last_updated": 1532404062,
+			"last_updated": 1532406099,
 			"holdings": 0
 		},
 		"2083": {
@@ -1633,21 +1655,21 @@
 			"name": "Bitcoin Gold",
 			"symbol": "BTG",
 			"website_slug": "bitcoin-gold",
-			"rank": 29,
-			"circulating_supply": 17139549,
-			"total_supply": 17239549,
+			"rank": 28,
+			"circulating_supply": 17139574,
+			"total_supply": 17239574,
 			"max_supply": 21000000,
 			"quotes": {
 				"USD": {
-					"price": 29.563,
-					"volume_24h": 30862700,
-					"market_cap": 506696475,
-					"percent_change_1h": 0.44,
-					"percent_change_24h": -0.37,
-					"percent_change_7d": 0.32
+					"price": 29.6263,
+					"volume_24h": 31014200,
+					"market_cap": 507782149,
+					"percent_change_1h": 0.43,
+					"percent_change_24h": -0.38,
+					"percent_change_7d": 0.57
 				}
 			},
-			"last_updated": 1532404057,
+			"last_updated": 1532406099,
 			"holdings": 0
 		},
 		"2087": {
@@ -1655,21 +1677,21 @@
 			"name": "KuCoin Shares",
 			"symbol": "KCS",
 			"website_slug": "kucoin-shares",
-			"rank": 50,
+			"rank": 49,
 			"circulating_supply": 90730576,
 			"total_supply": 180730576,
 			"max_supply": null,
 			"quotes": {
 				"USD": {
-					"price": 2.70212,
-					"volume_24h": 585529,
-					"market_cap": 245164904,
-					"percent_change_1h": 0.17,
-					"percent_change_24h": -4.27,
-					"percent_change_7d": -12.22
+					"price": 2.71363,
+					"volume_24h": 589986,
+					"market_cap": 246209213,
+					"percent_change_1h": 0.57,
+					"percent_change_24h": -3.81,
+					"percent_change_7d": -11.58
 				}
 			},
-			"last_updated": 1532404059,
+			"last_updated": 1532406104,
 			"holdings": 0
 		},
 		"2092": {
@@ -1677,21 +1699,21 @@
 			"name": "Nuls",
 			"symbol": "NULS",
 			"website_slug": "nuls",
-			"rank": 95,
+			"rank": 96,
 			"circulating_supply": 40000000,
 			"total_supply": 40000000,
 			"max_supply": null,
 			"quotes": {
 				"USD": {
-					"price": 2.45345,
-					"volume_24h": 6408420,
-					"market_cap": 98138000,
-					"percent_change_1h": 0.15,
-					"percent_change_24h": -8.76,
-					"percent_change_7d": -6.18
+					"price": 2.44345,
+					"volume_24h": 6199200,
+					"market_cap": 97738000,
+					"percent_change_1h": -0.55,
+					"percent_change_24h": -9.36,
+					"percent_change_7d": -6.54
 				}
 			},
-			"last_updated": 1532404060,
+			"last_updated": 1532406101,
 			"holdings": 0
 		},
 		"2099": {
@@ -1699,21 +1721,21 @@
 			"name": "ICON",
 			"symbol": "ICX",
 			"website_slug": "icon",
-			"rank": 30,
+			"rank": 31,
 			"circulating_supply": 387431340,
 			"total_supply": 800460000,
 			"max_supply": null,
 			"quotes": {
 				"USD": {
-					"price": 1.27626,
-					"volume_24h": 22731200,
-					"market_cap": 494463122,
-					"percent_change_1h": -0.29,
-					"percent_change_24h": -9.33,
-					"percent_change_7d": -13.73
+					"price": 1.26528,
+					"volume_24h": 23030200,
+					"market_cap": 490209126,
+					"percent_change_1h": -1.27,
+					"percent_change_24h": -10.01,
+					"percent_change_7d": -14.42
 				}
 			},
-			"last_updated": 1532404060,
+			"last_updated": 1532406099,
 			"holdings": 0
 		},
 		"2132": {
@@ -1721,21 +1743,21 @@
 			"name": "Power Ledger",
 			"symbol": "POWR",
 			"website_slug": "power-ledger",
-			"rank": 82,
+			"rank": 83,
 			"circulating_supply": 373730607,
 			"total_supply": 1000000000,
 			"max_supply": null,
 			"quotes": {
 				"USD": {
-					"price": 0.308554,
-					"volume_24h": 13136600,
-					"market_cap": 115316074,
-					"percent_change_1h": -1.04,
-					"percent_change_24h": -14.84,
-					"percent_change_7d": -12.07
+					"price": 0.304337,
+					"volume_24h": 13291200,
+					"market_cap": 113740052,
+					"percent_change_1h": -1.74,
+					"percent_change_24h": -15.96,
+					"percent_change_7d": -13.92
 				}
 			},
-			"last_updated": 1532404054,
+			"last_updated": 1532406099,
 			"holdings": 0
 		},
 		"2137": {
@@ -1743,21 +1765,21 @@
 			"name": "Electroneum",
 			"symbol": "ETN",
 			"website_slug": "electroneum",
-			"rank": 91,
-			"circulating_supply": 7475187784,
-			"total_supply": 7475187784,
+			"rank": 92,
+			"circulating_supply": 7475504200,
+			"total_supply": 7475504200,
 			"max_supply": 21000000000,
 			"quotes": {
 				"USD": {
-					"price": 0.0135163,
-					"volume_24h": 1474430,
-					"market_cap": 101036881,
-					"percent_change_1h": 0.23,
-					"percent_change_24h": 14.83,
-					"percent_change_7d": 16.87
+					"price": 0.0134131,
+					"volume_24h": 1475880,
+					"market_cap": 100269685,
+					"percent_change_1h": -0.27,
+					"percent_change_24h": 13.71,
+					"percent_change_7d": 16
 				}
 			},
-			"last_updated": 1532404060,
+			"last_updated": 1532406099,
 			"holdings": 0
 		},
 		"2191": {
@@ -1765,21 +1787,21 @@
 			"name": "Paypex",
 			"symbol": "PAYX",
 			"website_slug": "paypex",
-			"rank": 89,
+			"rank": 88,
 			"circulating_supply": 68428768,
 			"total_supply": 150000000,
 			"max_supply": null,
 			"quotes": {
 				"USD": {
-					"price": 1.51261,
-					"volume_24h": 38170.9,
-					"market_cap": 103506039,
-					"percent_change_1h": 0.8,
-					"percent_change_24h": -1.8,
-					"percent_change_7d": 1.21
+					"price": 1.51657,
+					"volume_24h": 36586,
+					"market_cap": 103777017,
+					"percent_change_1h": 0.81,
+					"percent_change_24h": -1.39,
+					"percent_change_7d": 1.47
 				}
 			},
-			"last_updated": 1532404063,
+			"last_updated": 1532406103,
 			"holdings": 0
 		},
 		"2222": {
@@ -1793,15 +1815,15 @@
 			"max_supply": 210000000,
 			"quotes": {
 				"USD": {
-					"price": 2.13957,
-					"volume_24h": 5025990,
-					"market_cap": 328973597,
-					"percent_change_1h": -1.82,
-					"percent_change_24h": -53.64,
-					"percent_change_7d": 1.21
+					"price": 2.15895,
+					"volume_24h": 5099560,
+					"market_cap": 331953405,
+					"percent_change_1h": -0.32,
+					"percent_change_24h": -52.99,
+					"percent_change_7d": 2.1
 				}
 			},
-			"last_updated": 1532404058,
+			"last_updated": 1532406099,
 			"holdings": 0
 		},
 		"2246": {
@@ -1809,21 +1831,21 @@
 			"name": "CyberMiles",
 			"symbol": "CMT",
 			"website_slug": "cybermiles",
-			"rank": 93,
+			"rank": 95,
 			"circulating_supply": 692798400,
 			"total_supply": 1000000000,
 			"max_supply": null,
 			"quotes": {
 				"USD": {
-					"price": 0.14387,
-					"volume_24h": 9881540,
-					"market_cap": 99672906,
-					"percent_change_1h": 0.7,
-					"percent_change_24h": -1.88,
-					"percent_change_7d": -10.97
+					"price": 0.141978,
+					"volume_24h": 9891450,
+					"market_cap": 98362131,
+					"percent_change_1h": -0.8,
+					"percent_change_24h": -3.09,
+					"percent_change_7d": -12.07
 				}
 			},
-			"last_updated": 1532404059,
+			"last_updated": 1532406102,
 			"holdings": 0
 		},
 		"2299": {
@@ -1837,15 +1859,15 @@
 			"max_supply": 1000000000,
 			"quotes": {
 				"USD": {
-					"price": 0.59364,
-					"volume_24h": 11833000,
-					"market_cap": 148410000,
-					"percent_change_1h": -1.61,
-					"percent_change_24h": -8.39,
-					"percent_change_7d": -6.2
+					"price": 0.585025,
+					"volume_24h": 11462500,
+					"market_cap": 146256250,
+					"percent_change_1h": -2.12,
+					"percent_change_24h": -9.34,
+					"percent_change_7d": -7.54
 				}
 			},
-			"last_updated": 1532404060,
+			"last_updated": 1532406097,
 			"holdings": 0
 		},
 		"2300": {
@@ -1853,21 +1875,21 @@
 			"name": "WAX",
 			"symbol": "WAX",
 			"website_slug": "wax",
-			"rank": 80,
+			"rank": 81,
 			"circulating_supply": 930851783,
 			"total_supply": 1850000000,
 			"max_supply": null,
 			"quotes": {
 				"USD": {
-					"price": 0.131322,
-					"volume_24h": 2997300,
-					"market_cap": 122241318,
-					"percent_change_1h": 0.39,
-					"percent_change_24h": -1.51,
-					"percent_change_7d": -5.88
+					"price": 0.12842,
+					"volume_24h": 3003550,
+					"market_cap": 119539986,
+					"percent_change_1h": -1.7,
+					"percent_change_24h": -3.49,
+					"percent_change_7d": -8.28
 				}
 			},
-			"last_updated": 1532404059,
+			"last_updated": 1532406102,
 			"holdings": 0
 		},
 		"2349": {
@@ -1875,21 +1897,21 @@
 			"name": "Mixin",
 			"symbol": "XIN",
 			"website_slug": "mixin",
-			"rank": 56,
+			"rank": 57,
 			"circulating_supply": 439153,
 			"total_supply": 1000000,
 			"max_supply": null,
 			"quotes": {
 				"USD": {
-					"price": 467.309,
-					"volume_24h": 188508,
-					"market_cap": 205220096,
-					"percent_change_1h": 0.51,
-					"percent_change_24h": -7.84,
-					"percent_change_7d": -9.81
+					"price": 465.341,
+					"volume_24h": 191935,
+					"market_cap": 204355843,
+					"percent_change_1h": 0.27,
+					"percent_change_24h": -8.24,
+					"percent_change_7d": -10.16
 				}
 			},
-			"last_updated": 1532404063,
+			"last_updated": 1532406101,
 			"holdings": 0
 		},
 		"2403": {
@@ -1903,15 +1925,15 @@
 			"max_supply": null,
 			"quotes": {
 				"USD": {
-					"price": 4.71423,
-					"volume_24h": 631740,
-					"market_cap": 169226971,
-					"percent_change_1h": -0.03,
-					"percent_change_24h": 4.6,
-					"percent_change_7d": 13.85
+					"price": 4.722,
+					"volume_24h": 620318,
+					"market_cap": 169505891,
+					"percent_change_1h": 0.72,
+					"percent_change_24h": 4.42,
+					"percent_change_7d": 13.63
 				}
 			},
-			"last_updated": 1532404061,
+			"last_updated": 1532406102,
 			"holdings": 0
 		},
 		"2405": {
@@ -1925,37 +1947,15 @@
 			"max_supply": null,
 			"quotes": {
 				"USD": {
-					"price": 0.0227074,
-					"volume_24h": 14252400,
-					"market_cap": 190742160,
-					"percent_change_1h": 1.31,
-					"percent_change_24h": -6.24,
-					"percent_change_7d": -1.17
+					"price": 0.0220474,
+					"volume_24h": 14742100,
+					"market_cap": 185198160,
+					"percent_change_1h": -2.22,
+					"percent_change_24h": -9.1,
+					"percent_change_7d": -3.97
 				}
 			},
-			"last_updated": 1532404064,
-			"holdings": 0
-		},
-		"2416": {
-			"id": 2416,
-			"name": "Theta Token",
-			"symbol": "THETA",
-			"website_slug": "theta-token",
-			"rank": 100,
-			"circulating_supply": 664002689,
-			"total_supply": 1000000000,
-			"max_supply": null,
-			"quotes": {
-				"USD": {
-					"price": 0.137115,
-					"volume_24h": 4261480,
-					"market_cap": 91044729,
-					"percent_change_1h": -1.86,
-					"percent_change_24h": 0.65,
-					"percent_change_7d": -5.64
-				}
-			},
-			"last_updated": 1532404063,
+			"last_updated": 1532406105,
 			"holdings": 0
 		},
 		"2469": {
@@ -1963,21 +1963,21 @@
 			"name": "Zilliqa",
 			"symbol": "ZIL",
 			"website_slug": "zilliqa",
-			"rank": 28,
+			"rank": 29,
 			"circulating_supply": 7576202268,
 			"total_supply": 12600000000,
 			"max_supply": null,
 			"quotes": {
 				"USD": {
-					"price": 0.0672292,
-					"volume_24h": 23506700,
-					"market_cap": 509342018,
-					"percent_change_1h": -1.02,
-					"percent_change_24h": -8.63,
-					"percent_change_7d": -10.67
+					"price": 0.0667078,
+					"volume_24h": 23161200,
+					"market_cap": 505391786,
+					"percent_change_1h": -1.12,
+					"percent_change_24h": -9.27,
+					"percent_change_7d": -11.41
 				}
 			},
-			"last_updated": 1532404061,
+			"last_updated": 1532406103,
 			"holdings": 0
 		},
 		"2496": {
@@ -1985,21 +1985,21 @@
 			"name": "Polymath",
 			"symbol": "POLY",
 			"website_slug": "polymath-network",
-			"rank": 96,
+			"rank": 93,
 			"circulating_supply": 276420107,
 			"total_supply": 1000000000,
 			"max_supply": null,
 			"quotes": {
 				"USD": {
-					"price": 0.353539,
-					"volume_24h": 2222350,
-					"market_cap": 97725288,
-					"percent_change_1h": 1.94,
-					"percent_change_24h": -7.09,
-					"percent_change_7d": -3.54
+					"price": 0.359575,
+					"volume_24h": 2447250,
+					"market_cap": 99393760,
+					"percent_change_1h": 4.36,
+					"percent_change_24h": -5.51,
+					"percent_change_7d": -1.94
 				}
 			},
-			"last_updated": 1532404067,
+			"last_updated": 1532406103,
 			"holdings": 0
 		},
 		"2502": {
@@ -2013,15 +2013,15 @@
 			"max_supply": null,
 			"quotes": {
 				"USD": {
-					"price": 3.36437,
-					"volume_24h": 36330600,
-					"market_cap": 168219173,
-					"percent_change_1h": -0.28,
-					"percent_change_24h": -5.34,
-					"percent_change_7d": -4.55
+					"price": 3.34522,
+					"volume_24h": 37224200,
+					"market_cap": 167261669,
+					"percent_change_1h": -0.6,
+					"percent_change_24h": -6.01,
+					"percent_change_7d": -5.03
 				}
 			},
-			"last_updated": 1532404063,
+			"last_updated": 1532406106,
 			"holdings": 0
 		},
 		"2566": {
@@ -2035,15 +2035,15 @@
 			"max_supply": null,
 			"quotes": {
 				"USD": {
-					"price": 3.15758,
-					"volume_24h": 36876500,
-					"market_cap": 477717146,
-					"percent_change_1h": -0.06,
-					"percent_change_24h": -5.93,
-					"percent_change_7d": -14.62
+					"price": 3.11142,
+					"volume_24h": 37530700,
+					"market_cap": 470733499,
+					"percent_change_1h": -1.41,
+					"percent_change_24h": -7.15,
+					"percent_change_7d": -15.8
 				}
 			},
-			"last_updated": 1532404063,
+			"last_updated": 1532406104,
 			"holdings": 0
 		},
 		"2575": {
@@ -2052,20 +2052,20 @@
 			"symbol": "BTCP",
 			"website_slug": "bitcoin-private",
 			"rank": 61,
-			"circulating_supply": 20496341,
-			"total_supply": 20496341,
+			"circulating_supply": 20496366,
+			"total_supply": 20496366,
 			"max_supply": 21000000,
 			"quotes": {
 				"USD": {
-					"price": 8.34941,
-					"volume_24h": 359216,
-					"market_cap": 171132356,
-					"percent_change_1h": 9.4,
-					"percent_change_24h": 18.8,
-					"percent_change_7d": 3.79
+					"price": 8.31236,
+					"volume_24h": 378092,
+					"market_cap": 170373173,
+					"percent_change_1h": 3.54,
+					"percent_change_24h": 18.26,
+					"percent_change_7d": 3.21
 				}
 			},
-			"last_updated": 1532404068,
+			"last_updated": 1532406106,
 			"holdings": 0
 		},
 		"2588": {
@@ -2074,20 +2074,20 @@
 			"symbol": "LOOM",
 			"website_slug": "loom-network",
 			"rank": 87,
-			"circulating_supply": 586969493,
+			"circulating_supply": 586975047,
 			"total_supply": 1000000000,
 			"max_supply": null,
 			"quotes": {
 				"USD": {
-					"price": 0.181464,
-					"volume_24h": 3440880,
-					"market_cap": 106513832,
-					"percent_change_1h": -0.32,
-					"percent_change_24h": -10.68,
-					"percent_change_7d": -20.14
+					"price": 0.178286,
+					"volume_24h": 3498950,
+					"market_cap": 104649433,
+					"percent_change_1h": -2.41,
+					"percent_change_24h": -12.11,
+					"percent_change_7d": -21.75
 				}
 			},
-			"last_updated": 1532404064,
+			"last_updated": 1532406105,
 			"holdings": 0
 		},
 		"2591": {
@@ -2095,21 +2095,21 @@
 			"name": "Dropil",
 			"symbol": "DROP",
 			"website_slug": "dropil",
-			"rank": 81,
-			"circulating_supply": 20104713038,
+			"rank": 80,
+			"circulating_supply": 20104758944,
 			"total_supply": 30000000000,
 			"max_supply": null,
 			"quotes": {
 				"USD": {
-					"price": 0.00594714,
-					"volume_24h": 183850,
-					"market_cap": 119565543,
-					"percent_change_1h": 3.87,
-					"percent_change_24h": -4.1,
-					"percent_change_7d": 7.88
+					"price": 0.00596083,
+					"volume_24h": 171107,
+					"market_cap": 119841050,
+					"percent_change_1h": 2.59,
+					"percent_change_24h": -4.42,
+					"percent_change_7d": 8.13
 				}
 			},
-			"last_updated": 1532404068,
+			"last_updated": 1532406104,
 			"holdings": 0
 		},
 		"2603": {
@@ -2117,21 +2117,21 @@
 			"name": "Pundi X",
 			"symbol": "NPXS",
 			"website_slug": "pundi-x",
-			"rank": 49,
+			"rank": 50,
 			"circulating_supply": 87476023518,
 			"total_supply": 280755195000,
 			"max_supply": null,
 			"quotes": {
 				"USD": {
-					"price": 0.00287296,
-					"volume_24h": 7070870,
-					"market_cap": 251315117,
-					"percent_change_1h": -0.06,
-					"percent_change_24h": -8.13,
-					"percent_change_7d": -23.83
+					"price": 0.00280982,
+					"volume_24h": 7581320,
+					"market_cap": 245791880,
+					"percent_change_1h": -0.87,
+					"percent_change_24h": -10.25,
+					"percent_change_7d": -25.39
 				}
 			},
-			"last_updated": 1532404068,
+			"last_updated": 1532406105,
 			"holdings": 0
 		},
 		"2606": {
@@ -2145,15 +2145,15 @@
 			"max_supply": null,
 			"quotes": {
 				"USD": {
-					"price": 1.9743,
-					"volume_24h": 6589600,
-					"market_cap": 209576866,
-					"percent_change_1h": -0.9,
-					"percent_change_24h": -12.46,
-					"percent_change_7d": -14.93
+					"price": 1.95369,
+					"volume_24h": 6713060,
+					"market_cap": 207389063,
+					"percent_change_1h": -1.99,
+					"percent_change_24h": -12.89,
+					"percent_change_7d": -15.78
 				}
 			},
-			"last_updated": 1532404068,
+			"last_updated": 1532406107,
 			"holdings": 0
 		},
 		"2608": {
@@ -2162,20 +2162,20 @@
 			"symbol": "MITH",
 			"website_slug": "mithril",
 			"rank": 43,
-			"circulating_supply": 352048275,
+			"circulating_supply": 356548275,
 			"total_supply": 1000000000,
 			"max_supply": null,
 			"quotes": {
 				"USD": {
-					"price": 0.913172,
-					"volume_24h": 75958600,
-					"market_cap": 321480627,
-					"percent_change_1h": 13.81,
-					"percent_change_24h": 17.51,
-					"percent_change_7d": 63.65
+					"price": 0.910494,
+					"volume_24h": 85793300,
+					"market_cap": 324635065,
+					"percent_change_1h": 5.94,
+					"percent_change_24h": 16.56,
+					"percent_change_7d": 63.02
 				}
 			},
-			"last_updated": 1532404065,
+			"last_updated": 1532406106,
 			"holdings": 0
 		},
 		"2682": {
@@ -2183,21 +2183,21 @@
 			"name": "Holo",
 			"symbol": "HOT",
 			"website_slug": "holo",
-			"rank": 77,
+			"rank": 73,
 			"circulating_supply": 133214575156,
 			"total_supply": 177619433541,
 			"max_supply": null,
 			"quotes": {
 				"USD": {
-					"price": 0.000931666,
-					"volume_24h": 15046900,
-					"market_cap": 124111490,
-					"percent_change_1h": -3.97,
-					"percent_change_24h": 43.3,
-					"percent_change_7d": 116.52
+					"price": 0.000949764,
+					"volume_24h": 15574000,
+					"market_cap": 126522408,
+					"percent_change_1h": 0.56,
+					"percent_change_24h": 46.07,
+					"percent_change_7d": 120.58
 				}
 			},
-			"last_updated": 1532404069,
+			"last_updated": 1532406109,
 			"holdings": 0
 		}
 	},
