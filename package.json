@@ -4,21 +4,21 @@
   "private": true,
   "homepage": "https://cryptodash-demo.herokuapp.com",
   "dependencies": {
+    "axios": "0.18.0",
     "bootstrap": "^4.1.1",
+    "coinmarketcap-api": "2.3.2",
+    "cors": "2.8.4",
     "events": "^3.0.0",
     "font-awesome": "^4.7.0",
     "fs": "0.0.1-security",
     "jsonfile": "^4.0.0",
+    "rc-slider": "^8.6.1",
     "react": "^16.3.2",
     "react-dom": "^16.3.2",
     "react-fontawesome": "^1.6.1",
-    "react-responsive": "^5.0.0",
-    "react-scripts": "1.1.4",
-    "coinmarketcap-api": "2.3.2",
-    "react-select": "2.0.0",
-    "axios": "0.18.0",
     "react-responsive": "5.0.0",
-    "cors": "2.8.4"
+    "react-scripts": "1.1.4",
+    "react-select": "2.0.0"
   },
   "scripts": {
     "start": "react-scripts start",

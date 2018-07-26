@@ -11,7 +11,8 @@ class Card extends Component {
   constructor(props){
     super(props);
     this.state ={
-      flip: false
+      flip: false,
+      simulate: 0
     };
   }
 
@@ -66,8 +67,15 @@ class Card extends Component {
             <div className="card-body">
               <h4 className="card-title settings-title">{this.props.coin.name} ({this.props.coin.symbol})</h4>
               <p className="card-text">
-              <label htmlFor="holdings">My Holdings: </label> <input ref="holdings" type="text" size="15" defaultValue={this.props.coin.holdings} onChange={e => this.props.updateHoldings(e, this.props.coin)}/>
+              <label htmlFor="holdings">My Holdings:</label> <input ref="holdings" type="text" size="15" defaultValue={this.props.coin.holdings} onChange={e => this.props.updateHoldings(e, this.props.coin)}/>
               </p>
+              <input onChange={event => this.setState({simulate: event.target.value})} type="range" min="-100" max="1000" value={this.state.simulate} className="slider" id="simulater" style={{width: "80%"}} />
+              <br />
+              <label htmlFor="simulatePercent">Simulated Percent:</label> <input ref="simulatePercent" type="text" size="4" value={this.state.simulate} onChange={event => this.setState({simulate: event.target.value})}/>%
+              <br />
+              Simulated Price: ${(this.props.coin.quotes.USD.price + ((this.props.coin.quotes.USD.price).toLocaleString() * (this.state.simulate * .01))).toLocaleString()}
+              <br />
+              Simulated Value: ${((this.props.coin.quotes.USD.price + ((this.props.coin.quotes.USD.price).toLocaleString() * (this.state.simulate * .01))) * this.props.coin.holdings).toLocaleString()}
             </div>
           </div>
         </div>
