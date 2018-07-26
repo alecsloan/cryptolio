@@ -2,7 +2,7 @@
   "name": "cryptodash",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://demo-cryptodash.wedeploy.io/",
+  "homepage": "https://cryptodash-demo.herokuapp.com",
   "dependencies": {
     "bootstrap": "^4.1.1",
     "events": "^3.0.0",
