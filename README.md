@@ -2,6 +2,8 @@
 ## Installation
 ``` sh
 git clone https://github.com/alecsloan/cryptodash
+cd cryptodash
+npm install
 ```
 
 ## Usage
