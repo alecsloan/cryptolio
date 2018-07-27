@@ -72,6 +72,10 @@ b {
   font-weight: 600;
 }
 
+label{
+  margin-bottom: 0;
+  vertical-align: middle;
+}
 
 .card-img-top-small{
   width: 50px !important;
@@ -117,6 +121,8 @@ b {
     opacity: 0.7;
     -webkit-transition: .2s;
     transition: opacity .2s;
+    margin-top: 5px;
+    margin-bottom: 5px;
 }
 
 .slider:hover {

@@ -42,11 +42,11 @@ class Card extends Component {
             <div className="card-body">
               <h4 className="card-title">{this.props.coin.name} ({this.props.coin.symbol})</h4>
               <p className="card-text">
-                Price: ${this.props.coin.quotes.USD.price.toLocaleString()}
+                Price: {this.props.coin.quotes.USD.price.toLocaleString('en-US', { style: 'currency', currency: 'USD', minimumFractionDigits: 3})}
                 <br/>
                 24h: <b style={{color: color}}>{this.props.coin.quotes.USD.percent_change_24h}%</b>
                 <br/>
-                My Balance: ${(this.props.coin.quotes.USD.price * this.props.coin.holdings).toLocaleString()}
+                My Balance: {(this.props.coin.quotes.USD.price * this.props.coin.holdings).toLocaleString('en-US', { style: 'currency', currency: 'USD', minimumFractionDigits: 3})}
                 </p>
             </div>
           </div>
@@ -68,17 +68,16 @@ class Card extends Component {
               <h4 className="card-title settings-title">{this.props.coin.name} ({this.props.coin.symbol})</h4>
               <p className="card-text">
               <label htmlFor="holdings">My Holdings:</label> <input ref="holdings" type="text" size="15" defaultValue={this.props.coin.holdings} onChange={e => this.props.updateHoldings(e, this.props.coin)}/>
-              </p>
               <input onChange={event => this.setState({simulate: event.target.value})} type="range" min="-100" max="100000" value={this.state.simulate} className="slider" id="simulater" style={{width: "80%"}} />
               <br />
-              <label htmlFor="simulatePercent">Simulated Percent:</label> <input ref="simulatePercent" type="text" size="6" value={this.state.simulate} onChange={event => this.setState({simulate: event.target.value})}/>%
+              <label htmlFor="simulatePercent">Simulated Percent:</label> <input ref="simulatePercent" type="text" size="6" maxlength="6" value={this.state.simulate} onChange={event => this.setState({simulate: event.target.value})}/>%
               <br />
               Simulated Price: {(this.props.coin.quotes.USD.price + ((this.props.coin.quotes.USD.price) * (this.state.simulate * .01))).toLocaleString('en-US', { style: 'currency', currency: 'USD', minimumFractionDigits: 3})}
               <br />
               Simulated Value: {((this.props.coin.quotes.USD.price + ((this.props.coin.quotes.USD.price) * (this.state.simulate * .01))) * this.props.coin.holdings).toLocaleString('en-US', { style: 'currency', currency: 'USD', minimumFractionDigits: 3})}
               <br />
-
               Simulated Cap: {(this.props.coin.circulating_supply * (this.props.coin.quotes.USD.price + (this.props.coin.quotes.USD.price * (this.state.simulate * .01)))).toLocaleString('en-US', { style: 'currency', currency: 'USD', minimumFractionDigits: 0})}
+              </p>
             </div>
           </div>
         </div>
@@ -89,10 +88,10 @@ class Card extends Component {
             <div className="row">
               <img className="card-img-top-small" src={'https://s2.coinmarketcap.com/static/img/coins/128x128/'+ this.props.coin.id +'.png'} alt={this.props.coin.name + ' Logo'}/>
               <div className="col">
-                ${this.props.coin.quotes.USD.price.toLocaleString('en-US', { style: 'currency', currency: 'USD', minimumFractionDigits: 3})}
+                {this.props.coin.quotes.USD.price.toLocaleString('en-US', { style: 'currency', currency: 'USD', minimumFractionDigits: 3})}
               </div>
               <div className="col">
-                ${(this.props.coin.quotes.USD.price * this.props.coin.holdings).toLocaleString('en-US', { style: 'currency', currency: 'USD', minimumFractionDigits: 3})}
+                {(this.props.coin.quotes.USD.price * this.props.coin.holdings).toLocaleString('en-US', { style: 'currency', currency: 'USD', minimumFractionDigits: 3})}
               </div>
               <div className="col" style={{color: color}}>
                 {this.props.coin.quotes.USD.percent_change_24h}%
@@ -106,6 +105,15 @@ class Card extends Component {
               <h4 className="card-title settings-title">{this.props.coin.name} ({this.props.coin.symbol})</h4>
               <p className="card-text">
               <label htmlFor="holdings">My Holdings: </label> <input  id="holdings" type="text" size="15" defaultValue={this.props.coin.holdings} onChange={e => this.props.updateHoldings(e, this.props.coin)}/>
+              <input onChange={event => this.setState({simulate: event.target.value})} type="range" min="-100" max="100000" value={this.state.simulate} className="slider" id="simulater" style={{width: "80%"}} />
+              <br />
+              <label htmlFor="simulatePercent">Simulated Percent:</label> <input ref="simulatePercent" type="text" size="6" maxlength="6" value={this.state.simulate} onChange={event => this.setState({simulate: event.target.value})}/>%
+              <br />
+              Simulated Price: {(this.props.coin.quotes.USD.price + ((this.props.coin.quotes.USD.price) * (this.state.simulate * .01))).toLocaleString('en-US', { style: 'currency', currency: 'USD', minimumFractionDigits: 3})}
+              <br />
+              Simulated Value: {((this.props.coin.quotes.USD.price + ((this.props.coin.quotes.USD.price) * (this.state.simulate * .01))) * this.props.coin.holdings).toLocaleString('en-US', { style: 'currency', currency: 'USD', minimumFractionDigits: 3})}
+              <br />
+              Simulated Cap: {(this.props.coin.circulating_supply * (this.props.coin.quotes.USD.price + (this.props.coin.quotes.USD.price * (this.state.simulate * .01)))).toLocaleString('en-US', { style: 'currency', currency: 'USD', minimumFractionDigits: 0})}
               </p>
             </div>
             <FontAwesome
