@@ -5,12 +5,12 @@
 }
 
 .card {
-    height: 100%;
-    /*background: linear-gradient(to bottom right, #c7fdeb, #e2c2e3);*/
-    background: #9caaf3;
-    color: white;
-    border: 0;
-    transition: all 1s;
+  height: 100%;
+  background: linear-gradient(to bottom right, #c7fdeb, #e2c2e3);
+  /* background: #9caaf3; */
+  color: black;
+  border: 0;
+  transition: all 1s;
 }
 
 .cardRow{
@@ -36,7 +36,7 @@
 
 .settings{
   visibility: hidden !important;
-  color:white;
+  color: black;
   margin: 10px;
   cursor: pointer;
   position: absolute !important;
@@ -78,17 +78,17 @@ label{
 }
 
 .card-img-top-small{
-  width: 50px !important;
-  height: 50px !important;
-  padding: 3px;
+  width: 60px;
+  height: 60px;
+  padding: 15px;
   float: left;
 }
 
 .card-small {
   height: 100%;
-  /*background: linear-gradient(to bottom right, #c7fdeb, #e2c2e3);*/
-  background: #9caaf3;
-  color: white;
+  background: linear-gradient(to bottom right, #c7fdeb, #e2c2e3);
+  /* background: #9caaf3; */
+  color: black;
   border: 0;
   transition: all 1s;
   border-radius: 5px;
@@ -98,10 +98,31 @@ label{
   padding: 0;
 }
 
+.coin-name {
+  text-align: left;
+  padding: 5px 15px;
+}
+
+.coin-name b, small {
+  display: block;
+  line-height: 25px;
+  margin: 0;
+}
+
+.coin-value {
+  text-align: right;
+  padding: 5px 15px;
+}
+
+.coin-value b, small {
+  display: block;
+  line-height: 25px;
+  margin: 0;
+}
+
 .col{
-  padding:0 !important;
   vertical-align: middle;
-  line-height: 50px;
+  height: 60px;
 }
 
 .settings-small{

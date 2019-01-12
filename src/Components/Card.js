@@ -87,14 +87,14 @@ class Card extends Component {
           <div onClick={event => this.toggleSettings()}>
             <div className="row">
               <img className="card-img-top-small" src={'https://s2.coinmarketcap.com/static/img/coins/128x128/'+ this.props.coin.id +'.png'} alt={this.props.coin.name + ' Logo'}/>
-              <div className="col">
-                {this.props.coin.quotes.USD.price.toLocaleString('en-US', { style: 'currency', currency: 'USD', minimumFractionDigits: 3})}
+              <div className="col coin-name">
+                <b>{this.props.coin.name}</b>
+                <small>{this.props.coin.symbol}</small>
               </div>
-              <div className="col">
-                {(this.props.coin.quotes.USD.price * this.props.coin.holdings).toLocaleString('en-US', { style: 'currency', currency: 'USD', minimumFractionDigits: 3})}
-              </div>
-              <div className="col" style={{color: color}}>
-                {this.props.coin.quotes.USD.percent_change_24h}%
+              <div className="col coin-value">
+                {/*<span>{this.props.coin.quotes.USD.price.toLocaleString('en-US', { style: 'currency', currency: 'USD', minimumFractionDigits: 3})}</span>*/}
+                <b>{(this.props.coin.quotes.USD.price * this.props.coin.holdings).toLocaleString('en-US', { style: 'currency', currency: 'USD', minimumFractionDigits: 3})}</b>
+                <small style={{color: color}}>{this.props.coin.quotes.USD.percent_change_24h}%</small>
               </div>
             </div>
           </div>

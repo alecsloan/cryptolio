@@ -28,8 +28,8 @@ html{
 
 .Title{
   left: 0;
-  /*background: linear-gradient(to bottom right, #c7fdeb, #e2c2e3);*/
-  background: #9caaf3;
+  background: linear-gradient(to bottom right, #c7fdeb, #e2c2e3);
+  /* background: #9caaf3; */
 	-webkit-background-clip: text;
 	-webkit-text-fill-color: transparent;
   display: flex;
@@ -38,7 +38,8 @@ html{
 }
 
 hr{
-  background: #9caaf3;
+  background: #c7fdeb;
+  /* background: #9caaf3; */
   width: 60%;
 }
 
