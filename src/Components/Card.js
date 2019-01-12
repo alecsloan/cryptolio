@@ -42,11 +42,11 @@ class Card extends Component {
             <div className="card-body">
               <h4 className="card-title">{this.props.coin.name} ({this.props.coin.symbol})</h4>
               <p className="card-text">
-                Price: {this.props.coin.quotes.USD.price.toLocaleString('en-US', { style: 'currency', currency: 'USD', minimumFractionDigits: 3})}
+                Price: {this.props.coin.quotes.USD.price.toLocaleString('en-US', { style: 'currency', currency: 'USD', minimumFractionDigits: 2})}
                 <br/>
                 24h: <b style={{color: color}}>{this.props.coin.quotes.USD.percent_change_24h}%</b>
                 <br/>
-                My Balance: {(this.props.coin.quotes.USD.price * this.props.coin.holdings).toLocaleString('en-US', { style: 'currency', currency: 'USD', minimumFractionDigits: 3})}
+                My Balance: {(this.props.coin.quotes.USD.price * this.props.coin.holdings).toLocaleString('en-US', { style: 'currency', currency: 'USD', minimumFractionDigits: 2})}
                 </p>
             </div>
           </div>
