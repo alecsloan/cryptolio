@@ -70,7 +70,7 @@ class Card extends Component {
               <label htmlFor="holdings">My Holdings:</label> <input ref="holdings" type="text" size="15" defaultValue={this.props.coin.holdings} onChange={e => this.props.updateHoldings(e, this.props.coin)}/>
               <input onChange={event => this.setState({simulate: event.target.value})} type="range" min="-100" max="100000" value={this.state.simulate} className="slider" id="simulater" style={{width: "80%"}} />
               <br />
-              <label htmlFor="simulatePercent">Simulated Percent:</label> <input ref="simulatePercent" type="text" size="6" maxlength="6" value={this.state.simulate} onChange={event => this.setState({simulate: event.target.value})}/>%
+              <label htmlFor="simulatePercent">Simulated Percent:</label> <input ref="simulatePercent" type="text" size="6" maxLength="6" value={this.state.simulate} onChange={event => this.setState({simulate: event.target.value})}/>%
               <br />
               Simulated Price: {(this.props.coin.quotes.USD.price + ((this.props.coin.quotes.USD.price) * (this.state.simulate * .01))).toLocaleString('en-US', { style: 'currency', currency: 'USD', minimumFractionDigits: 3})}
               <br />
@@ -107,7 +107,7 @@ class Card extends Component {
               <label htmlFor="holdings">My Holdings: </label> <input  id="holdings" type="text" size="15" defaultValue={this.props.coin.holdings} onChange={e => this.props.updateHoldings(e, this.props.coin)}/>
               <input onChange={event => this.setState({simulate: event.target.value})} type="range" min="-100" max="100000" value={this.state.simulate} className="slider" id="simulater" style={{width: "80%"}} />
               <br />
-              <label htmlFor="simulatePercent">Simulated Percent:</label> <input ref="simulatePercent" type="text" size="6" maxlength="6" value={this.state.simulate} onChange={event => this.setState({simulate: event.target.value})}/>%
+              <label htmlFor="simulatePercent">Simulated Percent:</label> <input ref="simulatePercent" type="text" size="6" maxLength="6" value={this.state.simulate} onChange={event => this.setState({simulate: event.target.value})}/>%
               <br />
               Simulated Price: {(this.props.coin.quotes.USD.price + ((this.props.coin.quotes.USD.price) * (this.state.simulate * .01))).toLocaleString('en-US', { style: 'currency', currency: 'USD', minimumFractionDigits: 3})}
               <br />
