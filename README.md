@@ -1,20 +1,22 @@
 
-## Installation
+# Installation
 ``` sh
 git clone https://github.com/alecsloan/cryptodash
 cd cryptodash
 npm install
 ```
 
-## Usage
-```
-Start the App: npm start
-Start the Server: node server.js
-```
+# Usage
 
-## Images
-Mobile
+Start the App: `npm start`
+
+If you'd like data persistence: `node server.js`
+
+
+# Images
+### Mobile
+
 ![Mobile Image](https://i.imgur.com/qwsyqS6.png)
 
-Desktop
-![Mobile Image](https://i.imgur.com/a1VRacD.png)
+### Desktop
+![Desktop Image](https://i.imgur.com/a1VRacD.png)
