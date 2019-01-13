@@ -4,7 +4,7 @@ import CoinMarketCap from './coinmarketcap-api';
 import Card from './Components/Card.js';
 import Header from './Components/Header.js';
 import axios from 'axios';
-import './App.css';
+import './styles/App.css';
 
 class App extends Component {
   constructor(props){

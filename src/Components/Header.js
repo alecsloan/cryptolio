@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import FontAwesome from 'react-fontawesome';
 import Select from 'react-select';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import '../App.css';
+import '../styles/App.css';
 import 'font-awesome/css/font-awesome.min.css';
 
 class Header extends Component {
