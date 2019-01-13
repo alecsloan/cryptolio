@@ -92,8 +92,7 @@ class Card extends Component {
                 <small>{this.props.coin.symbol}</small>
               </div>
               <div className="col coin-value">
-                {/*<span>{this.props.coin.quotes.USD.price.toLocaleString('en-US', { style: 'currency', currency: 'USD', minimumFractionDigits: 3})}</span>*/}
-                <b>{(this.props.coin.quotes.USD.price * this.props.coin.holdings).toLocaleString('en-US', { style: 'currency', currency: 'USD', minimumFractionDigits: 2})}</b>
+                <b>{this.props.coin.quotes.USD.price.toLocaleString('en-US', { style: 'currency', currency: 'USD', minimumFractionDigits: 3})}</b>
                 <small className={color}>{(this.props.coin.quotes.USD.percent_change_24h * .01).toLocaleString('en-US', {style: 'percent', minimumFractionDigits: 2})}</small>
               </div>
             </div>
