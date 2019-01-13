@@ -13,10 +13,9 @@ npm install
 
 # Usage
 
-Start the project: `npm start`
+Start only the frontend application: `npm start`
 
-If you'd like data persistence you can start the server and project with: `node server.js &>/dev/null; npm start`
-or you can start the server and project in seperate terminals using: ```npm start``` and ```node server.js```
+If you'd like data persistence you can start the whole project: `npm start project`
 
 
 # Images
