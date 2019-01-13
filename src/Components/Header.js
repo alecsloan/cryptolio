@@ -39,6 +39,12 @@ class Header extends Component {
             pull='left'
           />
           CryptoDash
+          <FontAwesome
+            onClick={event => console.log("will toggle menu")}
+            className='menu-icon'
+            name='cogs'
+            pull='right'
+          />
           </h2>
         </div>
         <div className="col-12" style={{display: showAddSection}}>

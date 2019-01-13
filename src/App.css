@@ -64,6 +64,14 @@ input{
   right: 0px;
 }
 
+.menu-icon {
+  float: right;
+  font-size: 20px;
+  color: #FFF;
+  display: inline-block;
+  width: 32px;
+}
+
 .Select-input{
   text-align: left !important;
   display: block !important;
