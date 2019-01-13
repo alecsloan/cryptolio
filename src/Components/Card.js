@@ -21,7 +21,7 @@ class Card extends Component {
   }
 
   render() {
-    let color = String(this.props.coin.quotes.USD.percent_change_24h).includes("-") ? '#cc0000' : 'green';
+    let color = String(this.props.coin.quotes.USD.percent_change_24h).includes("-") ? 'red' : 'green';
     let front = this.state.flip ? 'hide' : 'show';
     let back = this.state.flip ? 'show' : 'hide';
     return(
@@ -44,7 +44,7 @@ class Card extends Component {
               <p className="card-text">
                 Price: {this.props.coin.quotes.USD.price.toLocaleString('en-US', { style: 'currency', currency: 'USD', minimumFractionDigits: 2})}
                 <br/>
-                24h: <b style={{color: color}}>{this.props.coin.quotes.USD.percent_change_24h}%</b>
+                24h: <b className={color}>{(this.props.coin.quotes.USD.percent_change_24h * .01).toLocaleString('en-US', {style: 'percent', minimumFractionDigits: 2})}</b>
                 <br/>
                 My Balance: {(this.props.coin.quotes.USD.price * this.props.coin.holdings).toLocaleString('en-US', { style: 'currency', currency: 'USD', minimumFractionDigits: 2})}
                 </p>
@@ -93,8 +93,8 @@ class Card extends Component {
               </div>
               <div className="col coin-value">
                 {/*<span>{this.props.coin.quotes.USD.price.toLocaleString('en-US', { style: 'currency', currency: 'USD', minimumFractionDigits: 3})}</span>*/}
-                <b>{(this.props.coin.quotes.USD.price * this.props.coin.holdings).toLocaleString('en-US', { style: 'currency', currency: 'USD', minimumFractionDigits: 3})}</b>
-                <small style={{color: color}}>{this.props.coin.quotes.USD.percent_change_24h}%</small>
+                <b>{(this.props.coin.quotes.USD.price * this.props.coin.holdings).toLocaleString('en-US', { style: 'currency', currency: 'USD', minimumFractionDigits: 2})}</b>
+                <small className={color}>{(this.props.coin.quotes.USD.percent_change_24h * .01).toLocaleString('en-US', {style: 'percent', minimumFractionDigits: 2})}</small>
               </div>
             </div>
           </div>

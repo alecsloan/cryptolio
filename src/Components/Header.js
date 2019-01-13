@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import FontAwesome from 'react-fontawesome';
 import Select from 'react-select';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../App.css';
@@ -15,17 +16,32 @@ class Header extends Component {
 
     this.state = {
       coinOptions: coinOptArray,
-      coinSelected: ''
+      coinSelected: '',
+      showAddSection: false
     }
   }
 
+  toggleAddSection(){
+    this.setState({showAddSection: !this.state.showAddSection});
+  }
+
   render() {
+    let showAddSection = this.state.showAddSection ? '' : 'none';
+
     return(
-      <div className="row col-xs-12 Header">
-        <div className="col-sm-6 col-xs-12">
-          <h1 className="Title">My Dashboard</h1>
+      <div className="row">
+        <div className="col-12">
+          <h2 className="title">
+          <FontAwesome
+            onClick={event => this.toggleAddSection()}
+            className='add-section-icon'
+            name='plus'
+            pull='left'
+          />
+          CryptoDash
+          </h2>
         </div>
-        <div className="col-sm-6 col-xs-12 addSection">
+        <div className="col-12" style={{display: showAddSection}}>
           <Select
             ref="addCoin"
             className="select addInput"

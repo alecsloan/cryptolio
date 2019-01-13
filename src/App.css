@@ -1,45 +1,28 @@
+#root {
+  background: #0e1f35d4;
+  height: 100%;
+}
+
 .App {
   text-align: center;
 }
 
 body{
-  height: 100% !important;
+  height: 100%;
   background: #333840;
 }
 
 html{
-  height: 100% !important;
-}
-
-.Header{
-  background: #333840;
-  padding-left: 100px;
-  padding-right: 100px;
-}
-
-.col-xs-12.Header{
-  padding-left: 0;
-  padding-right: 0;
-}
-
-.row{
-  margin: 0px;
-}
-
-.Title{
-  left: 0;
-  background: linear-gradient(to bottom right, #c7fdeb, #e2c2e3);
-  /* background: #9caaf3; */
-	-webkit-background-clip: text;
-	-webkit-text-fill-color: transparent;
-  display: flex;
-  align-items: center;
   height: 100%;
 }
 
+.row, .page{
+  max-width: 1000px;
+  margin: auto;
+}
+
 hr{
-  background: #c7fdeb;
-  /* background: #9caaf3; */
+  background: #FFF;
   width: 60%;
 }
 
@@ -68,17 +51,13 @@ input{
   margin-top: 10px;
   width: 100%;
 }
-.plus{
-  font-size: 20px;
-  color: #333840;
-  display: inline-block;
-  width: 100%;
-}
 
-.addSection{
-  text-align: center;
-  vertical-align: middle;
-  right:25px;
+.add-section-icon {
+  float: left;
+  font-size: 20px;
+  color: #FFF;
+  display: inline-block;
+  width: 32px;
 }
 
 .col-xs-12.addSection{
@@ -88,6 +67,11 @@ input{
 .Select-input{
   text-align: left !important;
   display: block !important;
+}
+
+.title {
+  color: #FFF;
+  margin: 16px;
 }
 
 @media only screen and (max-width: 768px) {
