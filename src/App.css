@@ -54,9 +54,8 @@ input{
 
 .add-section-icon {
   float: left;
-  font-size: 20px;
   color: #FFF;
-  display: inline-block;
+  cursor: pointer;
   width: 32px;
 }
 
@@ -66,9 +65,8 @@ input{
 
 .menu-icon {
   float: right;
-  font-size: 20px;
   color: #FFF;
-  display: inline-block;
+  cursor: pointer;
   width: 32px;
 }
 
