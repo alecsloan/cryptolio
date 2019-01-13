@@ -1,3 +1,8 @@
+### Explore the world of cryptocurrency
+* Balance tracking
+* All Symbols listed
+* Simulate price gain or drop to see your earning potential!
+
 
 # Installation
 ``` sh
@@ -8,15 +13,21 @@ npm install
 
 # Usage
 
-Start the App: `npm start`
+Start the project: `npm start`
 
-If you'd like data persistence: `node server.js`
+If you'd like data persistence you can start the server and project with: `node server.js &>/dev/null; npm start`
+or you can start the server and project in seperate terminals using: ```npm start``` and ```node server.js```
 
 
 # Images
-### Mobile
-
-![Mobile Image](https://i.imgur.com/qwsyqS6.png)
 
 ### Desktop
-![Desktop Image](https://i.imgur.com/a1VRacD.png)
+![Desktop Image](https://imgur.com/spOgdeH.png)
+
+
+### Mobile
+
+![Mobile Image](https://imgur.com/nht0lbk.png)
+
+##### Price simulation (also available on desktop)
+![Mobile Simulation Image](https://imgur.com/g0DdMNX.png)
