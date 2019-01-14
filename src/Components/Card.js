@@ -22,13 +22,13 @@ class Card extends Component {
 
   render() {
     let color = String(this.props.coin.quotes.USD.percent_change_24h).includes("-") ? 'red' : 'green';
-    let front = this.state.flip ? 'hide' : 'show';
-    let back = this.state.flip ? 'show' : 'hide';
+    let front = this.state.flip ? 'none' : 'block';
+    let back = this.state.flip ? 'block' : 'none';
     return(
       <div className="col-xs-12 col-sm-6 col-lg-4 card-container">
         <Default>
         <div className="card">
-          <div className={front}>
+          <div style={{display: front}}>
             <div>
             <FontAwesome
               onClick={event => this.toggleSettings()}
@@ -51,17 +51,17 @@ class Card extends Component {
             </div>
           </div>
           {/*End of front*/}
-          <div className={back}>
-            <FontAwesome
-              onClick={event => this.toggleSettings()}
-              className='settings pull-right'
-              name='save'
-              size='2x'
-            />
+          <div style={{display: back}}>
             <FontAwesome
               onClick={event => this.props.removeCrypto(this.props.coin.symbol)}
               className='settings pull-left'
               name='trash'
+              size='2x'
+            />
+            <FontAwesome
+              onClick={event => this.toggleSettings()}
+              className='settings'
+              name='save'
               size='2x'
             />
             <div className="card-body">
@@ -98,7 +98,7 @@ class Card extends Component {
             </div>
           </div>
           {/*End of front*/}
-          <div className={back}>
+          <div style={{display: back}}>
             <hr style={{marginTop: "5px"}}/>
             <div className="card-body-small">
               <h4 className="card-title settings-title">{this.props.coin.name} ({this.props.coin.symbol})</h4>

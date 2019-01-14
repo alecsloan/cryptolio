@@ -146,10 +146,10 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App">
+      <div className="page">
         <Header addCrypto={this.addCrypto.bind(this)} coins={this.state.data.coins}/>
         <hr />
-        <div className="page">
+        <div className="content">
           <div className="cardRow">
             {this.state.cards}
           </div>

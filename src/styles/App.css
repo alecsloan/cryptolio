@@ -1,96 +1,16 @@
-#root {
-  background: #0e1f35d4;
-  height: 100%;
-}
-
-.App {
+body {
+  background: #0E1F35;
   text-align: center;
 }
 
-body{
-  height: 100%;
-  background: #333840;
-}
-
-html{
-  height: 100%;
-}
-
-.row, .page{
-  max-width: 1000px;
+.page {
   margin: auto;
-}
-
-hr{
-  background: #FFF;
-  width: 60%;
-}
-
-input{
-  border-radius: 5px;
-  border-width: 1px;
-  vertical-align: middle;
-  height:65%;
-}
-
-.addButton{
-  height:65%;
-  margin-top: 10px;
-  background: linear-gradient(to bottom right, #c7fdeb, #e2c2e3);
-  border-color: transparent;
-  outline: none;
-  width: 100%;
-}
-.addButton:active{
-  background: linear-gradient(to bottom right, #e2c2e3, #c7fdeb) !important;
-  border-color: transparent !important;
-  opacity: 0.7;
-}
-
-.addInput{
-  margin-top: 10px;
-  width: 100%;
-}
-
-.add-section-icon {
-  float: left;
-  color: #FFF;
-  cursor: pointer;
-  width: 32px;
-}
-
-.col-xs-12.addSection{
-  right: 0px;
-}
-
-.menu-icon {
-  float: right;
-  color: #FFF;
-  cursor: pointer;
-  width: 32px;
-}
-
-.Select-input{
-  text-align: left !important;
-  display: block !important;
-}
-
-.title {
-  color: #FFF;
-  margin: 16px;
+  max-width: 1000px;
 }
 
 @media only screen and (max-width: 768px) {
-  .page{
+  .content {
     padding-left: 15px;
     padding-right: 15px;
-  }
-  .cardRow{
-    margin-top: 0;
-  }
-  .card-container{
-    padding-left: 0;
-    padding-right: 0;
-    margin-bottom: 10px
   }
 }

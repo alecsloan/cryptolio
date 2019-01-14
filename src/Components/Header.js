@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import FontAwesome from 'react-fontawesome';
 import Select from 'react-select';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import '../styles/App.css';
+import '../styles/header.css';
 import 'font-awesome/css/font-awesome.min.css';
 
 class Header extends Component {
@@ -17,26 +17,35 @@ class Header extends Component {
     this.state = {
       coinOptions: coinOptArray,
       coinSelected: '',
-      showAddSection: false
+      displayAddSection: false
     }
   }
 
   toggleAddSection(){
-    this.setState({showAddSection: !this.state.showAddSection});
+    this.setState({displayAddSection: !this.state.displayAddSection});
   }
 
   render() {
-    let showAddSection = this.state.showAddSection ? '' : 'none';
+    let displayAddSection = 'none';
+    let addIconClass = 'add-section-icon';
+    let addIconTitle = 'Show cryptocurrency selector';
+
+    if (this.state.displayAddSection) {
+      displayAddSection = 'block';
+      addIconClass += ' rotate';
+      addIconTitle = 'Hide cryptocurrency selector';
+    }
 
     return(
-      <div className="row">
+      <div className="header">
         <div className="col-12">
           <h2 className="title">
           <FontAwesome
             onClick={event => this.toggleAddSection()}
-            className='add-section-icon'
+            className={addIconClass}
             name='plus'
             pull='left'
+            title={addIconTitle}
           />
           CryptoDash
           <FontAwesome
@@ -47,10 +56,10 @@ class Header extends Component {
           />
           </h2>
         </div>
-        <div className="col-12" style={{display: showAddSection}}>
+        <div className="col-12" style={{display: displayAddSection}}>
           <Select
             ref="addCoin"
-            className="select addInput"
+            className="select add-input"
             name="addCoin"
             placeholder="Add a cryptocurrency"
             onChange={e => this.props.addCrypto(e.value)}
@@ -61,8 +70,6 @@ class Header extends Component {
             options={this.state.coinOptions}
           />
         </div>
-
-
       </div>
     )
   }
