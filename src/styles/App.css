@@ -1,11 +1,19 @@
-body {
-  background: #0E1F35;
-  text-align: center;
+.content {
+  margin-top: 32px;
 }
 
 .page {
+  height: 100%;
   margin: auto;
   max-width: 1000px;
+  overflow: auto;
+  padding-top: 0;
+  text-align: center;
+}
+
+body {
+  background: #0E1F35;
+  text-align: center;
 }
 
 @media only screen and (max-width: 768px) {
