@@ -44,6 +44,9 @@ class App extends Component {
     let coins = this.state.data.coins;
     coinPromise.then(
       function(data){
+        if (!data)
+          return;
+
         Object.keys(data.data).forEach(function(key){
           //If there's a coin that's not in our json add it
           if (!coins[key]){
