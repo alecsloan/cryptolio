@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-//import logo from './logo.svg';
-import CoinMarketCap from './coinmarketcap-api';
 import Card from './Components/Card.js';
 import Header from './Components/Header.js';
 import axios from 'axios';
@@ -18,12 +16,9 @@ class App extends Component {
 
     this.state ={
       data: {
-        coins: initialData.coins,
-        show: initialData.show,
-        change: initialData.change
+        coins: initialData.coins
       },
-      cards: [],
-      updated: ''
+      cards: []
     };
   }
 
@@ -39,53 +34,30 @@ class App extends Component {
   }
 
   fetchCoins(){
-    const client = new CoinMarketCap();
-    var coinPromise = client.getTicker().catch(console.error);
-    let coins = this.state.data.coins;
-    coinPromise.then(
-      function(data){
-        if (!data)
-          return;
+    const host = axios.create({baseURL: 'http://localhost:5000'})
 
-        Object.keys(data.data).forEach(function(key){
-          //If there's a coin that's not in our json add it
-          if (!coins[key]){
-            coins[key] = data.data[key]
-          }
+    host.get('/fetch-coins', {
+      shownCoins: Object.keys(this.state.data.coins).toString(),
+      coins: this.state.data.coins
+    }).then(function (response) {
+      this.setState({
+        data: {...this.state.data, coins: response.data.coins},
+      });
 
-          try{
-            if (coins[key].holdings)
-              data.data[key]['holdings'] = coins[key].holdings
-            else
-              data.data[key]['holdings'] = 0
-          }catch(e){
-            console.log('Failed to set holdings for crypto id: ' + key)
-          }
-        });
-
-        this.setState({
-          data: {...this.state.data, coins:data.data},
-          updated: Date(data.metadata.timestamp)
-        });
-
-        this.updateCards('pass','add');
-
-      }.bind(this)
-    );
-    console.log("Coins Updated");
+      this.updateCards('pass', 'add');
+    }.bind(this)).catch(function (error) {
+      console.log(error);
+    });
   }
 
   addCrypto(coin){
-    if (!this.state.data.show.includes(coin)){
-      Object.entries(this.state.data.coins).forEach(key => {
-        if (key[1].symbol === coin){
-          coin = {[coin]: key[1], holdings: 0};
-          this.setState({
-            data: {...this.state.data, show:this.state.data.show.concat(key[1].symbol)}
-          });
-        }
+    if (!this.state.data.coins[coin]){
+      this.setState({
+        data: {...this.state.data, coins:this.state.data.coins.concat(coin)}
       });
     }
+
+    this.fetchCoins();
     this.updateCards(coin, 'add');
   }
 
@@ -101,10 +73,9 @@ class App extends Component {
 
   updateHoldings(event, coin){
     let value = parseFloat(event.target.value).toFixed(9);
-    if (value !== null && !isNaN(value)){
+    if (value){
       //parseFloat again to get rid of trailing 0's
       coin['holdings'] = parseFloat(value);
-      this.saveFile();
     }
   }
 
@@ -136,8 +107,7 @@ class App extends Component {
     if (coin){
     for (const key of Object.entries(this.state.data.coins)) {
       //If it exists in the show state, or if it was added, and not if it was removed
-      if((this.state.data.show.includes(key[1].symbol) || (key[1].symbol === Object.keys(coin)[0] && task === 'add')) && !(task === 'remove' && key[1].symbol === coin))
-          cards.push(<Card coin={key[1]} key={key[1].name} removeCrypto={this.removeCrypto.bind(this)} updateHoldings={this.updateHoldings.bind(this)}/>)
+      cards.push(<Card coin={key[1]} key={key[1].name} removeCrypto={this.removeCrypto.bind(this)} updateHoldings={this.updateHoldings.bind(this)}/>)
     }
     this.setState({
       cards: cards

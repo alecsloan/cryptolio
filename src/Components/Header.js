@@ -6,13 +6,16 @@ import '../styles/header.css';
 import 'font-awesome/css/font-awesome.min.css';
 
 class Header extends Component {
-  constructor(props){
+  constructor(props) {
     super(props);
 
     let coinOptArray = [];
-    Object.values(this.props.coins).forEach((key) => {
-      coinOptArray[key['rank']-1] = {'value': key['symbol'],'label': key['name'] + ' (' + key['symbol'] + ')'};
-    });
+
+    if (this.props.coins) {
+      Object.values(this.props.coins).forEach((key) => {
+        coinOptArray[key['rank'] - 1] = {'value': key['symbol'], 'label': key['name'] + ' (' + key['symbol'] + ')'};
+      });
+    }
 
     this.state = {
       coinOptions: coinOptArray,
