@@ -12,7 +12,7 @@ function MyBalance(props) {
 
   if (holdings) {
     return(
-      <div class="mt-2">
+      <div className="mt-2">
         My Balance: {(props.price * holdings).toLocaleString('en-US', { style: 'currency', currency: 'USD', minimumFractionDigits: 2})}
       </div>
     );
@@ -91,7 +91,7 @@ class Card extends Component {
               <br />
               Simulated Price: {(quote.price + ((quote.price) * (this.state.simulate * .01))).toLocaleString('en-US', { style: 'currency', currency: 'USD', minimumFractionDigits: 3})}
               <br />
-              Simulated Value: {((quote.price + ((quote.price) * (this.state.simulate * .01))) * this.props.coin.holdings).toLocaleString('en-US', { style: 'currency', currency: 'USD', minimumFractionDigits: 3})}
+              Simulated Value: {((quote.price + ((quote.price) * (this.state.simulate * .01))) * (this.props.coin.holdings || 0)).toLocaleString('en-US', { style: 'currency', currency: 'USD', minimumFractionDigits: 3})}
               <br />
               Simulated Cap: {(this.props.coin.circulating_supply * (quote.price + (quote.price * (this.state.simulate * .01)))).toLocaleString('en-US', { style: 'currency', currency: 'USD', minimumFractionDigits: 0})}
               </p>

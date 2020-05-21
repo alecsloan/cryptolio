@@ -6,7 +6,6 @@
   "dependencies": {
     "axios": "^0.19.2",
     "bootstrap": "^4.1.1",
-    "coinmarketcap-api": "3.1.0",
     "cors": "2.8.4",
     "events": "^3.0.0",
     "font-awesome": "^4.7.0",

@@ -5,28 +5,28 @@
 			"name": "Bitcoin",
 			"symbol": "BTC",
 			"slug": "bitcoin",
-			"num_market_pairs": 8278,
+			"num_market_pairs": 8279,
 			"date_added": "2013-04-28T00:00:00.000Z",
 			"tags": [
 				"mineable"
 			],
 			"max_supply": 21000000,
-			"circulating_supply": 18382118,
-			"total_supply": 18382118,
+			"circulating_supply": 18382175,
+			"total_supply": 18382175,
 			"is_active": 1,
 			"platform": null,
 			"cmc_rank": 1,
 			"is_fiat": 0,
-			"last_updated": "2020-05-21T05:15:30.000Z",
+			"last_updated": "2020-05-21T06:53:29.000Z",
 			"quote": {
 				"USD": {
-					"price": 9493.05418817,
-					"volume_24h": 36704027311.6907,
-					"percent_change_1h": 0.0547639,
-					"percent_change_24h": -2.51879,
-					"percent_change_7d": 1.03303,
-					"market_cap": 174502442267.33514,
-					"last_updated": "2020-05-21T05:15:30.000Z"
+					"price": 9506.15970857,
+					"volume_24h": 35984258097.8684,
+					"percent_change_1h": -0.033114,
+					"percent_change_24h": -2.41344,
+					"percent_change_7d": 0.696909,
+					"market_cap": 174743891340.88272,
+					"last_updated": "2020-05-21T06:53:29.000Z"
 				}
 			}
 		},
@@ -51,16 +51,16 @@
 			"is_active": 1,
 			"cmc_rank": 14,
 			"is_fiat": 0,
-			"last_updated": "2020-05-21T05:15:12.000Z",
+			"last_updated": "2020-05-21T06:53:13.000Z",
 			"quote": {
 				"USD": {
-					"price": 0.0712082553093,
-					"volume_24h": 8820202.45661232,
-					"percent_change_1h": 0.347455,
-					"percent_change_24h": -1.07905,
-					"percent_change_7d": 9.07908,
-					"market_cap": 1182284644.4298918,
-					"last_updated": "2020-05-21T05:15:12.000Z"
+					"price": 0.0719842234001,
+					"volume_24h": 9739266.55119848,
+					"percent_change_1h": 0.575373,
+					"percent_change_24h": 0.246145,
+					"percent_change_7d": 10.6914,
+					"market_cap": 1195168195.0004756,
+					"last_updated": "2020-05-21T06:53:13.000Z"
 				}
 			}
 		},
@@ -85,16 +85,16 @@
 			"is_active": 1,
 			"cmc_rank": 97,
 			"is_fiat": 0,
-			"last_updated": "2020-05-21T05:15:03.000Z",
+			"last_updated": "2020-05-21T06:53:03.000Z",
 			"quote": {
 				"USD": {
-					"price": 0.0477138371109,
-					"volume_24h": 12386611.5696996,
-					"percent_change_1h": 0.235916,
-					"percent_change_24h": 2.96469,
-					"percent_change_7d": 6.66172,
-					"market_cap": 46761946.06053755,
-					"last_updated": "2020-05-21T05:15:03.000Z"
+					"price": 0.0480475075627,
+					"volume_24h": 12730780.0883315,
+					"percent_change_1h": 0.592579,
+					"percent_change_24h": 3.40599,
+					"percent_change_7d": 7.39853,
+					"market_cap": 47088959.78682414,
+					"last_updated": "2020-05-21T06:53:03.000Z"
 				}
 			}
 		},
@@ -117,18 +117,18 @@
 				"token_address": "0xb63b606ac810a52cca15e44bb630fd42d8d1d83d"
 			},
 			"is_active": 1,
-			"cmc_rank": 68,
+			"cmc_rank": 67,
 			"is_fiat": 0,
-			"last_updated": "2020-05-21T05:15:04.000Z",
+			"last_updated": "2020-05-21T06:53:04.000Z",
 			"quote": {
 				"USD": {
-					"price": 5.47860873389,
-					"volume_24h": 45371714.149255,
-					"percent_change_1h": 0.0753707,
-					"percent_change_24h": -1.54547,
-					"percent_change_7d": -1.27331,
-					"market_cap": 86528220.97844501,
-					"last_updated": "2020-05-21T05:15:04.000Z"
+					"price": 5.48734289016,
+					"volume_24h": 45273406.9026843,
+					"percent_change_1h": -0.0559294,
+					"percent_change_24h": -1.38477,
+					"percent_change_7d": -1.3826,
+					"market_cap": 86666166.7673304,
+					"last_updated": "2020-05-21T06:53:04.000Z"
 				}
 			}
 		},
@@ -147,18 +147,19 @@
 			"platform": null,
 			"cmc_rank": 3,
 			"is_fiat": 0,
-			"last_updated": "2020-05-21T05:15:04.000Z",
+			"last_updated": "2020-05-21T06:53:04.000Z",
 			"quote": {
 				"USD": {
-					"price": 0.201176171186,
-					"volume_24h": 1829171971.53182,
-					"percent_change_1h": -0.096294,
-					"percent_change_24h": -1.72504,
-					"percent_change_7d": -0.151696,
-					"market_cap": 8874454888.961409,
-					"last_updated": "2020-05-21T05:15:04.000Z"
+					"price": 0.201686681984,
+					"volume_24h": 1714388778.60511,
+					"percent_change_1h": 0.154581,
+					"percent_change_24h": -1.43968,
+					"percent_change_7d": -0.0191724,
+					"market_cap": 8896974976.805162,
+					"last_updated": "2020-05-21T06:53:04.000Z"
 				}
 			}
 		}
-	}
+	},
+	"show": "btc,xrp,gnt,cro,mco"
 }

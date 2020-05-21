@@ -26,7 +26,8 @@ class App extends Component {
     this.fetchCoins()
     try{
       setInterval(async () => {
-        this.fetchCoins()
+        this.fetchCoins();
+        this.saveFile();
       }, 300000);
     }catch(e){
       console.log("Error getting Coin Market Cap data:", e)
@@ -37,7 +38,6 @@ class App extends Component {
     const host = axios.create({baseURL: 'http://localhost:5000'})
 
     host.get('/fetch-coins', {
-      shownCoins: Object.keys(this.state.data.coins).toString(),
       coins: this.state.data.coins
     }).then(function (response) {
       this.setState({
@@ -73,6 +73,7 @@ class App extends Component {
 
   updateHoldings(event, coin){
     let value = parseFloat(event.target.value).toFixed(9);
+
     if (value){
       //parseFloat again to get rid of trailing 0's
       coin['holdings'] = parseFloat(value);
@@ -111,8 +112,6 @@ class App extends Component {
     }
     this.setState({
       cards: cards
-    }, () => {
-      this.saveFile();
     });
     }
   }

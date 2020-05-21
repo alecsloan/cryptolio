@@ -1,18 +1,32 @@
-const CoinMarketCap = require('coinmarketcap-api')
-const express = require('express')
-const app = express()
 const bodyParser = require("body-parser");
-var fs = require('fs');
-var cors = require('cors')
+const cors = require('cors')
+const express = require('express')
+const fetch = require('node-fetch')
+const fs = require('fs');
 
+const app = express()
+
+const BASE_URL = 'https://pro-api.coinmarketcap.com/v1/cryptocurrency'
 const apiKey = '';
 
 app.use(bodyParser.urlencoded({
     extended: true
 }));
 app.use(bodyParser.json());
-app.use(cors())
+app.use(cors());
 
+function getListings(coins) {
+    const config = {
+        method: 'GET',
+        headers: {
+            Accept: 'application/json',
+            'Accept-Charset': 'utf-8',
+            'X-CMC_PRO_API_KEY': apiKey
+        }
+    };
+
+    return fetch(`${BASE_URL}/quotes/latest?symbol=${coins}`, config).then(res => res.json());
+}
 
 app.post('/save-file', function(req, res){
  res.setHeader('Access-Control-Allow-Origin', '*');
@@ -20,7 +34,6 @@ app.post('/save-file', function(req, res){
       if (req.body.data){
         fs.writeFile('./src/data.json', req.body.data,{encoding:'utf8',flag:'w'}, function (err, results) {
           if (err) return console.log('File write fail: ' + err);
-          console.log(req.body.data)
            return res.send({status: 'File Updated' });
         });
       }
@@ -33,16 +46,12 @@ app.get('/', function(req, res){
 });
 
 app.get('/fetch-coins', function(req, res){
-    const client = new CoinMarketCap({config: {headers: {'X-CMC_PRO_API_KEY': apiKey}}});
-
     var shownCoins = "btc,xrp,gnt,cro,mco";
 
     if (req.body.shownCoins)
         shownCoins = req.body.shownCoins;
 
-    var coins = req.body.coins;
-
-    var coinPromise = client.getListings(shownCoins).catch(console.error);
+    var coinPromise = getListings(shownCoins).catch(console.error);
 
     coinPromise.then(
         function(data){
