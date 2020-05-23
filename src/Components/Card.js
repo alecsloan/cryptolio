@@ -38,8 +38,11 @@ class Card extends Component {
 
   render() {
     let quote = this.props.coin.quote["USD"];
-    
-    let color = String(quote.percent_change_24h).includes("-") ? 'red' : 'green';
+
+    let hourColor = String(quote.percent_change_1h).includes("-") ? 'red' : 'green';
+    let dayColor = String(quote.percent_change_24h).includes("-") ? 'red' : 'green';
+    let weekColor = String(quote.percent_change_7d).includes("-") ? 'red' : 'green';
+
     let front = this.state.flip ? 'none' : 'block';
     let back = this.state.flip ? 'block' : 'none';
     return(
@@ -60,9 +63,10 @@ class Card extends Component {
             <div className="card-body">
               <h4 className="card-title">{this.props.coin.name} ({this.props.coin.symbol})</h4>
               <div className="card-text">
-                Price: {quote.price.toLocaleString('en-US', { style: 'currency', currency: 'USD', minimumFractionDigits: 2})}
-                <br/>
-                24h: <b className={color}>{(quote.percent_change_24h * .01).toLocaleString('en-US', {style: 'percent', minimumFractionDigits: 2})}</b>
+                <div>Price: {quote.price.toLocaleString('en-US', { style: 'currency', currency: 'USD', minimumFractionDigits: 2})}</div>
+                <div>1h: <b className={hourColor}>{(quote.percent_change_1h * .01).toLocaleString('en-US', {style: 'percent', minimumFractionDigits: 2})}</b></div>
+                <div>24h: <b className={dayColor}>{(quote.percent_change_24h * .01).toLocaleString('en-US', {style: 'percent', minimumFractionDigits: 2})}</b></div>
+                <div>7d: <b className={weekColor}>{(quote.percent_change_7d * .01).toLocaleString('en-US', {style: 'percent', minimumFractionDigits: 2})}</b></div>
                 <MyBalance price={quote.price} holdings={this.props.coin.holdings} />
               </div>
             </div>
@@ -104,13 +108,19 @@ class Card extends Component {
           <div onClick={event => this.toggleSettings()}>
             <div className="row">
               <img className="card-img-top-small" src={'https://s2.coinmarketcap.com/static/img/coins/128x128/'+ this.props.coin.id +'.png'} alt={this.props.coin.name + ' Logo'}/>
-              <div className="col coin-name">
+              <div className="col-5 coin-name">
                 <b>{this.props.coin.name}</b>
                 <small>{this.props.coin.symbol}</small>
               </div>
-              <div className="col coin-value">
-                <b>{quote.price.toLocaleString('en-US', { style: 'currency', currency: 'USD', minimumFractionDigits: 3})}</b>
-                <small className={color}>{(quote.percent_change_24h * .01).toLocaleString('en-US', {style: 'percent', minimumFractionDigits: 2})}</small>
+              <div className="col coin-value mr-2">
+                <div className="mr-1">
+                  <b className="p-1">{quote.price.toLocaleString('en-US', { style: 'currency', currency: 'USD', minimumFractionDigits: 3})}</b>
+                </div>
+                <div className="row mr-1">
+                  <div className="col p-1"> 1h <small className={hourColor}>{(quote.percent_change_1h * .01).toLocaleString('en-US', {style: 'percent', minimumFractionDigits: 2})}</small></div>
+                  <div className="col p-1">24h <small className={dayColor}>{(quote.percent_change_24h * .01).toLocaleString('en-US', {style: 'percent', minimumFractionDigits: 2})}</small></div>
+                  <div className="col p-1">7d <small className={weekColor}>{(quote.percent_change_7d * .01).toLocaleString('en-US', {style: 'percent', minimumFractionDigits: 2})}</small></div>
+                </div>
               </div>
             </div>
           </div>

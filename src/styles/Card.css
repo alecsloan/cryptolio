@@ -59,7 +59,7 @@
 }
 
 .coin-name {
-  padding: 5px 15px;
+  padding: 5px;
   text-align: left;
 }
 
@@ -70,8 +70,12 @@
 }
 
 .coin-value {
-  padding: 5px 15px;
+  padding: 5px;
   text-align: right;
+}
+
+.col.coin-value {
+    height: auto;
 }
 
 .col {
