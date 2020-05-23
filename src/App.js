@@ -52,6 +52,7 @@ class App extends Component {
             var coin = response.coins[coinIndex];
 
             coin.show = true;
+            coin.holdings = shownCoin.holdings;
           });
         }
 

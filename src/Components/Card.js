@@ -27,7 +27,9 @@ class Card extends Component {
   constructor(props){
     super(props);
     this.state ={
+      coin: props.coin,
       flip: false,
+      holdings: props.coin.holdings,
       simulate: 0
     };
   }
@@ -37,7 +39,7 @@ class Card extends Component {
   }
 
   render() {
-    let quote = this.props.coin.quote["USD"];
+    let quote = this.state.coin.quote["USD"];
 
     let hourColor = String(quote.percent_change_1h).includes("-") ? 'red' : 'green';
     let dayColor = String(quote.percent_change_24h).includes("-") ? 'red' : 'green';
@@ -58,23 +60,23 @@ class Card extends Component {
               size='2x'
               spin
             />
-            <img className="card-img-top center" src={'https://s2.coinmarketcap.com/static/img/coins/128x128/'+ this.props.coin.id +'.png'} alt={this.props.coin.name + ' Logo'}/>
+            <img className="card-img-top center" src={'https://s2.coinmarketcap.com/static/img/coins/128x128/'+ this.state.coin.id +'.png'} alt={this.state.coin.name + ' Logo'}/>
             </div>
             <div className="card-body">
-              <h4 className="card-title">{this.props.coin.name} ({this.props.coin.symbol})</h4>
+              <h4 className="card-title">{this.state.coin.name} ({this.state.coin.symbol})</h4>
               <div className="card-text">
                 <div>Price: {quote.price.toLocaleString('en-US', { style: 'currency', currency: 'USD', minimumFractionDigits: 2})}</div>
                 <div>1h: <b className={hourColor}>{(quote.percent_change_1h * .01).toLocaleString('en-US', {style: 'percent', minimumFractionDigits: 2})}</b></div>
                 <div>24h: <b className={dayColor}>{(quote.percent_change_24h * .01).toLocaleString('en-US', {style: 'percent', minimumFractionDigits: 2})}</b></div>
                 <div>7d: <b className={weekColor}>{(quote.percent_change_7d * .01).toLocaleString('en-US', {style: 'percent', minimumFractionDigits: 2})}</b></div>
-                <MyBalance price={quote.price} holdings={this.props.coin.holdings} />
+                <MyBalance price={quote.price} holdings={this.state.holdings} />
               </div>
             </div>
           </div>
           {/*End of front*/}
           <div style={{display: back}}>
             <FontAwesome
-              onClick={event => this.props.removeCrypto(this.props.coin.symbol)}
+              onClick={event => this.props.removeCrypto(this.state.coin.symbol)}
               className='settings pull-left'
               name='trash'
               size='2x'
@@ -86,18 +88,18 @@ class Card extends Component {
               size='2x'
             />
             <div className="card-body">
-              <h4 className="card-title settings-title">{this.props.coin.name} ({this.props.coin.symbol})</h4>
+              <h4 className="card-title settings-title">{this.state.coin.name} ({this.state.coin.symbol})</h4>
               <p className="card-text">
-              <label htmlFor="holdings">My Holdings:</label> <input ref="holdings" type="text" size="15" defaultValue={this.props.coin.holdings} onChange={e => this.props.updateHoldings(e, this.props.coin)}/>
-              <input onChange={event => this.setState({simulate: event.target.value})} type="range" min="-100" max="100000" value={this.state.simulate} className="slider" id="simulater" style={{width: "80%"}} />
+              <label htmlFor="holdings">My Holdings:</label> <input ref="holdings" type="text" size="15" defaultValue={this.state.holdings} onChange={e => {this.setState({holdings: parseFloat(e.target.value).toFixed(9)}); this.props.updateHoldings(e, this.state.coin)}}/>
+              <input onChange={event => this.setState({simulate: event.target.value})} type="range" min="-100" max="1000000" value={this.state.simulate} className="slider" id="simulater" style={{width: "80%"}} />
               <br />
               <label htmlFor="simulatePercent">Simulated Percent:</label> <input ref="simulatePercent" type="text" size="6" maxLength="6" value={this.state.simulate} onChange={event => this.setState({simulate: event.target.value})}/>%
               <br />
               Simulated Price: {(quote.price + ((quote.price) * (this.state.simulate * .01))).toLocaleString('en-US', { style: 'currency', currency: 'USD', minimumFractionDigits: 3})}
               <br />
-              Simulated Value: {((quote.price + ((quote.price) * (this.state.simulate * .01))) * (this.props.coin.holdings || 0)).toLocaleString('en-US', { style: 'currency', currency: 'USD', minimumFractionDigits: 3})}
+              Simulated Value: {((quote.price + ((quote.price) * (this.state.simulate * .01))) * (this.state.holdings || 0)).toLocaleString('en-US', { style: 'currency', currency: 'USD', minimumFractionDigits: 3})}
               <br />
-              Simulated Cap: {(this.props.coin.circulating_supply * (quote.price + (quote.price * (this.state.simulate * .01)))).toLocaleString('en-US', { style: 'currency', currency: 'USD', minimumFractionDigits: 0})}
+              Simulated Cap: {(this.state.coin.circulating_supply * (quote.price + (quote.price * (this.state.simulate * .01)))).toLocaleString('en-US', { style: 'currency', currency: 'USD', minimumFractionDigits: 0})}
               </p>
             </div>
           </div>
@@ -107,10 +109,10 @@ class Card extends Component {
         <div className="card-small">
           <div onClick={event => this.toggleSettings()}>
             <div className="row">
-              <img className="card-img-top-small" src={'https://s2.coinmarketcap.com/static/img/coins/128x128/'+ this.props.coin.id +'.png'} alt={this.props.coin.name + ' Logo'}/>
+              <img className="card-img-top-small" src={'https://s2.coinmarketcap.com/static/img/coins/128x128/'+ this.state.coin.id +'.png'} alt={this.state.coin.name + ' Logo'}/>
               <div className="col-5 coin-name">
-                <b>{this.props.coin.name}</b>
-                <small>{this.props.coin.symbol}</small>
+                <b>{this.state.coin.name}</b>
+                <small>{this.state.coin.symbol}</small>
               </div>
               <div className="col coin-value mr-2">
                 <div className="mr-1">
@@ -128,18 +130,18 @@ class Card extends Component {
           <div style={{display: back}}>
             <hr style={{marginTop: "5px"}}/>
             <div className="card-body-small">
-              <h4 className="card-title settings-title">{this.props.coin.name} ({this.props.coin.symbol})</h4>
+              <h4 className="card-title settings-title">{this.state.coin.name} ({this.state.coin.symbol})</h4>
               <p className="card-text">
-              <label htmlFor="holdings">My Holdings: </label> <input  id="holdings" type="text" size="15" defaultValue={this.props.coin.holdings} onChange={e => this.props.updateHoldings(e, this.props.coin)}/>
+              <label htmlFor="holdings">My Holdings: </label> <input  id="holdings" type="text" size="15" defaultValue={this.state.holdings} onChange={e => this.props.updateHoldings(e, this.state.coin)}/>
               <input onChange={event => this.setState({simulate: event.target.value})} type="range" min="-100" max="100000" value={this.state.simulate} className="slider" id="simulater" style={{width: "80%"}} />
               <br />
               <label htmlFor="simulatePercent">Simulated Percent:</label> <input ref="simulatePercent" type="text" size="6" maxLength="6" value={this.state.simulate} onChange={event => this.setState({simulate: event.target.value})}/>%
               <br />
               Simulated Price: {(quote.price + ((quote.price) * (this.state.simulate * .01))).toLocaleString('en-US', { style: 'currency', currency: 'USD', minimumFractionDigits: 3})}
               <br />
-              Simulated Value: {((quote.price + ((quote.price) * (this.state.simulate * .01))) * this.props.coin.holdings).toLocaleString('en-US', { style: 'currency', currency: 'USD', minimumFractionDigits: 3})}
+              Simulated Value: {((quote.price + ((quote.price) * (this.state.simulate * .01))) * this.state.holdings || 0).toLocaleString('en-US', { style: 'currency', currency: 'USD', minimumFractionDigits: 3})}
               <br />
-              Simulated Cap: {(this.props.coin.circulating_supply * (quote.price + (quote.price * (this.state.simulate * .01)))).toLocaleString('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 0, minimumFractionDigits: 0})}
+              Simulated Cap: {(this.state.coin.circulating_supply * (quote.price + (quote.price * (this.state.simulate * .01)))).toLocaleString('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 0, minimumFractionDigits: 0})}
               </p>
             </div>
             <FontAwesome
@@ -149,7 +151,7 @@ class Card extends Component {
               size='2x'
             />
             <FontAwesome
-              onClick={event => this.props.removeCrypto(this.props.coin.symbol)}
+              onClick={event => this.props.removeCrypto(this.state.coin.symbol)}
               className='settings-small pull-left'
               name='trash'
               size='2x'
