@@ -1,18 +1,12 @@
 import React, { Component } from 'react';
 import Card from './Components/Card.js';
 import Header from './Components/Header.js';
-import axios from 'axios';
 import './styles/App.css';
 
 class App extends Component {
   constructor(props){
     super(props);
-    var initialData;
-    try{
-      initialData = require('./data.json')
-    }catch(e){
-      initialData = []
-    }
+    var initialData = JSON.parse(localStorage.getItem("data")) || [];
 
     this.state ={
       data: {
@@ -20,6 +14,17 @@ class App extends Component {
       },
       cards: []
     };
+
+    if (initialData.coins) {
+      var shownCoins = initialData.coins.filter(coin => coin.show);
+
+      shownCoins.forEach((shownCoin) => {
+        var coinIndex = initialData.coins.findIndex(coin => coin.symbol === shownCoin.symbol);
+        var coin = initialData.coins[coinIndex];
+
+        this.updateCards(coin, 'add');
+      });
+    }
   }
 
   componentDidMount(){
@@ -27,93 +32,106 @@ class App extends Component {
     try{
       setInterval(async () => {
         this.fetchCoins();
-        this.saveFile();
+        this.storeData();
       }, 300000);
     }catch(e){
       console.log("Error getting Coin Market Cap data:", e)
     }
   }
 
-  fetchCoins(){
-    const host = axios.create({baseURL: 'http://localhost:5000'})
+  async fetchCoins(){
+    fetch('http://localhost:5000/fetch-coins')
+      .then(res => res.json())
+      .then(response => {
 
-    host.get('/fetch-coins', {
-      coins: this.state.data.coins
-    }).then(function (response) {
-      this.setState({
-        data: {...this.state.data, coins: response.data.coins},
-      });
+        if (this.state.data.coins) {
+          var shownCoins = this.state.data.coins.filter(coin => coin.show);
 
-      this.updateCards('pass', 'add');
-    }.bind(this)).catch(function (error) {
-      console.log(error);
+          shownCoins.forEach((shownCoin) => {
+            var coinIndex = response.coins.findIndex(coin => coin.symbol === shownCoin.symbol);
+            var coin = response.coins[coinIndex];
+
+            coin.show = true;
+          });
+        }
+
+        this.setState({
+          data: {coins: response.coins},
+        });
     });
   }
 
-  addCrypto(coin){
-    if (!this.state.data.coins[coin]){
-      this.setState({
-        data: {...this.state.data, coins:this.state.data.coins.concat(coin)}
-      });
-    }
+  addCrypto(symbol){
+    if (!symbol)
+      return;
 
-    this.fetchCoins();
+    var coin = this.state.data.coins.find(coin => coin.symbol === symbol);
+
+    if (coin.show)
+      return;
+
+    coin['show'] = true;
+
+    this.setState({
+      data: {coins: this.state.data.coins},
+    });
+
     this.updateCards(coin, 'add');
+
+    this.storeData();
   }
 
-  removeCrypto(coin){
-    if (this.state.data.show.includes(coin)){
-      var index = this.state.data.show.indexOf(coin);
-      if (index > -1) {
-        this.state.data.show.splice(index, 1);
-      }
-    }
-    this.updateCards(coin, 'remove');
+  removeCrypto(symbol){
+    var coins = this.state.data.coins;
+    var coinIndex = coins.findIndex(coin => coin.symbol === symbol);
+
+    coins[coinIndex].show = false;
+
+    this.setState({
+      data: {coins: coins},
+    });
+
+    this.updateCards(symbol, 'remove');
+
+    this.storeData();
   }
 
   updateHoldings(event, coin){
     let value = parseFloat(event.target.value).toFixed(9);
 
     if (value){
-      //parseFloat again to get rid of trailing 0's
-      coin['holdings'] = parseFloat(value);
+      var coins = this.state.data.coins;
+      var coinIndex = coins.findIndex(curCoin => curCoin.symbol === coin.symbol);
+
+      coins[coinIndex].holdings = parseFloat(value);
+
+      this.setState({
+        data: {coins: coins},
+      });
     }
+
+    this.storeData();
   }
 
-  saveFile(){
-    //Server set to host on port 5000
-    const host = axios.create({baseURL: 'http://localhost:5000'})
-    //Ping the server
-    host.get('', {
-    //Server is Online
-    }).then(function (response) {
-      //Call save-file on server
-      host.post('/save-file', {
-        data: JSON.stringify(this.state.data, null, '\t')
-      //File was saved successfully
-      }).then(function (response) {
-        console.log(response.data.status);
-      //File failed to save
-      }).catch(function (error) {
-        console.log(error);
-      });
-    //Ping to the server failed
-    }.bind(this)).catch(function (error) {
-      console.log("Server Down, run node server.js in the project directory. " + error);
-    });
+  async storeData(){
+    localStorage.setItem('data', JSON.stringify(this.state.data));
   }
 
   updateCards(coin, task){
-    let cards = [];
-    if (coin){
-    for (const key of Object.entries(this.state.data.coins)) {
-      //If it exists in the show state, or if it was added, and not if it was removed
-      cards.push(<Card coin={key[1]} key={key[1].name} removeCrypto={this.removeCrypto.bind(this)} updateHoldings={this.updateHoldings.bind(this)}/>)
+    let cards = this.state.cards;
+
+    if (coin && task === 'remove'){
+      var coinIndex = cards.findIndex(card => card.key === coin);
+
+      cards.splice(coinIndex, 1);
     }
+    else if (coin){
+      cards.push(<Card coin={coin} key={coin.symbol} removeCrypto={this.removeCrypto.bind(this)} updateHoldings={this.updateHoldings.bind(this)}/>)
+    }
+
     this.setState({
       cards: cards
     });
-    }
   }
 
   render() {

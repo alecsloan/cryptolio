@@ -13,7 +13,7 @@ class Header extends Component {
 
     if (this.props.coins) {
       Object.values(this.props.coins).forEach((key) => {
-        coinOptArray[key['rank'] - 1] = {'value': key['symbol'], 'label': key['name'] + ' (' + key['symbol'] + ')'};
+        coinOptArray[key['cmc_rank'] - 1] = {'value': key['symbol'], 'label': key['name'] + ' (' + key['symbol'] + ')'};
       });
     }
 
