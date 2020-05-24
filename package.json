@@ -18,7 +18,8 @@
     "react-responsive": "5.0.0",
     "react-scripts": "^3.4.1",
     "react-select": "2.0.0",
-    "react-sliding-side-panel": "^1.0.14"
+    "react-sliding-side-panel": "^1.0.14",
+    "react-toggle": "^4.1.1"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -29,5 +30,17 @@
   },
   "devDependencies": {
     "babel-preset-react-native": "^2.1.0"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   }
 }

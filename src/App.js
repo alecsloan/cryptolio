@@ -8,13 +8,20 @@ class App extends Component {
   constructor(props){
     super(props);
     var initialData = JSON.parse(localStorage.getItem("data")) || [];
+    var initialSettings = JSON.parse(localStorage.getItem("settings")) || {
+      show1hChange: true,
+      show24hChange: true,
+      show7dChange: true,
+      currency: "USD"
+    };
 
     this.state ={
       data: {
         coins: initialData.coins
       },
       cards: [],
-      showSettings: false
+      showSettings: false,
+      settings: initialSettings
     };
 
     if (initialData.coins) {
@@ -108,10 +115,33 @@ class App extends Component {
 
   showSettings() {
     if (this.state.showSettings)
-      return <Settings toggleSettings={this.toggleSettings.bind(this)} />;
+      return <Settings toggleShowSettings={this.toggleShowSettings.bind(this)} />;
   }
 
-  toggleSettings() {
+  editSetting(settingName, value) {
+    if (!settingName)
+      return;
+
+    var settings = this.state.settings;
+
+    settings[settingName] = value;
+
+    //This may be temporary. Need to find a better way to update the cards.
+    var cards = [];
+
+    this.state.cards.forEach((card) => {
+      cards.push(<Card coin={card.coin} key={card.key} removeCrypto={this.removeCrypto.bind(this)} settings={settings} updateHoldings={this.updateHoldings.bind(this)}/>)
+    });
+
+    this.setState({
+      settings: settings,
+      cards: cards
+    });
+
+    localStorage.setItem('settings', JSON.stringify(settings));
+  }
+
+  toggleShowSettings() {
     this.setState({
       showSettings: !this.state.showSettings
     });
@@ -147,7 +177,7 @@ class App extends Component {
       cards.splice(coinIndex, 1);
     }
     else if (coin){
-      cards.push(<Card coin={coin} key={coin.symbol} removeCrypto={this.removeCrypto.bind(this)} updateHoldings={this.updateHoldings.bind(this)}/>)
+      cards.push(<Card coin={coin} key={coin.symbol} removeCrypto={this.removeCrypto.bind(this)} settings={this.state.settings} updateHoldings={this.updateHoldings.bind(this)}/>)
     }
 
     this.setState({
@@ -158,14 +188,14 @@ class App extends Component {
   render() {
     return (
       <div className="page">
-        <Header addCrypto={this.addCrypto.bind(this)} coins={this.state.data.coins} toggleSettings={this.toggleSettings.bind(this)}/>
+        <Header addCrypto={this.addCrypto.bind(this)} coins={this.state.data.coins} toggleShowSettings={this.toggleShowSettings.bind(this)}/>
         <hr />
         <div className="content">
           <div className="cardRow">
             {this.state.cards}
           </div>
         </div>
-        <Settings showSettings={this.state.showSettings} toggleSettings={this.toggleSettings.bind(this)} />
+        <Settings editSetting={this.editSetting.bind(this)} settings={this.state.settings} showSettings={this.state.showSettings} toggleShowSettings={this.toggleShowSettings.bind(this)} />
       </div>
     );
   }

@@ -55,7 +55,7 @@ class Header extends Component {
           />
           CryptoDash
           <FontAwesome
-            onClick={() => this.props.toggleSettings()}
+            onClick={() => this.props.toggleShowSettings()}
             className='menu-icon'
             name='cogs'
             pull='right'

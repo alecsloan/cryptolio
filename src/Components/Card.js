@@ -30,8 +30,52 @@ class Card extends Component {
       coin: props.coin,
       flip: false,
       holdings: props.coin.holdings,
+      settings: props.settings,
       simulate: 0
     };
+  }
+
+  getPercentChange(quote, period) {
+    let showPeriodChange = false;
+    let percentChange = 0;
+
+    if (period === "1h") {
+      showPeriodChange = this.state.settings.show1hChange;
+      percentChange = quote.percent_change_1h;
+    }
+    else if (period === "24h") {
+      showPeriodChange = this.state.settings.show24hChange;
+      percentChange = quote.percent_change_24h;
+    }
+    else if (period === "7d") {
+      showPeriodChange = this.state.settings.show7dChange;
+      percentChange = quote.percent_change_7d;
+    }
+
+    if (showPeriodChange) {
+      let hourColor = String(percentChange).includes("-") ? 'red' : 'green';
+
+      let percent = <span>{(percentChange * .01).toLocaleString('en-US', {style: 'percent', minimumFractionDigits: 2})}</span>;
+
+      return (
+          <div>
+            <Mobile>
+              <div className="col p-1">
+                {period}
+                <small className={hourColor}>
+                  {percent}
+                </small>
+              </div>
+            </Mobile>
+            <Default>
+              {period}
+              <b className={hourColor + " ml-2"}>
+                  {percent}
+                </b>
+            </Default>
+          </div>
+      );
+    }
   }
 
   toggleSettings(){
@@ -40,10 +84,6 @@ class Card extends Component {
 
   render() {
     let quote = this.state.coin.quote["USD"];
-
-    let hourColor = String(quote.percent_change_1h).includes("-") ? 'red' : 'green';
-    let dayColor = String(quote.percent_change_24h).includes("-") ? 'red' : 'green';
-    let weekColor = String(quote.percent_change_7d).includes("-") ? 'red' : 'green';
 
     let front = this.state.flip ? 'none' : 'block';
     let back = this.state.flip ? 'block' : 'none';
@@ -66,9 +106,9 @@ class Card extends Component {
               <h4 className="card-title">{this.state.coin.name} ({this.state.coin.symbol})</h4>
               <div className="card-text">
                 <div>Price: {quote.price.toLocaleString('en-US', { style: 'currency', currency: 'USD', minimumFractionDigits: 2})}</div>
-                <div>1h: <b className={hourColor}>{(quote.percent_change_1h * .01).toLocaleString('en-US', {style: 'percent', minimumFractionDigits: 2})}</b></div>
-                <div>24h: <b className={dayColor}>{(quote.percent_change_24h * .01).toLocaleString('en-US', {style: 'percent', minimumFractionDigits: 2})}</b></div>
-                <div>7d: <b className={weekColor}>{(quote.percent_change_7d * .01).toLocaleString('en-US', {style: 'percent', minimumFractionDigits: 2})}</b></div>
+                {this.getPercentChange(quote, "1h")}
+                {this.getPercentChange(quote, "24h")}
+                {this.getPercentChange(quote, "7d")}
                 <MyBalance price={quote.price} holdings={this.state.holdings} />
               </div>
             </div>
@@ -118,10 +158,10 @@ class Card extends Component {
                 <div className="mr-1">
                   <b className="p-1">{quote.price.toLocaleString('en-US', { style: 'currency', currency: 'USD', minimumFractionDigits: 3})}</b>
                 </div>
-                <div className="row mr-1">
-                  <div className="col p-1"> 1h <small className={hourColor}>{(quote.percent_change_1h * .01).toLocaleString('en-US', {style: 'percent', minimumFractionDigits: 2})}</small></div>
-                  <div className="col p-1">24h <small className={dayColor}>{(quote.percent_change_24h * .01).toLocaleString('en-US', {style: 'percent', minimumFractionDigits: 2})}</small></div>
-                  <div className="col p-1">7d <small className={weekColor}>{(quote.percent_change_7d * .01).toLocaleString('en-US', {style: 'percent', minimumFractionDigits: 2})}</small></div>
+                <div className="row">
+                  {this.getPercentChange(quote, "1h")}
+                  {this.getPercentChange(quote, "24h")}
+                  {this.getPercentChange(quote, "7d")}
                 </div>
               </div>
             </div>
