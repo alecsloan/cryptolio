@@ -2,7 +2,6 @@
   "name": "cryptodash",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://cryptodash-demo.herokuapp.com",
   "dependencies": {
     "axios": "^0.19.2",
     "bootstrap": "^4.1.1",
@@ -31,17 +30,5 @@
   },
   "devDependencies": {
     "babel-preset-react-native": "^2.1.0"
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
   }
 }
