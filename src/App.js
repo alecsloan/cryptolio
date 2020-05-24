@@ -117,6 +117,9 @@ class App extends Component {
     if (!settingName)
       return;
 
+    if (settingName === 'currency' && !value)
+      value = "USD";
+
     var settings = this.state.settings;
 
     settings[settingName] = value;

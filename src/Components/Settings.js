@@ -87,7 +87,7 @@ class Settings extends Component {
                           ref="setCurrency"
                           className="select add-input color-black"
                           name="setCurrency"
-                          placeholder={this.state.currency['currency'] + ' (' + this.state.currency['symbol'] + ')'}
+                          placeholder={this.state.currency ? this.state.currency['currency'] + ' (' + this.state.currency['symbol'] + ')' : 'Select a currency'}
                           onChange={e => {this.updateCurrency(e.value); this.props.editSetting('currency', e.value)}}
                           onSelectResetsInput={true}
                           value={this.props.settings.currency}
