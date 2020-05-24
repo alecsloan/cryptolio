@@ -47,7 +47,7 @@ class Header extends Component {
         <div className="col-12">
           <h2 className="title">
           <FontAwesome
-            onClick={event => this.toggleAddSection()}
+            onClick={() => this.toggleAddSection()}
             className={addIconClass}
             name='plus'
             pull='left'
@@ -55,7 +55,7 @@ class Header extends Component {
           />
           CryptoDash
           <FontAwesome
-            onClick={event => console.log("will toggle menu")}
+            onClick={() => this.props.toggleSettings()}
             className='menu-icon'
             name='cogs'
             pull='right'

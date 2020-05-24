@@ -1,0 +1,18 @@
+.back-arrow {
+    cursor: pointer;
+    float: left;
+    font-size: 32px;
+    padding: 10px 0 0 10px;
+}
+
+.panel {
+    background: linear-gradient(to bottom right, #2a4466, #0e1f35);
+    border: 0;
+    color: #FFF;
+    height: 100%;
+    transition: all 1s;
+}
+
+.settings-title {
+    padding-top: 10px;
+}

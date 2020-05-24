@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Card from './Components/Card.js';
 import Header from './Components/Header.js';
+import Settings from './Components/Settings.js';
 import './styles/App.css';
 
 class App extends Component {
@@ -12,7 +13,8 @@ class App extends Component {
       data: {
         coins: initialData.coins
       },
-      cards: []
+      cards: [],
+      showSettings: false
     };
 
     if (initialData.coins) {
@@ -104,6 +106,17 @@ class App extends Component {
     this.storeData();
   }
 
+  showSettings() {
+    if (this.state.showSettings)
+      return <Settings toggleSettings={this.toggleSettings.bind(this)} />;
+  }
+
+  toggleSettings() {
+    this.setState({
+      showSettings: !this.state.showSettings
+    });
+  }
+
   updateHoldings(event, coin){
     let value = parseFloat(event.target.value).toFixed(9);
 
@@ -145,13 +158,14 @@ class App extends Component {
   render() {
     return (
       <div className="page">
-        <Header addCrypto={this.addCrypto.bind(this)} coins={this.state.data.coins}/>
+        <Header addCrypto={this.addCrypto.bind(this)} coins={this.state.data.coins} toggleSettings={this.toggleSettings.bind(this)}/>
         <hr />
         <div className="content">
           <div className="cardRow">
             {this.state.cards}
           </div>
         </div>
+        <Settings showSettings={this.state.showSettings} toggleSettings={this.toggleSettings.bind(this)} />
       </div>
     );
   }
