@@ -113,11 +113,6 @@ class App extends Component {
     this.storeData();
   }
 
-  showSettings() {
-    if (this.state.showSettings)
-      return <Settings toggleShowSettings={this.toggleShowSettings.bind(this)} />;
-  }
-
   editSetting(settingName, value) {
     if (!settingName)
       return;

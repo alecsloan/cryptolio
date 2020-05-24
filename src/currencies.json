@@ -1,0 +1,487 @@
+[
+ {
+   "currency": "United States Dollar",
+   "symbol": "$",
+   "code": "USD"
+ },
+ {
+   "currency": "Albanian Lek",
+   "symbol": "L",
+   "code": "ALL"
+ },
+ {
+   "currency": "Algerian Dinar",
+   "symbol": "د.ج",
+   "code": "DZD"
+ },
+ {
+   "currency": "Argentine Peso",
+   "symbol": "$",
+   "code": "ARS"
+ },
+ {
+   "currency": "Armenian Dram",
+   "symbol": "֏",
+   "code": "AMD"
+ },
+ {
+   "currency": "Australian Dollar",
+   "symbol": "$",
+   "code": "AUD"
+ },
+ {
+   "currency": "Azerbaijani Manat",
+   "symbol": "₼",
+   "code": "AZN"
+ },
+ {
+   "currency": "Bahraini Dinar",
+   "symbol": ".د.ب",
+   "code": "BHD"
+ },
+ {
+   "currency": "Bangladeshi Taka",
+   "symbol": "৳",
+   "code": "BDT"
+ },
+ {
+   "currency": "Belarusian Ruble",
+   "symbol": "Br",
+   "code": "BYN"
+ },
+ {
+   "currency": "Bermudan Dollar",
+   "symbol": "$",
+   "code": "BMD"
+ },
+ {
+   "currency": "Bolivian Boliviano",
+   "symbol": "Bs.",
+   "code": "BOB"
+ },
+ {
+   "currency": "Bosnia-Herzegovina Convertible Mark",
+   "symbol": "KM",
+   "code": "BAM"
+ },
+ {
+   "currency": "Brazilian Real",
+   "symbol": "R$",
+   "code": "BRL"
+ },
+ {
+   "currency": "Bulgarian Lev",
+   "symbol": "лв",
+   "code": "BGN"
+ },
+ {
+   "currency": "Cambodian Riel",
+   "symbol": "៛",
+   "code": "KHR"
+ },
+ {
+   "currency": "Canadian Dollar",
+   "symbol": "$",
+   "code": "CAD"
+ },
+ {
+   "currency": "Chilean Peso",
+   "symbol": "$",
+   "code": "CLP"
+ },
+ {
+   "currency": "Chinese Yuan",
+   "symbol": "¥",
+   "code": "CNY"
+ },
+ {
+   "currency": "Colombian Peso",
+   "symbol": "$",
+   "code": "COP"
+ },
+ {
+   "currency": "Costa Rican Colón",
+   "symbol": "₡",
+   "code": "CRC"
+ },
+ {
+   "currency": "Croatian Kuna",
+   "symbol": "kn",
+   "code": "HRK"
+ },
+ {
+   "currency": "Cuban Peso",
+   "symbol": "$",
+   "code": "CUP"
+ },
+ {
+   "currency": "Czech Koruna",
+   "symbol": "Kč",
+   "code": "CZK"
+ },
+ {
+   "currency": "Danish Krone",
+   "symbol": "kr",
+   "code": "DKK"
+ },
+ {
+   "currency": "Dominican Peso",
+   "symbol": "$",
+   "code": "DOP"
+ },
+ {
+   "currency": "Egyptian Pound",
+   "symbol": "£",
+   "code": "EGP"
+ },
+ {
+   "currency": "Euro",
+   "symbol": "€",
+   "code": "EUR"
+ },
+ {
+   "currency": "Georgian Lari",
+   "symbol": "₾",
+   "code": "GEL"
+ },
+ {
+   "currency": "Ghanaian Cedi",
+   "symbol": "₵",
+   "code": "GHS"
+ },
+ {
+   "currency": "Guatemalan Quetzal",
+   "symbol": "Q",
+   "code": "GTQ"
+ },
+ {
+   "currency": "Honduran Lempira",
+   "symbol": "L",
+   "code": "HNL"
+ },
+ {
+   "currency": "Hong Kong Dollar",
+   "symbol": "$",
+   "code": "HKD"
+ },
+ {
+   "currency": "Hungarian Forint",
+   "symbol": "Ft",
+   "code": "HUF"
+ },
+ {
+   "currency": "Icelandic Króna",
+   "symbol": "kr",
+   "code": "ISK"
+ },
+ {
+   "currency": "Indian Rupee",
+   "symbol": "₹",
+   "code": "INR"
+ },
+ {
+   "currency": "Indonesian Rupiah",
+   "symbol": "Rp",
+   "code": "IDR"
+ },
+ {
+   "currency": "Iranian Rial",
+   "symbol": "﷼",
+   "code": "IRR"
+ },
+ {
+   "currency": "Iraqi Dinar",
+   "symbol": "ع.د",
+   "code": "IQD"
+ },
+ {
+   "currency": "Israeli New Shekel",
+   "symbol": "₪",
+   "code": "ILS"
+ },
+ {
+   "currency": "Jamaican Dollar",
+   "symbol": "$",
+   "code": "JMD"
+ },
+ {
+   "currency": "Japanese Yen",
+   "symbol": "¥",
+   "code": "JPY"
+ },
+ {
+   "currency": "Jordanian Dinar",
+   "symbol": "د.ا",
+   "code": "JOD"
+ },
+ {
+   "currency": "Kazakhstani Tenge",
+   "symbol": "₸",
+   "code": "KZT"
+ },
+ {
+   "currency": "Kenyan Shilling",
+   "symbol": "Sh",
+   "code": "KES"
+ },
+ {
+   "currency": "Kuwaiti Dinar",
+   "symbol": "د.ك",
+   "code": "KWD"
+ },
+ {
+   "currency": "Kyrgystani Som",
+   "symbol": "с",
+   "code": "KGS"
+ },
+ {
+   "currency": "Lebanese Pound",
+   "symbol": "ل.ل",
+   "code": "LBP"
+ },
+ {
+   "currency": "Macedonian Denar",
+   "symbol": "ден",
+   "code": "MKD"
+ },
+ {
+   "currency": "Malaysian Ringgit",
+   "symbol": "RM",
+   "code": "MYR"
+ },
+ {
+   "currency": "Mauritian Rupee",
+   "symbol": "₨",
+   "code": "MUR"
+ },
+ {
+   "currency": "Mexican Peso",
+   "symbol": "$",
+   "code": "MXN"
+ },
+ {
+   "currency": "Moldovan Leu",
+   "symbol": "L",
+   "code": "MDL"
+ },
+ {
+   "currency": "Mongolian Tugrik",
+   "symbol": "₮",
+   "code": "MNT"
+ },
+ {
+   "currency": "Moroccan Dirham",
+   "symbol": "د.م.",
+   "code": "MAD"
+ },
+ {
+   "currency": "Myanma Kyat",
+   "symbol": "Ks",
+   "code": "MMK"
+ },
+ {
+   "currency": "Namibian Dollar",
+   "symbol": "$",
+   "code": "NAD"
+ },
+ {
+   "currency": "Nepalese Rupee",
+   "symbol": "₨",
+   "code": "NPR"
+ },
+ {
+   "currency": "New Taiwan Dollar",
+   "symbol": "NT$",
+   "code": "TWD"
+ },
+ {
+   "currency": "New Zealand Dollar",
+   "symbol": "$",
+   "code": "NZD"
+ },
+ {
+   "currency": "Nicaraguan Córdoba",
+   "symbol": "C$",
+   "code": "NIO"
+ },
+ {
+   "currency": "Nigerian Naira",
+   "symbol": "₦",
+   "code": "NGN"
+ },
+ {
+   "currency": "Norwegian Krone",
+   "symbol": "kr",
+   "code": "NOK"
+ },
+ {
+   "currency": "Omani Rial",
+   "symbol": "ر.ع.",
+   "code": "OMR"
+ },
+ {
+   "currency": "Pakistani Rupee",
+   "symbol": "₨",
+   "code": "PKR"
+ },
+ {
+   "currency": "Panamanian Balboa",
+   "symbol": "B/.",
+   "code": "PAB"
+ },
+ {
+   "currency": "Peruvian Sol",
+   "symbol": "S/.",
+   "code": "PEN"
+ },
+ {
+   "currency": "Philippine Peso",
+   "symbol": "₱",
+   "code": "PHP"
+ },
+ {
+   "currency": "Polish Złoty",
+   "symbol": "zł",
+   "code": "PLN"
+ },
+ {
+   "currency": "Pound Sterling",
+   "symbol": "£",
+   "code": "GBP"
+ },
+ {
+   "currency": "Qatari Rial",
+   "symbol": "ر.ق",
+   "code": "QAR"
+ },
+ {
+   "currency": "Romanian Leu",
+   "symbol": "lei",
+   "code": "RON"
+ },
+ {
+   "currency": "Russian Ruble",
+   "symbol": "₽",
+   "code": "RUB"
+ },
+ {
+   "currency": "Saudi Riyal",
+   "symbol": "ر.س",
+   "code": "SAR"
+ },
+ {
+   "currency": "Serbian Dinar",
+   "symbol": "дин.",
+   "code": "RSD"
+ },
+ {
+   "currency": "Singapore Dollar",
+   "symbol": "S$",
+   "code": "SGD"
+ },
+ {
+   "currency": "South African Rand",
+   "symbol": "R",
+   "code": "ZAR"
+ },
+ {
+   "currency": "South Korean Won",
+   "symbol": "₩",
+   "code": "KRW"
+ },
+ {
+   "currency": "South Sudanese Pound",
+   "symbol": "£",
+   "code": "SSP"
+ },
+ {
+   "currency": "Sovereign Bolivar",
+   "symbol": "Bs.",
+   "code": "VES"
+ },
+ {
+   "currency": "Sri Lankan Rupee",
+   "symbol": "Rs",
+   "code": "LKR"
+ },
+ {
+   "currency": "Swedish Krona",
+   "symbol": "kr",
+   "code": "SEK"
+ },
+ {
+   "currency": "Swiss Franc",
+   "symbol": "Fr",
+   "code": "CHF"
+ },
+ {
+   "currency": "Thai Baht",
+   "symbol": "฿",
+   "code": "THB"
+ },
+ {
+   "currency": "Trinidad and Tobago Dollar",
+   "symbol": "$",
+   "code": "TTD"
+ },
+ {
+   "currency": "Tunisian Dinar",
+   "symbol": "د.ت",
+   "code": "TND"
+ },
+ {
+   "currency": "Turkish Lira",
+   "symbol": "₺",
+   "code": "TRY"
+ },
+ {
+   "currency": "Ugandan Shilling",
+   "symbol": "Sh",
+   "code": "UGX"
+ },
+ {
+   "currency": "Ukrainian Hryvnia",
+   "symbol": "₴",
+   "code": "UAH"
+ },
+ {
+   "currency": "United Arab Emirates Dirham",
+   "symbol": "د.إ",
+   "code": "AED"
+ },
+ {
+   "currency": "Uruguayan Peso",
+   "symbol": "$",
+   "code": "UYU"
+ },
+ {
+   "currency": "Uzbekistan Som",
+   "symbol": "so'm",
+   "code": "UZS"
+ },
+ {
+   "currency": "Vietnamese Dong",
+   "symbol": "₫",
+   "code": "VND"
+ },
+ {
+   "currency": "Gold Troy Ounce",
+   "symbol": "GOLD",
+   "code": "XAU"
+ },
+ {
+   "currency": "Silver Troy Ounce",
+   "symbol": "SILVER",
+   "code": "XAG"
+ },
+ {
+   "currency": "Platinum Ounce",
+   "symbol": "PLAT",
+   "code": "XPT"
+ },
+ {
+   "currency": "Palladium Ounce",
+   "symbol": "PALL",
+   "code": "XPD"
+ }
+]

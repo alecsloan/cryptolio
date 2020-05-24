@@ -14,14 +14,21 @@ app.use(bodyParser.json());
 app.use(cors());
 
 function getListings(limit) {
-    return fetch(`${BASE_URL}/listings/latest?limit=${limit}`).then(res => res.json());
+    var currencies = require("./src/currencies.json")
+
+    let currencyCodes = []
+
+    currencies.forEach(currency => {
+        currencyCodes.push(currency.code);
+    })
+
+    return fetch(`${BASE_URL}/listings/latest?limit=${limit}&convert=${currencyCodes}`).then(res => res.json());
 }
 
 app.get('/fetch-coins', function(req, res){
     var limit = req.body.limit || 100;
-    var currency = req.body.currency || "USD";
 
-    var coinPromise = getListings(limit, currency).catch(console.error);
+    var coinPromise = getListings(limit).catch(console.error);
 
     coinPromise.then(
         function(data){

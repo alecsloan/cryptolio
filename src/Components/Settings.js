@@ -7,8 +7,38 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import 'font-awesome/css/font-awesome.min.css';
 import "react-toggle/style.css";
 import '../styles/Settings.css';
+import Select from "react-select";
 
-class Header extends Component {
+class Settings extends Component {
+    constructor(props) {
+        super(props);
+
+        var currencies = require('../currencies.json');
+
+        this.state = {
+            currencies: currencies,
+            currency: currencies.find(currency => currency.code === this.props.settings.currency)
+        }
+    }
+
+    getCurrencyOptions() {
+        if (this.state.currencies) {
+            let currencyOptArray = [];
+
+            Object.values(this.state.currencies).forEach((currency) => {
+                currencyOptArray.push({'value': currency['code'], 'label': currency['currency'] + ' (' + currency['symbol'] + ')'});
+            });
+
+            return currencyOptArray;
+        }
+    }
+
+    updateCurrency(currencyCode) {
+        this.setState({
+            currency: this.state.currencies.find(currency => currency.code === currencyCode)
+        })
+    }
+
   render() {
     return (
         <div>
@@ -52,6 +82,20 @@ class Header extends Component {
                               onChange={() => this.props.editSetting("show7dChange", !this.props.settings.show7dChange)} />
                       </div>
                   </div>
+                  <div className="col-12 currency-selector">
+                      <Select
+                          ref="setCurrency"
+                          className="select add-input color-black"
+                          name="setCurrency"
+                          placeholder={this.state.currency['currency'] + ' (' + this.state.currency['symbol'] + ')'}
+                          onChange={e => {this.updateCurrency(e.value); this.props.editSetting('currency', e.value)}}
+                          onSelectResetsInput={true}
+                          value={this.props.settings.currency}
+                          clearable={false}
+                          closeOnSelect={true}
+                          options={this.getCurrencyOptions()}
+                      />
+                  </div>
               </div>
             </div>
           </SlidingPanel>
@@ -60,4 +104,4 @@ class Header extends Component {
   }
 }
 
-export default Header;
+export default Settings;
