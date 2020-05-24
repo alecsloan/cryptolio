@@ -25,41 +25,48 @@ class App extends Component {
         this.updateCards(coin, 'add');
       });
     }
-  }
-
-  componentDidMount(){
-    this.fetchCoins()
-    try{
-      setInterval(async () => {
-        this.fetchCoins();
-        this.storeData();
-      }, 300000);
-    }catch(e){
-      console.log("Error getting Coin Market Cap data:", e)
+    else {
+      this.fetchCoins();
     }
   }
 
-  async fetchCoins(){
-    fetch('http://localhost:5000/fetch-coins')
-      .then(res => res.json())
-      .then(response => {
+  componentDidMount(){
+    setInterval(async () => {
+      this.fetchCoins();
+    }, 300000);
+  }
 
-        if (this.state.data.coins) {
-          var shownCoins = this.state.data.coins.filter(coin => coin.show);
+  fetchCoins(){
+    try {
+      fetch('http://localhost:5000/fetch-coins')
+          .then(res => res.json())
+          .then(response => {
 
-          shownCoins.forEach((shownCoin) => {
-            var coinIndex = response.coins.findIndex(coin => coin.symbol === shownCoin.symbol);
-            var coin = response.coins[coinIndex];
+            if (this.state.data.coins) {
+              var shownCoins = this.state.data.coins.filter(coin => coin.show);
 
-            coin.show = true;
-            coin.holdings = shownCoin.holdings;
+              shownCoins.forEach((shownCoin) => {
+                var coinIndex = response.coins.findIndex(coin => coin.symbol === shownCoin.symbol);
+                var coin = response.coins[coinIndex];
+
+                coin.show = true;
+                coin.holdings = shownCoin.holdings;
+              });
+            } else {
+              response.coins[0].show = true;
+              this.updateCards(response.coins[0], 'add');
+            }
+
+            this.setState({
+              data: {coins: response.coins},
+            });
+
+            this.storeData();
           });
-        }
-
-        this.setState({
-          data: {coins: response.coins},
-        });
-    });
+    }
+    catch(e){
+      console.log("Error getting Coin Market Cap data:", e)
+    }
   }
 
   addCrypto(symbol){

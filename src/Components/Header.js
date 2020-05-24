@@ -9,18 +9,21 @@ class Header extends Component {
   constructor(props) {
     super(props);
 
-    let coinOptArray = [];
+    this.state = {
+      coinSelected: '',
+      displayAddSection: false
+    }
+  }
 
+  getOptions() {
     if (this.props.coins) {
+      let coinOptArray = [];
+
       Object.values(this.props.coins).forEach((key) => {
         coinOptArray[key['cmc_rank'] - 1] = {'value': key['symbol'], 'label': key['name'] + ' (' + key['symbol'] + ')'};
       });
-    }
 
-    this.state = {
-      coinOptions: coinOptArray,
-      coinSelected: '',
-      displayAddSection: false
+      return coinOptArray;
     }
   }
 
@@ -70,7 +73,7 @@ class Header extends Component {
             value={this.state.coinSelected}
             clearable={false}
             closeOnSelect={true}
-            options={this.state.coinOptions}
+            options={this.getOptions()}
           />
         </div>
       </div>
