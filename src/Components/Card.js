@@ -8,9 +8,9 @@ const Mobile = props => <Responsive {...props} maxWidth={767} />;
 const Default = props => <Responsive {...props} minWidth={768} />;
 
 function MyBalance(props) {
-  const holdings = props.holdings;
+  const holdings = props.holdings || 0;
 
-  if (holdings) {
+  if (holdings > 0) {
     return(
       <div className="mt-2">
         My Balance: {(props.price * holdings).toLocaleString('en-US', { style: 'currency', currency: 'USD', minimumFractionDigits: 2})}
