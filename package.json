@@ -11,6 +11,7 @@
     "font-awesome": "^4.7.0",
     "fs": "0.0.1-security",
     "jsonfile": "^4.0.0",
+    "node-fetch": "^2.6.0",
     "rc-slider": "^8.6.1",
     "react": "^16.4.2",
     "react-dom": "^16.4.2",
