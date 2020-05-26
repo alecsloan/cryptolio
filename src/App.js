@@ -4,6 +4,8 @@ import Header from './Components/Header.js';
 import Settings from './Components/Settings.js';
 import './styles/App.css';
 
+var serverAddress = "http://localhost:5000";
+
 class App extends Component {
   constructor(props){
     super(props);
@@ -47,7 +49,7 @@ class App extends Component {
 
   fetchCoins(){
     try {
-      fetch('http://localhost:5000/fetch-coins')
+      fetch(`${serverAddress}/fetch-coins`)
           .then(res => res.json())
           .then(response => {
 
