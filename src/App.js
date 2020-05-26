@@ -42,7 +42,7 @@ class App extends Component {
   componentDidMount(){
     setInterval(async () => {
       this.fetchCoins();
-    }, 300000);
+    }, 60000);
   }
 
   fetchCoins(){

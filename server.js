@@ -2,6 +2,7 @@ const bodyParser = require("body-parser");
 const cors = require('cors')
 const express = require('express')
 const fetch = require('node-fetch')
+const fs = require('fs');
 
 const app = express()
 
@@ -25,8 +26,8 @@ function getListings(limit) {
     return fetch(`${BASE_URL}/listings/latest?limit=${limit}&convert=${currencyCodes}`).then(res => res.json());
 }
 
-app.get('/fetch-coins', function(req, res){
-    var limit = req.body.limit || 100;
+function getCoinData() {
+    var limit = 100;
 
     var coinPromise = getListings(limit).catch(console.error);
 
@@ -35,9 +36,23 @@ app.get('/fetch-coins', function(req, res){
             if (!data)
                 return;
 
-            return res.send({coins: data.data });
+            fs.writeFile('./data.json', JSON.stringify(data.data),{encoding:'utf8',flag:'w'}, function (err, results) {
+                if (err) return console.log('File write fail: ' + err);
+                console.log('File Updated');
+            });
+
+            return data.data;
         }
     );
+}
+
+app.get('/fetch-coins', function(req, res){
+    var coinData = require('./data.json');
+
+    if (!coinData)
+        coinData = getCoinData();
+
+    return res.send({coins: coinData});
 });
 
 // catch 404 and forward to error handler
@@ -48,3 +63,9 @@ app.use(function(req, res, next) {
 });
 
 app.listen(5000, () => console.log('Server serving on port 5000!'))
+
+getCoinData();
+
+setInterval(async () => {
+    getCoinData();
+}, 300000);
