@@ -57,24 +57,25 @@ class Card extends Component {
 
       let percent = <span>{(percentChange * .01).toLocaleString('en-US', {style: 'percent', minimumFractionDigits: 2})}</span>;
 
-      return (
-          <div>
-            <Mobile>
-              <div className="col p-1">
-                {period}
-                <small className={hourColor}>
-                  {percent}
-                </small>
-              </div>
-            </Mobile>
-            <Default>
-              {period}
-              <b className={hourColor + " ml-2"}>
-                  {percent}
-                </b>
-            </Default>
+      if (window.innerWidth <= 760) {
+        return (
+          <div className="col p-1">
+            {period}
+            <small className={hourColor}>
+              {percent}
+            </small>
           </div>
-      );
+        );
+      }
+
+      return (
+        <div>
+          {period}
+          <b className={hourColor + " ml-2"}>
+            {percent}
+          </b>
+        </div>
+      )
     }
   }
 
@@ -158,7 +159,7 @@ class Card extends Component {
                 <div className="mr-1">
                   <b className="p-1">{quote.price.toLocaleString('en-US', { style: 'currency', currency: this.state.settings.currency, minimumFractionDigits: 3})}</b>
                 </div>
-                <div className="row">
+                <div className="row m-0">
                   {this.getPercentChange(quote, "1h")}
                   {this.getPercentChange(quote, "24h")}
                   {this.getPercentChange(quote, "7d")}

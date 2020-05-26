@@ -58,7 +58,7 @@ class Settings extends Component {
               <div className="mt-5">
                   <div className="row m-0 w-100 mt-5">
                       <div className="col-sm-4">
-                          <label htmlFor='show1hChange'>Show 1h Change</label>
+                          <label className="pull-left" htmlFor='show1hChange'>Show 1h Change</label>
                           <Toggle
                               defaultChecked={this.props.settings.show1hChange}
                               id="show1hChange"
@@ -66,7 +66,7 @@ class Settings extends Component {
                               onChange={() => this.props.editSetting("show1hChange", !this.props.settings.show1hChange)} />
                       </div>
                       <div className="col-sm-4">
-                          <label htmlFor='show24hChange'>Show 24h Change</label>
+                          <label className="pull-left" htmlFor='show24hChange'>Show 24h Change</label>
                           <Toggle
                               defaultChecked={this.props.settings.show24hChange}
                               id="show24hChange"
@@ -74,7 +74,7 @@ class Settings extends Component {
                               onChange={() => this.props.editSetting("show24hChange", !this.props.settings.show24hChange)} />
                       </div>
                       <div className="col-sm-4">
-                          <label htmlFor='show7dChange'>Show 7d Change</label>
+                          <label className="pull-left" htmlFor='show7dChange'>Show 7d Change</label>
                           <Toggle
                               defaultChecked={this.props.settings.show7dChange}
                               id="show7dChange"

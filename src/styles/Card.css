@@ -91,6 +91,12 @@
   color: #099809;
 }
 
+@media only screen and (min-width: 768px) {
+  .green {
+    display: inline;
+  }
+}
+
 .pull-left {
   left: 0;
   position: relative !important;
@@ -98,6 +104,12 @@
 
 .red {
   color: #fb1b1b;
+}
+
+@media only screen and (min-width: 768px) {
+  .red {
+    display: inline;
+  }
 }
 
 .settings {
