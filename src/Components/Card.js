@@ -137,7 +137,7 @@ class Card extends Component {
               <br />
               Simulated Price: {(quote.price + ((quote.price) * (this.state.simulate * .01))).toLocaleString('en-US', { style: 'currency', currency: this.state.settings.currency, minimumFractionDigits: 3})}
               <br />
-              Simulated Value: {((quote.price + ((quote.price) * (this.state.simulate * .01))) * (this.state.holdings || 0)).toLocaleString('en-US', { style: 'currency', currency: this.state.settings.currency, minimumFractionDigits: 3})}
+              Simulated Value: {((quote.price + ((quote.price) * (this.state.simulate * .01))) * (this.state.holdings) || 0).toLocaleString('en-US', { style: 'currency', currency: this.state.settings.currency, minimumFractionDigits: 3})}
               <br />
               Simulated Cap: {(this.state.coin.circulating_supply * (quote.price + (quote.price * (this.state.simulate * .01)))).toLocaleString('en-US', { style: 'currency', currency: this.state.settings.currency, minimumFractionDigits: 0})}
               </p>
