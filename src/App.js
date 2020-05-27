@@ -4,7 +4,15 @@ import Header from './Components/Header.js';
 import Settings from './Components/Settings.js';
 import './styles/App.css';
 
-var serverAddress = "http://localhost:5000";
+const CORS_PROXY = 'https://cors-anywhere.herokuapp.com/'
+const BASE_URL = 'https://web-api.coinmarketcap.com/v1.1/cryptocurrency'
+const LIMIT = 100;
+
+let CURRENCY_CODES = []
+
+require("./currencies.json").forEach(currency => {
+  CURRENCY_CODES.push(currency.code);
+})
 
 class App extends Component {
   constructor(props){
@@ -44,12 +52,12 @@ class App extends Component {
   componentDidMount(){
     setInterval(async () => {
       this.fetchCoins();
-    }, 60000);
+    }, 300000);
   }
 
   fetchCoins(){
     try {
-      fetch(`${serverAddress}/fetch-coins`)
+      fetch(`${CORS_PROXY}${BASE_URL}/listings/latest?limit=${LIMIT}&convert=${CURRENCY_CODES}`, {headers: {"Access-Control-Allow-Origin": '*'}})
           .then(res => res.json())
           .then(response => {
 
@@ -57,19 +65,19 @@ class App extends Component {
               var shownCoins = this.state.data.coins.filter(coin => coin.show);
 
               shownCoins.forEach((shownCoin) => {
-                var coinIndex = response.coins.findIndex(coin => coin.symbol === shownCoin.symbol);
-                var coin = response.coins[coinIndex];
+                var coinIndex = response.data.findIndex(coin => coin.symbol === shownCoin.symbol);
+                var coin = response.data[coinIndex];
 
                 coin.show = true;
                 coin.holdings = shownCoin.holdings;
               });
             } else {
-              response.coins[0].show = true;
-              this.updateCards(response.coins[0], 'add');
+              response.data[0].show = true;
+              this.updateCards(response.data[0], 'add');
             }
 
             this.setState({
-              data: {coins: response.coins},
+              data: {coins: response.data}
             });
 
             this.storeData();
