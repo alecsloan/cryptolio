@@ -55,7 +55,7 @@ class Settings extends Component {
                   pull='left'
               />
               <h2 className="settings-top">Settings</h2>
-              <div className="mt-5">
+              <div className="mt-5 settings-panel">
                   <div className="row m-0 w-100 mt-5">
                       <div className="col-sm-4">
                           <label className="pull-left" htmlFor='show1hChange'>Show 1h Change</label>
@@ -83,18 +83,22 @@ class Settings extends Component {
                       </div>
                   </div>
                   <div className="col-12 currency-selector">
+                      <label htmlFor='currency'>Currency</label>
                       <Select
-                          ref="setCurrency"
-                          className="select add-input color-black"
-                          name="setCurrency"
+                          id="currency"
+                          className="select add-input"
                           placeholder={this.state.currency ? this.state.currency['currency'] + ' (' + this.state.currency['symbol'] + ')' : 'Select a currency'}
                           onChange={e => {this.updateCurrency(e.value); this.props.editSetting('currency', e.value)}}
                           onSelectResetsInput={true}
-                          value={this.props.settings.currenc}
+                          value={this.props.settings.currency}
                           clearable={false}
                           closeOnSelect={true}
                           options={this.getCurrencyOptions()}
                       />
+                  </div>
+                  <div className="col-12">
+                      <label htmlFor='limit'>Add Dropdown Limit</label>
+                      <input className="limit" id='limit' onInputCapture={event => this.props.editSetting('limit', event.target.value)} type="number" min="1" max="2629" defaultValue={this.props.settings.limit} />
                   </div>
               </div>
             </div>

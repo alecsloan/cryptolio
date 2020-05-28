@@ -15,7 +15,8 @@ class App extends Component {
       show1hChange: true,
       show24hChange: true,
       show7dChange: true,
-      currency: "USD"
+      currency: "USD",
+      limit: 200
     };
 
     this.state ={
@@ -47,15 +48,17 @@ class App extends Component {
           .then(res => res.json())
           .then(response => {
 
-            Object.keys(this.state.data.coins).forEach(id => {
-              response.data[id].holdings = this.state.data.coins[id].holdings;
-            });
+            if (this.state.data.coins !== undefined) {
+              Object.keys(this.state.data.coins).forEach(id => {
+                response.data[id].holdings = this.state.data.coins[id].holdings;
+              });
+            }
 
             this.storeData(response.data);
           });
     }
     catch(e){
-      console.log("Error getting Coin Market Cap data:", e)
+      console.log("Error getting Coinmarketcap data:", e)
     }
   }
 
@@ -133,7 +136,7 @@ class App extends Component {
       return
 
     Object.entries(this.state.data.coins).forEach(([id, coin]) => {
-      if (coin.quote)
+      if (coin.quote && coin.quote[this.state.settings.currency])
         cards.push(<Card coin={coin} key={coin.symbol} removeCrypto={this.removeCrypto.bind(this)} settings={this.state.settings} updateHoldings={this.updateHoldings.bind(this)}/>)
     });
 
@@ -143,7 +146,7 @@ class App extends Component {
   render() {
     return (
       <div className="page">
-        <Header addCrypto={this.addCrypto.bind(this)} coins={this.state.data.coins} toggleShowSettings={this.toggleShowSettings.bind(this)}/>
+        <Header addCrypto={this.addCrypto.bind(this)} coins={this.state.data.coins} limit={this.state.settings.limit} toggleShowSettings={this.toggleShowSettings.bind(this)}/>
         <hr />
         <div className="content">
           <div className="cardRow">

@@ -9,12 +9,32 @@
     color: black;
 }
 
+.currency-selector .add-input {
+    margin-top: 0;
+}
+
+.limit {
+    height: 38px;
+    width: 50%;
+}
+
 .panel {
     background: linear-gradient(to bottom right, #2a4466, #0e1f35);
     border: 0;
     color: #FFF;
     height: 100%;
     transition: all 1s;
+}
+
+.settings-panel .col-12 {
+    margin-top: 15px;
+}
+
+.settings-panel label {
+    color: white;
+    float: left;
+    line-height: 38px;
+    margin-right: 5px;
 }
 
 .settings-title {

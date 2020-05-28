@@ -23,7 +23,7 @@ class Header extends Component {
 
       var i = 0;
 
-      Object.values(cryptoAssets).forEach((cryptoAsset) => {
+      Object.values(cryptoAssets.slice(0, this.props.limit)).forEach((cryptoAsset) => {
         coinOptArray[i] = {'value': cryptoAsset.id, 'label': cryptoAsset.name + ' (' + cryptoAsset.symbol + ')'};
         i++;
       });
