@@ -39,12 +39,12 @@ class Header extends Component {
   render() {
     let displayAddSection = 'none';
     let addIconClass = 'add-section-icon';
-    let addIconTitle = 'Show cryptocurrency selector';
+    let addIconTitle = 'Show cryptoasset selector';
 
     if (this.state.displayAddSection) {
       displayAddSection = 'block';
       addIconClass += ' rotate';
-      addIconTitle = 'Hide cryptocurrency selector';
+      addIconTitle = 'Hide cryptoasset selector';
     }
 
     return(
@@ -72,7 +72,7 @@ class Header extends Component {
             ref="addCoin"
             className="select add-input"
             name="addCoin"
-            placeholder="Add a cryptocurrency"
+            placeholder="Add a cryptoasset"
             onChange={e => this.props.addCrypto(e.value)}
             onSelectResetsInput={true}
             value={this.state.coinSelected}
