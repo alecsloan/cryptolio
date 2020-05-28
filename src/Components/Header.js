@@ -16,11 +16,16 @@ class Header extends Component {
   }
 
   getOptions() {
-    if (this.props.coins) {
+    var cryptoAssets = require("../cryptoassets.json");
+
+    if (cryptoAssets) {
       let coinOptArray = [];
 
-      Object.values(this.props.coins).forEach((key) => {
-        coinOptArray[key['cmc_rank'] - 1] = {'value': key['symbol'], 'label': key['name'] + ' (' + key['symbol'] + ')'};
+      var i = 0;
+
+      Object.values(cryptoAssets).forEach((cryptoAsset) => {
+        coinOptArray[i] = {'value': cryptoAsset.id, 'label': cryptoAsset.name + ' (' + cryptoAsset.symbol + ')'};
+        i++;
       });
 
       return coinOptArray;

@@ -117,7 +117,7 @@ class Card extends Component {
           {/*End of front*/}
           <div style={{display: back}}>
             <FontAwesome
-              onClick={event => this.props.removeCrypto(this.state.coin.symbol)}
+              onClick={event => this.props.removeCrypto(this.state.coin.id)}
               className='settings pull-left'
               name='trash'
               size='2x'

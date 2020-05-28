@@ -90,7 +90,7 @@ class Settings extends Component {
                           placeholder={this.state.currency ? this.state.currency['currency'] + ' (' + this.state.currency['symbol'] + ')' : 'Select a currency'}
                           onChange={e => {this.updateCurrency(e.value); this.props.editSetting('currency', e.value)}}
                           onSelectResetsInput={true}
-                          value={this.props.settings.currency}
+                          value={this.props.settings.currenc}
                           clearable={false}
                           closeOnSelect={true}
                           options={this.getCurrencyOptions()}

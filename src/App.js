@@ -5,14 +5,7 @@ import Settings from './Components/Settings.js';
 import './styles/App.css';
 
 const CORS_PROXY = 'https://cors-anywhere.herokuapp.com/'
-const BASE_URL = 'https://web-api.coinmarketcap.com/v1.1/cryptocurrency'
-const LIMIT = 100;
-
-let CURRENCY_CODES = []
-
-require("./currencies.json").forEach(currency => {
-  CURRENCY_CODES.push(currency.code);
-})
+const BASE_URL = 'https://web-api.coinmarketcap.com/v1/cryptocurrency'
 
 class App extends Component {
   constructor(props){
@@ -34,19 +27,7 @@ class App extends Component {
       settings: initialSettings
     };
 
-    if (initialData.coins) {
-      var shownCoins = initialData.coins.filter(coin => coin.show);
-
-      shownCoins.forEach((shownCoin) => {
-        var coinIndex = initialData.coins.findIndex(coin => coin.symbol === shownCoin.symbol);
-        var coin = initialData.coins[coinIndex];
-
-        this.updateCards(coin, 'add');
-      });
-    }
-    else {
-      this.fetchCoins();
-    }
+    this.fetchCoins();
   }
 
   componentDidMount(){
@@ -55,32 +36,22 @@ class App extends Component {
     }, 300000);
   }
 
-  fetchCoins(){
+  fetchCoins(currency = this.state.settings.currency){
+    var shownAssetIds = 1;
+
+    if (this.state.data.coins !== undefined)
+      shownAssetIds = Object.keys(this.state.data.coins);
+
     try {
-      fetch(`${CORS_PROXY}${BASE_URL}/listings/latest?limit=${LIMIT}&convert=${CURRENCY_CODES}`, {headers: {"Access-Control-Allow-Origin": '*'}})
+      fetch(`${CORS_PROXY}${BASE_URL}/quotes/latest?id=${shownAssetIds}&convert=${currency}`, {headers: {"Access-Control-Allow-Origin": '*'}})
           .then(res => res.json())
           .then(response => {
 
-            if (this.state.data.coins) {
-              var shownCoins = this.state.data.coins.filter(coin => coin.show);
-
-              shownCoins.forEach((shownCoin) => {
-                var coinIndex = response.data.findIndex(coin => coin.symbol === shownCoin.symbol);
-                var coin = response.data[coinIndex];
-
-                coin.show = true;
-                coin.holdings = shownCoin.holdings;
-              });
-            } else {
-              response.data[0].show = true;
-              this.updateCards(response.data[0], 'add');
-            }
-
-            this.setState({
-              data: {coins: response.data}
+            Object.keys(this.state.data.coins).forEach(id => {
+              response.data[id].holdings = this.state.data.coins[id].holdings;
             });
 
-            this.storeData();
+            this.storeData(response.data);
           });
     }
     catch(e){
@@ -88,39 +59,25 @@ class App extends Component {
     }
   }
 
-  addCrypto(symbol){
-    if (!symbol)
+  addCrypto(id){
+    if (!id)
       return;
 
-    var coin = this.state.data.coins.find(coin => coin.symbol === symbol);
-
-    if (coin.show)
-      return;
-
-    coin['show'] = true;
-
-    this.setState({
-      data: {coins: this.state.data.coins},
-    });
-
-    this.updateCards(coin, 'add');
-
-    this.storeData();
-  }
-
-  removeCrypto(symbol){
     var coins = this.state.data.coins;
-    var coinIndex = coins.findIndex(coin => coin.symbol === symbol);
 
-    coins[coinIndex].show = false;
+    coins[id] = {id: id};
 
     this.setState({
       data: {coins: coins},
     });
 
-    this.updateCards(symbol, 'remove');
+    this.fetchCoins();
+  }
 
-    this.storeData();
+  removeCrypto(id){
+    delete this.state.data.coins[id];
+
+    this.storeData(this.state.data.coins);
   }
 
   editSetting(settingName, value) {
@@ -134,16 +91,10 @@ class App extends Component {
 
     settings[settingName] = value;
 
-    //This may be temporary. Need to find a better way to update the cards.
-    var cards = [];
-
-    this.state.cards.forEach((card) => {
-      cards.push(<Card coin={card.coin} key={card.key} removeCrypto={this.removeCrypto.bind(this)} settings={settings} updateHoldings={this.updateHoldings.bind(this)}/>)
-    });
+    this.fetchCoins((settingName === 'currency') ? value : this.state.settings.currency);
 
     this.setState({
-      settings: settings,
-      cards: cards
+      settings: settings
     });
 
     localStorage.setItem('settings', JSON.stringify(settings));
@@ -158,39 +109,35 @@ class App extends Component {
   updateHoldings(event, coin){
     let value = parseFloat(event.target.value).toFixed(9);
 
+    var coins = this.state.data.coins;
+
     if (value){
-      var coins = this.state.data.coins;
-      var coinIndex = coins.findIndex(curCoin => curCoin.symbol === coin.symbol);
-
-      coins[coinIndex].holdings = parseFloat(value);
-
-      this.setState({
-        data: {coins: coins},
-      });
+      coins[coin.id].holdings = value;
     }
 
-    this.storeData();
+    this.storeData(coins);
   }
 
-  async storeData(){
+  async storeData(coins){
+    this.setState({
+      data: {coins: coins}
+    });
+
     localStorage.setItem('data', JSON.stringify(this.state.data));
   }
 
-  updateCards(coin, task){
-    let cards = this.state.cards;
+  getCards(){
+    var cards = [];
 
-    if (coin && task === 'remove'){
-      var coinIndex = cards.findIndex(card => card.key === coin);
+    if (!this.state.data.coins)
+      return
 
-      cards.splice(coinIndex, 1);
-    }
-    else if (coin){
-      cards.push(<Card coin={coin} key={coin.symbol} removeCrypto={this.removeCrypto.bind(this)} settings={this.state.settings} updateHoldings={this.updateHoldings.bind(this)}/>)
-    }
-
-    this.setState({
-      cards: cards
+    Object.entries(this.state.data.coins).forEach(([id, coin]) => {
+      if (coin.quote)
+        cards.push(<Card coin={coin} key={coin.symbol} removeCrypto={this.removeCrypto.bind(this)} settings={this.state.settings} updateHoldings={this.updateHoldings.bind(this)}/>)
     });
+
+    return cards;
   }
 
   render() {
@@ -200,7 +147,7 @@ class App extends Component {
         <hr />
         <div className="content">
           <div className="cardRow">
-            {this.state.cards}
+            {this.getCards()}
           </div>
         </div>
         <Settings editSetting={this.editSetting.bind(this)} settings={this.state.settings} showSettings={this.state.showSettings} toggleShowSettings={this.toggleShowSettings.bind(this)} />
