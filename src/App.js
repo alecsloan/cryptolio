@@ -1,7 +1,8 @@
-import React, { Component } from 'react';
 import Card from './Components/Card.js';
 import Header from './Components/Header.js';
+import React, { Component } from 'react';
 import Settings from './Components/Settings.js';
+
 import './styles/App.css';
 
 const CORS_PROXY = 'https://cors-anywhere.herokuapp.com/'
@@ -10,6 +11,7 @@ const BASE_URL = 'https://web-api.coinmarketcap.com/v1/cryptocurrency'
 class App extends Component {
   constructor(props){
     super(props);
+
     var initialData = JSON.parse(localStorage.getItem("data")) || [];
     var initialSettings = JSON.parse(localStorage.getItem("settings")) || {
       show1hChange: true,
@@ -31,10 +33,45 @@ class App extends Component {
     this.fetchCoins();
   }
 
+  addCrypto(id){
+    if (!id)
+      return;
+
+    var coins = this.state.data.coins;
+
+    coins[id] = {id: id};
+
+    this.setState({
+      data: {coins: coins},
+    });
+
+    this.fetchCoins();
+  }
+
   componentDidMount(){
     setInterval(async () => {
       this.fetchCoins();
     }, 300000);
+  }
+
+  editSetting(settingName, value) {
+    if (!settingName)
+      return;
+
+    if (settingName === "currency" && !value)
+      value = "USD";
+
+    var settings = this.state.settings;
+
+    settings[settingName] = value;
+
+    this.fetchCoins((settingName === "currency") ? value : this.state.settings.currency);
+
+    this.setState({
+      settings: settings
+    });
+
+    localStorage.setItem("settings", JSON.stringify(settings));
   }
 
   fetchCoins(currency = this.state.settings.currency){
@@ -62,19 +99,18 @@ class App extends Component {
     }
   }
 
-  addCrypto(id){
-    if (!id)
-      return;
+  getCards(){
+    var cards = [];
 
-    var coins = this.state.data.coins;
+    if (!this.state.data.coins)
+      return
 
-    coins[id] = {id: id};
-
-    this.setState({
-      data: {coins: coins},
+    Object.entries(this.state.data.coins).forEach(([id, coin]) => {
+      if (coin.quote && coin.quote[this.state.settings.currency])
+        cards.push(<Card coin={coin} key={coin.symbol} removeCrypto={this.removeCrypto.bind(this)} settings={this.state.settings} updateHoldings={this.updateHoldings.bind(this)}/>)
     });
 
-    this.fetchCoins();
+    return cards;
   }
 
   removeCrypto(id){
@@ -83,24 +119,12 @@ class App extends Component {
     this.storeData(this.state.data.coins);
   }
 
-  editSetting(settingName, value) {
-    if (!settingName)
-      return;
-
-    if (settingName === 'currency' && !value)
-      value = "USD";
-
-    var settings = this.state.settings;
-
-    settings[settingName] = value;
-
-    this.fetchCoins((settingName === 'currency') ? value : this.state.settings.currency);
-
+  async storeData(coins){
     this.setState({
-      settings: settings
+      data: {coins: coins}
     });
 
-    localStorage.setItem('settings', JSON.stringify(settings));
+    localStorage.setItem("data", JSON.stringify(this.state.data));
   }
 
   toggleShowSettings() {
@@ -119,28 +143,6 @@ class App extends Component {
     }
 
     this.storeData(coins);
-  }
-
-  async storeData(coins){
-    this.setState({
-      data: {coins: coins}
-    });
-
-    localStorage.setItem('data', JSON.stringify(this.state.data));
-  }
-
-  getCards(){
-    var cards = [];
-
-    if (!this.state.data.coins)
-      return
-
-    Object.entries(this.state.data.coins).forEach(([id, coin]) => {
-      if (coin.quote && coin.quote[this.state.settings.currency])
-        cards.push(<Card coin={coin} key={coin.symbol} removeCrypto={this.removeCrypto.bind(this)} settings={this.state.settings} updateHoldings={this.updateHoldings.bind(this)}/>)
-    });
-
-    return cards;
   }
 
   render() {

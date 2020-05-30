@@ -1,5 +1,6 @@
 import FontAwesome from 'react-fontawesome';
 import React, { Component } from 'react';
+import Select from "react-select";
 import SlidingPanel from "react-sliding-side-panel";
 import Toggle from 'react-toggle';
 
@@ -7,7 +8,6 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import 'font-awesome/css/font-awesome.min.css';
 import "react-toggle/style.css";
 import '../styles/Settings.css';
-import Select from "react-select";
 
 class Settings extends Component {
     constructor(props) {
@@ -43,62 +43,75 @@ class Settings extends Component {
     return (
         <div>
           <SlidingPanel
-              type={'right'}
               isOpen={this.props.showSettings}
               size={(window.innerWidth <= 760) ? 70 : 30}
+              type="right"
           >
             <div>
               <FontAwesome
                   className="back-arrow"
+                  name="arrow-left"
                   onClick={() => this.props.toggleShowSettings()}
-                  name='arrow-left'
-                  pull='left'
+                  pull="left"
               />
               <h2 className="settings-top">Settings</h2>
               <div className="mt-5 settings-panel">
-                  <div className="row m-0 w-100 mt-5">
+                  <div className="m-0 w-100 mt-5 row">
                       <div className="col-sm-4">
-                          <label className="pull-left" htmlFor='show1hChange'>Show 1h Change</label>
+                          <label className="pull-left" htmlFor="show1hChange">Show 1h Change</label>
                           <Toggle
                               defaultChecked={this.props.settings.show1hChange}
                               id="show1hChange"
                               icons={false}
-                              onChange={() => this.props.editSetting("show1hChange", !this.props.settings.show1hChange)} />
+                              onChange={() => this.props.editSetting('show1hChange', !this.props.settings.show1hChange)} />
                       </div>
                       <div className="col-sm-4">
-                          <label className="pull-left" htmlFor='show24hChange'>Show 24h Change</label>
+                          <label className="pull-left" htmlFor="show24hChange">Show 24h Change</label>
                           <Toggle
                               defaultChecked={this.props.settings.show24hChange}
                               id="show24hChange"
                               icons={false}
-                              onChange={() => this.props.editSetting("show24hChange", !this.props.settings.show24hChange)} />
+                              onChange={() => this.props.editSetting('show24hChange', !this.props.settings.show24hChange)} />
                       </div>
                       <div className="col-sm-4">
-                          <label className="pull-left" htmlFor='show7dChange'>Show 7d Change</label>
+                          <label className="pull-left" htmlFor="show7dChange">Show 7d Change</label>
                           <Toggle
                               defaultChecked={this.props.settings.show7dChange}
                               id="show7dChange"
                               icons={false}
-                              onChange={() => this.props.editSetting("show7dChange", !this.props.settings.show7dChange)} />
+                              onChange={() => this.props.editSetting('show7dChange', !this.props.settings.show7dChange)} />
                       </div>
                   </div>
                   <div className="col-12 currency-selector">
-                      <label htmlFor='currency'>Currency</label>
+                      <label htmlFor="currency">Currency</label>
                       <Select
-                          id="currency"
                           className="select add-input"
-                          placeholder={this.state.currency ? this.state.currency['currency'] + ' (' + this.state.currency['symbol'] + ')' : 'Select a currency'}
-                          onChange={e => {this.updateCurrency(e.value); this.props.editSetting('currency', e.value)}}
-                          onSelectResetsInput={true}
-                          value={this.props.settings.currency}
                           clearable={false}
                           closeOnSelect={true}
+                          id="currency"
+                          onChange={
+                              e => {
+                                  this.updateCurrency(e.value);
+                                  this.props.editSetting('currency', e.value)
+                              }
+                          }
+                          onSelectResetsInput={true}
                           options={this.getCurrencyOptions()}
+                          placeholder={this.state.currency ? this.state.currency['currency'] + ' (' + this.state.currency['symbol'] + ')' : 'Select a currency'}
+                          value={this.props.settings.currency}
                       />
                   </div>
                   <div className="col-12">
-                      <label htmlFor='limit'>Add Dropdown Limit</label>
-                      <input className="limit" id='limit' onInputCapture={event => this.props.editSetting('limit', event.target.value)} type="number" min="1" max="2629" defaultValue={this.props.settings.limit} />
+                      <label htmlFor="limit">Add Dropdown Limit</label>
+                      <input
+                          className="limit"
+                          defaultValue={this.props.settings.limit}
+                          id="limit"
+                          max="2629"
+                          min="1"
+                          onInputCapture={event => this.props.editSetting('limit', event.target.value)}
+                          type="number"
+                      />
                   </div>
               </div>
             </div>

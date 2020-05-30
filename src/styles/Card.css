@@ -20,8 +20,8 @@
   margin-top: 15px;
 }
 
-.card-body-small{
-  padding: 0;
+.card-body {
+    padding: 20px 0;
 }
 
 .card-container {
@@ -38,6 +38,12 @@
   padding-top: 16px;
   text-align: center;
   width: 100px;
+}
+
+@media only screen and (max-width: 768px) {
+    .card-img-top {
+        width: 50px;
+    }
 }
 
 .card-img-top-small {
@@ -87,6 +93,12 @@
   animation: fa-spin 5s infinite linear;
 }
 
+@media only screen and (max-width: 768px) {
+    .fa-gear.fa-spin {
+        display: none;
+    }
+}
+
 .green {
   color: #099809;
 }
@@ -110,6 +122,11 @@
   .red {
     display: inline;
   }
+}
+
+.row {
+    margin-left: 0;
+    margin-right: 0;
 }
 
 .settings {

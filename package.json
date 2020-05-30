@@ -10,7 +10,6 @@
     "react": "^16.4.2",
     "react-dom": "^16.4.2",
     "react-fontawesome": "^1.6.1",
-    "react-responsive": "5.0.0",
     "react-scripts": "^3.4.1",
     "react-select": "2.0.0",
     "react-sliding-side-panel": "^1.0.14",

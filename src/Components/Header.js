@@ -1,16 +1,17 @@
-import React, { Component } from 'react';
 import FontAwesome from 'react-fontawesome';
+import React, { Component } from 'react';
 import Select from 'react-select';
+
 import 'bootstrap/dist/css/bootstrap.min.css';
-import '../styles/header.css';
 import 'font-awesome/css/font-awesome.min.css';
+import '../styles/header.css';
 
 class Header extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      coinSelected: '',
+      coinSelected: "",
       displayAddSection: false
     }
   }
@@ -24,7 +25,7 @@ class Header extends Component {
       var i = 0;
 
       Object.values(cryptoAssets.slice(0, this.props.limit)).forEach((cryptoAsset) => {
-        coinOptArray[i] = {'value': cryptoAsset.id, 'label': cryptoAsset.name + ' (' + cryptoAsset.symbol + ')'};
+        coinOptArray[i] = {"value": cryptoAsset.id, "label": cryptoAsset.name + " (" + cryptoAsset.symbol + ")"};
         i++;
       });
 
@@ -37,14 +38,14 @@ class Header extends Component {
   }
 
   render() {
-    let displayAddSection = 'none';
-    let addIconClass = 'add-section-icon';
-    let addIconTitle = 'Show cryptoasset selector';
+    let displayAddSection = "none";
+    let addIconClass = "add-section-icon";
+    let addIconTitle = "Show cryptoasset selector";
 
     if (this.state.displayAddSection) {
-      displayAddSection = 'block';
-      addIconClass += ' rotate';
-      addIconTitle = 'Hide cryptoasset selector';
+      displayAddSection = "block";
+      addIconClass += " rotate";
+      addIconTitle = "Hide cryptoasset selector";
     }
 
     return(
@@ -52,33 +53,32 @@ class Header extends Component {
         <div className="col-12">
           <h2 className="title">
           <FontAwesome
-            onClick={() => this.toggleAddSection()}
             className={addIconClass}
-            name='plus'
-            pull='left'
+            name="plus"
+            onClick={() => this.toggleAddSection()}
+            pull="left"
             title={addIconTitle}
           />
           CryptoDash
           <FontAwesome
+            className="menu-icon"
+            name="cogs"
             onClick={() => this.props.toggleShowSettings()}
-            className='menu-icon'
-            name='cogs'
-            pull='right'
+            pull="right"
           />
           </h2>
         </div>
         <div className="col-12" style={{display: displayAddSection}}>
           <Select
-            ref="addCoin"
             className="select add-input"
-            name="addCoin"
-            placeholder="Add a cryptoasset"
-            onChange={e => this.props.addCrypto(e.value)}
-            onSelectResetsInput={true}
-            value={this.state.coinSelected}
             clearable={false}
             closeOnSelect={true}
+            name="addCoin"
+            onChange={e => this.props.addCrypto(e.value)}
+            onSelectResetsInput={true}
             options={this.getOptions()}
+            placeholder="Add a cryptoasset"
+            value={this.state.coinSelected}
           />
         </div>
       </div>
