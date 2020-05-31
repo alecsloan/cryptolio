@@ -82,30 +82,34 @@ class Settings extends Component {
                               onChange={() => this.props.editSetting('show7dChange', !this.props.settings.show7dChange)} />
                       </div>
                   </div>
-                  <div className="col-12 currency-selector">
-                      <label htmlFor="currency">Currency</label>
-                      <Select
-                          className="select add-input"
-                          clearable={false}
-                          closeOnSelect={true}
-                          id="currency"
-                          onChange={
-                              e => {
-                                  this.updateCurrency(e.value);
-                                  this.props.editSetting('currency', e.value)
+                  <div className="currency-selector row">
+                      <div className="col-md-2 col-sm-12">
+                        <label htmlFor="currency">Currency</label>
+                      </div>
+                      <div className="col-md-10 col-sm-12">
+                          <Select
+                              className="select add-input"
+                              clearable={false}
+                              closeOnSelect={true}
+                              id="currency"
+                              onChange={
+                                  e => {
+                                      this.updateCurrency(e.value);
+                                      this.props.editSetting('currency', e.value)
+                                  }
                               }
-                          }
-                          onSelectResetsInput={true}
-                          options={this.getCurrencyOptions()}
-                          placeholder={this.state.currency ? this.state.currency['currency'] + ' (' + this.state.currency['symbol'] + ')' : 'Select a currency'}
-                          value={this.props.settings.currency}
-                      />
+                              onSelectResetsInput={true}
+                              options={this.getCurrencyOptions()}
+                              placeholder={this.state.currency ? this.state.currency['currency'] + ' (' + this.state.currency['symbol'] + ')' : 'Select a currency'}
+                              value={this.props.settings.currency}
+                          />
+                      </div>
                   </div>
                   <div className="row">
-                      <div className="col-6">
+                      <div className="col-md-6 col-sm-12">
                         <label htmlFor="limit">Add Dropdown Limit</label>
                       </div>
-                      <div className="col-6">
+                      <div className="col-md-6 col-sm-12">
                           <input
                               defaultValue={this.props.settings.limit}
                               id="limit"
@@ -117,10 +121,10 @@ class Settings extends Component {
                       </div>
                   </div>
                   <div className="row">
-                      <div className="col-6">
+                      <div className="col-md-6 col-sm-12">
                         <label htmlFor="sliderMax">Slider Max</label>
                       </div>
-                      <div className="col-6">
+                      <div className="col-md-6 col-sm-12">
                           <input
                               defaultValue={this.props.settings.sliderMax}
                               id="sliderMax"
