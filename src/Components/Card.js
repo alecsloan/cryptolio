@@ -138,7 +138,7 @@ class Card extends Component {
 
                 <input
                     className="slider"
-                    max="1000000"
+                    max={this.state.settings.sliderMax}
                     min="-100"
                     onChange={
                       event =>

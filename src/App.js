@@ -18,7 +18,8 @@ class App extends Component {
       show24hChange: true,
       show7dChange: true,
       currency: "USD",
-      limit: 200
+      limit: 200,
+      sliderMax: 10000
     };
 
     this.state ={

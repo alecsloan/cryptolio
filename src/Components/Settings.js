@@ -101,17 +101,34 @@ class Settings extends Component {
                           value={this.props.settings.currency}
                       />
                   </div>
-                  <div className="col-12">
-                      <label htmlFor="limit">Add Dropdown Limit</label>
-                      <input
-                          className="limit"
-                          defaultValue={this.props.settings.limit}
-                          id="limit"
-                          max="2629"
-                          min="1"
-                          onInputCapture={event => this.props.editSetting('limit', event.target.value)}
-                          type="number"
-                      />
+                  <div className="row">
+                      <div className="col-6">
+                        <label htmlFor="limit">Add Dropdown Limit</label>
+                      </div>
+                      <div className="col-6">
+                          <input
+                              defaultValue={this.props.settings.limit}
+                              id="limit"
+                              max="2629"
+                              min="1"
+                              onInputCapture={event => this.props.editSetting('limit', event.target.value)}
+                              type="number"
+                          />
+                      </div>
+                  </div>
+                  <div className="row">
+                      <div className="col-6">
+                        <label htmlFor="sliderMax">Slider Max</label>
+                      </div>
+                      <div className="col-6">
+                          <input
+                              defaultValue={this.props.settings.sliderMax}
+                              id="sliderMax"
+                              min="100"
+                              onInputCapture={event => this.props.editSetting('sliderMax', (event.target.value < 100) ? 100 : event.target.value)}
+                              type="number"
+                          />
+                      </div>
                   </div>
               </div>
             </div>

@@ -13,9 +13,13 @@
     margin-top: 0;
 }
 
-.limit {
+.settings-panel input {
     height: 38px;
-    width: 50%;
+    width: 100%;
+}
+
+.settings-panel .row {
+    margin-top: 15px;
 }
 
 .panel {
