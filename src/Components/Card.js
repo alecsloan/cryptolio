@@ -4,10 +4,10 @@ import FontAwesome from 'react-fontawesome';
 import '../styles/Card.css';
 
 function MyBalance(props) {
-  if (props.holdings > 0) {
+  if (props.holdings > 0 && props.settings.showCardBalances) {
     return(
       <div className="mt-2">
-        My Balance: {(props.price * props.holdings).toLocaleString('en-US', { style: 'currency', currency: props.currency, minimumFractionDigits: 2})}
+        My Balance: {(props.price * props.holdings).toLocaleString('en-US', { style: 'currency', currency: props.settings.currency, minimumFractionDigits: 2})}
       </div>
     );
   }
@@ -96,7 +96,7 @@ class Card extends Component {
                 {this.getPercentChange(quote, "1h")}
                 {this.getPercentChange(quote, "24h")}
                 {this.getPercentChange(quote, "7d")}
-                <MyBalance currency={this.state.settings.currency} price={quote.price} holdings={this.state.holdings} />
+                <MyBalance holdings={this.state.holdings} price={quote.price} settings={this.state.settings} />
               </div>
             </div>
           </div>

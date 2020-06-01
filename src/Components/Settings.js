@@ -148,7 +148,7 @@ class Settings extends Component {
                   />
               </div>
               <div className="row">
-                  <div className="col-sm-6">
+                  <div className="col-sm-4">
                       <FormControlLabel
                           control={
                               <Switch
@@ -162,7 +162,21 @@ class Settings extends Component {
                           value="top"
                       />
                   </div>
-                  <div className="col-sm-6">
+                  <div className="col-sm-4">
+                      <FormControlLabel
+                          control={
+                              <Switch
+                                  color="primary"
+                                  defaultChecked={this.props.settings.showCardBalances}
+                                  onChange={() => this.props.editSetting('showCardBalances', !this.props.settings.showCardBalances)}
+                              />
+                          }
+                          label="Show Card Balance"
+                          labelPlacement="top"
+                          value="top"
+                      />
+                  </div>
+                  <div className="col-sm-4">
                       <FormControlLabel
                           control={
                               <Switch

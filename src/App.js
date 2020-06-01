@@ -19,6 +19,7 @@ class App extends Component {
       show1hChange: true,
       show24hChange: true,
       show7dChange: true,
+      showCardBalances: true,
       showPortfolioBalance: true,
       currency: "USD",
       limit: 200,
