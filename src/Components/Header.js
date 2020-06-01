@@ -1,6 +1,7 @@
+import Autocomplete from "@material-ui/lab/Autocomplete";
 import FontAwesome from 'react-fontawesome';
 import React, { Component } from 'react';
-import Select from 'react-select';
+import TextField from "@material-ui/core/TextField";
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'font-awesome/css/font-awesome.min.css';
@@ -11,25 +12,8 @@ class Header extends Component {
     super(props);
 
     this.state = {
-      coinSelected: "",
+      cryptoassets: require("../cryptoassets.json").slice(0, props.limit),
       displayAddSection: false
-    }
-  }
-
-  getOptions() {
-    var cryptoAssets = require("../cryptoassets.json");
-
-    if (cryptoAssets) {
-      let coinOptArray = [];
-
-      var i = 0;
-
-      Object.values(cryptoAssets.slice(0, this.props.limit)).forEach((cryptoAsset) => {
-        coinOptArray[i] = {"value": cryptoAsset.id, "label": cryptoAsset.name + " (" + cryptoAsset.symbol + ")"};
-        i++;
-      });
-
-      return coinOptArray;
     }
   }
 
@@ -69,16 +53,26 @@ class Header extends Component {
           </h2>
         </div>
         <div className="col-12" style={{display: displayAddSection}}>
-          <Select
-            className="select add-input"
-            clearable={false}
-            closeOnSelect={true}
-            name="addCoin"
-            onChange={e => this.props.addCrypto(e.value)}
-            onSelectResetsInput={true}
-            options={this.getOptions()}
-            placeholder="Add a cryptoasset"
-            value={this.state.coinSelected}
+          <Autocomplete
+              autoComplete={false}
+              autoHighlight
+              blurOnSelect
+              className="w-100"
+              clearOnBlur
+              disablePortal={true}
+              getOptionLabel={(option) => `${option.name} (${option.symbol})`}
+              id="currency"
+              onChange={
+                (event, cryptoasset) => {
+                  if (cryptoasset) {
+                    this.props.addCrypto(cryptoasset.id)
+                  }
+                }
+              }
+              options={this.state.cryptoassets}
+              renderInput={(params) => <TextField {...params} label="Add Cryptoasset" variant="outlined" />}
+              size="small"
+              value={null}
           />
         </div>
       </div>

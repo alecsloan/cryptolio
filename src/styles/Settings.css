@@ -5,8 +5,9 @@
     padding: 10px 0 0 10px;
 }
 
-.MuiAutocomplete-popper {
-    margin: 56px auto;
+.currency-selector .MuiAutocomplete-popper {
+    margin-top: 56px;
+    margin-left: auto;
     width: 90% !important;
 }
 

@@ -82,7 +82,7 @@ class App extends Component {
       shownAssetIds = Object.keys(this.state.data.coins);
 
     try {
-      fetch(`${CORS_PROXY}${BASE_URL}/quotes/latest?id=${shownAssetIds}&convert=${currency}`, {headers: {"Access-Control-Allow-Origin": '*'}})
+      fetch(`${CORS_PROXY}${BASE_URL}/quotes/latest?id=${shownAssetIds}&convert=${currency}`, {headers: {'origin': 'x-requested-with'}})
           .then(res => res.json())
           .then(response => {
 
