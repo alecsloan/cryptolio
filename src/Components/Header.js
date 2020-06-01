@@ -1,5 +1,6 @@
 import Autocomplete from "@material-ui/lab/Autocomplete";
 import FontAwesome from 'react-fontawesome';
+import Hotkeys from "react-hot-keys";
 import React, { Component } from 'react';
 import TextField from "@material-ui/core/TextField";
 
@@ -13,8 +14,15 @@ class Header extends Component {
 
     this.state = {
       cryptoassets: require("../cryptoassets.json").slice(0, props.limit),
-      displayAddSection: false
+      displayAddSection: false,
+      cryptoassetRef: null
     }
+  }
+
+  focusAddCryptoasset() {
+    setTimeout(() => {
+      document.getElementById('currency').focus();
+    }, 50);
   }
 
   toggleAddSection(){
@@ -26,7 +34,11 @@ class Header extends Component {
     let addIconClass = "add-section-icon";
     let addIconTitle = "Show cryptoasset selector";
 
-    if (this.state.displayAddSection) {
+    if (!this.props.addDropdownHideable) {
+      addIconClass += " invisible";
+      displayAddSection = "block";
+    }
+    else if (this.state.displayAddSection) {
       displayAddSection = "block";
       addIconClass += " rotate";
       addIconTitle = "Hide cryptoasset selector";
@@ -51,6 +63,7 @@ class Header extends Component {
             pull="right"
           />
           </h2>
+
         </div>
         <div className="col-12" style={{display: displayAddSection}}>
           <Autocomplete
@@ -75,6 +88,10 @@ class Header extends Component {
               value={null}
           />
         </div>
+        <Hotkeys
+          keyName="/"
+          onKeyDown={this.focusAddCryptoasset.bind(this)}
+        />
       </div>
     )
   }

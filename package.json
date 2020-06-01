@@ -11,6 +11,7 @@
     "react": "latest",
     "react-dom": "^16.4.2",
     "react-fontawesome": "^1.6.1",
+    "react-hot-keys": "^2.5.2",
     "react-scripts": "^3.4.1",
     "react-select": "2.0.0",
     "react-toggle": "^4.1.1"

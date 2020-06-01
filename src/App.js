@@ -1,5 +1,6 @@
 import Card from './Components/Card.js';
 import Header from './Components/Header.js';
+import Hotkeys from 'react-hot-keys';
 import React, { Component } from 'react';
 import Settings from './Components/Settings.js';
 
@@ -14,6 +15,7 @@ class App extends Component {
 
     var initialData = JSON.parse(localStorage.getItem("data")) || [];
     var initialSettings = JSON.parse(localStorage.getItem("settings")) || {
+      addDropdownHideable: false,
       show1hChange: true,
       show24hChange: true,
       show7dChange: true,
@@ -149,7 +151,7 @@ class App extends Component {
   render() {
     return (
       <div className="page">
-        <Header addCrypto={this.addCrypto.bind(this)} coins={this.state.data.coins} limit={this.state.settings.limit} toggleShowSettings={this.toggleShowSettings.bind(this)}/>
+        <Header addCrypto={this.addCrypto.bind(this)} coins={this.state.data.coins} limit={this.state.settings.limit} addDropdownHideable={this.state.settings.addDropdownHideable} toggleShowSettings={this.toggleShowSettings.bind(this)}/>
         <hr />
         <div className="content">
           <div className="cardRow">
@@ -157,6 +159,10 @@ class App extends Component {
           </div>
         </div>
         <Settings editSetting={this.editSetting.bind(this)} settings={this.state.settings} showSettings={this.state.showSettings} toggleShowSettings={this.toggleShowSettings.bind(this)} />
+        <Hotkeys
+          keyName="shift+/"
+          onKeyDown={this.toggleShowSettings.bind(this)}
+        />
       </div>
     );
   }

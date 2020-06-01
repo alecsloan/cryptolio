@@ -8,7 +8,7 @@
 .currency-selector .MuiAutocomplete-popper {
     margin-top: 56px;
     margin-left: auto;
-    width: 90% !important;
+    width: 100% !important;
 }
 
 .MuiDrawer-paper {

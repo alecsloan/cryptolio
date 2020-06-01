@@ -147,6 +147,22 @@ class Settings extends Component {
                       variant="outlined"
                   />
               </div>
+              <div className="row">
+                  <div className="col-sm-6">
+                      <FormControlLabel
+                          control={
+                              <Switch
+                                  color="primary"
+                                  defaultChecked={this.props.settings.addDropdownHideable}
+                                  onChange={() => this.props.editSetting('addDropdownHideable', !this.props.settings.addDropdownHideable)}
+                              />
+                          }
+                          label="Always show add dropdown"
+                          labelPlacement="top"
+                          value="top"
+                      />
+                  </div>
+              </div>
           </div>
         </div>
       </Drawer>
