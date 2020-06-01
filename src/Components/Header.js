@@ -5,7 +5,7 @@ import TextField from "@material-ui/core/TextField";
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'font-awesome/css/font-awesome.min.css';
-import '../styles/header.css';
+import '../styles/Header.css';
 
 class Header extends Component {
   constructor(props) {
