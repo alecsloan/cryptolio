@@ -1,12 +1,13 @@
+import Autocomplete from '@material-ui/lab/Autocomplete';
+import Drawer from '@material-ui/core/Drawer';
 import FontAwesome from 'react-fontawesome';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
 import React, { Component } from 'react';
-import Select from "react-select";
-import SlidingPanel from "react-sliding-side-panel";
-import Toggle from 'react-toggle';
+import Switch from '@material-ui/core/Switch';
+import TextField from '@material-ui/core/TextField';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'font-awesome/css/font-awesome.min.css';
-import "react-toggle/style.css";
 import '../styles/Settings.css';
 
 class Settings extends Component {
@@ -41,103 +42,114 @@ class Settings extends Component {
 
   render() {
     return (
-        <div>
-          <SlidingPanel
-              isOpen={this.props.showSettings}
-              size={(window.innerWidth <= 760) ? 70 : 30}
-              type="right"
-          >
-            <div>
-              <FontAwesome
-                  className="back-arrow"
-                  name="arrow-left"
-                  onClick={() => this.props.toggleShowSettings()}
-                  pull="left"
-              />
-              <h2 className="settings-top">Settings</h2>
-              <div className="mt-5 settings-panel">
-                  <div className="m-0 w-100 mt-5 row">
-                      <div className="col-sm-4">
-                          <label className="pull-left" htmlFor="show1hChange">Show 1h Change</label>
-                          <Toggle
-                              defaultChecked={this.props.settings.show1hChange}
-                              id="show1hChange"
-                              icons={false}
-                              onChange={() => this.props.editSetting('show1hChange', !this.props.settings.show1hChange)} />
-                      </div>
-                      <div className="col-sm-4">
-                          <label className="pull-left" htmlFor="show24hChange">Show 24h Change</label>
-                          <Toggle
-                              defaultChecked={this.props.settings.show24hChange}
-                              id="show24hChange"
-                              icons={false}
-                              onChange={() => this.props.editSetting('show24hChange', !this.props.settings.show24hChange)} />
-                      </div>
-                      <div className="col-sm-4">
-                          <label className="pull-left" htmlFor="show7dChange">Show 7d Change</label>
-                          <Toggle
-                              defaultChecked={this.props.settings.show7dChange}
-                              id="show7dChange"
-                              icons={false}
-                              onChange={() => this.props.editSetting('show7dChange', !this.props.settings.show7dChange)} />
-                      </div>
+      <Drawer
+          anchor="right"
+          open={this.props.showSettings}
+          onClose={() => this.props.toggleShowSettings()}
+      >
+        <div className="panel">
+          <FontAwesome
+              className="back-arrow"
+              name="arrow-left"
+              onClick={() => this.props.toggleShowSettings()}
+              pull="left"
+          />
+          <h2 className="settings-top">Settings</h2>
+          <div className="mt-5 settings-panel">
+              <div className="m-0 w-100 mt-5 row">
+                  <div className="col-sm-4">
+                      <FormControlLabel
+                          control={
+                              <Switch
+                                  color="primary"
+                                  defaultChecked={this.props.settings.show1hChange}
+                                  onChange={() => this.props.editSetting('show1hChange', !this.props.settings.show1hChange)}
+                              />
+                          }
+                          label="Show 1h Change"
+                          labelPlacement="top"
+                          value="top"
+                      />
                   </div>
-                  <div className="currency-selector row">
-                      <div className="col-md-2 col-sm-12">
-                        <label htmlFor="currency">Currency</label>
-                      </div>
-                      <div className="col-md-10 col-sm-12">
-                          <Select
-                              className="select add-input"
-                              clearable={false}
-                              closeOnSelect={true}
-                              id="currency"
-                              onChange={
-                                  e => {
-                                      this.updateCurrency(e.value);
-                                      this.props.editSetting('currency', e.value)
-                                  }
-                              }
-                              onSelectResetsInput={true}
-                              options={this.getCurrencyOptions()}
-                              placeholder={this.state.currency ? this.state.currency['currency'] + ' (' + this.state.currency['symbol'] + ')' : 'Select a currency'}
-                              value={this.props.settings.currency}
-                          />
-                      </div>
+                  <div className="col-sm-4">
+                      <FormControlLabel
+                          control={
+                              <Switch
+                                  color="primary"
+                                  defaultChecked={this.props.settings.show24hChange}
+                                  onChange={() => this.props.editSetting('show24hChange', !this.props.settings.show24hChange)}
+                              />
+                          }
+                          label="Show 24 Change"
+                          labelPlacement="top"
+                          value="top"
+                      />
                   </div>
-                  <div className="row">
-                      <div className="col-md-6 col-sm-12">
-                        <label htmlFor="limit">Add Dropdown Limit</label>
-                      </div>
-                      <div className="col-md-6 col-sm-12">
-                          <input
-                              defaultValue={this.props.settings.limit}
-                              id="limit"
-                              max="2629"
-                              min="1"
-                              onInputCapture={event => this.props.editSetting('limit', event.target.value)}
-                              type="number"
-                          />
-                      </div>
-                  </div>
-                  <div className="row">
-                      <div className="col-md-6 col-sm-12">
-                        <label htmlFor="sliderMax">Slider Max</label>
-                      </div>
-                      <div className="col-md-6 col-sm-12">
-                          <input
-                              defaultValue={this.props.settings.sliderMax}
-                              id="sliderMax"
-                              min="100"
-                              onInputCapture={event => this.props.editSetting('sliderMax', (event.target.value < 100) ? 100 : event.target.value)}
-                              type="number"
-                          />
-                      </div>
+                  <div className="col-sm-4">
+                      <FormControlLabel
+                          control={
+                              <Switch
+                                  color="primary"
+                                  defaultChecked={this.props.settings.show7dChange}
+                                  onChange={() => this.props.editSetting('show7dChange', !this.props.settings.show7dChange)}
+                              />
+                          }
+                          label="Show 7d Change"
+                          labelPlacement="top"
+                          value="top"
+                      />
                   </div>
               </div>
-            </div>
-          </SlidingPanel>
+              <div className="currency-selector row">
+                  <Autocomplete
+                      autoHighlight
+                      className="w-100"
+                      disablePortal={true}
+                      getOptionLabel={(option) => `${option.currency} (${option.symbol})`}
+                      id="currency"
+                      onChange={
+                          (event, currency) => {
+                              if (currency) {
+                                  this.updateCurrency(currency.code);
+                                  this.props.editSetting('currency', currency.code)
+                              }
+                          }
+                      }
+                      options={this.state.currencies}
+                      renderInput={(params) => <TextField {...params} label="Currency" variant="outlined" />}
+                      size="small"
+                      value={this.state.currency}
+                  />
+              </div>
+              <div className="row">
+                  <TextField
+                      InputLabelProps={{
+                          shrink: true,
+                      }}
+                      label="Dropdown Limit"
+                      onInputCapture={event => this.props.editSetting('limit', event.target.value)}
+                      size="small"
+                      type="number"
+                      value={this.props.settings.limit}
+                      variant="outlined"
+                  />
+              </div>
+              <div className="row">
+                  <TextField
+                      InputLabelProps={{
+                          shrink: true,
+                      }}
+                      label="Slider Max"
+                      onInputCapture={event => this.props.editSetting('sliderMax', (event.target.value < 100) ? 100 : event.target.value)}
+                      size="small"
+                      type="number"
+                      value={this.props.settings.sliderMax}
+                      variant="outlined"
+                  />
+              </div>
+          </div>
         </div>
+      </Drawer>
     );
   }
 }

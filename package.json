@@ -3,16 +3,16 @@
   "version": "0.2.0",
   "private": true,
   "dependencies": {
+    "@material-ui/core": "latest",
+    "@material-ui/lab": "latest",
     "bootstrap": "^4.1.1",
     "events": "^3.0.0",
     "font-awesome": "^4.7.0",
-    "rc-slider": "^8.6.1",
-    "react": "^16.4.2",
+    "react": "latest",
     "react-dom": "^16.4.2",
     "react-fontawesome": "^1.6.1",
     "react-scripts": "^3.4.1",
     "react-select": "2.0.0",
-    "react-sliding-side-panel": "^1.0.14",
     "react-toggle": "^4.1.1"
   },
   "scripts": {
