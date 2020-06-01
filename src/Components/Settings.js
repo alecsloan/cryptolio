@@ -157,7 +157,21 @@ class Settings extends Component {
                                   onChange={() => this.props.editSetting('addDropdownHideable', !this.props.settings.addDropdownHideable)}
                               />
                           }
-                          label="Always show add dropdown"
+                          label="Always Show Add Dropdown"
+                          labelPlacement="top"
+                          value="top"
+                      />
+                  </div>
+                  <div className="col-sm-6">
+                      <FormControlLabel
+                          control={
+                              <Switch
+                                  color="primary"
+                                  defaultChecked={this.props.settings.showPortfolioBalance}
+                                  onChange={() => this.props.editSetting('showPortfolioBalance', !this.props.settings.showPortfolioBalance)}
+                              />
+                          }
+                          label="Show Portfolio Balance"
                           labelPlacement="top"
                           value="top"
                       />

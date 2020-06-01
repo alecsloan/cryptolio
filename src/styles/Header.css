@@ -46,6 +46,11 @@ input {
   transform: rotate(45deg);
 }
 
+.sub-title {
+  display: block;
+  font-size: 18px;
+}
+
 .title {
   color: #FFF;
   margin: 16px;

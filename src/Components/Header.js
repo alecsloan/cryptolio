@@ -13,7 +13,7 @@ class Header extends Component {
     super(props);
 
     this.state = {
-      cryptoassets: require("../cryptoassets.json").slice(0, props.limit),
+      cryptoassets: require("../cryptoassets.json").slice(0, props.settings.limit),
       displayAddSection: false,
       cryptoassetRef: null
     }
@@ -25,6 +25,21 @@ class Header extends Component {
     }, 50);
   }
 
+  getPortfolioBalance() {
+    if (!this.props.settings.showPortfolioBalance || !this.props.coins)
+      return;
+
+    var balance = 0;
+
+    Object.entries(this.props.coins).forEach(([id, coin]) => {
+      if (coin.holdings > 0 && coin.quote[this.props.settings.currency]) {
+        balance += coin.quote[this.props.settings.currency].price * coin.holdings;
+      }
+    });
+
+    return <span className="sub-title">Portfolio: {(balance).toLocaleString('en-US', { style: 'currency', currency: this.props.settings.currency, minimumFractionDigits: 2})}</span>;
+  }
+
   toggleAddSection(){
     this.setState({displayAddSection: !this.state.displayAddSection});
   }
@@ -34,7 +49,7 @@ class Header extends Component {
     let addIconClass = "add-section-icon";
     let addIconTitle = "Show cryptoasset selector";
 
-    if (!this.props.addDropdownHideable) {
+    if (!this.props.settings.addDropdownHideable) {
       addIconClass += " invisible";
       displayAddSection = "block";
     }
@@ -62,6 +77,7 @@ class Header extends Component {
             onClick={() => this.props.toggleShowSettings()}
             pull="right"
           />
+          {this.getPortfolioBalance()}
           </h2>
 
         </div>

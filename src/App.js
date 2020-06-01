@@ -19,6 +19,7 @@ class App extends Component {
       show1hChange: true,
       show24hChange: true,
       show7dChange: true,
+      showPortfolioBalance: true,
       currency: "USD",
       limit: 200,
       sliderMax: 10000
@@ -151,7 +152,7 @@ class App extends Component {
   render() {
     return (
       <div className="page">
-        <Header addCrypto={this.addCrypto.bind(this)} coins={this.state.data.coins} limit={this.state.settings.limit} addDropdownHideable={this.state.settings.addDropdownHideable} toggleShowSettings={this.toggleShowSettings.bind(this)}/>
+        <Header addCrypto={this.addCrypto.bind(this)} coins={this.state.data.coins} settings={this.state.settings} toggleShowSettings={this.toggleShowSettings.bind(this)}/>
         <hr />
         <div className="content">
           <div className="cardRow">

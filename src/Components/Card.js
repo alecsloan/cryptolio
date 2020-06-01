@@ -123,7 +123,7 @@ class Card extends Component {
                   My Holdings:
                 </label>
                 <input
-                  defaultValue={this.state.holdings}
+                  defaultValue={this.state.holdings || null}
                   onChange={
                     event => {
                       this.setState({
