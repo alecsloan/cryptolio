@@ -7,7 +7,7 @@ function MyBalance(props) {
   if (props.holdings > 0 && props.settings.showCardBalances) {
     return(
       <div className="mt-2">
-        My Balance: {(props.price * props.holdings).toLocaleString('en-US', { style: 'currency', currency: props.settings.currency, minimumFractionDigits: 2})}
+        My Balance: {(props.price * props.holdings).toLocaleString(window.navigator.language, { style: 'currency', currency: props.settings.currency, minimumFractionDigits: 2})}
       </div>
     );
   }
@@ -49,7 +49,7 @@ class Card extends Component {
     if (showPeriodChange) {
       let hourColor = String(percentChange).includes("-") ? 'red' : 'green';
 
-      let percent = <span>{(percentChange * .01).toLocaleString('en-US', {style: 'percent', minimumFractionDigits: 2})}</span>;
+      let percent = <span>{(percentChange * .01).toLocaleString(window.navigator.language, {style: 'percent', minimumFractionDigits: 2})}</span>;
 
       return (
         <div>
@@ -92,7 +92,7 @@ class Card extends Component {
             </div>
             <div className="card-body">
               <div className="card-text">
-                <div>Price: {quote.price.toLocaleString('en-US', { style: 'currency', currency: this.state.settings.currency, minimumFractionDigits: 2})}</div>
+                <div>Price: {quote.price.toLocaleString(window.navigator.language, { style: 'currency', currency: this.state.settings.currency, minimumFractionDigits: 2})}</div>
                 {this.getPercentChange(quote, "1h")}
                 {this.getPercentChange(quote, "24h")}
                 {this.getPercentChange(quote, "7d")}
@@ -168,13 +168,13 @@ class Card extends Component {
                 </div>
 
                 <div>
-                  Simulated Price: {(quote.price + ((quote.price) * (this.state.simulate * .01))).toLocaleString('en-US', { style: 'currency', currency: this.state.settings.currency, minimumFractionDigits: 3})}
+                  Simulated Price: {(quote.price + ((quote.price) * (this.state.simulate * .01))).toLocaleString(window.navigator.language, { style: 'currency', currency: this.state.settings.currency, minimumFractionDigits: 3})}
                 </div>
                 <div>
-                  Simulated Value: {((quote.price + ((quote.price) * (this.state.simulate * .01))) * (this.state.holdings) || 0).toLocaleString('en-US', { style: 'currency', currency: this.state.settings.currency, minimumFractionDigits: 3})}
+                  Simulated Value: {((quote.price + ((quote.price) * (this.state.simulate * .01))) * (this.state.holdings) || 0).toLocaleString(window.navigator.language, { style: 'currency', currency: this.state.settings.currency, minimumFractionDigits: 3})}
                 </div>
                 <div>
-                  Simulated Cap: {(this.state.coin.circulating_supply * (quote.price + (quote.price * (this.state.simulate * .01)))).toLocaleString('en-US', { style: 'currency', currency: this.state.settings.currency, maximumFractionDigits: 0, minimumFractionDigits: 0})}
+                  Simulated Cap: {(this.state.coin.circulating_supply * (quote.price + (quote.price * (this.state.simulate * .01)))).toLocaleString(window.navigator.language, { style: 'currency', currency: this.state.settings.currency, maximumFractionDigits: 0, minimumFractionDigits: 0})}
                 </div>
               </div>
             </div>

@@ -36,7 +36,6 @@ Just run `npm start`
 
 # Todo
 * Add configurations for decimal places depending on price of currency. (I.E. >$500 remove decimal places, <$1 show 5 decimal places)
-* Add 'My Balance' field to mobile cards
 * Add Market Cap to the card front
 * Add a light theme
 * Add a portfolio balance field
