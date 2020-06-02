@@ -35,11 +35,13 @@ Just run `npm start`
 ![Mobile Simulation Image](https://imgur.com/g0DdMNX.png)
 
 # Todo
-* Add configurations for decimal places depending on price of currency. (I.E. >$500 remove decimal places, <$1 show 5 decimal places)
-* Add Market Cap to the card front
+* Add setting for coin fetch interval
+* Add setting for decimal places depending on price of currency. (I.E. >$500 remove decimal places, <$1 show 5 decimal places)
+* Add datasource options so other apis can be used (I.E. Coingecko)
 * Add a light theme
 * Add a portfolio balance field
 * Add an input field for simulated price, value, and marketcap for better analysis
 * Add full configuration for color picking so users can set their own colors/gradients
 * Add setting for sorting cards (Market Cap, holdings, price, etc)
+* Add multi-language support
 * Data export/import

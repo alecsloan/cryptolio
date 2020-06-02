@@ -21,7 +21,6 @@ class Card extends Component {
   constructor(props){
     super(props);
     this.state ={
-      coin: props.coin,
       flip: false,
       holdings: props.coin.holdings,
       settings: props.settings,
@@ -67,7 +66,7 @@ class Card extends Component {
   }
 
   render() {
-    let quote = this.state.coin.quote[this.state.settings.currency];
+    let quote = this.props.coin.quote[this.state.settings.currency];
 
     let front = this.state.flip ? 'none' : '';
     let back = this.state.flip ? '' : 'none';
@@ -84,11 +83,11 @@ class Card extends Component {
               spin
             />
             <img
-                alt={this.state.coin.name + ' Logo'}
+                alt={this.props.coin.name + ' Logo'}
                 className="card-img-top center"
-                src={'https://s2.coinmarketcap.com/static/img/coins/128x128/'+ this.state.coin.id +'.png'}
+                src={'https://s2.coinmarketcap.com/static/img/coins/128x128/'+ this.props.coin.id +'.png'}
             />
-            <h4 className="card-title">{this.state.coin.name} ({this.state.coin.symbol})</h4>
+            <h4 className="card-title">{this.props.coin.name} ({this.props.coin.symbol})</h4>
             </div>
             <div className="card-body">
               <div className="card-text">
@@ -104,7 +103,7 @@ class Card extends Component {
             <FontAwesome
               className='settings pull-left'
               name='trash'
-              onClick={() => this.props.removeCrypto(this.state.coin.id)}
+              onClick={() => this.props.removeCrypto(this.props.coin.id)}
               size='2x'
             />
             <FontAwesome
@@ -115,7 +114,7 @@ class Card extends Component {
             />
             <div className="card-body">
               <h4 className="card-title settings-title">
-                {this.state.coin.name} ({this.state.coin.symbol})
+                {this.props.coin.name} ({this.props.coin.symbol})
               </h4>
 
               <div className="card-text">
@@ -129,7 +128,7 @@ class Card extends Component {
                       this.setState({
                         holdings: parseFloat(event.target.value).toFixed(9)
                       });
-                      this.props.updateHoldings(event, this.state.coin)
+                      this.props.updateHoldings(event, this.props.coin)
                     }
                   }
                   size="15"
@@ -174,7 +173,7 @@ class Card extends Component {
                   Simulated Value: {((quote.price + ((quote.price) * (this.state.simulate * .01))) * (this.state.holdings) || 0).toLocaleString(window.navigator.language, { style: 'currency', currency: this.state.settings.currency, minimumFractionDigits: 3})}
                 </div>
                 <div>
-                  Simulated Cap: {(this.state.coin.circulating_supply * (quote.price + (quote.price * (this.state.simulate * .01)))).toLocaleString(window.navigator.language, { style: 'currency', currency: this.state.settings.currency, maximumFractionDigits: 0, minimumFractionDigits: 0})}
+                  Simulated Cap: {(this.props.coin.circulating_supply * (quote.price + (quote.price * (this.state.simulate * .01)))).toLocaleString(window.navigator.language, { style: 'currency', currency: this.state.settings.currency, maximumFractionDigits: 0, minimumFractionDigits: 0})}
                 </div>
               </div>
             </div>

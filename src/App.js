@@ -9,6 +9,20 @@ import './styles/App.css';
 const CORS_PROXY = 'https://cors-anywhere.herokuapp.com/'
 const BASE_URL = 'https://web-api.coinmarketcap.com/v1/cryptocurrency'
 
+function CardRow(props) {
+  var cards = [];
+
+  if (!props.coins)
+    return
+
+  Object.values(props.coins).forEach(coin => {
+    if (coin.quote && coin.quote[props.settings.currency])
+      cards.push(<Card coin={coin} key={coin.symbol} removeCrypto={props.removeCrypto.bind(this)} settings={props.settings} updateHoldings={props.updateHoldings.bind(this)}/>)
+  });
+
+  return <div className="cardRow">{cards}</div>;
+}
+
 class App extends Component {
   constructor(props){
     super(props);
@@ -104,20 +118,6 @@ class App extends Component {
     }
   }
 
-  getCards(){
-    var cards = [];
-
-    if (!this.state.data.coins)
-      return
-
-    Object.entries(this.state.data.coins).forEach(([id, coin]) => {
-      if (coin.quote && coin.quote[this.state.settings.currency])
-        cards.push(<Card coin={coin} key={coin.symbol} removeCrypto={this.removeCrypto.bind(this)} settings={this.state.settings} updateHoldings={this.updateHoldings.bind(this)}/>)
-    });
-
-    return cards;
-  }
-
   removeCrypto(id){
     delete this.state.data.coins[id];
 
@@ -156,9 +156,7 @@ class App extends Component {
         <Header addCrypto={this.addCrypto.bind(this)} coins={this.state.data.coins} settings={this.state.settings} toggleShowSettings={this.toggleShowSettings.bind(this)}/>
         <hr />
         <div className="content">
-          <div className="cardRow">
-            {this.getCards()}
-          </div>
+          <CardRow coins={this.state.data.coins} removeCrypto={this.removeCrypto.bind(this)} settings={this.state.settings} updateHoldings={this.updateHoldings.bind(this)} />
         </div>
         <Settings editSetting={this.editSetting.bind(this)} settings={this.state.settings} showSettings={this.state.showSettings} toggleShowSettings={this.toggleShowSettings.bind(this)} />
         <Hotkeys
