@@ -30,13 +30,14 @@ class App extends Component {
     var initialData = JSON.parse(localStorage.getItem("data")) || [];
     var initialSettings = JSON.parse(localStorage.getItem("settings")) || {
       addDropdownHideable: false,
+      currency: "USD",
+      fetchInterval: 300000,
+      limit: 200,
       show1hChange: true,
       show24hChange: true,
       show7dChange: true,
       showCardBalances: true,
       showPortfolioBalance: true,
-      currency: "USD",
-      limit: 200,
       sliderMax: 10000
     };
 
@@ -68,9 +69,7 @@ class App extends Component {
   }
 
   componentDidMount(){
-    setInterval(async () => {
-      this.fetchCoins();
-    }, 300000);
+    this.setFetchInterval();
   }
 
   editSetting(settingName, value) {
@@ -79,6 +78,9 @@ class App extends Component {
 
     if (settingName === "currency" && !value)
       value = "USD";
+
+    if (settingName === "fetchInterval" && value < 6000)
+      value = 60000;
 
     var settings = this.state.settings;
 
@@ -122,6 +124,12 @@ class App extends Component {
     delete this.state.data.coins[id];
 
     this.storeData(this.state.data.coins);
+  }
+
+  setFetchInterval() {
+    setInterval(async () => {
+      this.fetchCoins();
+    }, this.state.settings.fetchInterval || 300000);
   }
 
   async storeData(coins){

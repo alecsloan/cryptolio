@@ -9,6 +9,7 @@ import TextField from '@material-ui/core/TextField';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'font-awesome/css/font-awesome.min.css';
 import '../styles/Settings.css';
+import IntervalSelector from "./IntervalSelector";
 
 class Settings extends Component {
     constructor(props) {
@@ -157,7 +158,7 @@ class Settings extends Component {
                                   onChange={() => this.props.editSetting('addDropdownHideable', !this.props.settings.addDropdownHideable)}
                               />
                           }
-                          label="Always Show Add Dropdown"
+                          label="Add Dropdown Collapsable"
                           labelPlacement="top"
                           value="top"
                       />
@@ -188,6 +189,16 @@ class Settings extends Component {
                           label="Show Portfolio Balance"
                           labelPlacement="top"
                           value="top"
+                      />
+                  </div>
+                  <div className="col-sm-12">
+                      <IntervalSelector
+                          fetchInterval={this.props.settings.fetchInterval || 300000}
+                          label="Data Fetch Interval"
+                          labelPlacement="top"
+                          onChange={value => this.props.editSetting('fetchInterval', value)}
+                          size="small"
+                          variant="outlined"
                       />
                   </div>
               </div>

@@ -35,6 +35,7 @@
 
 .settings-panel .MuiFormLabel-root.Mui-focused,
 .settings-panel .MuiOutlinedInput-notchedOutline,
+.settings-panel .MuiInputBase-root,
 .settings-panel .MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline,
 .settings-panel .MuiOutlinedInput-root:active .MuiOutlinedInput-notchedOutline,
 .settings-panel .MuiSvgIcon-root,
