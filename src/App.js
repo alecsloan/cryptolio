@@ -13,7 +13,7 @@ function CardRow(props) {
   var cards = [];
 
   if (!props.coins)
-    return
+    return <div></div>;
 
   Object.values(props.coins).forEach(coin => {
     if (coin.quote && coin.quote[props.settings.currency])
