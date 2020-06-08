@@ -31,6 +31,9 @@ class App extends Component {
     var initialSettings = JSON.parse(localStorage.getItem("settings")) || {
       addDropdownHideable: false,
       currency: "USD",
+      decimals2: 100,
+      decimals3: 1,
+      decimals4: null,
       fetchInterval: 300000,
       limit: 200,
       show1hChange: true,

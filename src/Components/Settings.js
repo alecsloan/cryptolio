@@ -191,20 +191,59 @@ class Settings extends Component {
                           value="top"
                       />
                   </div>
-                  <div className="col-sm-12">
-                      <IntervalSelector
-                          value={this.props.settings.fetchInterval || 300000}
-                          label="Data Fetch Interval"
-                          labelPlacement="top"
-                          max="Hour"
-                          min="Minute"
-                          onChange={value => this.props.editSetting('fetchInterval', value)}
-                          selectFieldClasses="col-sm-8"
-                          size="small"
-                          textFieldClasses="col mr-2"
-                          variant="outlined"
-                      />
-                  </div>
+              </div>
+              <div className="row">
+                  <IntervalSelector
+                      value={this.props.settings.fetchInterval || 300000}
+                      label="Data Fetch Interval"
+                      labelPlacement="top"
+                      max="Hour"
+                      min="Minute"
+                      onChange={value => this.props.editSetting('fetchInterval', value)}
+                      selectFieldClasses="col-sm-8"
+                      size="small"
+                      textFieldClasses="col mr-2"
+                      variant="outlined"
+                  />
+              </div>
+              <div className="row">
+                  <TextField
+                      InputLabelProps={{
+                          shrink: true,
+                      }}
+                      label="Show 2 Decimals When Price Under"
+                      onInputCapture={event => this.props.editSetting('decimals2', event.target.value)}
+                      size="small"
+                      type="number"
+                      value={this.props.settings.decimals2}
+                      variant="outlined"
+                  />
+              </div>
+              <div className="row">
+                  <TextField
+                      InputLabelProps={{
+                          shrink: true,
+                      }}
+                      label="Show 3 Decimals When Price Under"
+                      onInputCapture={event => this.props.editSetting('decimals3', event.target.value)}
+                      size="small"
+                      type="number"
+                      value={this.props.settings.decimals3}
+                      variant="outlined"
+                  />
+              </div>
+              <div className="row">
+                  <TextField
+                      InputLabelProps={{
+                          shrink: true,
+                      }}
+                      label="Show 4 Decimals When Price Under"
+                      onInputCapture={event => this.props.editSetting('decimals4', event.target.value)}
+                      size="small"
+                      type="number"
+                      value={this.props.settings.decimals4}
+                      variant="outlined"
+                  />
               </div>
           </div>
         </div>

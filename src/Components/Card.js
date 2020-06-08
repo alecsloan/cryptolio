@@ -61,6 +61,33 @@ class Card extends Component {
     }
   }
 
+  getLocalizedPrice(price) {
+    var maxDigits;
+
+    if (price < this.props.settings.decimals4) {
+      maxDigits = 4;
+    }
+    else if (price < this.props.settings.decimals3) {
+      maxDigits = 3;
+    }
+    else if (price < this.props.settings.decimals2) {
+      maxDigits = 2;
+    }
+    else {
+      maxDigits = 0;
+    }
+
+    return price.toLocaleString(
+        window.navigator.language,
+        {
+          style: 'currency',
+          currency: this.state.settings.currency,
+          maximumFractionDigits: maxDigits,
+          minimumFractionDigits: maxDigits
+        }
+    );
+  }
+
   toggleSettings(){
     this.setState({flip: !this.state.flip});
   }
@@ -91,7 +118,7 @@ class Card extends Component {
             </div>
             <div className="card-body">
               <div className="card-text">
-                <div>Price: {quote.price.toLocaleString(window.navigator.language, { style: 'currency', currency: this.state.settings.currency, minimumFractionDigits: 2})}</div>
+                <div>Price: {this.getLocalizedPrice(quote.price)}</div>
                 {this.getPercentChange(quote, "1h")}
                 {this.getPercentChange(quote, "24h")}
                 {this.getPercentChange(quote, "7d")}
@@ -167,13 +194,13 @@ class Card extends Component {
                 </div>
 
                 <div>
-                  Simulated Price: {(quote.price + ((quote.price) * (this.state.simulate * .01))).toLocaleString(window.navigator.language, { style: 'currency', currency: this.state.settings.currency, minimumFractionDigits: 3})}
+                  Simulated Price: {this.getLocalizedPrice(quote.price + ((quote.price) * (this.state.simulate * .01)))}
                 </div>
                 <div>
-                  Simulated Value: {((quote.price + ((quote.price) * (this.state.simulate * .01))) * (this.state.holdings) || 0).toLocaleString(window.navigator.language, { style: 'currency', currency: this.state.settings.currency, minimumFractionDigits: 3})}
+                  Simulated Value: {this.getLocalizedPrice((quote.price + ((quote.price) * (this.state.simulate * .01))) * (this.state.holdings) || 0)}
                 </div>
                 <div>
-                  Simulated Cap: {(this.props.coin.circulating_supply * (quote.price + (quote.price * (this.state.simulate * .01)))).toLocaleString(window.navigator.language, { style: 'currency', currency: this.state.settings.currency, maximumFractionDigits: 0, minimumFractionDigits: 0})}
+                  Simulated Cap: {this.getLocalizedPrice(this.props.coin.circulating_supply * (quote.price + (quote.price * (this.state.simulate * .01))))}
                 </div>
               </div>
             </div>
