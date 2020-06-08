@@ -193,11 +193,15 @@ class Settings extends Component {
                   </div>
                   <div className="col-sm-12">
                       <IntervalSelector
-                          fetchInterval={this.props.settings.fetchInterval || 300000}
+                          value={this.props.settings.fetchInterval || 300000}
                           label="Data Fetch Interval"
                           labelPlacement="top"
+                          max="Hour"
+                          min="Minute"
                           onChange={value => this.props.editSetting('fetchInterval', value)}
+                          selectFieldClasses="col-sm-8"
                           size="small"
+                          textFieldClasses="col mr-2"
                           variant="outlined"
                       />
                   </div>

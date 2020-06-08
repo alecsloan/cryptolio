@@ -1,64 +1,90 @@
 import FormControlLabel from "@material-ui/core/FormControlLabel";
+import MenuItem from "@material-ui/core/MenuItem";
 import React, { Component } from 'react';
 import Select from "@material-ui/core/Select";
 import TextField from "@material-ui/core/TextField";
-import MenuItem from "@material-ui/core/MenuItem";
+
+var measures = {};
+
+measures.Millisecond = 1;
+measures.Second = 1000;
+measures.Minute = measures.Second * 60;
+measures.Hour = measures.Minute * 60;
+measures.Day = measures.Hour * 24;
+measures.Week = measures.Day * 7;
+measures.Month = measures.Day * 30.5;
+measures.Year = measures.Day * 365;
 
 class IntervalSelector extends Component {
-  getMenuItems(min) {
+  constructor(props) {
+    super(props);
+
+    var measure;
+    var value;
+
+    var measureEntries = Object.entries(measures);
+
+    for (var i = 0; i < measureEntries.length; i++) {
+      var nextMeasureEntity = measureEntries[i + 1];
+
+      if (nextMeasureEntity && this.props.value < nextMeasureEntity[1]) {
+        measure = measureEntries[i][1];
+        value = this.props.value / measure;
+        break;
+      }
+    }
+
+    this.state = {
+      measure: measure,
+      value: value
+    }
+  }
+
+  getMenuItems(max, min) {
+    if (!max) {
+      max = measures.year;
+    }
+    else if (!parseInt(max)) {
+      max = measures[max];
+    }
+
+    if (!min) {
+      min = measures.second;
+    }
+    else if (!parseInt(min)) {
+      min = measures[min];
+    }
+
     var menuItems = [];
 
-    if (min < 60000) {
-      menuItems.push(<MenuItem key="seconds" value="1000">Seconds</MenuItem>);
-    }
-    else if (min < 3600000) {
-      menuItems.push(<MenuItem key="minutes" value="60000">Minutes</MenuItem>);
-    }
+    var measureEntries = Object.entries(measures);
 
-    menuItems.push(<MenuItem key="hours" value="3600000">Hours</MenuItem>);
+    for (var i = 0; i < measureEntries.length; i++) {
+      var nextMeasureEntity = measureEntries[i + 1];
+
+      var key = measureEntries[i][0];
+      var value = measureEntries[i][1];
+
+      if ((!nextMeasureEntity || min < nextMeasureEntity[1]) && max >= value)
+        menuItems.push(<MenuItem key={key.toLowerCase()} value={value}>{key}</MenuItem>);
+    }
 
     return menuItems;
   }
 
-  constructor(props) {
-    super(props);
+  onChange(value, measure) {
+    if (!measure)
+      measure = this.state.measure;
 
-    var milliseconds;
-    var value;
-
-    if (this.props.fetchInterval < 60000) {
-      milliseconds = 1000;
-      value = this.props.fetchInterval / 1000;
-    }
-    else if (this.props.fetchInterval < 3600000) {
-      milliseconds = 60000;
-      value = this.props.fetchInterval / 60000;
-    }
-    else {
-      milliseconds = 3600000;
-      value = this.props.fetchInterval / 3600000;
-    }
-
-    this.state = {
-      milliseconds: milliseconds,
-      value: value
-    }
-  }
-
-  onChange(value, milliseconds) {
-    if (!milliseconds)
-      milliseconds = this.state.milliseconds;
-
-    if (!value) {
+    if (!value)
       value = this.state.value;
-    }
 
     this.setState({
-      milliseconds: milliseconds,
+      measure: measure,
       value: value
     })
 
-    return this.props.onChange(milliseconds * value);
+    return this.props.onChange(measure * value);
   }
 
   render() {
@@ -67,7 +93,7 @@ class IntervalSelector extends Component {
             control={
               <div className="row">
                 <TextField
-                    className="col mr-2"
+                    className={this.props.textFieldClasses}
                     defaultValue={this.state.value || 1}
                     onInputCapture={event => this.onChange(event.target.value, null)}
                     size={this.props.size || "small"}
@@ -75,12 +101,12 @@ class IntervalSelector extends Component {
                     variant={this.props.variant || "outlined"}
                 />
                 <Select
-                    className="col-sm-8"
+                    className={this.props.selectFieldClasses}
                     onChange={event => this.onChange(null, event.target.value)}
-                    value={this.state.milliseconds || 1000}
+                    value={this.state.measure || measures.Millisecond}
                     variant={this.props.variant || "outlined"}
                 >
-                  {this.getMenuItems(60000)}
+                  {this.getMenuItems(this.props.max, this.props.min)}
                 </Select>
               </div>
             }
