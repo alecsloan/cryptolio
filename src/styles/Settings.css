@@ -3,6 +3,7 @@
     float: left;
     font-size: 32px;
     padding: 10px 0 0 10px;
+    position: absolute;
 }
 
 .currency-selector .MuiAutocomplete-popper {
@@ -21,11 +22,14 @@
     }
 }
 
-.panel {
+.MuiPaper-root.MuiDrawer-paper {
     background: linear-gradient(to bottom right, #2a4466, #0e1f35);
     border: 0;
     color: #FFF;
     height: 100%;
+}
+
+.MuiDrawer-root {
     transition: all 1s;
 }
 

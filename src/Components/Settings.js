@@ -48,7 +48,6 @@ class Settings extends Component {
           open={this.props.showSettings}
           onClose={() => this.props.toggleShowSettings()}
       >
-        <div className="panel">
           <FontAwesome
               className="back-arrow"
               name="arrow-left"
@@ -56,7 +55,7 @@ class Settings extends Component {
               pull="left"
           />
           <h2 className="settings-top">Settings</h2>
-          <div className="mt-5 settings-panel">
+          <div className="settings-panel">
               <div className="m-0 w-100 mt-5 row">
                   <div className="col-sm-4">
                       <FormControlLabel
@@ -192,20 +191,18 @@ class Settings extends Component {
                       />
                   </div>
               </div>
-              <div className="row">
-                  <IntervalSelector
-                      value={this.props.settings.fetchInterval || 300000}
-                      label="Data Fetch Interval"
-                      labelPlacement="top"
-                      max="Hour"
-                      min="Minute"
-                      onChange={value => this.props.editSetting('fetchInterval', value)}
-                      selectFieldClasses="col-sm-8"
-                      size="small"
-                      textFieldClasses="col mr-2"
-                      variant="outlined"
-                  />
-              </div>
+              <IntervalSelector
+                  value={this.props.settings.fetchInterval || 300000}
+                  label="Data Fetch Interval"
+                  labelPlacement="top"
+                  max="Hour"
+                  min="Minute"
+                  onChange={value => this.props.editSetting('fetchInterval', value)}
+                  selectFieldClasses="col-8"
+                  size="small"
+                  textFieldClasses="col-4"
+                  variant="outlined"
+              />
               <div className="row">
                   <TextField
                       InputLabelProps={{
@@ -246,7 +243,6 @@ class Settings extends Component {
                   />
               </div>
           </div>
-        </div>
       </Drawer>
     );
   }
