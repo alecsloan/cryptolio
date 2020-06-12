@@ -22,11 +22,20 @@
     }
 }
 
+.MuiListItem-root img,
+.MuiSelect-select img{
+    height: 50px;
+}
+
 .MuiPaper-root.MuiDrawer-paper {
     background: linear-gradient(to bottom right, #2a4466, #0e1f35);
     border: 0;
     color: #FFF;
     height: 100%;
+}
+
+.MuiPopover-paper {
+    background: #2a4466 !important;
 }
 
 .MuiDrawer-root {
@@ -39,12 +48,13 @@
 
 .settings-panel .MuiFormLabel-root.Mui-focused,
 .settings-panel .MuiOutlinedInput-notchedOutline,
+.settings-panel .MuiInput-underline:before,
 .settings-panel .MuiInputBase-root,
 .settings-panel .MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline,
 .settings-panel .MuiOutlinedInput-root:active .MuiOutlinedInput-notchedOutline,
 .settings-panel .MuiSvgIcon-root,
 .settings-panel label {
-    border-color: #FFF;
+    border-color: #FFF !important;
     color: #FFF;
 }
 

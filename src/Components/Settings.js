@@ -2,7 +2,9 @@ import Autocomplete from '@material-ui/lab/Autocomplete';
 import Drawer from '@material-ui/core/Drawer';
 import FontAwesome from 'react-fontawesome';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
+import MenuItem from '@material-ui/core/MenuItem';
 import React, { Component } from 'react';
+import Select from '@material-ui/core/Select';
 import Switch from '@material-ui/core/Switch';
 import TextField from '@material-ui/core/TextField';
 
@@ -56,6 +58,23 @@ class Settings extends Component {
           />
           <h2 className="settings-top">Settings</h2>
           <div className="settings-panel">
+              <div className="row">
+                  <FormControlLabel
+                      className="w-100"
+                      control={
+                          <Select
+                              value={this.props.settings.datasource}
+                              onChange={event => this.props.editSetting('datasource', event.target.value)}
+                          >
+                              <MenuItem value="coingecko"><img alt="CoinGecko" src="https://static.coingecko.com/s/coingecko-logo-white-3f2aeb48e13428b7199395259dbb96280bf47ea05b2940ef7d3e87c61e4d8408.png" /></MenuItem>
+                              <MenuItem value="coinmarketcap"><img alt="CoinMarketCap" src="https://s2.coinmarketcap.com/static/cloud/img/coinmarketcap_white_1.svg?" /></MenuItem>
+                          </Select>
+                      }
+                      label="Datasource"
+                      labelPlacement="top"
+                      value="top"
+                  />
+              </div>
               <div className="m-0 w-100 mt-5 row">
                   <div className="col-sm-4">
                       <FormControlLabel

@@ -32,8 +32,8 @@ class Header extends Component {
     var balance = 0;
 
     Object.entries(this.props.coins).forEach(([id, coin]) => {
-      if (coin.holdings > 0 && coin.quote[this.props.settings.currency]) {
-        balance += coin.quote[this.props.settings.currency].price * coin.holdings;
+      if (coin.holdings > 0 && coin.price) {
+        balance += coin.price * coin.holdings;
       }
     });
 
@@ -94,7 +94,7 @@ class Header extends Component {
               onChange={
                 (event, cryptoasset) => {
                   if (cryptoasset) {
-                    this.props.addCrypto(cryptoasset.id)
+                    this.props.addCrypto(cryptoasset.cmc_id, cryptoasset.cg_id, cryptoasset.symbol)
                   }
                 }
               }

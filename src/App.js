@@ -15,9 +15,8 @@ function CardRow(props) {
   if (!props.coins)
     return <div></div>;
 
-  Object.values(props.coins).forEach(coin => {
-    if (coin.quote && coin.quote[props.settings.currency])
-      cards.push(<Card coin={coin} key={coin.symbol} removeCrypto={props.removeCrypto.bind(this)} settings={props.settings} updateHoldings={props.updateHoldings.bind(this)}/>)
+  props.coins.forEach(coin => {
+    cards.push(<Card coin={coin} key={coin.symbol} removeCrypto={props.removeCrypto.bind(this)} settings={props.settings} updateHoldings={props.updateHoldings.bind(this)}/>)
   });
 
   return <div className="cardRow">{cards}</div>;
@@ -27,10 +26,11 @@ class App extends Component {
   constructor(props){
     super(props);
 
-    var initialData = JSON.parse(localStorage.getItem("data")) || [];
+    var initialData = JSON.parse(localStorage.getItem("data")) || {coins: []};
     var initialSettings = JSON.parse(localStorage.getItem("settings")) || {
       addDropdownHideable: false,
       currency: "USD",
+      datasource: "coinmarketcap",
       decimals2: 100,
       decimals3: 1,
       decimals4: null,
@@ -53,16 +53,23 @@ class App extends Component {
       settings: initialSettings
     };
 
+    if (!initialData.coins || initialData.coins.length === 0)
+      this.addCrypto(1, "bitcoin", "BTC");
+
     this.fetchCoins();
   }
 
-  addCrypto(id){
-    if (!id)
+  addCrypto(cmc_id, cg_id, symbol){
+    if (!cmc_id)
       return;
 
     var coins = this.state.data.coins;
 
-    coins[id] = {id: id};
+    coins.push({
+      cmc_id: cmc_id,
+      cg_id: cg_id,
+      symbol: symbol
+    });
 
     this.setState({
       data: {coins: coins},
@@ -98,24 +105,117 @@ class App extends Component {
     localStorage.setItem("settings", JSON.stringify(settings));
   }
 
-  fetchCoins(currency = this.state.settings.currency){
-    var shownAssetIds = 1;
+  getCoinGeckoData(currency) {
+    var shownAssetIds;
 
     if (this.state.data.coins !== undefined)
-      shownAssetIds = Object.keys(this.state.data.coins);
+      shownAssetIds = this.state.data.coins.map(asset => asset.cg_id);
 
     try {
-      fetch(`${CORS_PROXY}${BASE_URL}/quotes/latest?id=${shownAssetIds}&convert=${currency}`, {headers: {'origin': 'x-requested-with'}})
+      fetch(`https://api.coingecko.com/api/v3/coins/markets?vs_currency=${currency}&ids=${shownAssetIds}&price_change_percentage=1h%2C24h%2C7d`)
           .then(res => res.json())
           .then(response => {
 
-            if (this.state.data.coins !== undefined) {
-              Object.keys(this.state.data.coins).forEach(id => {
-                response.data[id].holdings = this.state.data.coins[id].holdings;
-              });
-            }
+            if (!response)
+              return;
 
-            this.storeData(response.data);
+            var assets = [];
+
+            Object.entries(response).forEach(responseAsset => {
+              responseAsset = responseAsset[1];
+
+              var holdings = 0;
+              var cg_id = null;
+              var cmc_id = null;
+
+              if (this.state.data.coins !== undefined) {
+                var existingAsset = this.state.data.coins.find(asset => asset.symbol === responseAsset.symbol.toUpperCase());
+
+                if (existingAsset) {
+                  cg_id = existingAsset.cg_id;
+                  cmc_id = existingAsset.cmc_id;
+                  holdings = existingAsset.holdings;
+                }
+              }
+
+              assets.push({
+                cg_id: cg_id || responseAsset.id,
+                circulating_supply: responseAsset.circulating_supply,
+                cmc_id: cmc_id,
+                holdings: holdings,
+                imageURL: responseAsset.image,
+                market_cap: responseAsset.market_cap,
+                max_supply: responseAsset.total_supply,
+                name: responseAsset.name,
+                percent_change_1h: responseAsset.price_change_percentage_1h_in_currency,
+                percent_change_24h: responseAsset.price_change_percentage_24h_in_currency,
+                percent_change_7d: responseAsset.price_change_percentage_7d_in_currency,
+                price: responseAsset.current_price,
+                symbol: responseAsset.symbol.toUpperCase(),
+                volume_24h: responseAsset.total_volume
+              });
+            });
+
+            this.storeData(assets);
+          });
+    }
+    catch(e){
+      console.log("Error getting CoinGecko data:", e)
+    }
+  }
+
+  getCoinMarketCapData(currency) {
+    var shownAssetIds;
+
+    if (this.state.data.coins !== undefined)
+      shownAssetIds = this.state.data.coins.map(asset => asset.cmc_id);
+
+    try {
+      fetch(`${CORS_PROXY}${BASE_URL}/quotes/latest?id=${shownAssetIds}&convert=${currency}`)
+          .then(res => res.json())
+          .then(response => {
+
+            if (!response.data)
+              return;
+
+            var assets = [];
+
+            Object.entries(response.data).forEach(responseAsset => {
+              responseAsset = responseAsset[1];
+
+              var holdings = 0;
+              var cg_id = null;
+              var cmc_id = null;
+
+              if (this.state.data.coins !== undefined) {
+                var existingAsset = this.state.data.coins.find(asset => asset.symbol === responseAsset.symbol);
+                cg_id = existingAsset.cg_id;
+                cmc_id = existingAsset.cmc_id;
+                holdings = existingAsset.holdings;
+              }
+
+              if (!cmc_id)
+                cmc_id = responseAsset.id;
+
+              assets.push({
+                cg_id: cg_id,
+                circulating_supply: responseAsset.circulating_supply,
+                cmc_id: cmc_id,
+                holdings: holdings,
+                imageURL: 'https://s2.coinmarketcap.com/static/img/coins/128x128/'+ cmc_id +'.png',
+                market_cap: responseAsset.quote[currency].market_cap,
+                max_supply: responseAsset.total_supply,
+                name: responseAsset.name,
+                percent_change_1h: responseAsset.quote[currency].percent_change_1h,
+                percent_change_24h: responseAsset.quote[currency].percent_change_24h,
+                percent_change_7d: responseAsset.quote[currency].percent_change_7d,
+                price: responseAsset.quote[currency].price,
+                symbol: responseAsset.symbol,
+                volume_24h: responseAsset.quote[currency].volume_24h
+              });
+            });
+
+            this.storeData(assets);
           });
     }
     catch(e){
@@ -123,8 +223,17 @@ class App extends Component {
     }
   }
 
-  removeCrypto(id){
-    delete this.state.data.coins[id];
+  fetchCoins(currency = this.state.settings.currency){
+    if (this.state.settings.datasource === "coingecko")
+      return this.getCoinGeckoData(currency);
+
+    return this.getCoinMarketCapData(currency);
+  }
+
+  removeCrypto(symbol){
+    var assetIndex = this.state.data.coins.findIndex(asset => asset.symbol === symbol.toUpperCase());
+
+    this.state.data.coins.splice(assetIndex, 1);
 
     this.storeData(this.state.data.coins);
   }
@@ -150,12 +259,12 @@ class App extends Component {
   }
 
   updateHoldings(event, coin){
-    let value = parseFloat(event.target.value).toFixed(9);
+    let value = parseFloat(event.target.value);
 
     var coins = this.state.data.coins;
 
     if (value){
-      coins[coin.id].holdings = value;
+      coins.find(asset => asset.symbol === coin.symbol.toUpperCase()).holdings = value;
     }
 
     this.storeData(coins);

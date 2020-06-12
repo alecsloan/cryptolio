@@ -28,21 +28,17 @@ class Card extends Component {
     };
   }
 
-  getPercentChange(quote, period) {
+  getPercentChange(percentChange, period) {
     let showPeriodChange = false;
-    let percentChange = 0;
 
     if (period === "1h") {
       showPeriodChange = this.state.settings.show1hChange;
-      percentChange = quote.percent_change_1h;
     }
     else if (period === "24h") {
       showPeriodChange = this.state.settings.show24hChange;
-      percentChange = quote.percent_change_24h;
     }
     else if (period === "7d") {
       showPeriodChange = this.state.settings.show7dChange;
-      percentChange = quote.percent_change_7d;
     }
 
     if (showPeriodChange) {
@@ -62,6 +58,9 @@ class Card extends Component {
   }
 
   getLocalizedPrice(price) {
+    if (!price)
+      return;
+
     var maxDigits;
 
     if (price < this.props.settings.decimals4) {
@@ -93,7 +92,7 @@ class Card extends Component {
   }
 
   render() {
-    let quote = this.props.coin.quote[this.state.settings.currency];
+    let price = this.props.coin.price;
 
     let front = this.state.flip ? 'none' : '';
     let back = this.state.flip ? '' : 'none';
@@ -112,17 +111,17 @@ class Card extends Component {
             <img
                 alt={this.props.coin.name + ' Logo'}
                 className="card-img-top center"
-                src={'https://s2.coinmarketcap.com/static/img/coins/128x128/'+ this.props.coin.id +'.png'}
+                src={this.props.coin.imageURL}
             />
             <h4 className="card-title">{this.props.coin.name} ({this.props.coin.symbol})</h4>
             </div>
             <div className="card-body">
               <div className="card-text">
-                <div>Price: {this.getLocalizedPrice(quote.price)}</div>
-                {this.getPercentChange(quote, "1h")}
-                {this.getPercentChange(quote, "24h")}
-                {this.getPercentChange(quote, "7d")}
-                <MyBalance holdings={this.state.holdings} price={quote.price} settings={this.state.settings} />
+                <div>Price: {this.getLocalizedPrice(price)}</div>
+                {this.getPercentChange(this.props.coin.percent_change_1h, "1h")}
+                {this.getPercentChange(this.props.coin.percent_change_24h, "24h")}
+                {this.getPercentChange(this.props.coin.percent_change_7d, "7d")}
+                <MyBalance holdings={this.state.holdings} price={price} settings={this.state.settings} />
               </div>
             </div>
           </div>
@@ -130,7 +129,7 @@ class Card extends Component {
             <FontAwesome
               className='settings pull-left'
               name='trash'
-              onClick={() => this.props.removeCrypto(this.props.coin.id)}
+              onClick={() => this.props.removeCrypto(this.props.coin.symbol)}
               size='2x'
             />
             <FontAwesome
@@ -194,13 +193,13 @@ class Card extends Component {
                 </div>
 
                 <div>
-                  Simulated Price: {this.getLocalizedPrice(quote.price + ((quote.price) * (this.state.simulate * .01)))}
+                  Simulated Price: {this.getLocalizedPrice(price + ((price) * (this.state.simulate * .01)))}
                 </div>
                 <div>
-                  Simulated Value: {this.getLocalizedPrice((quote.price + ((quote.price) * (this.state.simulate * .01))) * (this.state.holdings) || 0)}
+                  Simulated Value: {this.getLocalizedPrice((price + ((price) * (this.state.simulate * .01))) * (this.state.holdings) || 0)}
                 </div>
                 <div>
-                  Simulated Cap: {this.getLocalizedPrice(this.props.coin.circulating_supply * (quote.price + (quote.price * (this.state.simulate * .01))))}
+                  Simulated Cap: {this.getLocalizedPrice(this.props.coin.circulating_supply * (price + (price * (this.state.simulate * .01))))}
                 </div>
               </div>
             </div>
