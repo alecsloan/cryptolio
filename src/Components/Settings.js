@@ -1,5 +1,9 @@
 import Autocomplete from '@material-ui/lab/Autocomplete';
+import Button from '@material-ui/core/Button';
+import CloudDownloadIcon from '@material-ui/icons/CloudDownloadOutlined';
+import CloudUploadIcon from '@material-ui/icons/CloudUploadOutlined';
 import Drawer from '@material-ui/core/Drawer';
+import exportFromJSON from 'export-from-json'
 import FontAwesome from 'react-fontawesome';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import MenuItem from '@material-ui/core/MenuItem';
@@ -75,7 +79,38 @@ class Settings extends Component {
                       value="top"
                   />
               </div>
-              <div className="m-0 w-100 mt-5 row">
+              <div className="row">
+                  <div className="col-sm-6">
+                      <input
+                          accept="application/json"
+                          className="d-none"
+                          id="upload"
+                          onInputCapture={event => this.props.uploadData(event.target.files[0])}
+                          type="file"
+                      />
+                      <label htmlFor="upload">
+                          <Button
+                              variant="contained"
+                              color="primary"
+                              component="span"
+                              startIcon={<CloudUploadIcon />}
+                          >
+                              Upload Data
+                          </Button>
+                      </label>
+                  </div>
+                  <div className="col-sm-6">
+                      <Button
+                          variant="contained"
+                          color="primary"
+                          startIcon={<CloudDownloadIcon />}
+                          onClick={() => exportFromJSON({ data: this.props.data, fileName: 'cryptodash_data', exportType: 'json' })}
+                      >
+                          Download Data
+                      </Button>
+                  </div>
+              </div>
+              <div className="m-0 w-100 mt-4 row">
                   <div className="col-sm-4">
                       <FormControlLabel
                           control={
@@ -261,6 +296,7 @@ class Settings extends Component {
                       variant="outlined"
                   />
               </div>
+              <div className="mb-5" />
           </div>
       </Drawer>
     );

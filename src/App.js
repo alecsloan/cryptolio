@@ -270,6 +270,22 @@ class App extends Component {
     this.storeData(coins);
   }
 
+  uploadData(file) {
+    const reader = new FileReader();
+
+    reader.readAsText(file);
+
+    reader.addEventListener('load', (event) => {
+      const result = event.target.result;
+
+      var data = JSON.parse(result);
+
+      if (data.coins) {
+        this.storeData(data.coins);
+      }
+    });
+  }
+
   render() {
     return (
       <div className="page">
@@ -278,7 +294,7 @@ class App extends Component {
         <div className="content">
           <CardRow coins={this.state.data.coins} removeCrypto={this.removeCrypto.bind(this)} settings={this.state.settings} updateHoldings={this.updateHoldings.bind(this)} />
         </div>
-        <Settings editSetting={this.editSetting.bind(this)} settings={this.state.settings} showSettings={this.state.showSettings} toggleShowSettings={this.toggleShowSettings.bind(this)} />
+        <Settings data={this.state.data} editSetting={this.editSetting.bind(this)} settings={this.state.settings} showSettings={this.state.showSettings} toggleShowSettings={this.toggleShowSettings.bind(this)} uploadData={this.uploadData.bind(this)} />
         <Hotkeys
           keyName="shift+/"
           onKeyDown={this.toggleShowSettings.bind(this)}

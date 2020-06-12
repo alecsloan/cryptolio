@@ -4,9 +4,11 @@
   "private": true,
   "dependencies": {
     "@material-ui/core": "latest",
+    "@material-ui/icons": "^4.9.1",
     "@material-ui/lab": "latest",
     "bootstrap": "^4.1.1",
     "events": "^3.0.0",
+    "export-from-json": "^1.3.0",
     "font-awesome": "^4.7.0",
     "react": "latest",
     "react-dom": "^16.4.2",
