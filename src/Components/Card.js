@@ -22,7 +22,7 @@ class Card extends Component {
     super(props);
     this.state ={
       flip: false,
-      holdings: props.coin.holdings,
+      holdings: props.asset.holdings,
       settings: props.settings,
       simulate: 0
     };
@@ -92,7 +92,7 @@ class Card extends Component {
   }
 
   render() {
-    let price = this.props.coin.price;
+    let price = this.props.asset.price;
 
     let front = this.state.flip ? 'none' : '';
     let back = this.state.flip ? '' : 'none';
@@ -109,18 +109,18 @@ class Card extends Component {
               spin
             />
             <img
-                alt={this.props.coin.name + ' Logo'}
+                alt={this.props.asset.name + ' Logo'}
                 className="card-img-top center"
-                src={this.props.coin.imageURL}
+                src={this.props.asset.imageURL}
             />
-            <h4 className="card-title">{this.props.coin.name} ({this.props.coin.symbol})</h4>
+            <h4 className="card-title">{this.props.asset.name} ({this.props.asset.symbol})</h4>
             </div>
             <div className="card-body">
               <div className="card-text">
                 <div>Price: {this.getLocalizedPrice(price)}</div>
-                {this.getPercentChange(this.props.coin.percent_change_1h, "1h")}
-                {this.getPercentChange(this.props.coin.percent_change_24h, "24h")}
-                {this.getPercentChange(this.props.coin.percent_change_7d, "7d")}
+                {this.getPercentChange(this.props.asset.percent_change_1h, "1h")}
+                {this.getPercentChange(this.props.asset.percent_change_24h, "24h")}
+                {this.getPercentChange(this.props.asset.percent_change_7d, "7d")}
                 <MyBalance holdings={this.state.holdings} price={price} settings={this.state.settings} />
               </div>
             </div>
@@ -129,7 +129,7 @@ class Card extends Component {
             <FontAwesome
               className='settings pull-left'
               name='trash'
-              onClick={() => this.props.removeCrypto(this.props.coin.symbol)}
+              onClick={() => this.props.removeCrypto(this.props.asset.symbol)}
               size='2x'
             />
             <FontAwesome
@@ -140,7 +140,7 @@ class Card extends Component {
             />
             <div className="card-body">
               <h4 className="card-title settings-title">
-                {this.props.coin.name} ({this.props.coin.symbol})
+                {this.props.asset.name} ({this.props.asset.symbol})
               </h4>
 
               <div className="card-text">
@@ -154,7 +154,7 @@ class Card extends Component {
                       this.setState({
                         holdings: parseFloat(event.target.value).toFixed(9)
                       });
-                      this.props.updateHoldings(event, this.props.coin)
+                      this.props.updateHoldings(event, this.props.asset)
                     }
                   }
                   size="15"
@@ -199,7 +199,7 @@ class Card extends Component {
                   Simulated Value: {this.getLocalizedPrice((price + ((price) * (this.state.simulate * .01))) * (this.state.holdings) || 0)}
                 </div>
                 <div>
-                  Simulated Cap: {this.getLocalizedPrice(this.props.coin.circulating_supply * (price + (price * (this.state.simulate * .01))))}
+                  Simulated Cap: {this.getLocalizedPrice(this.props.asset.circulating_supply * (price + (price * (this.state.simulate * .01))))}
                 </div>
               </div>
             </div>

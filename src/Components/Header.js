@@ -26,14 +26,14 @@ class Header extends Component {
   }
 
   getPortfolioBalance() {
-    if (!this.props.settings.showPortfolioBalance || !this.props.coins)
+    if (!this.props.settings.showPortfolioBalance || !this.props.assets)
       return;
 
     var balance = 0;
 
-    Object.entries(this.props.coins).forEach(([id, coin]) => {
-      if (coin.holdings > 0 && coin.price) {
-        balance += coin.price * coin.holdings;
+    Object.entries(this.props.assets).forEach(([id, asset]) => {
+      if (asset.holdings > 0 && asset.price) {
+        balance += asset.price * asset.holdings;
       }
     });
 
