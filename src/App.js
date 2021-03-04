@@ -60,7 +60,7 @@ class App extends Component {
   }
 
   addCrypto(cmc_id, cg_id, symbol){
-    if (!cmc_id)
+    if (this.state.data.coins.find(asset => asset.symbol === symbol))
       return;
 
     var coins = this.state.data.coins;
