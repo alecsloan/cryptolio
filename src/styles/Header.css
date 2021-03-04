@@ -23,16 +23,6 @@ input {
   width: 32px;
 }
 
-.header .MuiFormLabel-root,
-.header .MuiOutlinedInput-input,
-.header .MuiOutlinedInput-notchedOutline,
-.header .MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline,
-.header .MuiOutlinedInput-root:active .MuiOutlinedInput-notchedOutline,
-.header .MuiSvgIcon-root {
-  border-color: #FFF;
-  color: #FFF;
-}
-
 .menu-icon {
   color: #FFF;
   cursor: pointer;

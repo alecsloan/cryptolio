@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import FontAwesome from 'react-fontawesome';
 import '../styles/Card.css';
+import TextField from "@material-ui/core/TextField";
+import {InputAdornment, Slider} from "@material-ui/core";
 
 function MyBalance(props) {
   if (props.holdings > 0 && props.settings.showCardBalances) {
@@ -144,53 +146,56 @@ class Card extends Component {
               </h4>
 
               <div className="card-text">
-                <label htmlFor="holdings">
-                  My Holdings:
-                </label>
-                <input
-                  defaultValue={this.state.holdings || null}
-                  onChange={
-                    event => {
-                      this.setState({
-                        holdings: parseFloat(event.target.value).toFixed(9)
-                      });
-                      this.props.updateHoldings(event, this.props.asset)
+                <TextField
+                    label="My Holdings"
+                    onChange={
+                      event => {
+                        this.setState({
+                          holdings: parseFloat(event.target.value)
+                        });
+                        this.props.updateHoldings(event, this.props.asset)
+                      }
                     }
-                  }
-                  size="15"
-                  type="text"
+                    size={"small"}
+                    value={this.state.holdings || ""}
+                    variant="outlined"
                 />
 
-                <input
+                <Slider
                     className="slider"
                     max={this.state.settings.sliderMax}
-                    min="-100"
+                    min={-100}
                     onChange={
-                      event =>
+                      (event, value) =>
                           this.setState({
-                            simulate: event.target.value
+                            simulate: value || 0
                           })
                     }
-                    style={{width: "80%"}}
-                    type="range"
+                    valueLabelFormat={(value) => {
+                      if (!value)
+                        return "0%";
+
+                      return value + "%";
+                    }}
+                    valueLabelDisplay="auto"
                     value={this.state.simulate}
                 />
 
-                <div>
-                  Simulated Percent:
-                  <input
-                      maxLength="6"
-                      onChange={
-                        event =>
-                            this.setState({
-                              simulate: event.target.value
-                            })
-                      }
-                      size="6"
-                      type="text"
-                      value={this.state.simulate}
-                  />%
-                </div>
+                <TextField
+                    InputProps={{
+                      endAdornment: <InputAdornment position="end">%</InputAdornment>,
+                    }}
+                    label="Simulated Percent"
+                    onChange={
+                      event =>
+                          this.setState({
+                            simulate: event.target.value || 0
+                          })
+                    }
+                    size={"small"}
+                    value={this.state.simulate}
+                    variant="outlined"
+                />
 
                 <div>
                   Simulated Price: {this.getLocalizedPrice(price + ((price) * (this.state.simulate * .01)))}

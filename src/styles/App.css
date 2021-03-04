@@ -21,3 +21,14 @@ body {
     padding-right: 15px;
   }
 }
+
+body .MuiFormLabel-root,
+body .MuiOutlinedInput-input,
+body .MuiOutlinedInput-notchedOutline,
+body .MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline,
+body .MuiOutlinedInput-root:active .MuiOutlinedInput-notchedOutline,
+body .MuiSvgIcon-root,
+body .MuiTypography-colorTextSecondary {
+  border-color: #FFF;
+  color: #FFF;
+}

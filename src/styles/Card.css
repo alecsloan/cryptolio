@@ -149,9 +149,6 @@
 }
 
 .slider {
-    -webkit-appearance: none;
-    width: 100%;
-    height: 15px;
     border-radius: 5px;
     background: #d3d3d3;
     outline: none;
@@ -182,6 +179,10 @@
     border-radius: 50%;
     background: #333840;
     cursor: pointer;
+}
+
+.slider.MuiSlider-root {
+    width: 80%;
 }
 
 b {
