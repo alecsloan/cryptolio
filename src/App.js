@@ -54,7 +54,7 @@ class App extends Component {
     };
 
     if (!initialData.assets || initialData.assets.length === 0)
-      this.addCrypto(1, "bitcoin", "BTC");
+      this.addCrypto(1817, "ethos", "VGX");
 
     this.fetchAssetData();
   }
