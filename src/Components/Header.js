@@ -15,7 +15,8 @@ class Header extends Component {
     this.state = {
       cryptoassets: require("../cryptoassets.json").slice(0, props.settings.limit),
       displayAddSection: false,
-      cryptoassetRef: null
+      cryptoassetRef: null,
+      inputValue: ""
     }
   }
 
@@ -91,12 +92,24 @@ class Header extends Component {
               disablePortal={true}
               getOptionLabel={(option) => `${option.name} (${option.symbol})`}
               id="currency"
+              inputValue={this.state.inputValue}
               onChange={
                 (event, cryptoasset) => {
                   if (cryptoasset) {
                     this.props.addCrypto(cryptoasset.cmc_id, cryptoasset.cg_id, cryptoasset.symbol)
+
+                    this.setState({
+                      inputValue: ""
+                    })
                   }
                 }
+              }
+              onInputChange={
+                  (event, value) => {
+                      this.setState({
+                          inputValue: value
+                      })
+                  }
               }
               options={this.state.cryptoassets}
               renderInput={(params) => <TextField {...params} label="Add Cryptoasset" variant="outlined" />}
