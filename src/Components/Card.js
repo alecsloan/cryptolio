@@ -27,7 +27,7 @@ class Card extends Component {
       holdings: props.asset.holdings,
       settings: props.settings,
       simulatedPercentChange: 0,
-      simulatedPrice: props.asset.price
+      simulatedPrice: null
     };
   }
 
@@ -172,7 +172,7 @@ class Card extends Component {
                       }
                     }
                     size={"small"}
-                    value={this.state.holdings || ""}
+                    value={this.state.holdings}
                     variant="outlined"
                 />
 
@@ -229,7 +229,7 @@ class Card extends Component {
                           })
                     }
                     size={"small"}
-                    value={this.state.simulatedPrice}
+                    value={this.state.simulatedPrice || this.getLocalizedPrice(price).substring(1)}
                     variant="outlined"
                 />
                 <div>
