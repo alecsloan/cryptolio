@@ -31,4 +31,5 @@ body .MuiSvgIcon-root,
 body .MuiTypography-colorTextSecondary {
   border-color: #FFF;
   color: #FFF;
+  margin: 5px;
 }
