@@ -1,3 +1,8 @@
+.back .card-title {
+    margin-bottom: 20px;
+    text-align: initial;
+}
+
 .card {
   background: linear-gradient(to bottom right, #2a4466, #0e1f35);
   border: 0;

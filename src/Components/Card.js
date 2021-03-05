@@ -127,22 +127,22 @@ class Card extends Component {
               </div>
             </div>
           </div>
-          <div style={{display: back}}>
+          <div className="back" style={{display: back}}>
             <FontAwesome
-              className='settings pull-left'
+              className='settings pull-left visible'
               name='trash'
               onClick={() => this.props.removeCrypto(this.props.asset.symbol)}
               size='2x'
             />
             <FontAwesome
-              className='settings'
+              className='settings visible'
               name='save'
               onClick={() => this.toggleSettings()}
               size='2x'
             />
             <div className="card-body">
               <h4 className="card-title settings-title">
-                {this.props.asset.name} ({this.props.asset.symbol})
+                {this.props.asset.name + "(" + this.props.asset.symbol + ")"}
               </h4>
 
               <div className="card-text">
@@ -158,6 +158,24 @@ class Card extends Component {
                     }
                     size={"small"}
                     value={this.state.holdings || ""}
+                    variant="outlined"
+                />
+
+                <hr />
+
+                <TextField
+                    InputProps={{
+                      endAdornment: <InputAdornment position="end">%</InputAdornment>,
+                    }}
+                    label="Simulated Percent"
+                    onChange={
+                      event =>
+                          this.setState({
+                            simulate: event.target.value || 0
+                          })
+                    }
+                    size={"small"}
+                    value={this.state.simulate}
                     variant="outlined"
                 />
 
@@ -179,22 +197,6 @@ class Card extends Component {
                     }}
                     valueLabelDisplay="auto"
                     value={this.state.simulate}
-                />
-
-                <TextField
-                    InputProps={{
-                      endAdornment: <InputAdornment position="end">%</InputAdornment>,
-                    }}
-                    label="Simulated Percent"
-                    onChange={
-                      event =>
-                          this.setState({
-                            simulate: event.target.value || 0
-                          })
-                    }
-                    size={"small"}
-                    value={this.state.simulate}
-                    variant="outlined"
                 />
 
                 <div>
