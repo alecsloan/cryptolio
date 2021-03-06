@@ -159,7 +159,7 @@ class Card extends Component {
               </h4>
 
               <div className="card-text">
-                <div className="mb-2">Price: {this.getLocalizedPrice(price)}</div>
+                <div className="mb-2">Price: {this.getCurrencySymbol() + this.getLocalizedPrice(price)}</div>
 
                 <TextField
                     label="My Holdings"
@@ -175,6 +175,8 @@ class Card extends Component {
                     value={this.state.holdings}
                     variant="outlined"
                 />
+
+                <MyBalance holdings={this.state.holdings} price={price} settings={this.state.settings} />
 
                 <hr />
 
