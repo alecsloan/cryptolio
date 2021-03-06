@@ -28,7 +28,8 @@ class Card extends Component {
       settings: props.settings,
       simulatedPercentChange: 0,
       simulatedPrice: props.asset.price,
-      simulatedValue: props.asset.holdings * props.asset.price
+      simulatedValue: props.asset.holdings * props.asset.price,
+      simulatedCap: this.props.asset.circulating_supply * props.asset.price
     };
   }
 
@@ -190,7 +191,8 @@ class Card extends Component {
                           this.setState({
                               simulatedPercentChange: event.target.value,
                               simulatedPrice: (((event.target.value * .01) * price) + price),
-                              simulatedValue: ((((event.target.value * .01) * price) + price) * this.state.holdings)
+                              simulatedValue: ((((event.target.value * .01) * price) + price) * this.state.holdings),
+                              simulatedCap: ((((event.target.value * .01) * price) + price) * this.props.asset.circulating_supply)
                           })
                     }
                     size={"small"}
@@ -207,7 +209,8 @@ class Card extends Component {
                           this.setState({
                               simulatedPercentChange: value,
                               simulatedPrice: (((value * .01) * price) + price),
-                              simulatedValue: (value * this.state.holdings)
+                              simulatedValue: (value * this.state.holdings),
+                              simulatedCap: ((((value * .01) * price) + price) * this.props.asset.circulating_supply)
                           })
                     }
                     valueLabelFormat={
@@ -232,7 +235,8 @@ class Card extends Component {
                           this.setState({
                               simulatedPercentChange: (100 * ((event.target.value - price) / price)),
                               simulatedPrice: event.target.value,
-                              simulatedValue: (event.target.value * this.state.holdings)
+                              simulatedValue: (event.target.value * this.state.holdings),
+                              simulatedCap: (event.target.value * this.props.asset.circulating_supply)
                           })
                     }
                     size={"small"}
@@ -250,16 +254,33 @@ class Card extends Component {
                           this.setState({
                               simulatedPercentChange: (100 * (((event.target.value / this.state.holdings) - price) / price)),
                               simulatedPrice: (event.target.value / this.state.holdings),
-                              simulatedValue: event.target.value
+                              simulatedValue: event.target.value,
+                              simulatedCap: ((event.target.value / this.state.holdings) * this.props.asset.circulating_supply)
                           })
                   }
                   size={"small"}
                   value={this.getLocalizedPrice(this.state.simulatedValue)}
                   variant="outlined"
                 />
-                <div>
-                  Simulated Cap: {this.getLocalizedPrice(this.props.asset.circulating_supply * this.state.simulatedPrice)}
-                </div>
+
+                <TextField
+                  InputProps={{
+                      startAdornment: <InputAdornment position="start">{this.getCurrencySymbol()}</InputAdornment>,
+                  }}
+                  label="Simulated Cap"
+                  onChange={
+                      event =>
+                          this.setState({
+                              simulatedPercentChange: (100 * ((event.target.value - (this.props.asset.circulating_supply * price)) / (this.props.asset.circulating_supply * price))),
+                              simulatedPrice: (event.target.value / this.props.asset.circulating_supply),
+                              simulatedValue: ((event.target.value / this.props.asset.circulating_supply) * this.state.holdings),
+                              simulatedCap: event.target.value
+                          })
+                  }
+                  size={"small"}
+                  value={this.getLocalizedPrice(this.state.simulatedCap)}
+                  variant="outlined"
+                />
               </div>
             </div>
           </div>
