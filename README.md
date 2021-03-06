@@ -39,7 +39,6 @@ Just run `npm start`
 
 # Todo
 * Add a light theme
-* Add an input field for simulated price, value, and marketcap for better analysis
 * Add full configuration for color picking so users can set their own colors/gradients
 * Add setting for sorting cards (Market Cap, holdings, price, etc)
 * Add multi-language support
@@ -55,6 +54,7 @@ A sentence that is ~~striked~~ indicates a Todo that was fulfilled.
 #### v1.0.0
 * NOTE: Major version change incurred with refactor of replacing term "coin" with "asset", as it will require local storage to be cleared or the value "coin" to be manually chaned to "asset".
 * ~~Switch cards to MUI~~
+* ~~Add an input field for simulated price, value, and marketcap for better analysis~~
 #### v0.4.0
 * ~~Add datasource options so other apis can be used (I.E. Coingecko)~~
 * ~~Data export/import~~
