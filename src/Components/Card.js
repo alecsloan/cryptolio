@@ -27,7 +27,8 @@ class Card extends Component {
       holdings: props.asset.holdings,
       settings: props.settings,
       simulatedPercentChange: 0,
-      simulatedPrice: null
+      simulatedPrice: props.asset.price,
+      simulatedValue: props.asset.holdings * props.asset.price
     };
   }
 
@@ -94,7 +95,6 @@ class Card extends Component {
     return price.toLocaleString(
         window.navigator.language,
         {
-          style: 'currency',
           currency: this.state.settings.currency,
           maximumFractionDigits: maxDigits,
           minimumFractionDigits: maxDigits
@@ -132,7 +132,7 @@ class Card extends Component {
             </div>
             <div className="card-body">
               <div className="card-text">
-                <div>Price: {this.getLocalizedPrice(price)}</div>
+                <div>Price: {this.getCurrencySymbol() + this.getLocalizedPrice(price)}</div>
                 {this.getPercentChange(this.props.asset.percent_change_1h, "1h")}
                 {this.getPercentChange(this.props.asset.percent_change_24h, "24h")}
                 {this.getPercentChange(this.props.asset.percent_change_7d, "7d")}
@@ -187,11 +187,12 @@ class Card extends Component {
                       event =>
                           this.setState({
                               simulatedPercentChange: event.target.value,
-                              simulatedPrice: this.getLocalizedPrice(((event.target.value * .01) * price) + price).substring(1)
+                              simulatedPrice: (((event.target.value * .01) * price) + price),
+                              simulatedValue: ((((event.target.value * .01) * price) + price) * this.state.holdings)
                           })
                     }
                     size={"small"}
-                    value={this.state.simulatedPercentChange}
+                    value={this.getLocalizedPrice(this.state.simulatedPercentChange) || ""}
                     variant="outlined"
                 />
 
@@ -203,15 +204,18 @@ class Card extends Component {
                       (event, value) =>
                           this.setState({
                               simulatedPercentChange: value,
-                              simulatedPrice: this.getLocalizedPrice(((value * .01) * price) + price).substring(1)
+                              simulatedPrice: (((value * .01) * price) + price),
+                              simulatedValue: (value * this.state.holdings)
                           })
                     }
-                    valueLabelFormat={(value) => {
-                      if (!value)
-                        return "0%";
+                    valueLabelFormat={
+                        value => {
+                          if (!value)
+                            return "0%";
 
-                      return value + "%";
-                    }}
+                          return this.getLocalizedPrice(value) + "%";
+                        }
+                    }
                     valueLabelDisplay="auto"
                     value={this.state.simulatedPercentChange}
                 />
@@ -224,17 +228,33 @@ class Card extends Component {
                     onChange={
                         event =>
                           this.setState({
-                              simulatedPercentChange: (100 * ((event.target.value - price) / price)).toFixed(2),
-                              simulatedPrice: event.target.value
+                              simulatedPercentChange: (100 * ((event.target.value - price) / price)),
+                              simulatedPrice: event.target.value,
+                              simulatedValue: (event.target.value * this.state.holdings)
                           })
                     }
                     size={"small"}
-                    value={this.state.simulatedPrice || this.getLocalizedPrice(price).substring(1)}
+                    value={this.getLocalizedPrice(this.state.simulatedPrice)}
                     variant="outlined"
                 />
-                <div>
-                  Simulated Value: {this.getLocalizedPrice((this.state.simulatedPrice * this.state.holdings) || 0)}
-                </div>
+
+                <TextField
+                  InputProps={{
+                      startAdornment: <InputAdornment position="start">{this.getCurrencySymbol()}</InputAdornment>,
+                  }}
+                  label="Simulated Value"
+                  onChange={
+                      event =>
+                          this.setState({
+                              simulatedPercentChange: (100 * (((event.target.value / this.state.holdings) - price) / price)),
+                              simulatedPrice: (event.target.value / this.state.holdings),
+                              simulatedValue: event.target.value
+                          })
+                  }
+                  size={"small"}
+                  value={this.getLocalizedPrice(this.state.simulatedValue)}
+                  variant="outlined"
+                />
                 <div>
                   Simulated Cap: {this.getLocalizedPrice(this.props.asset.circulating_supply * this.state.simulatedPrice)}
                 </div>
