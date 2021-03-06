@@ -296,7 +296,11 @@ class Settings extends Component {
                       variant="outlined"
                   />
               </div>
-              <div className="mb-5" />
+              <div className="text-white">
+                  Version: 1.0.0 |
+                  <a href="https://github.com/alecsloan/cryptodash#changelog" target="_blank"> Changes</a> |
+                  Caveat Emptor
+              </div>
           </div>
       </Drawer>
     );
