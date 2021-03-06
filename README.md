@@ -49,18 +49,3 @@ Just run `npm start`
 * Make it more clear that prices and value changes were updated (maybe similar to what CMC does?)
 * Add link to CMC/CG page if someone clicks on the asset name/symbol
 * Add configuration for hiding CryptoDash title
-
-## Changelog
-A sentence that is ~~striked~~ indicates a Todo that was fulfilled.
-
-#### v1.0.0
-* NOTE: Major version change incurred with refactor of replacing term "coin" with "asset", as it will require local storage to be cleared or the value "coin" to be manually chaned to "asset".
-* ~~Switch cards to MUI~~
-* ~~Add an input field for simulated price, value, and marketcap for better analysis~~
-#### v0.4.0
-* ~~Add datasource options so other apis can be used (I.E. Coingecko)~~
-* ~~Data export/import~~
-#### v0.3.0
-* ~~Add setting for coin fetch interval~~
-* ~~Add setting for decimal places depending on price of currency. (I.E. >$500 remove decimal places, <$1 show 5 decimal places)~~
-* ~~Add a portfolio balance field~~
