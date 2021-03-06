@@ -50,11 +50,6 @@ Just run `npm start`
 * Add link to CMC/CG page if someone clicks on the asset name/symbol
 * Add configuration for hiding CryptoDash title
 
-# Known Issues
-* Although input values on the back of the card are represented with commas, values that have a comma in them cannot be input.
-* The Heroku cors proxy app is being restricted and this will affect the CoinmarketCap datasource. CoinGecko is unaffected.
-* When you update the dropdown limit setting you have to refresh for the asset dropdown to update.
-
 ## Changelog
 A sentence that is ~~striked~~ indicates a Todo that was fulfilled.
 
