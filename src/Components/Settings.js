@@ -298,7 +298,7 @@ class Settings extends Component {
               </div>
               <div className="text-white">
                   Version: 1.0.0 |
-                  <a href="https://github.com/alecsloan/cryptodash#changelog" target="_blank"> Changes</a> |
+                  <a href="https://github.com/alecsloan/cryptodash#changelog" rel="noopener noreferrer" target="_blank"> Changes</a> |
                   Caveat Emptor
               </div>
           </div>

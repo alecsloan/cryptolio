@@ -11,8 +11,10 @@
   transition: all 1s;
 }
 
-.card:hover {
-  transform: scale(1.05);
+@media only screen and (min-width: 768px) {
+  .card:hover {
+    transform: scale(1.02);
+  }
 }
 
 .card:hover .settings{
