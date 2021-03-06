@@ -42,6 +42,7 @@ Just run `npm start`
 * Add full configuration for color picking so users can set their own colors/gradients
 * Add setting for sorting cards (Market Cap, holdings, price, etc)
 * Add multi-language support
+* Get list of tokens dynamically, using a static list of tokens is limiting
 
 # Known Issues
 * Although input values on the back of the card are represented with commas, values that have a comma in them cannot be input.
