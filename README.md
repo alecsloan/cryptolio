@@ -43,6 +43,12 @@ Just run `npm start`
 * Add setting for sorting cards (Market Cap, holdings, price, etc)
 * Add multi-language support
 * Get list of tokens dynamically, using a static list of tokens is limiting
+* Add functionality for interest bearing assets
+* Add functionality for exit strategy planning
+* Add timestamp for last time data was updated
+* Make it more clear that prices and value changes were updated (maybe similar to what CMC does?)
+* Add link to CMC/CG page if someone clicks on the asset name/symbol
+* Add configuration for hiding CryptoDash title
 
 # Known Issues
 * Although input values on the back of the card are represented with commas, values that have a comma in them cannot be input.
