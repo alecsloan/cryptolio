@@ -44,6 +44,11 @@ Just run `npm start`
 * Add setting for sorting cards (Market Cap, holdings, price, etc)
 * Add multi-language support
 
+# Known Issues
+* Although input values on the back of the card are represented with commas, values that have a comma in them cannot be input.
+* The Heroku cors proxy app is being restricted and this will affect the CoinmarketCap datasource. CoinGecko is unaffected.
+* When you update the dropdown limit setting you have to refresh for the asset dropdown to update.
+
 ## Changelog
 A sentence that is ~~striked~~ indicates a Todo that was fulfilled.
 
