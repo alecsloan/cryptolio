@@ -49,3 +49,4 @@ Just run `npm start`
 * Make it more clear that prices and value changes were updated (maybe similar to what CMC does?)
 * Add link to CMC/CG page if someone clicks on the asset name/symbol
 * Add configuration for hiding CryptoDash title
+* Add Image caching
