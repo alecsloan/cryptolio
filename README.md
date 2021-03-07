@@ -45,8 +45,10 @@ Just run `npm start`
 * Get list of tokens dynamically, using a static list of tokens is limiting
 * Add functionality for interest bearing assets
 * Add functionality for exit strategy planning
+
+v1.1.0 Planning:
 * Add timestamp for last time data was updated
 * Make it more clear that prices and value changes were updated (maybe similar to what CMC does?)
 * Add link to CMC/CG page if someone clicks on the asset name/symbol
 * Add configuration for hiding CryptoDash title
-* Add Image caching
+* Add Skeleton for cards while loading
