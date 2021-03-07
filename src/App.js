@@ -5,6 +5,8 @@ import React, { Component } from 'react';
 import Settings from './Components/Settings.js';
 
 import './styles/App.css';
+import {IconButton, Snackbar} from "@material-ui/core";
+import CloseIcon from '@material-ui/icons/Close';
 
 const CORS_PROXY = 'https://cors.bridged.cc/'
 
@@ -28,6 +30,7 @@ class App extends Component {
     var initialData = JSON.parse(localStorage.getItem("data")) || {assets: []};
     var initialSettings = JSON.parse(localStorage.getItem("settings")) || {
       addDropdownHideable: false,
+      autoHideFetchNotification: 20000,
       currency: "USD",
       datasource: "coinmarketcap",
       decimals2: 100,
@@ -44,12 +47,14 @@ class App extends Component {
     };
 
     this.state ={
+      cards: [],
       data: {
         assets: initialData.assets
       },
-      cards: [],
+      dataUpdated: false,
       showSettings: false,
-      settings: initialSettings
+      settings: initialSettings,
+      timestamp: null
     };
 
     if (!initialData.assets || initialData.assets.length === 0)
@@ -213,6 +218,11 @@ class App extends Component {
             });
 
             this.storeData(assets);
+
+            this.setState({
+              dataUpdated: true,
+              timestamp: response.status.timestamp
+            });
           });
     }
     catch(e){
@@ -295,6 +305,28 @@ class App extends Component {
         <Hotkeys
           keyName="shift+/"
           onKeyDown={this.toggleShowSettings.bind(this)}
+        />
+        <Snackbar
+            action={
+              <React.Fragment>
+                <IconButton
+                    aria-label="close"
+                    color="inherit"
+                    onClick={() => this.setState({dataUpdated: false})}
+                >
+                  <CloseIcon />
+                </IconButton>
+              </React.Fragment>
+            }
+            anchorOrigin={{
+              vertical: 'bottom',
+              horizontal: 'left',
+            }}
+            autoHideDuration={Number(this.state.settings.autoHideFetchNotification)}
+            key={this.state.timestamp}
+            message={`Prices updated: ${new Date(this.state.timestamp).toLocaleString()}`}
+            onClose={() => this.setState({dataUpdated: false})}
+            open={this.state.dataUpdated}
         />
       </div>
     );

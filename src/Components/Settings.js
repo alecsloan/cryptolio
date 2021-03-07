@@ -202,6 +202,19 @@ class Settings extends Component {
                   />
               </div>
               <div className="row">
+                  <TextField
+                      InputLabelProps={{
+                          shrink: true,
+                      }}
+                      label="Fetch Notification Timeout"
+                      onInputCapture={event => this.props.editSetting('autoHideFetchNotification', event.target.value)}
+                      size="small"
+                      type="number"
+                      value={this.props.settings.autoHideFetchNotification}
+                      variant="outlined"
+                  />
+              </div>
+              <div className="row">
                   <div className="col-sm-4">
                       <FormControlLabel
                           control={
