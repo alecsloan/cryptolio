@@ -6,8 +6,7 @@ import Settings from './Components/Settings.js';
 
 import './styles/App.css';
 
-const CORS_PROXY = 'https://cors-anywhere.herokuapp.com/'
-const BASE_URL = 'https://web-api.coinmarketcap.com/v1/cryptocurrency'
+const CORS_PROXY = 'https://cors.bridged.cc/'
 
 function CardRow(props) {
   var cards = [];
@@ -169,7 +168,7 @@ class App extends Component {
       shownAssetIds = this.state.data.assets.map(asset => asset.cmc_id);
 
     try {
-      fetch(`${CORS_PROXY}${BASE_URL}/quotes/latest?id=${shownAssetIds}&convert=${currency}`)
+      fetch(`${CORS_PROXY}https://web-api.coinmarketcap.com/v1/cryptocurrency/quotes/latest?id=${shownAssetIds}&convert=${currency}`)
           .then(res => res.json())
           .then(response => {
 
