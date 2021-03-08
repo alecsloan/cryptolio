@@ -310,7 +310,7 @@ class Settings extends Component {
                   />
               </div>
               <div className="text-white">
-                  Version: 1.0.0 |
+                  Version: {process.env.REACT_APP_VERSION} |
                   <a className="ml-2 mr-2 text-white" href="https://github.com/alecsloan/cryptodash" rel="noopener noreferrer" target="_blank">
                       <FontAwesome
                           className='ml-2 mr-1'
