@@ -202,6 +202,19 @@ class Settings extends Component {
                   />
               </div>
               <div className="row">
+                  <TextField
+                      InputLabelProps={{
+                          shrink: true,
+                      }}
+                      label="Fetch Notification Timeout"
+                      onInputCapture={event => this.props.editSetting('autoHideFetchNotification', event.target.value)}
+                      size="small"
+                      type="number"
+                      value={this.props.settings.autoHideFetchNotification}
+                      variant="outlined"
+                  />
+              </div>
+              <div className="row">
                   <div className="col-sm-4">
                       <FormControlLabel
                           control={
@@ -297,8 +310,14 @@ class Settings extends Component {
                   />
               </div>
               <div className="text-white">
-                  Version: 1.0.0 |
-                  <a href="https://github.com/alecsloan/cryptodash#changelog" rel="noopener noreferrer" target="_blank"> Changes</a> |
+                  Version: {process.env.REACT_APP_VERSION} |
+                  <a className="ml-2 mr-2 text-white" href="https://github.com/alecsloan/cryptodash" rel="noopener noreferrer" target="_blank">
+                      <FontAwesome
+                          className='ml-2 mr-1'
+                          name='github'
+                          size='2x'
+                      />
+                  </a> |
                   Caveat Emptor
               </div>
           </div>

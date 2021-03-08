@@ -76,7 +76,7 @@ class Card extends Component {
 
   getLocalizedPrice(price) {
     if (!price)
-      return;
+      return 0;
 
     var maxDigits;
 
@@ -173,7 +173,7 @@ class Card extends Component {
                       }
                     }
                     size={"small"}
-                    value={this.state.holdings}
+                    value={this.state.holdings || 0}
                     variant="outlined"
                 />
 
@@ -209,7 +209,7 @@ class Card extends Component {
                           this.setState({
                               simulatedPercentChange: value,
                               simulatedPrice: (((value * .01) * price) + price),
-                              simulatedValue: (value * this.state.holdings),
+                              simulatedValue: ((((value * .01) * price) + price) * this.state.holdings),
                               simulatedCap: ((((value * .01) * price) + price) * this.props.asset.circulating_supply)
                           })
                     }
