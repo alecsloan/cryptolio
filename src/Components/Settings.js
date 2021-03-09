@@ -193,7 +193,7 @@ class Settings extends Component {
                       InputLabelProps={{
                           shrink: true,
                       }}
-                      label="Slider Max"
+                      label="Simulated Percent Slider Max"
                       onInputCapture={event => this.props.editSetting('sliderMax', (event.target.value < 100) ? 100 : event.target.value)}
                       size="small"
                       type="number"
