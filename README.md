@@ -4,6 +4,7 @@
 ## Simulate price gain or drop to see your earning potential!
 
 * Balance tracking
+* Simulate your holding value at price targets
 * All symbols listed
     * Only see info on the assets you want to see
 * Multi-currency
