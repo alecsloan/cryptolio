@@ -100,12 +100,13 @@ class App extends Component {
         cryptoassets: require("./cryptoassets.json").slice(0, value)
       });
     }
+    else if (settingName === "currency") {
+      this.fetchAssetData(value);
+    }
 
     var settings = this.state.settings;
 
     settings[settingName] = value;
-
-    this.fetchAssetData((settingName === "currency") ? value : this.state.settings.currency);
 
     this.setState({
       settings: settings
