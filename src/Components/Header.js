@@ -13,7 +13,6 @@ class Header extends Component {
     super(props);
 
     this.state = {
-      cryptoassets: require("../cryptoassets.json").slice(0, props.settings.limit),
       displayAddSection: false,
       cryptoassetRef: null,
       inputValue: ""
@@ -111,7 +110,7 @@ class Header extends Component {
                       })
                   }
               }
-              options={this.state.cryptoassets}
+              options={this.props.cryptoAssetData}
               renderInput={(params) => <TextField {...params} label="Add Cryptoasset" variant="outlined" />}
               size="small"
               value={null}

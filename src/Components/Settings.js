@@ -305,7 +305,7 @@ class Settings extends Component {
                       onInputCapture={event => this.props.editSetting('decimals4', event.target.value)}
                       size="small"
                       type="number"
-                      value={this.props.settings.decimals4}
+                      value={this.props.settings.decimals4 || ""}
                       variant="outlined"
                   />
               </div>

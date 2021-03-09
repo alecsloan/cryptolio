@@ -48,6 +48,7 @@ class App extends Component {
 
     this.state ={
       cards: [],
+      cryptoassets: require("./cryptoassets.json").slice(0, initialSettings.limit),
       data: {
         assets: initialData.assets
       },
@@ -88,11 +89,17 @@ class App extends Component {
     if (!settingName)
       return;
 
-    if (settingName === "currency" && !value)
+    if (settingName === "currency" && !value) {
       value = "USD";
-
-    if (settingName === "fetchInterval" && value < 6000)
+    }
+    else if (settingName === "fetchInterval" && value < 6000) {
       value = 60000;
+    }
+    else if (settingName === "limit") {
+      this.setState({
+        cryptoassets: require("./cryptoassets.json").slice(0, value)
+      });
+    }
 
     var settings = this.state.settings;
 
@@ -296,7 +303,7 @@ class App extends Component {
   render() {
     return (
       <div className="page">
-        <Header addCrypto={this.addCrypto.bind(this)} assets={this.state.data.assets} settings={this.state.settings} toggleShowSettings={this.toggleShowSettings.bind(this)}/>
+        <Header addCrypto={this.addCrypto.bind(this)} assets={this.state.data.assets} cryptoAssetData={this.state.cryptoassets} settings={this.state.settings} toggleShowSettings={this.toggleShowSettings.bind(this)}/>
         <hr />
         <div className="content">
           <CardRow assets={this.state.data.assets} removeCrypto={this.removeCrypto.bind(this)} settings={this.state.settings} updateHoldings={this.updateHoldings.bind(this)} />
