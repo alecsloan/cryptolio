@@ -201,19 +201,18 @@ class Settings extends Component {
                       variant="outlined"
                   />
               </div>
-              <div className="row">
-                  <TextField
-                      InputLabelProps={{
-                          shrink: true,
-                      }}
-                      label="Fetch Notification Timeout"
-                      onInputCapture={event => this.props.editSetting('autoHideFetchNotification', event.target.value)}
-                      size="small"
-                      type="number"
-                      value={this.props.settings.autoHideFetchNotification}
-                      variant="outlined"
-                  />
-              </div>
+              <IntervalSelector
+                  value={this.props.settings.autoHideFetchNotification}
+                  label="Data Fetch Notification Timeout"
+                  labelPlacement="top"
+                  max="Minute"
+                  min="Second"
+                  onChange={value => this.props.editSetting('autoHideFetchNotification', value)}
+                  selectFieldClasses="col-8"
+                  size="small"
+                  textFieldClasses="col-4"
+                  variant="outlined"
+              />
               <div className="row">
                   <div className="col-sm-4">
                       <FormControlLabel
@@ -305,7 +304,7 @@ class Settings extends Component {
                       onInputCapture={event => this.props.editSetting('decimals4', event.target.value)}
                       size="small"
                       type="number"
-                      value={this.props.settings.decimals4}
+                      value={this.props.settings.decimals4 || ""}
                       variant="outlined"
                   />
               </div>

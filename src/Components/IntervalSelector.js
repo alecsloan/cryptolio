@@ -66,7 +66,7 @@ class IntervalSelector extends Component {
       var value = measureEntries[i][1];
 
       if ((!nextMeasureEntity || min < nextMeasureEntity[1]) && max >= value)
-        menuItems.push(<MenuItem key={key.toLowerCase()} value={value}>{key}</MenuItem>);
+        menuItems.push(<MenuItem key={key.toLowerCase()} value={value}>{key}(s)</MenuItem>);
     }
 
     return menuItems;

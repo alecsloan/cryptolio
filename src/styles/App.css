@@ -23,6 +23,7 @@ body {
 }
 
 body .MuiFormLabel-root,
+body .MuiMenuItem-root,
 body .MuiOutlinedInput-input,
 body .MuiOutlinedInput-notchedOutline,
 body .MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline,

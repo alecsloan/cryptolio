@@ -259,7 +259,7 @@ class Card extends Component {
                           })
                   }
                   size={"small"}
-                  value={this.getLocalizedPrice(this.state.simulatedValue)}
+                  value={this.getLocalizedPrice(this.state.simulatedValue) || this.getLocalizedPrice(this.state.holdings * price)}
                   variant="outlined"
                 />
 
