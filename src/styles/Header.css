@@ -30,6 +30,10 @@ input {
   width: 32px;
 }
 
+.dropdown-popper {
+background: linear-gradient(to bottom right, #3d4877, #1e2542) !important;
+}
+
 .rotate {
   -ms-transform: rotate(45deg); /* IE 9 */
   -webkit-transform: rotate(45deg); /* Safari 3-8 */

@@ -86,7 +86,6 @@ class Header extends Component {
               autoComplete={false}
               autoHighlight
               blurOnSelect
-              className="w-100"
               clearOnBlur
               disablePortal={true}
               getOptionLabel={(option) => `${option.name} (${option.symbol})`}
