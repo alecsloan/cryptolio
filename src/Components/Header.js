@@ -7,6 +7,9 @@ import TextField from "@material-ui/core/TextField";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'font-awesome/css/font-awesome.min.css';
 import '../styles/Header.css';
+import IconButton from "@material-ui/core/IconButton";
+import {Brightness2, Brightness7} from "@material-ui/icons";
+import SettingsIcon from "@material-ui/icons/Settings";
 
 class Header extends Component {
   constructor(props) {
@@ -70,14 +73,29 @@ class Header extends Component {
             pull="left"
             title={addIconTitle}
           />
+
           CryptoDash
-          <FontAwesome
-            className="menu-icon"
-            name="cogs"
+
+          <IconButton
+            className="pull-right"
+            color="inherit"
+            aria-label="mode"
             onClick={() => this.props.toggleShowSettings()}
-            pull="right"
-          />
+          >
+             <SettingsIcon />
+          </IconButton>
+
+          <IconButton
+            className="pull-right"
+            color="inherit"
+            aria-label="mode"
+            onClick={() => this.props.editSetting('theme', this.props.settings.theme.palette.type)}
+          >
+              {this.props.settings.theme.palette.type === "dark" ? <Brightness7 /> : <Brightness2 />}
+          </IconButton>
+
           {this.getPortfolioBalance()}
+
           </h2>
 
         </div>

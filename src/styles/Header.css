@@ -1,5 +1,4 @@
 hr {
-  background: #FFF;
   width: 60%;
 }
 
@@ -15,23 +14,16 @@ input {
 }
 
 .add-section-icon {
-  color: #FFF;
   cursor: pointer;
   float: left;
   transform: none;
-  transition: 0.5s all;
   width: 32px;
 }
 
 .menu-icon {
-  color: #FFF;
   cursor: pointer;
   float: right;
   width: 32px;
-}
-
-.dropdown-popper {
-background: linear-gradient(to bottom right, #3d4877, #1e2542) !important;
 }
 
 .rotate {
@@ -46,6 +38,5 @@ background: linear-gradient(to bottom right, #3d4877, #1e2542) !important;
 }
 
 .title {
-  color: #FFF;
   margin: 16px;
 }

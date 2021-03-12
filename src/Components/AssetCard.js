@@ -3,7 +3,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import FontAwesome from 'react-fontawesome';
 import '../styles/Card.css';
 import TextField from "@material-ui/core/TextField";
-import {InputAdornment, Slider} from "@material-ui/core";
+import {Card, InputAdornment, Slider} from "@material-ui/core";
 
 function MyBalance(props) {
   if (props.holdings > 0 && props.settings.showCardBalances) {
@@ -19,7 +19,7 @@ function MyBalance(props) {
   )
 }
 
-class Card extends Component {
+class AssetCard extends Component {
   constructor(props){
     super(props);
     this.state ={
@@ -114,7 +114,7 @@ class Card extends Component {
     let back = this.state.flip ? '' : 'none';
     return(
       <div className="col-xs-12 col-sm-6 col-lg-4 card-container">
-        <div className="card">
+        <Card className="card">
           <div className={(window.innerWidth <= 760) ? "row" : ""} style={{display: front}} onClick={() => this.toggleSettings()}>
             <div className={(window.innerWidth <= 760) ? "ml-2 w-50" : ""}>
             <FontAwesome
@@ -284,10 +284,10 @@ class Card extends Component {
               </div>
             </div>
           </div>
-        </div>
+        </Card>
       </div>
     )
   }
 }
 
-export default Card;
+export default AssetCard;
