@@ -27,9 +27,9 @@ input {
 }
 
 .rotate {
-  -ms-transform: rotate(45deg); /* IE 9 */
-  -webkit-transform: rotate(45deg); /* Safari 3-8 */
-  transform: rotate(45deg);
+  -ms-transform: rotate(180deg); /* IE 9 */
+  -webkit-transform: rotate(180deg); /* Safari 3-8 */
+  transform: rotate(180deg);
 }
 
 .title {

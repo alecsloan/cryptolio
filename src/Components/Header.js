@@ -8,7 +8,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import 'font-awesome/css/font-awesome.min.css';
 import '../styles/Header.css';
 import IconButton from "@material-ui/core/IconButton";
-import {Brightness2, Brightness7} from "@material-ui/icons";
+import {Brightness2, Brightness7, KeyboardArrowDown, KeyboardArrowUp} from "@material-ui/icons";
 import SettingsIcon from "@material-ui/icons/Settings";
 
 class Header extends Component {
@@ -66,13 +66,15 @@ class Header extends Component {
       <div className="header">
         <div className="col-12">
           <h2 className="title">
-          <FontAwesome
-            className={addIconClass}
-            name="plus"
-            onClick={() => this.toggleAddSection()}
-            pull="left"
-            title={addIconTitle}
-          />
+            <IconButton
+              className={addIconClass}
+              color="inherit"
+              aria-label="mode"
+              onClick={() => this.toggleAddSection()}
+              title={addIconTitle}
+            >
+              {displayAddSection ? <KeyboardArrowDown /> : <KeyboardArrowUp />}
+            </IconButton>
 
           CryptoDash
 
