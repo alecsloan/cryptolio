@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import FontAwesome from 'react-fontawesome';
 import '../styles/Card.css';
@@ -176,7 +176,11 @@ class AssetCard extends Component {
                     label="My Holdings"
                     onChange={
                       event => {
-                        this.props.updateHoldings(event.target.value, this.props.asset.symbol)
+                        this.props.updateHoldings(event.target.value, this.props.asset.symbol);
+
+                        this.setState({
+                          simulatedValue: event.target.value * this.state.simulatedPrice
+                        })
                       }
                     }
                     size={"small"}
@@ -203,7 +207,7 @@ class AssetCard extends Component {
                           })
                     }
                     size={"small"}
-                    value={this.getLocalizedPrice(this.state.simulatedPercentChange) || ""}
+                    value={this.getLocalizedPrice(this.state.simulatedPercentChange)}
                     variant="outlined"
                 />
 
@@ -266,7 +270,7 @@ class AssetCard extends Component {
                           })
                   }
                   size={"small"}
-                  value={this.getLocalizedPrice(this.state.simulatedValue) || this.getLocalizedPrice(this.props.asset.holdings * price)}
+                  value={this.getLocalizedPrice(this.state.simulatedValue)}
                   variant="outlined"
                 />
 
