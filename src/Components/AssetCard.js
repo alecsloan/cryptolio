@@ -73,9 +73,20 @@ class AssetCard extends Component {
     }
   }
 
+  getLocalizedNumber(number) {
+    if (!number) {
+      return "";
+    }
+
+    return number.toLocaleString(
+      window.navigator.language
+    );
+  }
+
   getLocalizedPrice(price) {
-    if (!price)
-      return 0;
+    if (!price) {
+      return "";
+    }
 
     var maxDigits;
 
@@ -165,11 +176,11 @@ class AssetCard extends Component {
                     label="My Holdings"
                     onChange={
                       event => {
-                        this.props.updateHoldings(parseFloat(event.target.value), this.props.asset.symbol)
+                        this.props.updateHoldings(event.target.value, this.props.asset.symbol)
                       }
                     }
                     size={"small"}
-                    value={this.props.asset.holdings || 0}
+                    value={this.getLocalizedNumber(this.props.asset.holdings)}
                     variant="outlined"
                 />
 

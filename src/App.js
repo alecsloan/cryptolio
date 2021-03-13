@@ -310,9 +310,7 @@ class App extends Component {
   updateHoldings(value, symbol){
     var assets = this.state.data.assets;
 
-    if (value) {
-      assets.find(asset => asset.symbol === symbol).holdings = value;
-    }
+    assets.find(asset => asset.symbol === symbol).holdings = value;
 
     this.storeData(assets);
   }
