@@ -23,7 +23,19 @@ class Settings extends Component {
 
         var currencies = require('../currencies.json');
 
+        var cmc_logo = "https://s2.coinmarketcap.com/static/cloud/img/coinmarketcap";
+        var cg_logo = "https://static.coingecko.com/s/coingecko-logo-d13d6bcceddbb003f146b33c2f7e8193d72b93bb343d38e392897c3df3e78bdd.png";
+
+        if (this.props.theme.palette.type === "dark") {
+            cmc_logo += "_white";
+            cg_logo = "https://static.coingecko.com/s/coingecko-logo-white-3f2aeb48e13428b7199395259dbb96280bf47ea05b2940ef7d3e87c61e4d8408.png";
+        }
+
+        cmc_logo += "_1.svg";
+
         this.state = {
+            cg_logo: cg_logo,
+            cmc_logo: cmc_logo,
             currencies: currencies,
             currency: currencies.find(currency => currency.code === this.props.settings.currency)
         }
@@ -70,8 +82,8 @@ class Settings extends Component {
                               value={this.props.settings.datasource}
                               onChange={event => this.props.editSetting('datasource', event.target.value)}
                           >
-                              <MenuItem value="coingecko"><img alt="CoinGecko" src="https://static.coingecko.com/s/coingecko-logo-white-3f2aeb48e13428b7199395259dbb96280bf47ea05b2940ef7d3e87c61e4d8408.png" /></MenuItem>
-                              <MenuItem value="coinmarketcap"><img alt="CoinMarketCap" src="https://s2.coinmarketcap.com/static/cloud/img/coinmarketcap_white_1.svg?" /></MenuItem>
+                              <MenuItem value="coingecko"><img alt="CoinGecko" src={this.state.cg_logo} /></MenuItem>
+                              <MenuItem value="coinmarketcap"><img alt="CoinMarketCap" src={this.state.cmc_logo} /></MenuItem>
                           </Select>
                       }
                       label="Datasource"
@@ -156,9 +168,10 @@ class Settings extends Component {
               </div>
               <div className="currency-selector row">
                   <Autocomplete
+                      autoComplete={false}
                       autoHighlight
                       className="w-100"
-                      disablePortal={true}
+                      clearOnBlur
                       getOptionLabel={(option) => `${option.currency} (${option.symbol})`}
                       id="currency"
                       onChange={
@@ -193,7 +206,7 @@ class Settings extends Component {
                       InputLabelProps={{
                           shrink: true,
                       }}
-                      label="Slider Max"
+                      label="Simulated Percent Slider Max"
                       onInputCapture={event => this.props.editSetting('sliderMax', (event.target.value < 100) ? 100 : event.target.value)}
                       size="small"
                       type="number"
@@ -237,7 +250,7 @@ class Settings extends Component {
                                   onChange={() => this.props.editSetting('showCardBalances', !this.props.settings.showCardBalances)}
                               />
                           }
-                          label="Show Card Balance"
+                          label="Show AssetCard Balance"
                           labelPlacement="top"
                           value="top"
                       />

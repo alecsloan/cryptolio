@@ -1,5 +1,4 @@
 hr {
-  background: #FFF;
   width: 60%;
 }
 
@@ -15,33 +14,24 @@ input {
 }
 
 .add-section-icon {
-  color: #FFF;
   cursor: pointer;
   float: left;
   transform: none;
-  transition: 0.5s all;
   width: 32px;
 }
 
 .menu-icon {
-  color: #FFF;
   cursor: pointer;
   float: right;
   width: 32px;
 }
 
 .rotate {
-  -ms-transform: rotate(45deg); /* IE 9 */
-  -webkit-transform: rotate(45deg); /* Safari 3-8 */
-  transform: rotate(45deg);
-}
-
-.sub-title {
-  display: block;
-  font-size: 18px;
+  -ms-transform: rotate(180deg); /* IE 9 */
+  -webkit-transform: rotate(180deg); /* Safari 3-8 */
+  transform: rotate(180deg);
 }
 
 .title {
-  color: #FFF;
   margin: 16px;
 }

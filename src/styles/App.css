@@ -3,15 +3,11 @@
 }
 
 .page {
-  height: 100%;
   margin: auto;
   max-width: 1000px;
-  padding-top: 0;
-  text-align: center;
 }
 
 body {
-  background: #0E1F35;
   text-align: center;
 }
 
@@ -30,7 +26,5 @@ body .MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline,
 body .MuiOutlinedInput-root:active .MuiOutlinedInput-notchedOutline,
 body .MuiSvgIcon-root,
 body .MuiTypography-colorTextSecondary {
-  border-color: #FFF;
-  color: #FFF;
   margin: 5px;
 }

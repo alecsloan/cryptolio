@@ -1,14 +1,10 @@
 .back .card-title {
     margin-bottom: 20px;
-    text-align: initial;
 }
 
 .card {
-  background: linear-gradient(to bottom right, #2a4466, #0e1f35);
   border: 0;
-  color: #FFF;
   height: 100%;
-  transition: all 1s;
 }
 
 @media only screen and (min-width: 768px) {
@@ -61,14 +57,11 @@
 }
 
 .card-small {
-  background: linear-gradient(to bottom right, #2a4466, #0e1f35);
   border: 0;
   border-radius: 5px;
-  color: white;
   height: 100%;
   margin: 0 5px;
   padding: 5px;
-  transition: all 1s;
 }
 
 .coin-name {
@@ -157,11 +150,8 @@
 
 .slider {
     border-radius: 5px;
-    background: #d3d3d3;
     outline: none;
     opacity: 0.7;
-    -webkit-transition: .2s;
-    transition: opacity .2s;
     margin-top: 5px;
     margin-bottom: 5px;
 }

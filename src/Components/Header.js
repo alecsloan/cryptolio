@@ -7,6 +7,9 @@ import TextField from "@material-ui/core/TextField";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'font-awesome/css/font-awesome.min.css';
 import '../styles/Header.css';
+import IconButton from "@material-ui/core/IconButton";
+import {Brightness2, Brightness7, KeyboardArrowDown, KeyboardArrowUp} from "@material-ui/icons";
+import SettingsIcon from "@material-ui/icons/Settings";
 
 class Header extends Component {
   constructor(props) {
@@ -37,7 +40,7 @@ class Header extends Component {
       }
     });
 
-    return <span className="sub-title">Portfolio: {(balance).toLocaleString(window.navigator.language, { style: 'currency', currency: this.props.settings.currency, minimumFractionDigits: 2})}</span>;
+    return <span>: {(balance).toLocaleString(window.navigator.language, { style: 'currency', currency: this.props.settings.currency, minimumFractionDigits: 2})}</span>;
   }
 
   toggleAddSection(){
@@ -63,21 +66,38 @@ class Header extends Component {
       <div className="header">
         <div className="col-12">
           <h2 className="title">
-          <FontAwesome
-            className={addIconClass}
-            name="plus"
-            onClick={() => this.toggleAddSection()}
-            pull="left"
-            title={addIconTitle}
-          />
+            <IconButton
+              className={addIconClass}
+              color="inherit"
+              aria-label="mode"
+              onClick={() => this.toggleAddSection()}
+              title={addIconTitle}
+            >
+              {displayAddSection ? <KeyboardArrowDown /> : <KeyboardArrowUp />}
+            </IconButton>
+
           CryptoDash
-          <FontAwesome
-            className="menu-icon"
-            name="cogs"
+
+          <IconButton
+            className="pull-right"
+            color="inherit"
+            aria-label="mode"
             onClick={() => this.props.toggleShowSettings()}
-            pull="right"
-          />
+          >
+             <SettingsIcon />
+          </IconButton>
+
+          <IconButton
+            className="pull-right"
+            color="inherit"
+            aria-label="mode"
+            onClick={() => this.props.editSetting('theme', this.props.settings.theme.palette.type)}
+          >
+              {this.props.settings.theme.palette.type === "dark" ? <Brightness7 /> : <Brightness2 />}
+          </IconButton>
+
           {this.getPortfolioBalance()}
+
           </h2>
 
         </div>
@@ -86,7 +106,6 @@ class Header extends Component {
               autoComplete={false}
               autoHighlight
               blurOnSelect
-              className="w-100"
               clearOnBlur
               disablePortal={true}
               getOptionLabel={(option) => `${option.name} (${option.symbol})`}

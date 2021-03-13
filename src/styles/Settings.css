@@ -27,21 +27,6 @@
     height: 50px;
 }
 
-.MuiPaper-root.MuiDrawer-paper {
-    background: linear-gradient(to bottom right, #2a4466, #0e1f35);
-    border: 0;
-    color: #FFF;
-    height: 100%;
-}
-
-.MuiPopover-paper {
-    background: #2a4466 !important;
-}
-
-.MuiDrawer-root {
-    transition: all 1s;
-}
-
 .settings-panel .col-12 {
     margin-top: 15px;
 }
@@ -52,7 +37,6 @@
 }
 
 .settings-panel input {
-    color: #FFF;
     height: 38px;
     width: 100%;
 }

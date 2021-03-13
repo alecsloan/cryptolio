@@ -1,14 +1,36 @@
-import Card from './Components/Card.js';
+import AssetCard from './Components/AssetCard.js';
 import Header from './Components/Header.js';
 import Hotkeys from 'react-hot-keys';
 import React, { Component } from 'react';
 import Settings from './Components/Settings.js';
 
+import { createMuiTheme } from '@material-ui/core/styles';
+import { ThemeProvider } from '@material-ui/styles';
+
 import './styles/App.css';
-import {IconButton, Snackbar} from "@material-ui/core";
+import {colors, CssBaseline, IconButton, Snackbar} from "@material-ui/core";
 import CloseIcon from '@material-ui/icons/Close';
 
 const CORS_PROXY = 'https://cors.bridged.cc/'
+
+const darkTheme = createMuiTheme({
+  palette: {
+    type: "dark",
+    background: {
+      default: "#1c2025",
+      paper: colors.grey[800]
+    },
+    primary: {
+      main: colors.grey[900]
+    }
+  }
+});
+
+const lightTheme = createMuiTheme({
+  palette: {
+    type: "light"
+  }
+});
 
 function CardRow(props) {
   var cards = [];
@@ -17,7 +39,7 @@ function CardRow(props) {
     return <div></div>;
 
   props.assets.forEach(asset => {
-    cards.push(<Card asset={asset} key={asset.symbol} removeCrypto={props.removeCrypto.bind(this)} settings={props.settings} updateHoldings={props.updateHoldings.bind(this)}/>)
+    cards.push(<AssetCard asset={asset} key={asset.symbol} removeCrypto={props.removeCrypto.bind(this)} settings={props.settings} updateHoldings={props.updateHoldings.bind(this)}/>)
   });
 
   return <div className="cardRow">{cards}</div>;
@@ -37,14 +59,17 @@ class App extends Component {
       decimals3: 1,
       decimals4: null,
       fetchInterval: 300000,
-      limit: 200,
+      limit: 5000,
       show1hChange: true,
       show24hChange: true,
       show7dChange: true,
       showCardBalances: true,
       showPortfolioBalance: true,
-      sliderMax: 10000
+      sliderMax: 10000,
+      theme: lightTheme
     };
+
+    initialSettings.theme = createMuiTheme(initialSettings.theme);
 
     this.state ={
       cards: [],
@@ -100,16 +125,26 @@ class App extends Component {
         cryptoassets: require("./cryptoassets.json").slice(0, value)
       });
     }
+    else if (settingName === "theme") {
+      if (value === "light") {
+        value = darkTheme;
+      }
+      else {
+        value = lightTheme;
+      }
+    }
 
     var settings = this.state.settings;
 
     settings[settingName] = value;
 
-    this.fetchAssetData((settingName === "currency") ? value : this.state.settings.currency);
-
     this.setState({
       settings: settings
     });
+
+    if (settingName === "currency" || settingName === "datasource") {
+      this.fetchAssetData();
+    }
 
     localStorage.setItem("settings", JSON.stringify(settings));
   }
@@ -272,13 +307,11 @@ class App extends Component {
     });
   }
 
-  updateHoldings(event, asset){
-    let value = parseFloat(event.target.value);
-
+  updateHoldings(value, symbol){
     var assets = this.state.data.assets;
 
-    if (value){
-      assets.find(asset => asset.symbol === asset.symbol.toUpperCase()).holdings = value;
+    if (value) {
+      assets.find(asset => asset.symbol === symbol).holdings = value;
     }
 
     this.storeData(assets);
@@ -303,38 +336,42 @@ class App extends Component {
   render() {
     return (
       <div className="page">
-        <Header addCrypto={this.addCrypto.bind(this)} assets={this.state.data.assets} cryptoAssetData={this.state.cryptoassets} settings={this.state.settings} toggleShowSettings={this.toggleShowSettings.bind(this)}/>
-        <hr />
-        <div className="content">
-          <CardRow assets={this.state.data.assets} removeCrypto={this.removeCrypto.bind(this)} settings={this.state.settings} updateHoldings={this.updateHoldings.bind(this)} />
-        </div>
-        <Settings data={this.state.data} editSetting={this.editSetting.bind(this)} settings={this.state.settings} showSettings={this.state.showSettings} toggleShowSettings={this.toggleShowSettings.bind(this)} uploadData={this.uploadData.bind(this)} />
-        <Hotkeys
-          keyName="shift+/"
-          onKeyDown={this.toggleShowSettings.bind(this)}
-        />
-        <Snackbar
-            action={
-              <React.Fragment>
-                <IconButton
-                    aria-label="close"
-                    color="inherit"
-                    onClick={() => this.setState({dataUpdated: false})}
-                >
-                  <CloseIcon />
-                </IconButton>
-              </React.Fragment>
-            }
-            anchorOrigin={{
-              vertical: 'bottom',
-              horizontal: 'left',
-            }}
-            autoHideDuration={Number(this.state.settings.autoHideFetchNotification)}
-            key={this.state.timestamp}
-            message={`Prices updated: ${new Date(this.state.timestamp).toLocaleString()}`}
-            onClose={() => this.setState({dataUpdated: false})}
-            open={this.state.dataUpdated}
-        />
+        <ThemeProvider theme={this.state.settings.theme || lightTheme}>
+          <CssBaseline />
+
+          <Header addCrypto={this.addCrypto.bind(this)} assets={this.state.data.assets} cryptoAssetData={this.state.cryptoassets} editSetting={this.editSetting.bind(this)} settings={this.state.settings} toggleShowSettings={this.toggleShowSettings.bind(this)}/>
+          <hr />
+          <div className="content">
+            <CardRow assets={this.state.data.assets} removeCrypto={this.removeCrypto.bind(this)} settings={this.state.settings} updateHoldings={this.updateHoldings.bind(this)} />
+          </div>
+          <Settings data={this.state.data} editSetting={this.editSetting.bind(this)} settings={this.state.settings} showSettings={this.state.showSettings} theme={this.state.settings.theme || lightTheme} toggleShowSettings={this.toggleShowSettings.bind(this)} uploadData={this.uploadData.bind(this)} />
+          <Hotkeys
+            keyName="shift+/"
+            onKeyDown={this.toggleShowSettings.bind(this)}
+          />
+          <Snackbar
+              action={
+                <React.Fragment>
+                  <IconButton
+                      aria-label="close"
+                      color="inherit"
+                      onClick={() => this.setState({dataUpdated: false})}
+                  >
+                    <CloseIcon />
+                  </IconButton>
+                </React.Fragment>
+              }
+              anchorOrigin={{
+                vertical: 'bottom',
+                horizontal: 'left',
+              }}
+              autoHideDuration={Number(this.state.settings.autoHideFetchNotification)}
+              key={this.state.timestamp}
+              message={`Prices updated: ${new Date(this.state.timestamp).toLocaleString()}`}
+              onClose={() => this.setState({dataUpdated: false})}
+              open={this.state.dataUpdated}
+          />
+        </ThemeProvider>
       </div>
     );
   }

@@ -39,17 +39,14 @@ Just run `npm start`
 ![Mobile Image](https://imgur.com/HxhUnR5.png)
 
 # Todo
-* Add a light theme
 * Add full configuration for color picking so users can set their own colors/gradients
 * Add setting for sorting cards (Market Cap, holdings, price, etc)
 * Add multi-language support
 * Get list of tokens dynamically, using a static list of tokens is limiting
 * Add functionality for interest bearing assets
 * Add functionality for exit strategy planning
-
-v1.1.0 Planning:
-* Add timestamp for last time data was updated
 * Make it more clear that prices and value changes were updated (maybe similar to what CMC does?)
 * Add link to CMC/CG page if someone clicks on the asset name/symbol
 * Add configuration for hiding CryptoDash title
 * Add Skeleton for cards while loading
+* Add different layout views (table, main portfolio change chart with small cards, etc.)

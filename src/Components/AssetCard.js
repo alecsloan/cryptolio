@@ -3,7 +3,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import FontAwesome from 'react-fontawesome';
 import '../styles/Card.css';
 import TextField from "@material-ui/core/TextField";
-import {InputAdornment, Slider} from "@material-ui/core";
+import {Card, InputAdornment, Slider} from "@material-ui/core";
 
 function MyBalance(props) {
   if (props.holdings > 0 && props.settings.showCardBalances) {
@@ -19,12 +19,11 @@ function MyBalance(props) {
   )
 }
 
-class Card extends Component {
+class AssetCard extends Component {
   constructor(props){
     super(props);
     this.state ={
       flip: false,
-      holdings: props.asset.holdings,
       settings: props.settings,
       simulatedPercentChange: 0,
       simulatedPrice: props.asset.price,
@@ -114,7 +113,7 @@ class Card extends Component {
     let back = this.state.flip ? '' : 'none';
     return(
       <div className="col-xs-12 col-sm-6 col-lg-4 card-container">
-        <div className="card">
+        <Card className="card">
           <div className={(window.innerWidth <= 760) ? "row" : ""} style={{display: front}} onClick={() => this.toggleSettings()}>
             <div className={(window.innerWidth <= 760) ? "ml-2 w-50" : ""}>
             <FontAwesome
@@ -137,7 +136,7 @@ class Card extends Component {
                 {this.getPercentChange(this.props.asset.percent_change_1h, "1h")}
                 {this.getPercentChange(this.props.asset.percent_change_24h, "24h")}
                 {this.getPercentChange(this.props.asset.percent_change_7d, "7d")}
-                <MyBalance holdings={this.state.holdings} price={price} settings={this.state.settings} />
+                <MyBalance holdings={this.props.asset.holdings} price={price} settings={this.state.settings} />
               </div>
             </div>
           </div>
@@ -166,18 +165,15 @@ class Card extends Component {
                     label="My Holdings"
                     onChange={
                       event => {
-                        this.setState({
-                          holdings: parseFloat(event.target.value)
-                        });
-                        this.props.updateHoldings(event, this.props.asset)
+                        this.props.updateHoldings(parseFloat(event.target.value), this.props.asset.symbol)
                       }
                     }
                     size={"small"}
-                    value={this.state.holdings || 0}
+                    value={this.props.asset.holdings || 0}
                     variant="outlined"
                 />
 
-                <MyBalance holdings={this.state.holdings} price={price} settings={this.state.settings} />
+                <MyBalance holdings={this.props.asset.holdings} price={price} settings={this.state.settings} />
 
                 <hr />
 
@@ -191,7 +187,7 @@ class Card extends Component {
                           this.setState({
                               simulatedPercentChange: event.target.value,
                               simulatedPrice: (((event.target.value * .01) * price) + price),
-                              simulatedValue: ((((event.target.value * .01) * price) + price) * this.state.holdings),
+                              simulatedValue: ((((event.target.value * .01) * price) + price) * this.props.asset.holdings),
                               simulatedCap: ((((event.target.value * .01) * price) + price) * this.props.asset.circulating_supply)
                           })
                     }
@@ -209,7 +205,7 @@ class Card extends Component {
                           this.setState({
                               simulatedPercentChange: value,
                               simulatedPrice: (((value * .01) * price) + price),
-                              simulatedValue: ((((value * .01) * price) + price) * this.state.holdings),
+                              simulatedValue: ((((value * .01) * price) + price) * this.props.asset.holdings),
                               simulatedCap: ((((value * .01) * price) + price) * this.props.asset.circulating_supply)
                           })
                     }
@@ -235,7 +231,7 @@ class Card extends Component {
                           this.setState({
                               simulatedPercentChange: (100 * ((event.target.value - price) / price)),
                               simulatedPrice: event.target.value,
-                              simulatedValue: (event.target.value * this.state.holdings),
+                              simulatedValue: (event.target.value * this.props.asset.holdings),
                               simulatedCap: (event.target.value * this.props.asset.circulating_supply)
                           })
                     }
@@ -252,14 +248,14 @@ class Card extends Component {
                   onChange={
                       event =>
                           this.setState({
-                              simulatedPercentChange: (100 * (((event.target.value / this.state.holdings) - price) / price)),
-                              simulatedPrice: (event.target.value / this.state.holdings),
+                              simulatedPercentChange: (100 * (((event.target.value / this.props.asset.holdings) - price) / price)),
+                              simulatedPrice: (event.target.value / this.props.asset.holdings),
                               simulatedValue: event.target.value,
-                              simulatedCap: ((event.target.value / this.state.holdings) * this.props.asset.circulating_supply)
+                              simulatedCap: ((event.target.value / this.props.asset.holdings) * this.props.asset.circulating_supply)
                           })
                   }
                   size={"small"}
-                  value={this.getLocalizedPrice(this.state.simulatedValue) || this.getLocalizedPrice(this.state.holdings * price)}
+                  value={this.getLocalizedPrice(this.state.simulatedValue) || this.getLocalizedPrice(this.props.asset.holdings * price)}
                   variant="outlined"
                 />
 
@@ -273,7 +269,7 @@ class Card extends Component {
                           this.setState({
                               simulatedPercentChange: (100 * ((event.target.value - (this.props.asset.circulating_supply * price)) / (this.props.asset.circulating_supply * price))),
                               simulatedPrice: (event.target.value / this.props.asset.circulating_supply),
-                              simulatedValue: ((event.target.value / this.props.asset.circulating_supply) * this.state.holdings),
+                              simulatedValue: ((event.target.value / this.props.asset.circulating_supply) * this.props.asset.holdings),
                               simulatedCap: event.target.value
                           })
                   }
@@ -284,10 +280,10 @@ class Card extends Component {
               </div>
             </div>
           </div>
-        </div>
+        </Card>
       </div>
     )
   }
 }
 
-export default Card;
+export default AssetCard;
