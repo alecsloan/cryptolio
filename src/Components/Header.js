@@ -1,5 +1,4 @@
 import Autocomplete from "@material-ui/lab/Autocomplete";
-import FontAwesome from 'react-fontawesome';
 import Hotkeys from "react-hot-keys";
 import React, { Component } from 'react';
 import TextField from "@material-ui/core/TextField";
