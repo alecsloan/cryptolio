@@ -307,13 +307,11 @@ class App extends Component {
     });
   }
 
-  updateHoldings(event, asset){
-    let value = parseFloat(event.target.value);
-
+  updateHoldings(value, symbol){
     var assets = this.state.data.assets;
 
-    if (value){
-      assets.find(asset => asset.symbol === asset.symbol.toUpperCase()).holdings = value;
+    if (value) {
+      assets.find(asset => asset.symbol === symbol).holdings = value;
     }
 
     this.storeData(assets);
