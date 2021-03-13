@@ -231,11 +231,14 @@ class App extends Component {
               var cg_id = null;
               var cmc_id = null;
 
-              if (this.state.data.assets !== undefined) {
+              if (this.state.data.assets) {
                 var existingAsset = this.state.data.assets.find(asset => asset.symbol === responseAsset.symbol);
-                cg_id = existingAsset.cg_id;
-                cmc_id = existingAsset.cmc_id;
-                holdings = existingAsset.holdings;
+
+                if (existingAsset) {
+                  cg_id = existingAsset.cg_id;
+                  cmc_id = existingAsset.cmc_id;
+                  holdings = existingAsset.holdings;
+                }
               }
 
               if (!cmc_id)
@@ -310,9 +313,7 @@ class App extends Component {
   updateHoldings(value, symbol){
     var assets = this.state.data.assets;
 
-    if (value) {
-      assets.find(asset => asset.symbol === symbol).holdings = value;
-    }
+    assets.find(asset => asset.symbol === symbol).holdings = value;
 
     this.storeData(assets);
   }
