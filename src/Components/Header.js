@@ -40,7 +40,7 @@ class Header extends Component {
       }
     });
 
-    return <span className="sub-title">Portfolio: {(balance).toLocaleString(window.navigator.language, { style: 'currency', currency: this.props.settings.currency, minimumFractionDigits: 2})}</span>;
+    return <span>: {(balance).toLocaleString(window.navigator.language, { style: 'currency', currency: this.props.settings.currency, minimumFractionDigits: 2})}</span>;
   }
 
   toggleAddSection(){
