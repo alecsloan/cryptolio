@@ -308,7 +308,8 @@ class Settings extends Component {
                       variant="outlined"
                   />
               </div>
-              <div className="text-white">
+              <div className="footer">
+                  <h6>{`Assets Available: ${this.props.data.cryptoassets.length}`}</h6>
                   Version: {process.env.REACT_APP_VERSION} |
                   <a className="ml-2 mr-2 text-white" href="https://github.com/alecsloan/cryptodash" rel="noopener noreferrer" target="_blank">
                       <FontAwesome
