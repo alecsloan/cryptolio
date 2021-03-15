@@ -1,7 +1,5 @@
-import Autocomplete from "@material-ui/lab/Autocomplete";
 import Hotkeys from "react-hot-keys";
 import React, { Component } from 'react';
-import TextField from "@material-ui/core/TextField";
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'font-awesome/css/font-awesome.min.css';
@@ -9,6 +7,7 @@ import '../styles/Header.css';
 import IconButton from "@material-ui/core/IconButton";
 import {Brightness2, Brightness7, KeyboardArrowDown, KeyboardArrowUp} from "@material-ui/icons";
 import SettingsIcon from "@material-ui/icons/Settings";
+import VirtualizedCryptoassetAutocomplete from "./VirtualizedCryptoassetAutocomplete";
 
 class Header extends Component {
   constructor(props) {
@@ -16,14 +15,13 @@ class Header extends Component {
 
     this.state = {
       displayAddSection: false,
-      cryptoassetRef: null,
-      inputValue: ""
+      cryptoassetRef: null
     }
   }
 
   focusAddCryptoasset() {
     setTimeout(() => {
-      document.getElementById('currency').focus();
+      document.getElementById('cryptoassets').focus();
     }, 50);
   }
 
@@ -101,37 +99,9 @@ class Header extends Component {
 
         </div>
         <div className="col-12" style={{display: displayAddSection}}>
-          <Autocomplete
-              autoComplete={false}
-              autoHighlight
-              blurOnSelect
-              clearOnBlur
-              disablePortal={true}
-              getOptionLabel={(option) => `${option.name} (${option.symbol})`}
-              id="currency"
-              inputValue={this.state.inputValue}
-              onChange={
-                (event, cryptoasset) => {
-                  if (cryptoasset) {
-                    this.props.addCrypto(cryptoasset.cmc_id, cryptoasset.cg_id, cryptoasset.symbol)
-
-                    this.setState({
-                      inputValue: ""
-                    })
-                  }
-                }
-              }
-              onInputChange={
-                  (event, value) => {
-                      this.setState({
-                          inputValue: value
-                      })
-                  }
-              }
-              options={this.props.cryptoAssetData}
-              renderInput={(params) => <TextField {...params} label="Add Cryptoasset" variant="outlined" />}
-              size="small"
-              value={null}
+          <VirtualizedCryptoassetAutocomplete
+            addCrypto={this.props.addCrypto.bind(this)}
+            options={this.props.cryptoAssetData}
           />
         </div>
         <Hotkeys
