@@ -193,19 +193,6 @@ class Settings extends Component {
                       InputLabelProps={{
                           shrink: true,
                       }}
-                      label="Dropdown Limit"
-                      onInputCapture={event => this.props.editSetting('limit', event.target.value)}
-                      size="small"
-                      type="number"
-                      value={this.props.settings.limit}
-                      variant="outlined"
-                  />
-              </div>
-              <div className="row">
-                  <TextField
-                      InputLabelProps={{
-                          shrink: true,
-                      }}
                       label="Simulated Percent Slider Max"
                       onInputCapture={event => this.props.editSetting('sliderMax', (event.target.value < 100) ? 100 : event.target.value)}
                       size="small"
@@ -214,18 +201,6 @@ class Settings extends Component {
                       variant="outlined"
                   />
               </div>
-              <IntervalSelector
-                  value={this.props.settings.autoHideFetchNotification}
-                  label="Data Fetch Notification Timeout"
-                  labelPlacement="top"
-                  max="Minute"
-                  min="Second"
-                  onChange={value => this.props.editSetting('autoHideFetchNotification', value)}
-                  selectFieldClasses="col-8"
-                  size="small"
-                  textFieldClasses="col-4"
-                  variant="outlined"
-              />
               <div className="row">
                   <div className="col-sm-4">
                       <FormControlLabel
@@ -282,6 +257,18 @@ class Settings extends Component {
                   textFieldClasses="col-4"
                   variant="outlined"
               />
+              <IntervalSelector
+                value={this.props.settings.autoHideFetchNotification}
+                label="Data Fetch Notification Timeout"
+                labelPlacement="top"
+                max="Minute"
+                min="Second"
+                onChange={value => this.props.editSetting('autoHideFetchNotification', value)}
+                selectFieldClasses="col-8"
+                size="small"
+                textFieldClasses="col-4"
+                variant="outlined"
+              />
               <div className="row">
                   <TextField
                       InputLabelProps={{
@@ -321,7 +308,8 @@ class Settings extends Component {
                       variant="outlined"
                   />
               </div>
-              <div className="text-white">
+              <div className="footer">
+                  <h6>{`Assets Available: ${this.props.data.cryptoassets.length}`}</h6>
                   Version: {process.env.REACT_APP_VERSION} |
                   <a className="ml-2 mr-2 text-white" href="https://github.com/alecsloan/cryptodash" rel="noopener noreferrer" target="_blank">
                       <FontAwesome

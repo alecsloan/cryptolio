@@ -42,7 +42,6 @@ Just run `npm start`
 * Add full configuration for color picking so users can set their own colors/gradients
 * Add setting for sorting cards (Market Cap, holdings, price, etc)
 * Add multi-language support
-* Get list of tokens dynamically, using a static list of tokens is limiting
 * Add functionality for interest bearing assets
 * Add functionality for exit strategy planning
 * Make it more clear that prices and value changes were updated (maybe similar to what CMC does?)
