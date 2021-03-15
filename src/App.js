@@ -59,7 +59,6 @@ class App extends Component {
       decimals3: 1,
       decimals4: null,
       fetchInterval: 300000,
-      limit: 5000,
       show1hChange: true,
       show24hChange: true,
       show7dChange: true,

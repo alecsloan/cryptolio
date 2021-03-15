@@ -193,19 +193,6 @@ class Settings extends Component {
                       InputLabelProps={{
                           shrink: true,
                       }}
-                      label="Dropdown Limit"
-                      onInputCapture={event => this.props.editSetting('limit', event.target.value)}
-                      size="small"
-                      type="number"
-                      value={this.props.settings.limit}
-                      variant="outlined"
-                  />
-              </div>
-              <div className="row">
-                  <TextField
-                      InputLabelProps={{
-                          shrink: true,
-                      }}
                       label="Simulated Percent Slider Max"
                       onInputCapture={event => this.props.editSetting('sliderMax', (event.target.value < 100) ? 100 : event.target.value)}
                       size="small"
