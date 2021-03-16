@@ -189,6 +189,26 @@ class Settings extends Component {
                   />
               </div>
               <div className="row">
+                  <FormControlLabel
+                    className={"w-100"}
+                    control={
+                        <Select
+                          className={"w-100"}
+                          onChange={event => this.props.editSetting('sorting', event.target.value)}
+                          value={this.props.settings.sorting}
+                          variant={"outlined"}
+                        >
+                            <MenuItem key={"balance"} value={"balance"}>Balance</MenuItem>
+                            <MenuItem key={"marketcap"} value={"marketcap"}>Marketcap</MenuItem>
+                            <MenuItem key={"price"} value={"price"}>Price</MenuItem>
+                        </Select>
+                    }
+                    label="Card Sorting"
+                    labelPlacement="top"
+                    value="top"
+                  />
+              </div>
+              <div className="row">
                   <TextField
                       InputLabelProps={{
                           shrink: true,

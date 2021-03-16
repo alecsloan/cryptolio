@@ -35,10 +35,22 @@ const lightTheme = createMuiTheme({
 function CardRow(props) {
   var cards = [];
 
-  if (!props.assets)
+  var assets = props.assets;
+
+  if (!assets)
     return <div></div>;
 
-  props.assets.forEach(asset => {
+  if (props.settings.sorting === "price") {
+    assets = assets.sort((a, b) => b.price - a.price);
+  }
+  else if (props.settings.sorting === "marketcap") {
+    assets = assets.sort((a, b) => b.market_cap - a.market_cap);
+  }
+  else {
+    assets = assets.sort((a, b) => ((b.holdings || .000001) * b.price) - ((a.holdings || .000001) * a.price));
+  }
+
+  assets.forEach(asset => {
     cards.push(<AssetCard asset={asset} key={asset.symbol} removeCrypto={props.removeCrypto.bind(this)} settings={props.settings} updateHoldings={props.updateHoldings.bind(this)}/>)
   });
 
@@ -65,13 +77,13 @@ class App extends Component {
       showCardBalances: true,
       showPortfolioBalance: true,
       sliderMax: 10000,
+      sorting: "balance",
       theme: lightTheme
     };
 
     initialSettings.theme = createMuiTheme(initialSettings.theme);
 
     this.state ={
-      cards: [],
       data: {
         assets: initialData.assets,
         cryptoassets: initialData.cryptoassets || [],
