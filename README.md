@@ -40,7 +40,6 @@ Just run `npm start`
 
 # Todo
 * Add full configuration for color picking so users can set their own colors/gradients
-* Add setting for sorting cards (Market Cap, holdings, price, etc)
 * Add multi-language support
 * Add functionality for interest bearing assets
 * Add functionality for exit strategy planning
