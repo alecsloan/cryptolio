@@ -74,7 +74,7 @@ class App extends Component {
       cards: [],
       data: {
         assets: initialData.assets,
-        cryptoassets: initialData.cryptoassets,
+        cryptoassets: initialData.cryptoassets || [],
       },
       dataUpdated: false,
       showSettings: false,
@@ -82,12 +82,9 @@ class App extends Component {
       timestamp: null
     };
 
-    this.fetchAvailableAssets();
-
-    if (!initialData.assets || initialData.assets.length === 0)
-      this.addCrypto(1817, "ethos", "VGX");
-
-    this.fetchAssetData();
+    if (!this.state.data.cryptoassets || this.state.data.cryptoassets.length === 0) {
+      this.fetchAvailableAssets();
+    }
   }
 
   addCrypto(cmc_id, symbol){
@@ -324,6 +321,11 @@ class App extends Component {
         cryptoassets = cryptoassets.sort((a, b) => a.rank - b.rank);
 
         this.storeData(this.state.data.assets, cryptoassets);
+
+        if (!this.state.data.assets || this.state.data.assets.length === 0)
+          this.addCrypto(1817, "ethos", "VGX");
+
+        this.fetchAssetData();
       }).catch(e => console.error(e));
   }
 

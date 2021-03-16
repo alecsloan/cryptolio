@@ -12,13 +12,6 @@
     width: 100% !important;
 }
 
-.footer {
-    bottom: 0;
-    margin-bottom: 5px;
-    position: absolute;
-    width: 100%;
-}
-
 .MuiDrawer-paper {
     width: 70%;
 }
