@@ -45,9 +45,6 @@ const ListboxComponent = React.forwardRef(function ListboxComponent(props, ref) 
   const itemCount = itemData.length;
   const itemSize = smUp ? 36 : 48;
 
-  console.log(itemData);
-  console.log(itemCount);
-
   const getChildSize = (child) => {
     if (React.isValidElement(child) && child.type === ListSubheader) {
       return 48;
