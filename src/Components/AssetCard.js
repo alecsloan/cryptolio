@@ -3,7 +3,19 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import FontAwesome from 'react-fontawesome';
 import '../styles/Card.css';
 import TextField from "@material-ui/core/TextField";
-import {Card, InputAdornment, Slider} from "@material-ui/core";
+import {
+  Accordion,
+  AccordionDetails,
+  AccordionSummary,
+  Card,
+  InputAdornment,
+  Slider,
+  Typography
+} from "@material-ui/core";
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import Switch from "@material-ui/core/Switch";
+import FormControlLabel from "@material-ui/core/FormControlLabel";
+
 
 function MyBalance(props) {
   if (props.holdings > 0 && props.settings.showCardBalances) {
@@ -37,7 +49,7 @@ class AssetCard extends Component {
         window.navigator.language,
         {
           style: 'currency',
-          currency: this.state.settings.currency,
+          currency: this.props.settings.currency,
           maximumFractionDigits: 0,
           minimumFractionDigits: 0
         }
@@ -48,13 +60,13 @@ class AssetCard extends Component {
     let showPeriodChange = false;
 
     if (period === "1h") {
-      showPeriodChange = this.state.settings.show1hChange;
+      showPeriodChange = this.props.settings.show1hChange;
     }
     else if (period === "24h") {
-      showPeriodChange = this.state.settings.show24hChange;
+      showPeriodChange = this.props.settings.show24hChange;
     }
     else if (period === "7d") {
-      showPeriodChange = this.state.settings.show7dChange;
+      showPeriodChange = this.props.settings.show7dChange;
     }
 
     if (showPeriodChange) {
@@ -106,7 +118,7 @@ class AssetCard extends Component {
     return price.toLocaleString(
         window.navigator.language,
         {
-          currency: this.state.settings.currency,
+          currency: this.props.settings.currency,
           maximumFractionDigits: maxDigits,
           minimumFractionDigits: maxDigits
         }
@@ -147,24 +159,26 @@ class AssetCard extends Component {
                 {this.getPercentChange(this.props.asset.percent_change_1h, "1h")}
                 {this.getPercentChange(this.props.asset.percent_change_24h, "24h")}
                 {this.getPercentChange(this.props.asset.percent_change_7d, "7d")}
-                <MyBalance holdings={this.props.asset.holdings} price={price} settings={this.state.settings} />
+                <MyBalance holdings={this.props.asset.holdings} price={price} settings={this.props.settings} />
               </div>
             </div>
           </div>
           <div className="back" style={{display: back}}>
-            <FontAwesome
-              className='settings pull-left visible'
-              name='trash'
-              onClick={() => this.props.removeCrypto(this.props.asset.symbol)}
-              size='2x'
-            />
-            <FontAwesome
-              className='settings visible'
-              name='save'
-              onClick={() => this.toggleSettings()}
-              size='2x'
-            />
             <div className="card-body">
+              <div className="row">
+                <FontAwesome
+                  className='settings pull-left visible'
+                  name='trash'
+                  onClick={() => this.props.removeCrypto(this.props.asset.symbol)}
+                  size='2x'
+                />
+                <FontAwesome
+                  className='settings visible'
+                  name='save'
+                  onClick={() => this.toggleSettings()}
+                  size='2x'
+                />
+            </div>
               <h4 className="card-title settings-title">
                 {this.props.asset.name + "(" + this.props.asset.symbol + ")"}
               </h4>
@@ -173,126 +187,138 @@ class AssetCard extends Component {
                 <div className="mb-2">Price: {this.getCurrencySymbol() + this.getLocalizedPrice(price)}</div>
 
                 <TextField
-                    label="My Holdings"
-                    onChange={
-                      event => {
-                        this.props.updateHoldings(event.target.value, this.props.asset.symbol);
-
-                        this.setState({
-                          simulatedValue: event.target.value * this.state.simulatedPrice
-                        })
-                      }
-                    }
-                    size={"small"}
-                    value={this.getLocalizedNumber(this.props.asset.holdings)}
-                    variant="outlined"
-                />
-
-                <MyBalance holdings={this.props.asset.holdings} price={price} settings={this.state.settings} />
-
-                <hr />
-
-                <TextField
-                    InputProps={{
-                      endAdornment: <InputAdornment position="end">%</InputAdornment>,
-                    }}
-                    label="Simulated Percent"
-                    onChange={
-                      event =>
-                          this.setState({
-                              simulatedPercentChange: event.target.value,
-                              simulatedPrice: (((event.target.value * .01) * price) + price),
-                              simulatedValue: ((((event.target.value * .01) * price) + price) * this.props.asset.holdings),
-                              simulatedCap: ((((event.target.value * .01) * price) + price) * this.props.asset.circulating_supply)
-                          })
-                    }
-                    size={"small"}
-                    value={this.getLocalizedPrice(this.state.simulatedPercentChange)}
-                    variant="outlined"
-                />
-
-                <Slider
-                    className="slider"
-                    max={this.state.settings.sliderMax}
-                    min={-100}
-                    onChange={
-                      (event, value) =>
-                          this.setState({
-                              simulatedPercentChange: value,
-                              simulatedPrice: (((value * .01) * price) + price),
-                              simulatedValue: ((((value * .01) * price) + price) * this.props.asset.holdings),
-                              simulatedCap: ((((value * .01) * price) + price) * this.props.asset.circulating_supply)
-                          })
-                    }
-                    valueLabelFormat={
-                        value => {
-                          if (!value)
-                            return "0%";
-
-                          return this.getLocalizedPrice(value) + "%";
-                        }
-                    }
-                    valueLabelDisplay="auto"
-                    value={this.state.simulatedPercentChange}
-                />
-
-                <TextField
-                    InputProps={{
-                      startAdornment: <InputAdornment position="start">{this.getCurrencySymbol()}</InputAdornment>,
-                    }}
-                    label="Simulated Price"
-                    onChange={
-                        event =>
-                          this.setState({
-                              simulatedPercentChange: (100 * ((event.target.value - price) / price)),
-                              simulatedPrice: event.target.value,
-                              simulatedValue: (event.target.value * this.props.asset.holdings),
-                              simulatedCap: (event.target.value * this.props.asset.circulating_supply)
-                          })
-                    }
-                    size={"small"}
-                    value={this.getLocalizedPrice(this.state.simulatedPrice)}
-                    variant="outlined"
-                />
-
-                <TextField
-                  InputProps={{
-                      startAdornment: <InputAdornment position="start">{this.getCurrencySymbol()}</InputAdornment>,
-                  }}
-                  label="Simulated Value"
+                  label="My Holdings"
                   onChange={
-                      event =>
-                          this.setState({
-                              simulatedPercentChange: (100 * (((event.target.value / this.props.asset.holdings) - price) / price)),
-                              simulatedPrice: (event.target.value / this.props.asset.holdings),
-                              simulatedValue: event.target.value,
-                              simulatedCap: ((event.target.value / this.props.asset.holdings) * this.props.asset.circulating_supply)
-                          })
+                    event => {
+                      this.props.updateHoldings(event.target.value, this.props.asset.symbol);
+
+                      this.setState({
+                        simulatedValue: event.target.value * this.state.simulatedPrice
+                      })
+                    }
                   }
                   size={"small"}
-                  value={this.getLocalizedPrice(this.state.simulatedValue)}
+                  value={this.getLocalizedNumber(this.props.asset.holdings)}
                   variant="outlined"
                 />
 
-                <TextField
-                  InputProps={{
-                      startAdornment: <InputAdornment position="start">{this.getCurrencySymbol()}</InputAdornment>,
-                  }}
-                  label="Simulated Cap"
-                  onChange={
-                      event =>
-                          this.setState({
-                              simulatedPercentChange: (100 * ((event.target.value - (this.props.asset.circulating_supply * price)) / (this.props.asset.circulating_supply * price))),
-                              simulatedPrice: (event.target.value / this.props.asset.circulating_supply),
-                              simulatedValue: ((event.target.value / this.props.asset.circulating_supply) * this.props.asset.holdings),
-                              simulatedCap: event.target.value
-                          })
-                  }
-                  size={"small"}
-                  value={this.getLocalizedPrice(this.state.simulatedCap)}
-                  variant="outlined"
-                />
+                <MyBalance holdings={this.props.asset.holdings} price={price} settings={this.props.settings} />
               </div>
+
+              <hr />
+
+              <Accordion>
+                <AccordionSummary
+                  expandIcon={<ExpandMoreIcon />}
+                >
+                  <Typography>Simulation</Typography>
+                </AccordionSummary>
+                <AccordionDetails>
+                  <div className="card-text">
+
+                    <TextField
+                        InputProps={{
+                          endAdornment: <InputAdornment position="end">%</InputAdornment>,
+                        }}
+                        label="Simulated Percent"
+                        onChange={
+                          event =>
+                              this.setState({
+                                  simulatedPercentChange: event.target.value,
+                                  simulatedPrice: (((event.target.value * .01) * price) + price),
+                                  simulatedValue: ((((event.target.value * .01) * price) + price) * this.props.asset.holdings),
+                                  simulatedCap: ((((event.target.value * .01) * price) + price) * this.props.asset.circulating_supply)
+                              })
+                        }
+                        size={"small"}
+                        value={this.getLocalizedPrice(this.state.simulatedPercentChange)}
+                        variant="outlined"
+                    />
+
+                    <Slider
+                        className="slider"
+                        max={this.props.settings.sliderMax}
+                        min={-100}
+                        onChange={
+                          (event, value) =>
+                              this.setState({
+                                  simulatedPercentChange: value,
+                                  simulatedPrice: (((value * .01) * price) + price),
+                                  simulatedValue: ((((value * .01) * price) + price) * this.props.asset.holdings),
+                                  simulatedCap: ((((value * .01) * price) + price) * this.props.asset.circulating_supply)
+                              })
+                        }
+                        valueLabelFormat={
+                            value => {
+                              if (!value)
+                                return "0%";
+
+                              return this.getLocalizedPrice(value) + "%";
+                            }
+                        }
+                        valueLabelDisplay="auto"
+                        value={this.state.simulatedPercentChange}
+                    />
+
+                    <TextField
+                        InputProps={{
+                          startAdornment: <InputAdornment position="start">{this.getCurrencySymbol()}</InputAdornment>,
+                        }}
+                        label="Simulated Price"
+                        onChange={
+                            event =>
+                              this.setState({
+                                  simulatedPercentChange: (100 * ((event.target.value - price) / price)),
+                                  simulatedPrice: event.target.value,
+                                  simulatedValue: (event.target.value * this.props.asset.holdings),
+                                  simulatedCap: (event.target.value * this.props.asset.circulating_supply)
+                              })
+                        }
+                        size={"small"}
+                        value={this.getLocalizedPrice(this.state.simulatedPrice)}
+                        variant="outlined"
+                    />
+
+                    <TextField
+                      InputProps={{
+                          startAdornment: <InputAdornment position="start">{this.getCurrencySymbol()}</InputAdornment>,
+                      }}
+                      label="Simulated Value"
+                      onChange={
+                          event =>
+                              this.setState({
+                                  simulatedPercentChange: (100 * (((event.target.value / this.props.asset.holdings) - price) / price)),
+                                  simulatedPrice: (event.target.value / this.props.asset.holdings),
+                                  simulatedValue: event.target.value,
+                                  simulatedCap: ((event.target.value / this.props.asset.holdings) * this.props.asset.circulating_supply)
+                              })
+                      }
+                      size={"small"}
+                      value={this.getLocalizedPrice(this.state.simulatedValue)}
+                      variant="outlined"
+                    />
+
+                    <TextField
+                      InputProps={{
+                          startAdornment: <InputAdornment position="start">{this.getCurrencySymbol()}</InputAdornment>,
+                      }}
+                      label="Simulated Cap"
+                      onChange={
+                          event =>
+                              this.setState({
+                                  simulatedPercentChange: (100 * ((event.target.value - (this.props.asset.circulating_supply * price)) / (this.props.asset.circulating_supply * price))),
+                                  simulatedPrice: (event.target.value / this.props.asset.circulating_supply),
+                                  simulatedValue: ((event.target.value / this.props.asset.circulating_supply) * this.props.asset.holdings),
+                                  simulatedCap: event.target.value
+                              })
+                      }
+                      size={"small"}
+                      value={this.getLocalizedPrice(this.state.simulatedCap)}
+                      variant="outlined"
+                    />
+                  </div>
+                </AccordionDetails>
+              </Accordion>
             </div>
           </div>
         </Card>
