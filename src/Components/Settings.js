@@ -201,6 +201,9 @@ class Settings extends Component {
                             <MenuItem key={"balance"} value={"balance"}>Balance</MenuItem>
                             <MenuItem key={"marketcap"} value={"marketcap"}>Marketcap</MenuItem>
                             <MenuItem key={"price"} value={"price"}>Price</MenuItem>
+                            <MenuItem key={"1h"} value={"1h"}>1 Hour Change</MenuItem>
+                            <MenuItem key={"24h"} value={"24h"}>24 Hour Change</MenuItem>
+                            <MenuItem key={"7d"} value={"7d"}>7 Day Change</MenuItem>
                         </Select>
                     }
                     label="Card Sorting"

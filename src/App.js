@@ -46,6 +46,15 @@ function CardRow(props) {
   else if (props.settings.sorting === "marketcap") {
     assets = assets.sort((a, b) => b.market_cap - a.market_cap);
   }
+  else if (props.settings.sorting === "1h") {
+    assets = assets.sort((a, b) => b.percent_change_1h - a.percent_change_1h);
+  }
+  else if (props.settings.sorting === "24h") {
+    assets = assets.sort((a, b) => b.percent_change_24h - a.percent_change_24h);
+  }
+  else if (props.settings.sorting === "7d") {
+    assets = assets.sort((a, b) => b.percent_change_7d - a.percent_change_7d);
+  }
   else {
     assets = assets.sort((a, b) => ((b.holdings || .000001) * b.price) - ((a.holdings || .000001) * a.price));
   }
