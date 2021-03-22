@@ -13,8 +13,7 @@ import {
   Typography
 } from "@material-ui/core";
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import Switch from "@material-ui/core/Switch";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
+import { DataGrid } from '@material-ui/data-grid';
 
 
 function MyBalance(props) {
@@ -40,7 +39,11 @@ class AssetCard extends Component {
       simulatedPercentChange: 0,
       simulatedPrice: props.asset.price,
       simulatedValue: props.asset.holdings * props.asset.price,
-      simulatedCap: this.props.asset.circulating_supply * props.asset.price
+      simulatedCap: this.props.asset.circulating_supply * props.asset.price,
+      interestSimulation: {
+        interest: 0,
+        simulatedPrice: props.asset.price
+      }
     };
   }
 
@@ -134,6 +137,22 @@ class AssetCard extends Component {
 
     let front = this.state.flip ? 'none' : '';
     let back = this.state.flip ? '' : 'none';
+
+    var yearlyInterest = this.props.asset.holdings * (this.state.interestSimulation.interest * .01);
+
+    const columns = [
+      { field: 'id', headerName: this.props.asset.symbol + " Earned", width: "33%", sortable: false },
+      { field: 'amount', headerName: 'Amount', width: "33%", sortable: false },
+      { field: 'value', headerName: this.getCurrencySymbol() + " Value", width: "33%", sortable: false },
+    ];
+
+    const rows = [
+      { id: "Daily", amount: this.getLocalizedNumber(yearlyInterest / 365) || 0, value: this.getCurrencySymbol() + (this.getLocalizedPrice(this.state.interestSimulation.simulatedPrice * (yearlyInterest / 365)) || 0)},
+      { id: "Weekly", amount: this.getLocalizedNumber(yearlyInterest / 52) || 0, value: this.getCurrencySymbol() + (this.getLocalizedPrice(this.state.interestSimulation.simulatedPrice * (yearlyInterest / 52)) || 0)},
+      { id: "Monthly", amount: this.getLocalizedNumber(yearlyInterest / 12) || 0, value: this.getCurrencySymbol() + (this.getLocalizedPrice(this.state.interestSimulation.simulatedPrice * (yearlyInterest / 12)) || 0)},
+      { id: "Yearly", amount: this.getLocalizedNumber(yearlyInterest) || 0, value: this.getCurrencySymbol() + (this.getLocalizedPrice(this.state.interestSimulation.simulatedPrice * yearlyInterest) || 0)},
+    ];
+
     return(
       <div className="col-xs-12 col-sm-6 col-lg-4 card-container">
         <Card className="card">
@@ -164,7 +183,7 @@ class AssetCard extends Component {
             </div>
           </div>
           <div className="back" style={{display: back}}>
-            <div className="card-body">
+            <div className="card-body p-0">
               <div className="row">
                 <FontAwesome
                   className='settings pull-left visible'
@@ -316,6 +335,64 @@ class AssetCard extends Component {
                       value={this.getLocalizedPrice(this.state.simulatedCap)}
                       variant="outlined"
                     />
+                  </div>
+                </AccordionDetails>
+              </Accordion>
+              <Accordion>
+                <AccordionSummary
+                  expandIcon={<ExpandMoreIcon />}
+                >
+                  <Typography>Interest Calculator</Typography>
+                </AccordionSummary>
+                <AccordionDetails>
+                  <div className="card-text">
+                    <div className="row">
+                      <div className="col-6">
+                        <TextField
+                          InputProps={{
+                            endAdornment: <InputAdornment position="end">%</InputAdornment>,
+                          }}
+                          label="Interest"
+                          onChange={
+                            event => {
+                              this.setState({
+                                interestSimulation: {
+                                  ...this.state.interestSimulation,
+                                  interest: event.target.value
+                                }
+                              });
+                            }
+                          }
+                          size={"small"}
+                          value={this.state.interestSimulation.interest}
+                          variant="outlined"
+                        />
+                      </div>
+                      <div className="col-6">
+                        <TextField
+                          label="Simulated Price"
+                          InputProps={{
+                            startAdornment: <InputAdornment position="start">{this.getCurrencySymbol()}</InputAdornment>,
+                          }}
+                          onChange={
+                            event => {
+                              this.setState({
+                                interestSimulation: {
+                                  ...this.state.interestSimulation,
+                                  simulatedPrice: event.target.value
+                                }
+                              })
+                            }
+                          }
+                          size="small"
+                          value={this.getLocalizedNumber(this.state.interestSimulation.simulatedPrice)}
+                          variant="outlined"
+                        />
+                      </div>
+                    </div>
+                    <div className="row">
+                      <DataGrid autoHeight disableColumnMenu disableColumnReorder rows={rows} columns={columns} hideFooter />
+                    </div>
                   </div>
                 </AccordionDetails>
               </Accordion>

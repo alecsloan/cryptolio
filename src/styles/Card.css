@@ -109,6 +109,14 @@
   }
 }
 
+.MuiDataGrid-viewport .rendering-zone,
+.MuiDataGrid-root .Mui-even.MuiDataGrid-row,
+.MuiDataGrid-root .Mui-odd.MuiDataGrid-row,
+.MuiDataGrid-root .MuiDataGrid-viewport {
+    min-width: 100% !important;
+    width: 100% !important;
+}
+
 .pull-left {
   left: 0;
   position: relative !important;
