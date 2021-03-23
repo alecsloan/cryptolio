@@ -116,7 +116,7 @@ class Settings extends Component {
                           variant="contained"
                           color="primary"
                           startIcon={<CloudDownloadIcon />}
-                          onClick={() => exportFromJSON({ data: this.props.data, fileName: 'cryptodash_data', exportType: 'json' })}
+                          onClick={() => exportFromJSON({ data: this.props.data, fileName: 'cryptolio_data', exportType: 'json' })}
                       >
                           Download Data
                       </Button>
@@ -334,7 +334,7 @@ class Settings extends Component {
               <div>
                   <h6>{`Assets Available: ${this.props.data.cryptoassets.length}`}</h6>
                   Version: {process.env.REACT_APP_VERSION} |
-                  <a className="ml-2 mr-2 text-white" href="https://github.com/alecsloan/cryptodash" rel="noopener noreferrer" target="_blank">
+                  <a className="ml-2 mr-2 text-white" href="https://github.com/alecsloan/cryptolio" rel="noopener noreferrer" target="_blank">
                       <FontAwesome
                           className='ml-2 mr-1'
                           name='github'

@@ -1,4 +1,4 @@
-[![Netlify Status](https://api.netlify.com/api/v1/badges/1d54e4f5-13f5-4dec-a155-5d69e41b56b0/deploy-status)](https://app.netlify.com/sites/cryptodash-demo/deploys)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/1d54e4f5-13f5-4dec-a155-5d69e41b56b0/deploy-status)](https://app.netlify.com/sites/cryptolio/deploys)
 
 # Explore the world of cryptoassets
 ## Simulate price gain or drop to see your earning potential!
@@ -14,8 +14,8 @@
 
 ## Installation
 ``` sh
-git clone https://github.com/alecsloan/cryptodash
-cd cryptodash
+git clone https://github.com/alecsloan/cryptolio
+cd cryptolio
 npm install
 ```
 
@@ -43,7 +43,7 @@ Just run `npm start`
 * Add multi-language support
 * Make it more clear that prices and value changes were updated (maybe similar to what CMC does?)
 * Add link to CMC/CG page if someone clicks on the asset name/symbol
-* Add configuration for hiding CryptoDash title
+* Add configuration for hiding Cryptolio title
 * Add Skeleton for cards while loading
 * Add different layout views (table, main portfolio change chart with small cards, etc.)
 * Move the Simulation, Interest Calculator, and Exit Planning sections to a drawer or modal instead of the card
