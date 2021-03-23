@@ -1,6 +1,6 @@
 {
-  "name": "cryptodash",
-  "version": "3.0.0",
+  "name": "cryptolio",
+  "version": "3.0.1",
   "private": true,
   "dependencies": {
     "@material-ui/core": "latest",

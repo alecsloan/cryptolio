@@ -73,7 +73,7 @@ class Header extends Component {
               {displayAddSection ? <KeyboardArrowDown /> : <KeyboardArrowUp />}
             </IconButton>
 
-          CryptoDash
+          Cryptolio
 
           <IconButton
             className="pull-right"

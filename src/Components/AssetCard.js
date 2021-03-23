@@ -380,7 +380,7 @@ class AssetCard extends Component {
                       </div>
                       <div className="col-6">
                         <TextField
-                          label="Simulated Price"
+                          label="Price"
                           InputProps={{
                             startAdornment: <InputAdornment position="start">{this.getCurrencySymbol()}</InputAdornment>,
                           }}
