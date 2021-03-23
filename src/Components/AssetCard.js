@@ -14,6 +14,7 @@ import {
 } from "@material-ui/core";
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import { DataGrid } from '@material-ui/data-grid';
+import EditableTable from "./EditableTable";
 
 
 function MyBalance(props) {
@@ -128,11 +129,20 @@ class AssetCard extends Component {
     );
   }
 
+  setRows(rows) {
+    this.setState({
+      ...this.state,
+      exitPlan: {
+        rows
+      }
+    })
+  }
+
   toggleSettings(){
     this.setState({flip: !this.state.flip});
   }
 
-  render() {
+    render() {
     let price = this.props.asset.price;
 
     let front = this.state.flip ? 'none' : '';
@@ -394,6 +404,16 @@ class AssetCard extends Component {
                       <DataGrid autoHeight disableColumnMenu disableColumnReorder rows={rows} columns={columns} hideFooter />
                     </div>
                   </div>
+                </AccordionDetails>
+              </Accordion>
+              <Accordion>
+                <AccordionSummary
+                  expandIcon={<ExpandMoreIcon />}
+                >
+                  <Typography>Exit Planning</Typography>
+                </AccordionSummary>
+                <AccordionDetails>
+                  <EditableTable currencySymbol={this.getCurrencySymbol()} rows={this.props.asset.exitPlan} setRows={this.props.updateExitPlan.bind(this)} symbol={this.props.asset.symbol} />
                 </AccordionDetails>
               </Accordion>
             </div>
