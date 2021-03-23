@@ -41,8 +41,6 @@ Just run `npm start`
 # Todo
 * Add full configuration for color picking so users can set their own colors/gradients
 * Add multi-language support
-* Add functionality for interest bearing assets
-* Add functionality for exit strategy planning
 * Make it more clear that prices and value changes were updated (maybe similar to what CMC does?)
 * Add link to CMC/CG page if someone clicks on the asset name/symbol
 * Add configuration for hiding CryptoDash title
