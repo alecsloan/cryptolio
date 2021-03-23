@@ -46,12 +46,21 @@ function CardRow(props) {
   else if (props.settings.sorting === "marketcap") {
     assets = assets.sort((a, b) => b.market_cap - a.market_cap);
   }
+  else if (props.settings.sorting === "1h") {
+    assets = assets.sort((a, b) => b.percent_change_1h - a.percent_change_1h);
+  }
+  else if (props.settings.sorting === "24h") {
+    assets = assets.sort((a, b) => b.percent_change_24h - a.percent_change_24h);
+  }
+  else if (props.settings.sorting === "7d") {
+    assets = assets.sort((a, b) => b.percent_change_7d - a.percent_change_7d);
+  }
   else {
     assets = assets.sort((a, b) => ((b.holdings || .000001) * b.price) - ((a.holdings || .000001) * a.price));
   }
 
   assets.forEach(asset => {
-    cards.push(<AssetCard asset={asset} key={asset.symbol} removeCrypto={props.removeCrypto.bind(this)} settings={props.settings} updateHoldings={props.updateHoldings.bind(this)}/>)
+    cards.push(<AssetCard asset={asset} key={asset.symbol} removeCrypto={props.removeCrypto.bind(this)} settings={props.settings} updateHoldings={props.updateHoldings.bind(this)} updateExitPlan={props.updateExitPlan.bind(this)}/>)
   });
 
   return <div className="cardRow">{cards}</div>;
@@ -187,6 +196,7 @@ class App extends Component {
               assets.push({
                 circulating_supply: responseAsset.circulating_supply,
                 cmc_id: cmc_id,
+                exitPlan: [],
                 holdings: holdings,
                 imageURL: responseAsset.image,
                 market_cap: responseAsset.market_cap,
@@ -246,6 +256,7 @@ class App extends Component {
               assets.push({
                 circulating_supply: responseAsset.circulating_supply,
                 cmc_id: cmc_id,
+                exitPlan: [],
                 holdings: holdings,
                 imageURL: 'https://s2.coinmarketcap.com/static/img/coins/128x128/'+ cmc_id +'.png',
                 market_cap: responseAsset.quote[currency].market_cap,
@@ -396,6 +407,14 @@ class App extends Component {
     });
   }
 
+  updateExitPlan(rows, symbol) {
+    var assets = this.state.data.assets;
+
+    assets.find(asset => asset.symbol === symbol).exitPlan = rows;
+
+    this.storeData(assets);
+  }
+
   render() {
     return (
       <div className="page">
@@ -405,7 +424,7 @@ class App extends Component {
           <Header addCrypto={this.addCrypto.bind(this)} assets={this.state.data.assets} cryptoAssetData={this.state.data.cryptoassets} editSetting={this.editSetting.bind(this)} settings={this.state.settings} toggleShowSettings={this.toggleShowSettings.bind(this)}/>
           <hr />
           <div className="content">
-            <CardRow assets={this.state.data.assets} removeCrypto={this.removeCrypto.bind(this)} settings={this.state.settings} updateHoldings={this.updateHoldings.bind(this)} />
+            <CardRow assets={this.state.data.assets} removeCrypto={this.removeCrypto.bind(this)} settings={this.state.settings} updateHoldings={this.updateHoldings.bind(this)} updateExitPlan={this.updateExitPlan.bind(this)} />
           </div>
           <Settings data={this.state.data} editSetting={this.editSetting.bind(this)} settings={this.state.settings} showSettings={this.state.showSettings} theme={this.state.settings.theme || lightTheme} toggleShowSettings={this.toggleShowSettings.bind(this)} uploadData={this.uploadData.bind(this)} />
           <Hotkeys
