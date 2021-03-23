@@ -46,3 +46,5 @@ Just run `npm start`
 * Add configuration for hiding CryptoDash title
 * Add Skeleton for cards while loading
 * Add different layout views (table, main portfolio change chart with small cards, etc.)
+* Move the Simulation, Interest Calculator, and Exit Planning sections to a drawer or modal instead of the card
+* Add more info about the asset on the back of the card (Circ supply, max supply, market cap, etc)
