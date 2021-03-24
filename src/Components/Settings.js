@@ -4,7 +4,6 @@ import CloudDownloadIcon from '@material-ui/icons/CloudDownloadOutlined';
 import CloudUploadIcon from '@material-ui/icons/CloudUploadOutlined';
 import Drawer from '@material-ui/core/Drawer';
 import exportFromJSON from 'export-from-json'
-import FontAwesome from 'react-fontawesome';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import React, { Component } from 'react';
@@ -16,6 +15,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import 'font-awesome/css/font-awesome.min.css';
 import '../styles/Settings.css';
 import IntervalSelector from "./IntervalSelector";
+import {IconButton} from "@material-ui/core";
+import {ArrowBack, GitHub} from "@material-ui/icons";
 
 class Settings extends Component {
     constructor(props) {
@@ -66,12 +67,14 @@ class Settings extends Component {
           open={this.props.showSettings}
           onClose={() => this.props.toggleShowSettings()}
       >
-          <FontAwesome
-              className="back-arrow"
-              name="arrow-left"
-              onClick={() => this.props.toggleShowSettings()}
-              pull="left"
-          />
+          <IconButton
+            aria-label={"close settings"}
+            className="back-arrow"
+            color="inherit"
+            onClick={() => this.props.toggleShowSettings()}
+          >
+              <ArrowBack />
+          </IconButton>
           <h2 className="settings-top">Settings</h2>
           <div className="settings-panel">
               <div className="row">
@@ -332,14 +335,15 @@ class Settings extends Component {
                   />
               </div>
               <div>
-                  <h6>{`Assets Available: ${this.props.data.cryptoassets.length}`}</h6>
+                  <h6>{`Assets Available: ${(this.props.data.cryptoassets || 0).length}`}</h6>
                   Version: {process.env.REACT_APP_VERSION} |
                   <a className="ml-2 mr-2 text-white" href="https://github.com/alecsloan/cryptolio" rel="noopener noreferrer" target="_blank">
-                      <FontAwesome
-                          className='ml-2 mr-1'
-                          name='github'
-                          size='2x'
-                      />
+                      <IconButton
+                        aria-label={"github repo"}
+                        color="inherit"
+                      >
+                          <GitHub />
+                      </IconButton>
                   </a> |
                   Caveat Emptor
               </div>

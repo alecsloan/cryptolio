@@ -10,6 +10,7 @@ import { ThemeProvider } from '@material-ui/styles';
 import './styles/App.css';
 import {colors, CssBaseline, IconButton, Snackbar} from "@material-ui/core";
 import CloseIcon from '@material-ui/icons/Close';
+import {Alert} from "@material-ui/lab";
 
 const CORS_PROXY = 'https://cors.bridged.cc/'
 
@@ -70,7 +71,7 @@ class App extends Component {
   constructor(props){
     super(props);
 
-    var initialData = JSON.parse(localStorage.getItem("data")) || {assets: [], cryptoassets: []};
+    var initialData = JSON.parse(localStorage.getItem("data")) || {assets: [{ cmc_id: 1027, symbol: "VGX" }], cryptoassets: []};
     var initialSettings = JSON.parse(localStorage.getItem("settings")) || {
       addDropdownHideable: false,
       autoHideFetchNotification: 20000,
@@ -95,7 +96,7 @@ class App extends Component {
     this.state ={
       data: {
         assets: initialData.assets,
-        cryptoassets: initialData.cryptoassets || [],
+        cryptoassets: initialData.cryptoassets,
       },
       dataUpdated: false,
       showSettings: false,
@@ -109,7 +110,7 @@ class App extends Component {
   }
 
   addCrypto(cmc_id, symbol){
-    if (!this.state.data.assets || this.state.data.assets.find(asset => asset.symbol === symbol))
+    if (this.state.data.assets.find(asset => asset.symbol === symbol))
       return;
 
     var assets = this.state.data.assets;
@@ -163,10 +164,10 @@ class App extends Component {
   }
 
   getCoinGeckoData(currency) {
-    var shownAssetSymbols;
+    if (!this.state.data.assets)
+      return;
 
-    if (this.state.data.assets !== undefined)
-      shownAssetSymbols = this.state.data.assets.map(asset => asset.symbol);
+    var shownAssetSymbols = this.state.data.assets.map(asset => asset.symbol.toLowerCase());
 
     try {
       fetch(`https://api.coingecko.com/api/v3/coins/markets?vs_currency=${currency}&symbols=${shownAssetSymbols}&price_change_percentage=1h%2C24h%2C7d`)
@@ -220,10 +221,10 @@ class App extends Component {
   }
 
   getCoinMarketCapData(currency) {
-    var shownAssetSymbols;
+    if (!this.state.data.assets)
+      return;
 
-    if (this.state.data.assets !== undefined)
-      shownAssetSymbols = this.state.data.assets.map(asset => asset.symbol);
+    var shownAssetSymbols = this.state.data.assets.map(asset => asset.symbol);
 
     try {
       fetch(`${CORS_PROXY}https://web-api.coinmarketcap.com/v1/cryptocurrency/quotes/latest?symbol=${shownAssetSymbols}&convert=${currency}`)
@@ -345,9 +346,6 @@ class App extends Component {
 
         this.storeData(this.state.data.assets, cryptoassets);
 
-        if (!this.state.data.assets || this.state.data.assets.length === 0)
-          this.addCrypto(1817, "ethos", "VGX");
-
         this.fetchAssetData();
       }).catch(e => console.error(e));
   }
@@ -448,11 +446,13 @@ class App extends Component {
                 horizontal: 'left',
               }}
               autoHideDuration={Number(this.state.settings.autoHideFetchNotification)}
-              key={this.state.timestamp}
-              message={`Prices updated: ${new Date(this.state.timestamp).toLocaleString()}`}
               onClose={() => this.setState({dataUpdated: false})}
               open={this.state.dataUpdated}
-          />
+          >
+            <Alert onClose={() => this.setState({dataUpdated: false})} severity="success">
+              Prices updated: {new Date(this.state.timestamp).toLocaleString()}
+            </Alert>
+          </Snackbar>
         </ThemeProvider>
       </div>
     );

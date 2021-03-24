@@ -1,17 +1,17 @@
 import React, {Component} from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import FontAwesome from 'react-fontawesome';
 import '../styles/Card.css';
 import TextField from "@material-ui/core/TextField";
 import {
   Accordion,
   AccordionDetails,
   AccordionSummary,
-  Card,
+  Card, IconButton,
   InputAdornment,
   Slider,
   Typography
 } from "@material-ui/core";
+import {Delete, Save, Settings as SettingsIcon} from "@material-ui/icons";
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import { DataGrid } from '@material-ui/data-grid';
 import EditableTable from "./EditableTable";
@@ -168,13 +168,14 @@ class AssetCard extends Component {
         <Card className="card">
           <div className={(window.innerWidth <= 760) ? "row" : ""} style={{display: front}} onClick={() => this.toggleSettings()}>
             <div className={(window.innerWidth <= 760) ? "ml-2 w-50" : ""}>
-            <FontAwesome
-              className='settings pull-right'
-              name='gear'
-              onClick={() => this.toggleSettings()}
-              size='2x'
-              spin
-            />
+              <IconButton
+                aria-label={this.props.asset.name + " settings"}
+                className='settings pull-right'
+                color="inherit"
+                onClick={() => this.toggleSettings()}
+              >
+                <SettingsIcon />
+              </IconButton>
             <img
                 alt={this.props.asset.name + ' Logo'}
                 className="card-img-top center"
@@ -195,18 +196,22 @@ class AssetCard extends Component {
           <div className="back" style={{display: back}}>
             <div className="card-body p-0">
               <div className="row">
-                <FontAwesome
+                <IconButton
+                  aria-label={"remove " + this.props.asset.name}
                   className='settings pull-left visible'
-                  name='trash'
+                  color="inherit"
                   onClick={() => this.props.removeCrypto(this.props.asset.symbol)}
-                  size='2x'
-                />
-                <FontAwesome
-                  className='settings visible'
-                  name='save'
+                >
+                  <Delete />
+                </IconButton>
+                <IconButton
+                  aria-label={"save " + this.props.asset.name}
+                  className='settings pull-right visible'
+                  color="inherit"
                   onClick={() => this.toggleSettings()}
-                  size='2x'
-                />
+                >
+                  <Save />
+                </IconButton>
             </div>
               <h4 className="card-title settings-title">
                 {this.props.asset.name + "(" + this.props.asset.symbol + ")"}
