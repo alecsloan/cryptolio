@@ -3,7 +3,7 @@
     float: left;
     font-size: 32px;
     padding: 10px 0 0 10px;
-    position: absolute;
+    position: absolute !important;
 }
 
 .currency-selector .MuiAutocomplete-popper {

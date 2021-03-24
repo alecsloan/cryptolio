@@ -5,8 +5,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import 'font-awesome/css/font-awesome.min.css';
 import '../styles/Header.css';
 import IconButton from "@material-ui/core/IconButton";
-import {Brightness2, Brightness7, KeyboardArrowDown, KeyboardArrowUp} from "@material-ui/icons";
-import SettingsIcon from "@material-ui/icons/Settings";
+import {Brightness2, Brightness7, KeyboardArrowDown, KeyboardArrowUp, Settings as SettingsIcon} from "@material-ui/icons";
 import VirtualizedCryptoassetAutocomplete from "./VirtualizedCryptoassetAutocomplete";
 
 class Header extends Component {
