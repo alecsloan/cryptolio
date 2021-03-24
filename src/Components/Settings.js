@@ -332,7 +332,7 @@ class Settings extends Component {
                   />
               </div>
               <div>
-                  <h6>{`Assets Available: ${this.props.data.cryptoassets.length}`}</h6>
+                  <h6>{`Assets Available: ${(this.props.data.cryptoassets || 0).length}`}</h6>
                   Version: {process.env.REACT_APP_VERSION} |
                   <a className="ml-2 mr-2 text-white" href="https://github.com/alecsloan/cryptolio" rel="noopener noreferrer" target="_blank">
                       <FontAwesome
