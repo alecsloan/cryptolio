@@ -39,9 +39,7 @@ Just run `npm start`
 ![Mobile Image](https://imgur.com/HxhUnR5.png)
 
 # Todo
-* Add full configuration for color picking so users can set their own colors/gradients
 * Add multi-language support
-* Make it more clear that prices and value changes were updated (maybe similar to what CMC does?)
 * Add link to CMC/CG page if someone clicks on the asset name/symbol
 * Add configuration for hiding Cryptolio title
 * Add Skeleton for cards while loading
