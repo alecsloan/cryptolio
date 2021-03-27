@@ -6,6 +6,7 @@ import {Card, IconButton} from "@material-ui/core";
 import {BarChart, Delete, Save, Settings as SettingsIcon} from "@material-ui/icons";
 import Button from "@material-ui/core/Button";
 import * as Util from "../Util/index";
+import {Skeleton} from "@material-ui/lab";
 
 function MyBalance(props) {
   if (props.holdings > 0 && props.settings.showCardBalances) {
@@ -49,12 +50,15 @@ class AssetCard extends Component {
       let percent = <span>{Util.getLocalizedPercent(percentChange * .01)}</span>;
 
       return (
-        <div>
-          {period}
-          <b className={hourColor + " ml-2"}>
-            {percent}
-          </b>
-        </div>
+        percentChange ?
+          <div>
+            {period}
+            <b className={hourColor + " ml-2"}>
+              {percent}
+            </b>
+          </div>
+        :
+          <Skeleton className="m-auto" height={20} width={"50%"} />
       )
     }
   }
@@ -91,16 +95,28 @@ class AssetCard extends Component {
               >
                 <SettingsIcon />
               </IconButton>
-            <img
-                alt={this.props.asset.name + ' Logo'}
-                className="card-img-top center"
-                src={this.props.asset.imageURL}
-            />
-            <h4 className="card-title">{this.props.asset.name} ({this.props.asset.symbol})</h4>
+              {
+                this.props.asset.imageURL ?
+                  <img
+                    alt={this.props.asset.name + ' Logo'}
+                    className="card-img-top center"
+                    src={this.props.asset.imageURL}
+                  />
+                :
+                  <Skeleton className="card-img-top m-auto" variant="circle" height={100} />
+              }
+            <h4 className="card-title">
+              {
+                (this.props.asset.name && this.props.asset.symbol) ?
+                  `${this.props.asset.name}(${this.props.asset.symbol})`
+                :
+                  <Skeleton className="m-auto" height={28} width={"50%"} />
+              }
+            </h4>
             </div>
             <div className="card-body">
               <div className="card-text">
-                <div>Price: {Util.getLocalizedPrice(price, this.props.settings)}</div>
+                { price ? <div>Price: {Util.getLocalizedPrice(price, this.props.settings)}</div> : <Skeleton className="m-auto" height={20} width={"50%"} />}
                 {this.getPercentChange(this.props.asset.percent_change_1h, "1h")}
                 {this.getPercentChange(this.props.asset.percent_change_24h, "24h")}
                 {this.getPercentChange(this.props.asset.percent_change_7d, "7d")}
