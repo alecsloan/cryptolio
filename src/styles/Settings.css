@@ -13,12 +13,12 @@
 }
 
 .MuiDrawer-paper {
-    width: 70%;
+    width: 80%;
 }
 
 @media only screen and (min-width: 768px) {
     .MuiDrawer-paper {
-        width: 40%;
+        width: 70%;
     }
 }
 
@@ -31,7 +31,8 @@
     margin-top: 15px;
 }
 
-.settings-panel .MuiFormControl-root {
+.settings-panel .MuiFormControl-root,
+.settings-panel .MuiDataGrid-root {
     width: 90%;
     margin: auto;
 }

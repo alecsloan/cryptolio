@@ -75,7 +75,7 @@ class Settings extends Component {
           >
               <ArrowBack />
           </IconButton>
-          <h2 className="settings-top">Settings</h2>
+          <h2 className="settings-title">Settings</h2>
           <div className="settings-panel">
               <div className="row">
                   <FormControlLabel
