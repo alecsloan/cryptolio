@@ -139,7 +139,7 @@ class App extends Component {
       value = "USD";
     }
     else if (settingName === "fetchInterval" && value < 6000) {
-      value = 60000;
+      value = 6000;
     }
     else if (settingName === "theme") {
       if (value === "light") {
@@ -431,7 +431,7 @@ class App extends Component {
         <ThemeProvider theme={this.state.settings.theme || lightTheme}>
           <CssBaseline />
 
-          <Header addCrypto={this.addCrypto.bind(this)} assets={this.state.data.assets} cryptoAssetData={this.state.data.cryptoassets} editSetting={this.editSetting.bind(this)} settings={this.state.settings} toggleShowSettings={this.toggleShowSettings.bind(this)}/>
+          <Header addCrypto={this.addCrypto.bind(this)} assets={this.state.data.assets} cryptoAssetData={this.state.data.cryptoassets} editSetting={this.editSetting.bind(this)} refreshData={this.fetchAssetData.bind(this)} settings={this.state.settings} toggleShowSettings={this.toggleShowSettings.bind(this)}/>
           <hr />
           <div className="content">
             <CardRow assets={this.state.data.assets} removeCrypto={this.removeCrypto.bind(this)} settings={this.state.settings} setAssetUtilityShown={this.setAssetUtilityShown.bind(this)} updateHoldings={this.updateHoldings.bind(this)} />

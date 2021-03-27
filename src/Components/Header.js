@@ -5,7 +5,14 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import 'font-awesome/css/font-awesome.min.css';
 import '../styles/Header.css';
 import IconButton from "@material-ui/core/IconButton";
-import {Brightness2, Brightness7, KeyboardArrowDown, KeyboardArrowUp, Settings as SettingsIcon} from "@material-ui/icons";
+import {
+  Brightness2,
+  Brightness7,
+  KeyboardArrowDown,
+  KeyboardArrowUp,
+  Refresh,
+  Settings as SettingsIcon
+} from "@material-ui/icons";
 import VirtualizedCryptoassetAutocomplete from "./VirtualizedCryptoassetAutocomplete";
 
 class Header extends Component {
@@ -63,6 +70,16 @@ class Header extends Component {
         <div className="col-12">
           <h2 className="title">
             <IconButton
+              aria-label="mode"
+              className="pull-left"
+              color="inherit"
+              onClick={() => this.props.refreshData()}
+              title="Refresh Asset Data"
+            >
+              <Refresh />
+            </IconButton>
+
+            <IconButton
               className={addIconClass}
               color="inherit"
               aria-label="mode"
@@ -72,27 +89,27 @@ class Header extends Component {
               {displayAddSection ? <KeyboardArrowDown /> : <KeyboardArrowUp />}
             </IconButton>
 
-          Cryptolio
+            Cryptolio
 
-          <IconButton
-            className="pull-right"
-            color="inherit"
-            aria-label="mode"
-            onClick={() => this.props.toggleShowSettings()}
-          >
-             <SettingsIcon />
-          </IconButton>
+            <IconButton
+              className="pull-right"
+              color="inherit"
+              aria-label="mode"
+              onClick={() => this.props.toggleShowSettings()}
+            >
+               <SettingsIcon />
+            </IconButton>
 
-          <IconButton
-            className="pull-right"
-            color="inherit"
-            aria-label="mode"
-            onClick={() => this.props.editSetting('theme', this.props.settings.theme.palette.type)}
-          >
-              {this.props.settings.theme.palette.type === "dark" ? <Brightness7 /> : <Brightness2 />}
-          </IconButton>
+            <IconButton
+              className="pull-right"
+              color="inherit"
+              aria-label="mode"
+              onClick={() => this.props.editSetting('theme', this.props.settings.theme.palette.type)}
+            >
+                {this.props.settings.theme.palette.type === "dark" ? <Brightness7 /> : <Brightness2 />}
+            </IconButton>
 
-          {this.getPortfolioBalance()}
+            {this.getPortfolioBalance()}
 
           </h2>
 
