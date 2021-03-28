@@ -72,7 +72,7 @@ class App extends Component {
   constructor(props){
     super(props);
 
-    var initialData = JSON.parse(localStorage.getItem("data")) || {assets: [{ cmc_id: 1027, symbol: "VGX" }], cryptoassets: []};
+    var initialData = JSON.parse(localStorage.getItem("data")) || {assets: [{ cmc_id: 1817, symbol: "VGX" }], cryptoassets: []};
     var initialSettings = JSON.parse(localStorage.getItem("settings")) || {
       addDropdownHideable: false,
       assetUtilityShown: null,
