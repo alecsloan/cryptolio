@@ -11,6 +11,7 @@ import './styles/App.css';
 import {colors, CssBaseline, IconButton, Snackbar} from "@material-ui/core";
 import CloseIcon from '@material-ui/icons/Close';
 import {Alert} from "@material-ui/lab";
+import AssetUtilities from "./Components/AssetUtilities";
 
 const CORS_PROXY = 'https://cors.bridged.cc/'
 
@@ -61,7 +62,7 @@ function CardRow(props) {
   }
 
   assets.forEach(asset => {
-    cards.push(<AssetCard asset={asset} key={asset.symbol} removeCrypto={props.removeCrypto.bind(this)} settings={props.settings} updateHoldings={props.updateHoldings.bind(this)} updateExitPlan={props.updateExitPlan.bind(this)}/>)
+    cards.push(<AssetCard asset={asset} key={asset.symbol} removeCrypto={props.removeCrypto.bind(this)} settings={props.settings} setAssetUtilityShown={props.setAssetUtilityShown.bind(this)} updateHoldings={props.updateHoldings.bind(this)} />)
   });
 
   return <div className="cardRow">{cards}</div>;
@@ -71,9 +72,10 @@ class App extends Component {
   constructor(props){
     super(props);
 
-    var initialData = JSON.parse(localStorage.getItem("data")) || {assets: [{ cmc_id: 1027, symbol: "VGX" }], cryptoassets: []};
+    var initialData = JSON.parse(localStorage.getItem("data")) || {assets: [{ cmc_id: 1817, symbol: "VGX" }], cryptoassets: []};
     var initialSettings = JSON.parse(localStorage.getItem("settings")) || {
       addDropdownHideable: false,
+      assetUtilityShown: null,
       autoHideFetchNotification: 20000,
       currency: "USD",
       datasource: "coinmarketcap",
@@ -137,7 +139,7 @@ class App extends Component {
       value = "USD";
     }
     else if (settingName === "fetchInterval" && value < 6000) {
-      value = 60000;
+      value = 6000;
     }
     else if (settingName === "theme") {
       if (value === "light") {
@@ -182,14 +184,16 @@ class App extends Component {
             Object.entries(response).forEach(responseAsset => {
               responseAsset = responseAsset[1];
 
-              var holdings = 0;
               var cmc_id = null;
+              var exitPlan = [];
+              var holdings = 0;
 
               if (this.state.data.assets !== undefined) {
                 var existingAsset = this.state.data.assets.find(asset => asset.symbol === responseAsset.symbol.toUpperCase());
 
                 if (existingAsset) {
                   cmc_id = existingAsset.cmc_id;
+                  exitPlan = existingAsset.exitPlan;
                   holdings = existingAsset.holdings;
                 }
               }
@@ -197,7 +201,7 @@ class App extends Component {
               assets.push({
                 circulating_supply: responseAsset.circulating_supply,
                 cmc_id: cmc_id,
-                exitPlan: [],
+                exitPlan: exitPlan,
                 holdings: holdings,
                 imageURL: responseAsset.image,
                 market_cap: responseAsset.market_cap,
@@ -208,11 +212,17 @@ class App extends Component {
                 percent_change_7d: responseAsset.price_change_percentage_7d_in_currency,
                 price: responseAsset.current_price,
                 symbol: responseAsset.symbol.toUpperCase(),
+                url: "https://www.coingecko.com/en/coins/" + responseAsset.name.toLowerCase().replace(" ", "-"),
                 volume_24h: responseAsset.total_volume
               });
             });
 
             this.storeData(assets);
+
+            this.setState({
+              dataUpdated: true,
+              timestamp: new Date()
+            });
           });
     }
     catch(e){
@@ -239,14 +249,16 @@ class App extends Component {
             Object.entries(response.data).forEach(responseAsset => {
               responseAsset = responseAsset[1];
 
-              var holdings = 0;
               var cmc_id = null;
+              var exitPlan = [];
+              var holdings = 0;
 
               if (this.state.data.assets) {
                 var existingAsset = this.state.data.assets.find(asset => asset.symbol === responseAsset.symbol);
 
                 if (existingAsset) {
                   cmc_id = existingAsset.cmc_id;
+                  exitPlan = existingAsset.exitPlan;
                   holdings = existingAsset.holdings;
                 }
               }
@@ -257,7 +269,7 @@ class App extends Component {
               assets.push({
                 circulating_supply: responseAsset.circulating_supply,
                 cmc_id: cmc_id,
-                exitPlan: [],
+                exitPlan: exitPlan,
                 holdings: holdings,
                 imageURL: 'https://s2.coinmarketcap.com/static/img/coins/128x128/'+ cmc_id +'.png',
                 market_cap: responseAsset.quote[currency].market_cap,
@@ -268,6 +280,7 @@ class App extends Component {
                 percent_change_7d: responseAsset.quote[currency].percent_change_7d,
                 price: responseAsset.quote[currency].price,
                 symbol: responseAsset.symbol,
+                url: "https://coinmarketcap.com/currencies/" + responseAsset.slug,
                 volume_24h: responseAsset.quote[currency].volume_24h
               });
             });
@@ -358,6 +371,12 @@ class App extends Component {
     this.storeData(this.state.data.assets);
   }
 
+  setAssetUtilityShown(asset) {
+    this.setState({
+      assetUtilityShown: asset
+    });
+  }
+
   setFetchInterval() {
     setInterval(async () => {
       this.fetchAssetData();
@@ -419,12 +438,13 @@ class App extends Component {
         <ThemeProvider theme={this.state.settings.theme || lightTheme}>
           <CssBaseline />
 
-          <Header addCrypto={this.addCrypto.bind(this)} assets={this.state.data.assets} cryptoAssetData={this.state.data.cryptoassets} editSetting={this.editSetting.bind(this)} settings={this.state.settings} toggleShowSettings={this.toggleShowSettings.bind(this)}/>
+          <Header addCrypto={this.addCrypto.bind(this)} assets={this.state.data.assets} cryptoAssetData={this.state.data.cryptoassets} editSetting={this.editSetting.bind(this)} refreshData={this.fetchAssetData.bind(this)} settings={this.state.settings} toggleShowSettings={this.toggleShowSettings.bind(this)}/>
           <hr />
           <div className="content">
-            <CardRow assets={this.state.data.assets} removeCrypto={this.removeCrypto.bind(this)} settings={this.state.settings} updateHoldings={this.updateHoldings.bind(this)} updateExitPlan={this.updateExitPlan.bind(this)} />
+            <CardRow assets={this.state.data.assets} removeCrypto={this.removeCrypto.bind(this)} settings={this.state.settings} setAssetUtilityShown={this.setAssetUtilityShown.bind(this)} updateHoldings={this.updateHoldings.bind(this)} />
           </div>
           <Settings data={this.state.data} editSetting={this.editSetting.bind(this)} settings={this.state.settings} showSettings={this.state.showSettings} theme={this.state.settings.theme || lightTheme} toggleShowSettings={this.toggleShowSettings.bind(this)} uploadData={this.uploadData.bind(this)} />
+          <AssetUtilities asset={this.state.assetUtilityShown} settings={this.state.settings} setAssetUtilityShown={this.setAssetUtilityShown.bind(this)} updateExitPlan={this.updateExitPlan.bind(this)} />
           <Hotkeys
             keyName="shift+/"
             onKeyDown={this.toggleShowSettings.bind(this)}

@@ -7,32 +7,36 @@ import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
 import IconButton from "@material-ui/core/IconButton";
-import {AddBox as AddBoxIcon, Delete as DeleteIcon, Done as DoneIcon, Edit as EditIcon} from "@material-ui/icons";
+import {AddBox as AddBoxIcon, Delete as DeleteIcon} from "@material-ui/icons";
 import {InputAdornment, TextField} from "@material-ui/core";
+import * as Util from "../Util/index";
 
 const useStyles = makeStyles(theme => ({
   root: {
-    width: "100%",
+    width: "90%",
     marginTop: theme.spacing(3),
+    marginLeft: "auto",
+    marginRight: "auto",
     overflowX: "auto"
   },
-  table: {
-    minWidth: 650
-  },
-  selectTableCell: {
-    width: 60
-  },
   tableCell: {
-    width: 130,
-    height: 40
+    width: 80,
+    height: 40,
+    padding: 4
   },
   input: {
     width: 130,
-    height: 40
+    height: 70,
+    padding: 4
+  },
+  iconColumn: {
+    maxWidth: 50,
+    padding: 0,
+    width: 50
   }
 }));
 
-var currencySymbol;
+var settings;
 
 const createData = (id, sellingPoint, percentToSell, sellAmount, remainingAmount, profit, totalProfit) => ({
   id: id,
@@ -44,35 +48,35 @@ const createData = (id, sellingPoint, percentToSell, sellAmount, remainingAmount
   totalProfit
 });
 
-const CustomTableCell = ({ row, name, onChange, type }) => {
+const CustomTableCell = ({ row, name, onChange, type, editable }) => {
   const classes = useStyles();
-  const { isEditMode } = row;
 
   var inputProps;
   var formattedValue;
 
   if (type === "percent") {
     inputProps = {endAdornment: <InputAdornment position="end">%</InputAdornment>}
-    formattedValue = row[name] || 0 + "%";
+    formattedValue = Util.getLocalizedPercent(row[name] || 0);
   }
   else if (type === "number") {
-    inputProps = null
-    formattedValue = row[name] || 0;
+    inputProps = null;
+    formattedValue = Util.getLocalizedNumber(row[name] || 0, settings);
   }
   else {
-    inputProps = {startAdornment: <InputAdornment position="start">{currencySymbol}</InputAdornment>}
-    formattedValue = currencySymbol + row[name] || 0;
+    inputProps = {startAdornment: <InputAdornment position="start">{Util.getCurrencySymbol(settings.currency)}</InputAdornment>}
+    formattedValue = Util.getLocalizedPrice(row[name] || 0, settings);
   }
 
   return (
-    <TableCell align="left" className={classes.tableCell}>
-      {isEditMode ? (
+    <TableCell align="center" className={editable ? classes.input : classes.tableCell}>
+      {editable ? (
         <TextField
+          className={classes.input}
           InputProps={inputProps}
-          value={row[name]}
           name={name}
           onChange={e => onChange(e, row)}
-          className={classes.input}
+          size="small"
+          value={row[name]}
           variant="outlined"
         />
       ) : (
@@ -89,7 +93,7 @@ function EditableTable(props) {
 
   var rows = props.rows || [];
 
-  currencySymbol = props.currencySymbol;
+  settings = props.settings;
 
   const [previous, setPrevious] = React.useState({});
   const classes = useStyles();
@@ -120,14 +124,48 @@ function EditableTable(props) {
     const { id } = row;
     const newRows = rows.map(row => {
       if (row.id === id) {
-        return { ...row, [name]: value };
+        var sellAmount = row["sellAmount"];
+        var remainingAmount = row["remainingAmount"];
+        var sellingPoint = row["sellingPoint"];
+
+        if (name === "percentToSell") {
+          var previousRemainingAmount = props.holdings
+
+          if (row.id !== 0) {
+            previousRemainingAmount = rows[id - 1]["remainingAmount"];
+          }
+
+          sellAmount = (value * .01) * props.holdings;
+
+          remainingAmount = previousRemainingAmount - sellAmount;
+        }
+        else if (name === "sellingPoint") {
+          sellingPoint = value;
+        }
+
+        var profit = sellAmount * sellingPoint;
+
+        var totalProfit = profit;
+
+        if (row.id !== 0) {
+          totalProfit += rows[id - 1]["totalProfit"];
+        }
+
+        return {
+          ...row,
+          [name]: value,
+          sellAmount: sellAmount,
+          remainingAmount: remainingAmount,
+          profit: profit,
+          totalProfit: totalProfit
+        };
       }
       return row;
     });
     setRows(newRows);
   };
 
-  const onRevert = id => {
+  const removeRow = id => {
     const index = rows.findIndex(row => row.id === id);
 
     setRows(rows.splice(index,1));
@@ -143,61 +181,41 @@ function EditableTable(props) {
       <Table className={classes.table}>
         <TableHead>
           <TableRow>
-            <TableCell align="left">Selling Point</TableCell>
-            <TableCell align="left">Percent to sell</TableCell>
-            <TableCell align="left">Sell amount</TableCell>
-            <TableCell align="left">Remaining Amount</TableCell>
-            <TableCell align="left">Profit</TableCell>
-            <TableCell align="left">Total Profit</TableCell>
-            <TableCell align="left" />
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {rows.map(row => (
-            <TableRow key={row.id}>
-              <CustomTableCell {...{ row, name: "sellingPoint", onChange }} />
-              <CustomTableCell {...{ row, name: "precentToSell", onChange, type: "percent" }} />
-              <CustomTableCell {...{ row, name: "sellAmount", onChange }} />
-              <CustomTableCell {...{ row, name: "remainingAmount", onChange, type: "number" }} />
-              <CustomTableCell {...{ row, name: "profit", onChange }} />
-              <CustomTableCell {...{ row, name: "totalProfit", onChange }} />
-              <TableCell className={classes.selectTableCell}>
-                {row.isEditMode ? (
-                  <>
-                    <IconButton
-                      aria-label="done"
-                      onClick={() => onToggleEditMode(row.id)}
-                    >
-                      <DoneIcon />
-                    </IconButton>
-                    <IconButton
-                      aria-label="revert"
-                      onClick={() => onRevert(row.id)}
-                    >
-                      <DeleteIcon />
-                    </IconButton>
-                  </>
-                ) : (
-                  <IconButton
-                    aria-label="delete"
-                    onClick={() => onToggleEditMode(row.id)}
-                  >
-                    <EditIcon />
-                  </IconButton>
-                )}
-              </TableCell>
-            </TableRow>
-          ))}
-          <TableRow key={"add"}>
-            <TableCell className={classes.selectTableCell}>
+            <TableCell align="center">Selling Point</TableCell>
+            <TableCell align="center">Percent to sell</TableCell>
+            <TableCell align="center">Sell amount</TableCell>
+            <TableCell align="center">Remaining Amount</TableCell>
+            <TableCell align="center">Profit</TableCell>
+            <TableCell align="center">Total Profit</TableCell>
+            <TableCell align="center" className={classes.iconColumn}>
               <IconButton
-                aria-label="delete"
+                aria-label="add row"
                 onClick={() => addRow()}
               >
                 <AddBoxIcon />
               </IconButton>
             </TableCell>
           </TableRow>
+        </TableHead>
+        <TableBody>
+          {rows.map(row => (
+            <TableRow key={row.id}>
+              <CustomTableCell {...{ row, name: "sellingPoint", onChange, editable: true }} />
+              <CustomTableCell {...{ row, name: "percentToSell", onChange, type: "percent", editable: true }} />
+              <CustomTableCell {...{ row, name: "sellAmount", onChange, type: "number" }} />
+              <CustomTableCell {...{ row, name: "remainingAmount", onChange, type: "number" }} />
+              <CustomTableCell {...{ row, name: "profit", onChange }} />
+              <CustomTableCell {...{ row, name: "totalProfit", onChange }} />
+              <TableCell align="center" className={classes.iconColumn}>
+                <IconButton
+                  aria-label="revert"
+                  onClick={() => removeRow(row.id)}
+                >
+                  <DeleteIcon />
+                </IconButton>
+              </TableCell>
+            </TableRow>
+          ))}
         </TableBody>
       </Table>
     </Paper>

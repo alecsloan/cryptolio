@@ -15,7 +15,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import 'font-awesome/css/font-awesome.min.css';
 import '../styles/Settings.css';
 import IntervalSelector from "./IntervalSelector";
-import {IconButton} from "@material-ui/core";
+import {Grid, IconButton} from "@material-ui/core";
 import {ArrowBack, GitHub} from "@material-ui/icons";
 
 class Settings extends Component {
@@ -42,18 +42,6 @@ class Settings extends Component {
         }
     }
 
-    getCurrencyOptions() {
-        if (this.state.currencies) {
-            let currencyOptArray = [];
-
-            Object.values(this.state.currencies).forEach((currency) => {
-                currencyOptArray.push({'value': currency['code'], 'label': currency['currency'] + ' (' + currency['symbol'] + ')'});
-            });
-
-            return currencyOptArray;
-        }
-    }
-
     updateCurrency(currencyCode) {
         this.setState({
             currency: this.state.currencies.find(currency => currency.code === currencyCode)
@@ -75,27 +63,29 @@ class Settings extends Component {
           >
               <ArrowBack />
           </IconButton>
-          <h2 className="settings-top">Settings</h2>
+          <h2 className="settings-title">Settings</h2>
           <div className="settings-panel">
-              <div className="row">
-                  <FormControlLabel
-                      className="w-100"
-                      control={
-                          <Select
-                              value={this.props.settings.datasource}
-                              onChange={event => this.props.editSetting('datasource', event.target.value)}
-                          >
-                              <MenuItem value="coingecko"><img alt="CoinGecko" src={this.state.cg_logo} /></MenuItem>
-                              <MenuItem value="coinmarketcap"><img alt="CoinMarketCap" src={this.state.cmc_logo} /></MenuItem>
-                          </Select>
-                      }
-                      label="Datasource"
-                      labelPlacement="top"
-                      value="top"
-                  />
-              </div>
-              <div className="row">
-                  <div className="col-sm-6">
+              <Grid className="mb-5" container>
+                  <Grid item xs={12} md={6}>
+                      <FormControlLabel
+                          className="w-75"
+                          control={
+                              <Select
+                                className="w-100"
+                                onChange={event => this.props.editSetting('datasource', event.target.value)}
+                                value={this.props.settings.datasource}
+                                variant="outlined"
+                              >
+                                  <MenuItem value="coingecko"><img alt="CoinGecko" src={this.state.cg_logo} /></MenuItem>
+                                  <MenuItem value="coinmarketcap"><img alt="CoinMarketCap" src={this.state.cmc_logo} /></MenuItem>
+                              </Select>
+                          }
+                          label="Datasource"
+                          labelPlacement="top"
+                          value="top"
+                      />
+                  </Grid>
+                  <Grid className="m-auto" item xs={6} md={3}>
                       <input
                           accept="application/json"
                           className="d-none"
@@ -113,8 +103,8 @@ class Settings extends Component {
                               Upload Data
                           </Button>
                       </label>
-                  </div>
-                  <div className="col-sm-6">
+                  </Grid>
+                  <Grid className="m-auto" item xs={6} md={3}>
                       <Button
                           variant="contained"
                           color="primary"
@@ -123,10 +113,10 @@ class Settings extends Component {
                       >
                           Download Data
                       </Button>
-                  </div>
-              </div>
-              <div className="m-0 w-100 mt-4 row">
-                  <div className="col-sm-4">
+                  </Grid>
+              </Grid>
+              <Grid className="mb-5" container>
+                  <Grid item xs={4} md={2}>
                       <FormControlLabel
                           control={
                               <Switch
@@ -139,8 +129,8 @@ class Settings extends Component {
                           labelPlacement="top"
                           value="top"
                       />
-                  </div>
-                  <div className="col-sm-4">
+                  </Grid>
+                  <Grid item xs={4} md={2}>
                       <FormControlLabel
                           control={
                               <Switch
@@ -153,8 +143,8 @@ class Settings extends Component {
                           labelPlacement="top"
                           value="top"
                       />
-                  </div>
-                  <div className="col-sm-4">
+                  </Grid>
+                  <Grid item xs={4} md={2}>
                       <FormControlLabel
                           control={
                               <Switch
@@ -167,173 +157,192 @@ class Settings extends Component {
                           labelPlacement="top"
                           value="top"
                       />
-                  </div>
-              </div>
-              <div className="currency-selector row">
-                  <Autocomplete
-                      autoComplete={false}
-                      autoHighlight
-                      className="w-100"
-                      clearOnBlur
-                      getOptionLabel={(option) => `${option.currency} (${option.symbol})`}
-                      id="currency"
-                      onChange={
-                          (event, currency) => {
-                              if (currency) {
-                                  this.updateCurrency(currency.code);
-                                  this.props.editSetting('currency', currency.code)
-                              }
-                          }
-                      }
-                      options={this.state.currencies}
-                      renderInput={(params) => <TextField {...params} label="Currency" variant="outlined" />}
-                      size="small"
-                      value={this.state.currency}
-                  />
-              </div>
-              <div className="row">
-                  <FormControlLabel
-                    className={"w-100"}
-                    control={
-                        <Select
-                          className={"w-100"}
-                          onChange={event => this.props.editSetting('sorting', event.target.value)}
-                          value={this.props.settings.sorting}
-                          variant={"outlined"}
-                        >
-                            <MenuItem key={"balance"} value={"balance"}>Balance</MenuItem>
-                            <MenuItem key={"marketcap"} value={"marketcap"}>Marketcap</MenuItem>
-                            <MenuItem key={"price"} value={"price"}>Price</MenuItem>
-                            <MenuItem key={"1h"} value={"1h"}>1 Hour Change</MenuItem>
-                            <MenuItem key={"24h"} value={"24h"}>24 Hour Change</MenuItem>
-                            <MenuItem key={"7d"} value={"7d"}>7 Day Change</MenuItem>
-                        </Select>
-                    }
-                    label="Card Sorting"
-                    labelPlacement="top"
-                    value="top"
-                  />
-              </div>
-              <div className="row">
-                  <TextField
-                      InputLabelProps={{
-                          shrink: true,
-                      }}
-                      label="Simulated Percent Slider Max"
-                      onInputCapture={event => this.props.editSetting('sliderMax', (event.target.value < 100) ? 100 : event.target.value)}
-                      size="small"
-                      type="number"
-                      value={this.props.settings.sliderMax}
-                      variant="outlined"
-                  />
-              </div>
-              <div className="row">
-                  <div className="col-sm-4">
+                  </Grid>
+                  <Grid item xs={4} md={2}>
                       <FormControlLabel
-                          control={
-                              <Switch
-                                  color="primary"
-                                  defaultChecked={this.props.settings.addDropdownHideable}
-                                  onChange={() => this.props.editSetting('addDropdownHideable', !this.props.settings.addDropdownHideable)}
-                              />
-                          }
-                          label="Add Dropdown Collapsable"
-                          labelPlacement="top"
-                          value="top"
+                        control={
+                            <Switch
+                              color="primary"
+                              defaultChecked={this.props.settings.addDropdownHideable}
+                              onChange={() => this.props.editSetting('addDropdownHideable', !this.props.settings.addDropdownHideable)}
+                            />
+                        }
+                        label="Add Dropdown Collapsable"
+                        labelPlacement="top"
+                        value="top"
                       />
-                  </div>
-                  <div className="col-sm-4">
+                  </Grid>
+                  <Grid item xs={4} md={2}>
                       <FormControlLabel
-                          control={
-                              <Switch
-                                  color="primary"
-                                  defaultChecked={this.props.settings.showCardBalances}
-                                  onChange={() => this.props.editSetting('showCardBalances', !this.props.settings.showCardBalances)}
-                              />
-                          }
-                          label="Show AssetCard Balance"
-                          labelPlacement="top"
-                          value="top"
+                        control={
+                            <Switch
+                              color="primary"
+                              defaultChecked={this.props.settings.showCardBalances}
+                              onChange={() => this.props.editSetting('showCardBalances', !this.props.settings.showCardBalances)}
+                            />
+                        }
+                        label="Show AssetCard Balance"
+                        labelPlacement="top"
+                        value="top"
                       />
-                  </div>
-                  <div className="col-sm-4">
+                  </Grid>
+                  <Grid item xs={4} md={2}>
                       <FormControlLabel
-                          control={
-                              <Switch
-                                  color="primary"
-                                  defaultChecked={this.props.settings.showPortfolioBalance}
-                                  onChange={() => this.props.editSetting('showPortfolioBalance', !this.props.settings.showPortfolioBalance)}
-                              />
-                          }
-                          label="Show Portfolio Balance"
-                          labelPlacement="top"
-                          value="top"
+                        control={
+                            <Switch
+                              color="primary"
+                              defaultChecked={this.props.settings.showPortfolioBalance}
+                              onChange={() => this.props.editSetting('showPortfolioBalance', !this.props.settings.showPortfolioBalance)}
+                            />
+                        }
+                        label="Show Portfolio Balance"
+                        labelPlacement="top"
+                        value="top"
                       />
-                  </div>
-              </div>
-              <IntervalSelector
-                  value={this.props.settings.fetchInterval || 300000}
-                  label="Data Fetch Interval"
-                  labelPlacement="top"
-                  max="Hour"
-                  min="Minute"
-                  onChange={value => this.props.editSetting('fetchInterval', value)}
-                  selectFieldClasses="col-8"
-                  size="small"
-                  textFieldClasses="col-4"
-                  variant="outlined"
-              />
-              <IntervalSelector
-                value={this.props.settings.autoHideFetchNotification}
-                label="Data Fetch Notification Timeout"
-                labelPlacement="top"
-                max="Minute"
-                min="Second"
-                onChange={value => this.props.editSetting('autoHideFetchNotification', value)}
-                selectFieldClasses="col-8"
-                size="small"
-                textFieldClasses="col-4"
-                variant="outlined"
-              />
-              <div className="row">
-                  <TextField
-                      InputLabelProps={{
-                          shrink: true,
-                      }}
-                      label="Show 2 Decimals When Price Under"
-                      onInputCapture={event => this.props.editSetting('decimals2', event.target.value)}
-                      size="small"
-                      type="number"
-                      value={this.props.settings.decimals2}
-                      variant="outlined"
-                  />
-              </div>
-              <div className="row">
-                  <TextField
-                      InputLabelProps={{
-                          shrink: true,
-                      }}
-                      label="Show 3 Decimals When Price Under"
-                      onInputCapture={event => this.props.editSetting('decimals3', event.target.value)}
-                      size="small"
-                      type="number"
-                      value={this.props.settings.decimals3}
-                      variant="outlined"
-                  />
-              </div>
-              <div className="row">
-                  <TextField
-                      InputLabelProps={{
-                          shrink: true,
-                      }}
-                      label="Show 4 Decimals When Price Under"
-                      onInputCapture={event => this.props.editSetting('decimals4', event.target.value)}
-                      size="small"
-                      type="number"
-                      value={this.props.settings.decimals4 || ""}
-                      variant="outlined"
-                  />
-              </div>
+                  </Grid>
+              </Grid>
+              <Grid className="mb-5" container>
+                  <Grid item xs={12} md={6}>
+                      <FormControlLabel
+                        className={"m-0 w-75"}
+                        control={
+                          <Autocomplete
+                            autoComplete={false}
+                            autoHighlight
+                            className="w-100"
+                            clearOnBlur
+                            getOptionLabel={(option) => `${option.currency} (${option.symbol})`}
+                            id="currency"
+                            onChange={
+                                (event, currency) => {
+                                    if (currency) {
+                                        this.updateCurrency(currency.code);
+                                        this.props.editSetting('currency', currency.code)
+                                    }
+                                }
+                            }
+                            options={this.state.currencies}
+                            renderInput={(params) => <TextField {...params} variant="outlined" />}
+                            size="small"
+                            value={this.state.currency}
+                          />
+                        }
+                        label="Currency"
+                        labelPlacement="top"
+                        value="top"
+                      />
+                  </Grid>
+                  <Grid item xs={12} md={6}>
+                      <FormControlLabel
+                        className={"m-0 w-75"}
+                        control={
+                            <Select
+                              className={"w-100"}
+                              onChange={event => this.props.editSetting('sorting', event.target.value)}
+                              value={this.props.settings.sorting}
+                              variant={"outlined"}
+                            >
+                                <MenuItem key={"balance"} value={"balance"}>Balance</MenuItem>
+                                <MenuItem key={"marketcap"} value={"marketcap"}>Marketcap</MenuItem>
+                                <MenuItem key={"price"} value={"price"}>Price</MenuItem>
+                                <MenuItem key={"1h"} value={"1h"}>1 Hour Change</MenuItem>
+                                <MenuItem key={"24h"} value={"24h"}>24 Hour Change</MenuItem>
+                                <MenuItem key={"7d"} value={"7d"}>7 Day Change</MenuItem>
+                            </Select>
+                        }
+                        label="Card Sorting"
+                        labelPlacement="top"
+                        value="top"
+                      />
+                  </Grid>
+              </Grid>
+              <Grid className="mb-5" container>
+                  <Grid item xs={12}>
+                      <TextField
+                          InputLabelProps={{
+                              shrink: true,
+                          }}
+                          label="Simulated Percent Slider Max"
+                          onInputCapture={event => this.props.editSetting('sliderMax', (event.target.value < 100) ? 100 : event.target.value)}
+                          size="small"
+                          type="number"
+                          value={this.props.settings.sliderMax}
+                          variant="outlined"
+                      />
+                  </Grid>
+              </Grid>
+              <Grid className="mb-5" container>
+                  <Grid item xs={12} md={6}>
+                      <IntervalSelector
+                          value={this.props.settings.fetchInterval || 300000}
+                          label="Data Fetch Interval"
+                          labelPlacement="top"
+                          max="Hour"
+                          min="Minute"
+                          onChange={value => this.props.editSetting('fetchInterval', value)}
+                          selectFieldClasses="col-8"
+                          size="small"
+                          textFieldClasses="col-4"
+                          variant="outlined"
+                      />
+                  </Grid>
+                  <Grid item xs={12} md={6}>
+                      <IntervalSelector
+                        value={this.props.settings.autoHideFetchNotification}
+                        label="Data Fetch Notification Timeout"
+                        labelPlacement="top"
+                        max="Minute"
+                        min="Second"
+                        onChange={value => this.props.editSetting('autoHideFetchNotification', value)}
+                        selectFieldClasses="col-8"
+                        size="small"
+                        textFieldClasses="col-4"
+                        variant="outlined"
+                      />
+                  </Grid>
+              </Grid>
+              <Grid className="mb-5" container>
+                  <Grid item xs={12} md={4}>
+                      <TextField
+                        InputLabelProps={{
+                            shrink: true,
+                        }}
+                        label="Show 2 Decimals When Price Under"
+                        onInputCapture={event => this.props.editSetting('decimals2', event.target.value)}
+                        size="small"
+                        type="number"
+                        value={this.props.settings.decimals2}
+                        variant="outlined"
+                      />
+                  </Grid>
+                  <Grid item xs={12} md={4}>
+                      <TextField
+                        InputLabelProps={{
+                            shrink: true,
+                        }}
+                        label="Show 3 Decimals When Price Under"
+                        onInputCapture={event => this.props.editSetting('decimals3', event.target.value)}
+                        size="small"
+                        type="number"
+                        value={this.props.settings.decimals3 || ""}
+                        variant="outlined"
+                      />
+                  </Grid>
+                  <Grid item xs={12} md={4}>
+                      <TextField
+                        InputLabelProps={{
+                            shrink: true,
+                        }}
+                        label="Show 4 Decimals When Price Under"
+                        onInputCapture={event => this.props.editSetting('decimals4', event.target.value)}
+                        size="small"
+                        type="number"
+                        value={this.props.settings.decimals4 || ""}
+                        variant="outlined"
+                      />
+                  </Grid>
+              </Grid>
+
               <div>
                   <h6>{`Assets Available: ${(this.props.data.cryptoassets || 0).length}`}</h6>
                   Version: {process.env.REACT_APP_VERSION} |
