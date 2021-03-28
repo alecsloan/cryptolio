@@ -108,7 +108,7 @@ class AssetCard extends Component {
             <h4 className="card-title">
               {
                 (this.props.asset.name && this.props.asset.symbol) ?
-                  `${this.props.asset.name}(${this.props.asset.symbol})`
+                  `${this.props.asset.name} (${this.props.asset.symbol})`
                 :
                   <Skeleton className="m-auto" height={28} width={"50%"} />
               }
@@ -145,7 +145,9 @@ class AssetCard extends Component {
                 </IconButton>
             </div>
               <h4 className="card-title settings-title">
-                {this.props.asset.name} ({this.props.asset.symbol})
+                <a className="text-white" href={this.props.asset.url} rel="noopener noreferrer" target="_blank">
+                  {this.props.asset.name} ({this.props.asset.symbol})
+                </a>
               </h4>
 
               <div className="card-text">

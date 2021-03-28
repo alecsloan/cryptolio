@@ -212,11 +212,17 @@ class App extends Component {
                 percent_change_7d: responseAsset.price_change_percentage_7d_in_currency,
                 price: responseAsset.current_price,
                 symbol: responseAsset.symbol.toUpperCase(),
+                url: "https://www.coingecko.com/en/coins/" + responseAsset.name.toLowerCase().replace(" ", "-"),
                 volume_24h: responseAsset.total_volume
               });
             });
 
             this.storeData(assets);
+
+            this.setState({
+              dataUpdated: true,
+              timestamp: new Date()
+            });
           });
     }
     catch(e){
@@ -274,6 +280,7 @@ class App extends Component {
                 percent_change_7d: responseAsset.quote[currency].percent_change_7d,
                 price: responseAsset.quote[currency].price,
                 symbol: responseAsset.symbol,
+                url: "https://coinmarketcap.com/currencies/" + responseAsset.slug,
                 volume_24h: responseAsset.quote[currency].volume_24h
               });
             });
