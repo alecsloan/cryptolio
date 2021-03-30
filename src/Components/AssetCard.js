@@ -18,7 +18,7 @@ function MyBalance(props) {
   }
 
   return (
-      <div></div>
+    <div></div>
   )
 }
 

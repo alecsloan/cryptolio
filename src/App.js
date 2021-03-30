@@ -40,7 +40,7 @@ function CardRow(props) {
   var assets = props.assets;
 
   if (!assets)
-    return <div></div>;
+    return null;
 
   if (props.settings.sorting === "price") {
     assets = assets.sort((a, b) => b.price - a.price);

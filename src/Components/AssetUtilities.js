@@ -43,7 +43,7 @@ class AssetUtilities extends Component {
 
   render() {
     if (!this.props.asset) {
-      return <div></div>;
+      return null;
     }
 
     var currency = this.props.settings.currency;
