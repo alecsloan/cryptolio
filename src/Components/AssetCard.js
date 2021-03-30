@@ -172,6 +172,7 @@ class AssetCard extends Component {
 
               <Button
                 variant="contained"
+                className="mb-2"
                 color="primary"
                 startIcon={<BarChart />}
                 onClick={() => this.props.setAssetUtilityShown(this.props.asset)}

@@ -25,7 +25,7 @@ const useStyles = makeStyles(theme => ({
     padding: 4
   },
   input: {
-    width: 130,
+    minWidth: 130,
     height: 70,
     padding: 4
   },

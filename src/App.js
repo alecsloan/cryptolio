@@ -193,8 +193,8 @@ class App extends Component {
 
                 if (existingAsset) {
                   cmc_id = existingAsset.cmc_id;
-                  exitPlan = existingAsset.exitPlan;
-                  holdings = existingAsset.holdings;
+                  exitPlan = existingAsset.exitPlan || exitPlan;
+                  holdings = existingAsset.holdings || holdings;
                 }
               }
 
@@ -258,8 +258,8 @@ class App extends Component {
 
                 if (existingAsset) {
                   cmc_id = existingAsset.cmc_id;
-                  exitPlan = existingAsset.exitPlan;
-                  holdings = existingAsset.holdings;
+                  exitPlan = existingAsset.exitPlan || exitPlan;
+                  holdings = existingAsset.holdings || holdings;
                 }
               }
 

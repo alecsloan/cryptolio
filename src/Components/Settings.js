@@ -181,7 +181,7 @@ class Settings extends Component {
                               onChange={() => this.props.editSetting('showCardBalances', !this.props.settings.showCardBalances)}
                             />
                         }
-                        label="Show AssetCard Balance"
+                        label="Show Asset Card Balance"
                         labelPlacement="top"
                         value="top"
                       />
@@ -202,73 +202,78 @@ class Settings extends Component {
                   </Grid>
               </Grid>
               <Grid className="mb-5" container>
-                  <Grid item xs={12} md={6}>
-                      <FormControlLabel
-                        className={"m-0 w-75"}
-                        control={
-                          <Autocomplete
-                            autoComplete={false}
-                            autoHighlight
-                            className="w-100"
-                            clearOnBlur
-                            getOptionLabel={(option) => `${option.currency} (${option.symbol})`}
-                            id="currency"
-                            onChange={
-                                (event, currency) => {
-                                    if (currency) {
-                                        this.updateCurrency(currency.code);
-                                        this.props.editSetting('currency', currency.code)
-                                    }
-                                }
-                            }
-                            options={this.state.currencies}
-                            renderInput={(params) => <TextField {...params} variant="outlined" />}
-                            size="small"
-                            value={this.state.currency}
-                          />
-                        }
-                        label="Currency"
-                        labelPlacement="top"
-                        value="top"
-                      />
-                  </Grid>
-                  <Grid item xs={12} md={6}>
-                      <FormControlLabel
-                        className={"m-0 w-75"}
-                        control={
-                            <Select
-                              className={"w-100"}
-                              onChange={event => this.props.editSetting('sorting', event.target.value)}
-                              value={this.props.settings.sorting}
-                              variant={"outlined"}
-                            >
-                                <MenuItem key={"balance"} value={"balance"}>Balance</MenuItem>
-                                <MenuItem key={"marketcap"} value={"marketcap"}>Marketcap</MenuItem>
-                                <MenuItem key={"price"} value={"price"}>Price</MenuItem>
-                                <MenuItem key={"1h"} value={"1h"}>1 Hour Change</MenuItem>
-                                <MenuItem key={"24h"} value={"24h"}>24 Hour Change</MenuItem>
-                                <MenuItem key={"7d"} value={"7d"}>7 Day Change</MenuItem>
-                            </Select>
-                        }
-                        label="Card Sorting"
-                        labelPlacement="top"
-                        value="top"
-                      />
-                  </Grid>
-              </Grid>
-              <Grid className="mb-5" container>
-                  <Grid item xs={12}>
-                      <TextField
+                <Grid item xs={12} md={3}>
+                  <FormControlLabel
+                    className={"m-0 w-75"}
+                    control={
+                      <Select
+                        className={"w-100"}
+                        onChange={event => this.props.editSetting('sorting', event.target.value)}
+                        value={this.props.settings.sorting}
+                        variant={"outlined"}
+                      >
+                        <MenuItem key={"balance"} value={"balance"}>Balance</MenuItem>
+                        <MenuItem key={"marketcap"} value={"marketcap"}>Marketcap</MenuItem>
+                        <MenuItem key={"price"} value={"price"}>Price</MenuItem>
+                        <MenuItem key={"1h"} value={"1h"}>1 Hour Change</MenuItem>
+                        <MenuItem key={"24h"} value={"24h"}>24 Hour Change</MenuItem>
+                        <MenuItem key={"7d"} value={"7d"}>7 Day Change</MenuItem>
+                      </Select>
+                    }
+                    label="Card Sorting"
+                    labelPlacement="top"
+                    value="top"
+                  />
+                </Grid>
+                <Grid item xs={12} md={5}>
+                    <FormControlLabel
+                      className={"m-0 w-75"}
+                      control={
+                        <Autocomplete
+                          autoComplete={false}
+                          autoHighlight
+                          className="w-100"
+                          clearOnBlur
+                          getOptionLabel={(option) => `${option.currency} (${option.symbol})`}
+                          id="currency"
+                          onChange={
+                              (event, currency) => {
+                                  if (currency) {
+                                      this.updateCurrency(currency.code);
+                                      this.props.editSetting('currency', currency.code)
+                                  }
+                              }
+                          }
+                          options={this.state.currencies}
+                          renderInput={(params) => <TextField {...params} variant="outlined" />}
+                          size="small"
+                          value={this.state.currency}
+                        />
+                      }
+                      label="Currency"
+                      labelPlacement="top"
+                      value="top"
+                    />
+                </Grid>
+                <Grid item xs={12} md={4}>
+                    <FormControlLabel
+                      className={"m-0 w-75"}
+                      control={
+                        <TextField
                           InputLabelProps={{
-                              shrink: true,
+                            shrink: true,
                           }}
-                          label="Simulated Percent Slider Max"
                           onInputCapture={event => this.props.editSetting('sliderMax', (event.target.value < 100) ? 100 : event.target.value)}
                           size="small"
                           type="number"
                           value={this.props.settings.sliderMax}
                           variant="outlined"
-                      />
+                        />
+                      }
+                      label="Simulated Percent Slider Max"
+                      labelPlacement="top"
+                      value="top"
+                    />
                   </Grid>
               </Grid>
               <Grid className="mb-5" container>
