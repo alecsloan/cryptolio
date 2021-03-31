@@ -1,4 +1,4 @@
-export function getCurrencySymbol(currency) {
+export function getCurrencySymbol (currency) {
   return (0).toLocaleString(
     window.navigator.language,
     {
@@ -10,25 +10,23 @@ export function getCurrencySymbol(currency) {
   ).replace(/\d/g, '').trim()
 }
 
-export function getLocalizedNumber(number, settings) {
+export function getLocalizedNumber (number, settings) {
   return getLocalizedPrice(number, settings, 'decimal')
 }
 
-export function getLocalizedPrice(price, settings, style = 'currency') {
+export function getLocalizedPrice (price, settings, style = 'currency') {
   if (!price || !settings) {
-    return "";
+    return ''
   }
 
-  var maxDigits = 0;
+  let maxDigits = 0
 
   if (settings.decimals4 && price < settings.decimals4) {
-    maxDigits = 4;
-  }
-  else if (settings.decimals3 && price < settings.decimals3) {
-    maxDigits = 3;
-  }
-  else if (settings.decimals2 && price < settings.decimals2) {
-    maxDigits = 2;
+    maxDigits = 4
+  } else if (settings.decimals3 && price < settings.decimals3) {
+    maxDigits = 3
+  } else if (settings.decimals2 && price < settings.decimals2) {
+    maxDigits = 2
   }
 
   return price.toLocaleString(
@@ -39,9 +37,9 @@ export function getLocalizedPrice(price, settings, style = 'currency') {
       minimumFractionDigits: maxDigits,
       style: style
     }
-  );
+  )
 }
 
-export function getLocalizedPercent(number) {
-  return number.toLocaleString(window.navigator.language, {style: 'percent', minimumFractionDigits: 2});
+export function getLocalizedPercent (number) {
+  return number.toLocaleString(window.navigator.language, { style: 'percent', minimumFractionDigits: 2 })
 }
