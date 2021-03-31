@@ -93,7 +93,7 @@ const CustomTableCell = ({ row, name, onChange, type, editable }) => {
   );
 };
 
-function EditableTable(props) {
+function ExitPlanningTable(props) {
   function setRows(rows) {
     props.setRows(rows, props.symbol)
   }
@@ -229,4 +229,4 @@ function EditableTable(props) {
   );
 }
 
-export default EditableTable;
+export default ExitPlanningTable;

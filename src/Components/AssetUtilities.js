@@ -12,7 +12,7 @@ import {
 import {ArrowBack} from "@material-ui/icons";
 import TextField from "@material-ui/core/TextField";
 import {DataGrid} from "@material-ui/data-grid";
-import EditableTable from "./EditableTable";
+import ExitPlanningTable from "./ExitPlanningTable";
 import * as Util from "../Util/index";
 
 class AssetUtilities extends Component {
@@ -212,7 +212,7 @@ class AssetUtilities extends Component {
               <Grid item xs={12}>
                 <h4>Exit Planning</h4>
 
-                <EditableTable holdings={this.props.asset.holdings} rows={this.props.asset.exitPlan} settings={settings} setRows={this.props.updateExitPlan.bind(this)} symbol={this.props.asset.symbol} />
+                <ExitPlanningTable holdings={this.props.asset.holdings} rows={this.props.asset.exitPlan} settings={settings} setRows={this.props.updateExitPlan.bind(this)} symbol={this.props.asset.symbol} />
               </Grid>
             </Grid>
           </div>
