@@ -56,7 +56,7 @@ class Header extends Component {
     let addIconTitle = "Show cryptoasset selector";
 
     if (!this.props.settings.addDropdownHideable) {
-      addIconClass += " invisible";
+      addIconClass += " d-none";
       displayAddSection = "block";
     }
     else if (this.state.displayAddSection) {

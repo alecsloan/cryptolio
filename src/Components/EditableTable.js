@@ -13,18 +13,25 @@ import * as Util from "../Util/index";
 
 const useStyles = makeStyles(theme => ({
   root: {
-    width: "90%",
+    marginBottom: 50,
     marginTop: theme.spacing(3),
     marginLeft: "auto",
     marginRight: "auto",
-    overflowX: "auto"
+    maxWidth: 800,
+    overflowX: "auto",
+    width: "90%"
+  },
+  table: {
+    width: "99%"
   },
   tableCell: {
+    maxWidth: 175,
     width: 80,
     height: 40,
     padding: 4
   },
   input: {
+    maxWidth: 200,
     minWidth: 130,
     height: 70,
     padding: 4

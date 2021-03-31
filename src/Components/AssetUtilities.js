@@ -84,7 +84,7 @@ class AssetUtilities extends Component {
           <div className="settings-panel">
             <Grid container>
               <Grid item xs={12} md={6}>
-                <h2>Simulation</h2>
+                <h4>Simulation</h4>
 
                 <TextField
                   InputProps={{
@@ -189,7 +189,7 @@ class AssetUtilities extends Component {
             </Grid>
 
               <Grid item xs={12} md={6}>
-                <h2>Interest Calculator</h2>
+                <h4>Interest Calculator</h4>
 
 
                 <TextField
@@ -218,7 +218,7 @@ class AssetUtilities extends Component {
               <hr />
 
               <Grid item xs={12}>
-                <h2>Exit Planning</h2>
+                <h4>Exit Planning</h4>
 
                 <EditableTable holdings={this.props.asset.holdings} rows={this.props.asset.exitPlan} settings={settings} setRows={this.props.updateExitPlan.bind(this)} symbol={this.props.asset.symbol} />
               </Grid>

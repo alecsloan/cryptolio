@@ -28,3 +28,7 @@ body .MuiSvgIcon-root,
 body .MuiTypography-colorTextSecondary {
   margin: 5px;
 }
+
+.MuiAlert-message {
+  margin: auto;
+}
