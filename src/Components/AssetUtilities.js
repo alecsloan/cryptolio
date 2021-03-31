@@ -11,9 +11,9 @@ import {
 } from "@material-ui/core";
 import {ArrowBack} from "@material-ui/icons";
 import TextField from "@material-ui/core/TextField";
-import {DataGrid} from "@material-ui/data-grid";
 import ExitPlanningTable from "./ExitPlanningTable";
 import * as Util from "../Util/index";
+import InterestCalculator from "./InterestCalculator";
 
 class AssetUtilities extends Component {
   componentWillReceiveProps(nextProps, nextContext) {
@@ -47,21 +47,6 @@ class AssetUtilities extends Component {
     var settings = this.props.settings;
 
     var price = this.props.asset.price;
-
-    var yearlyInterest = this.props.asset.holdings * (this.props.asset.interest * .01);
-
-    const columns = [
-      { field: 'id', headerName: this.props.asset.symbol + " Earned", width: "33%", sortable: false },
-      { field: 'amount', headerName: 'Amount', width: "33%", sortable: false },
-      { field: 'value', headerName: Util.getCurrencySymbol(currency) + " Value", width: "33%", sortable: false },
-    ];
-
-    const rows = [
-      { id: "Daily", amount: Util.getLocalizedNumber(yearlyInterest / 365, settings) || 0, value: Util.getLocalizedPrice(this.state.simulatedPrice * (yearlyInterest / 365) || 0, settings)},
-      { id: "Weekly", amount: Util.getLocalizedNumber(yearlyInterest / 52, settings) || 0, value: Util.getLocalizedPrice(this.state.simulatedPrice * (yearlyInterest / 52) || 0, settings)},
-      { id: "Monthly", amount: Util.getLocalizedNumber(yearlyInterest / 12, settings) || 0, value: Util.getLocalizedPrice(this.state.simulatedPrice * (yearlyInterest / 12) || 0, settings)},
-      { id: "Yearly", amount: Util.getLocalizedNumber(yearlyInterest, settings) || 0, value: Util.getLocalizedPrice(this.state.simulatedPrice * yearlyInterest || 0, settings)},
-    ];
 
     return (
       <Drawer
@@ -188,23 +173,7 @@ class AssetUtilities extends Component {
               <Grid item xs={12} md={6}>
                 <h4>Interest Calculator</h4>
 
-
-                <TextField
-                  InputProps={{
-                    endAdornment: <InputAdornment position="end">%</InputAdornment>,
-                  }}
-                  label="Interest"
-                  onChange={
-                    event => {
-                      this.props.updateInterest(event.target.value, this.props.asset.symbol);
-                    }
-                  }
-                  size={"small"}
-                  value={this.props.asset.interest}
-                  variant="outlined"
-                />
-
-                <DataGrid autoHeight className="m-auto" columns={columns} disableColumnMenu disableColumnReorder hideFooter rows={rows} />
+                <InterestCalculator asset={this.props.asset} price={this.state.simulatedPrice} settings={settings} updateInterest={this.props.updateInterest.bind(this)} />
               </Grid>
 
               <hr />
