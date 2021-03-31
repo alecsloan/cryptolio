@@ -35,9 +35,6 @@ class AssetUtilities extends Component {
       simulatedPrice: simulatedPrice,
       simulatedValue: simulatedValue,
       simulatedCap: simulatedCap,
-      interestSimulation: {
-        interest: 0
-      }
     });
   }
 
@@ -51,7 +48,7 @@ class AssetUtilities extends Component {
 
     var price = this.props.asset.price;
 
-    var yearlyInterest = this.props.asset.holdings * (this.state.interestSimulation.interest * .01);
+    var yearlyInterest = this.props.asset.holdings * (this.props.asset.interest * .01);
 
     const columns = [
       { field: 'id', headerName: this.props.asset.symbol + " Earned", width: "33%", sortable: false },
@@ -199,16 +196,11 @@ class AssetUtilities extends Component {
                   label="Interest"
                   onChange={
                     event => {
-                      this.setState({
-                        interestSimulation: {
-                          ...this.state.interestSimulation,
-                          interest: event.target.value
-                        }
-                      });
+                      this.props.updateInterest(event.target.value, this.props.asset.symbol);
                     }
                   }
                   size={"small"}
-                  value={this.state.interestSimulation.interest}
+                  value={this.props.asset.interest}
                   variant="outlined"
                 />
 

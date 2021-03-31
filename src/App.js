@@ -187,6 +187,7 @@ class App extends Component {
               var cmc_id = null;
               var exitPlan = [];
               var holdings = 0;
+              var interest = 0;
 
               if (this.state.data.assets !== undefined) {
                 var existingAsset = this.state.data.assets.find(asset => asset.symbol === responseAsset.symbol.toUpperCase());
@@ -195,6 +196,7 @@ class App extends Component {
                   cmc_id = existingAsset.cmc_id;
                   exitPlan = existingAsset.exitPlan || exitPlan;
                   holdings = existingAsset.holdings || holdings;
+                  interest = existingAsset.interest || interest;
                 }
               }
 
@@ -204,6 +206,7 @@ class App extends Component {
                 exitPlan: exitPlan,
                 holdings: holdings,
                 imageURL: responseAsset.image,
+                interest: interest,
                 market_cap: responseAsset.market_cap,
                 max_supply: responseAsset.total_supply,
                 name: responseAsset.name,
@@ -252,6 +255,7 @@ class App extends Component {
               var cmc_id = null;
               var exitPlan = [];
               var holdings = 0;
+              var interest = 0;
 
               if (this.state.data.assets) {
                 var existingAsset = this.state.data.assets.find(asset => asset.symbol === responseAsset.symbol);
@@ -260,6 +264,7 @@ class App extends Component {
                   cmc_id = existingAsset.cmc_id;
                   exitPlan = existingAsset.exitPlan || exitPlan;
                   holdings = existingAsset.holdings || holdings;
+                  interest = existingAsset.interest || interest;
                 }
               }
 
@@ -272,6 +277,7 @@ class App extends Component {
                 exitPlan: exitPlan,
                 holdings: holdings,
                 imageURL: 'https://s2.coinmarketcap.com/static/img/coins/128x128/'+ cmc_id +'.png',
+                interest: interest,
                 market_cap: responseAsset.quote[currency].market_cap,
                 max_supply: responseAsset.total_supply,
                 name: responseAsset.name,
@@ -432,6 +438,14 @@ class App extends Component {
     this.storeData(assets);
   }
 
+  updateInterest(interest, symbol) {
+    var assets = this.state.data.assets;
+
+    assets.find(asset => asset.symbol === symbol).interest = interest;
+
+    this.storeData(assets);
+  }
+
   render() {
     return (
       <div className="page">
@@ -444,7 +458,7 @@ class App extends Component {
             <CardRow assets={this.state.data.assets} removeCrypto={this.removeCrypto.bind(this)} settings={this.state.settings} setAssetUtilityShown={this.setAssetUtilityShown.bind(this)} updateHoldings={this.updateHoldings.bind(this)} />
           </div>
           <Settings data={this.state.data} editSetting={this.editSetting.bind(this)} settings={this.state.settings} showSettings={this.state.showSettings} theme={this.state.settings.theme || lightTheme} toggleShowSettings={this.toggleShowSettings.bind(this)} uploadData={this.uploadData.bind(this)} />
-          <AssetUtilities asset={this.state.assetUtilityShown} settings={this.state.settings} setAssetUtilityShown={this.setAssetUtilityShown.bind(this)} updateExitPlan={this.updateExitPlan.bind(this)} />
+          <AssetUtilities asset={this.state.assetUtilityShown} settings={this.state.settings} setAssetUtilityShown={this.setAssetUtilityShown.bind(this)} updateExitPlan={this.updateExitPlan.bind(this)} updateInterest={this.updateInterest.bind(this)} />
           <Hotkeys
             keyName="shift+/"
             onKeyDown={this.toggleShowSettings.bind(this)}
