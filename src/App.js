@@ -8,7 +8,7 @@ import { createMuiTheme } from '@material-ui/core/styles'
 import { ThemeProvider } from '@material-ui/styles'
 
 import './styles/App.css'
-import { CssBaseline, IconButton, Snackbar } from '@material-ui/core'
+import { CssBaseline, Grid, IconButton, Snackbar } from '@material-ui/core'
 import CloseIcon from '@material-ui/icons/Close'
 import { Alert } from '@material-ui/lab'
 import AssetUtilities from './Components/AssetUtilities'
@@ -38,10 +38,14 @@ function CardRow (props) {
   }
 
   assets.forEach(asset => {
-    cards.push(<AssetCard asset={asset} key={asset.symbol} removeCrypto={props.removeCrypto.bind(this)} settings={props.settings} setAssetUtilityShown={props.setAssetUtilityShown.bind(this)} updateHoldings={props.updateHoldings.bind(this)} />)
+    cards.push(
+      <Grid item xs={12} sm={6} md={4} key={asset.symbol}>
+        <AssetCard asset={asset} key={asset.symbol} removeCrypto={props.removeCrypto.bind(this)} settings={props.settings} setAssetUtilityShown={props.setAssetUtilityShown.bind(this)} updateHoldings={props.updateHoldings.bind(this)} />
+      </Grid>
+    )
   })
 
-  return <div className='cardRow'>{cards}</div>
+  return <Grid container spacing={2}>{cards}</Grid>
 }
 
 class App extends Component {
