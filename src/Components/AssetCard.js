@@ -22,6 +22,35 @@ function MyBalance (props) {
   )
 }
 
+function PercentChange (props) {
+  let showPeriodChange = false
+
+  if (props.period === '1h') {
+    showPeriodChange = props.settings.show1hChange
+  } else if (props.period === '24h') {
+    showPeriodChange = props.settings.show24hChange
+  } else if (props.period === '7d') {
+    showPeriodChange = props.settings.show7dChange
+  }
+
+  if (showPeriodChange) {
+    const hourColor = String(props.percentChange).includes('-') ? 'red' : 'green'
+
+    const percent = <span>{Util.getLocalizedPercent(props.percentChange * 0.01)}</span>
+
+    return (props.percentChange)
+      ? (
+        <div>
+          {props.period}
+          <b className={hourColor + ' ml-2'}>
+            {percent}
+          </b>
+        </div>
+        )
+      : <Skeleton className='m-auto' height={20} width='50%' />
+  }
+}
+
 class AssetCard extends Component {
   constructor (props) {
     super(props)
@@ -29,48 +58,6 @@ class AssetCard extends Component {
       flip: false,
       settings: props.settings
     }
-  }
-
-  getPercentChange (percentChange, period) {
-    let showPeriodChange = false
-
-    if (period === '1h') {
-      showPeriodChange = this.props.settings.show1hChange
-    } else if (period === '24h') {
-      showPeriodChange = this.props.settings.show24hChange
-    } else if (period === '7d') {
-      showPeriodChange = this.props.settings.show7dChange
-    }
-
-    if (showPeriodChange) {
-      const hourColor = String(percentChange).includes('-') ? 'red' : 'green'
-
-      const percent = <span>{Util.getLocalizedPercent(percentChange * 0.01)}</span>
-
-      let value = <Skeleton className='m-auto' height={20} width='50%' />
-
-      if (percentChange) {
-        value = (
-          <div>
-            {period}
-            <b className={hourColor + ' ml-2'}>
-              {percent}
-            </b>
-          </div>
-        )
-      }
-
-      return value
-    }
-  }
-
-  setRows (rows) {
-    this.setState({
-      ...this.state,
-      exitPlan: {
-        rows
-      }
-    })
   }
 
   toggleSettings () {
@@ -115,9 +102,9 @@ class AssetCard extends Component {
           <div className='card-body'>
             <div className='card-text'>
               {price ? <div>Price: {Util.getLocalizedPrice(price, this.props.settings)}</div> : <Skeleton className='m-auto' height={20} width='50%' />}
-              {this.getPercentChange(this.props.asset.percent_change_1h, '1h')}
-              {this.getPercentChange(this.props.asset.percent_change_24h, '24h')}
-              {this.getPercentChange(this.props.asset.percent_change_7d, '7d')}
+              <PercentChange period='1h' percentChange={this.props.asset.percent_change_1h} settings={this.props.settings} />
+              <PercentChange period='24h' percentChange={this.props.asset.percent_change_24h} settings={this.props.settings} />
+              <PercentChange period='7d' percentChange={this.props.asset.percent_change_7d} settings={this.props.settings} />
               <MyBalance holdings={this.props.asset.holdings} price={price} settings={this.props.settings} />
             </div>
           </div>
