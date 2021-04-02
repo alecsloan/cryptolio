@@ -8,31 +8,13 @@ import { createMuiTheme } from '@material-ui/core/styles'
 import { ThemeProvider } from '@material-ui/styles'
 
 import './styles/App.css'
-import { colors, CssBaseline, IconButton, Snackbar } from '@material-ui/core'
+import { CssBaseline, IconButton, Snackbar } from '@material-ui/core'
 import CloseIcon from '@material-ui/icons/Close'
 import { Alert } from '@material-ui/lab'
 import AssetUtilities from './Components/AssetUtilities'
 import * as CoinGecko from './Util/CoinGecko'
 import * as CoinMarketCap from './Util/CoinMarketCap'
-
-const darkTheme = createMuiTheme({
-  palette: {
-    type: 'dark',
-    background: {
-      default: '#1c2025',
-      paper: colors.grey[800]
-    },
-    primary: {
-      main: colors.grey[900]
-    }
-  }
-})
-
-const lightTheme = createMuiTheme({
-  palette: {
-    type: 'light'
-  }
-})
+import * as Theme from './Theme'
 
 function CardRow (props) {
   const cards = []
@@ -84,10 +66,10 @@ class App extends Component {
       showPortfolioBalance: true,
       sliderMax: 10000,
       sorting: 'balance',
-      theme: lightTheme
+      theme: Theme.dark
     }
 
-    initialSettings.theme = createMuiTheme(initialSettings.theme)
+    initialSettings.theme = createMuiTheme(initialSettings.theme) || Theme.dark
 
     this.state = {
       data: {
@@ -133,9 +115,9 @@ class App extends Component {
       value = 6000
     } else if (settingName === 'theme') {
       if (value === 'light') {
-        value = darkTheme
+        value = Theme.dark
       } else {
-        value = lightTheme
+        value = Theme.light
       }
     }
 
@@ -281,7 +263,7 @@ class App extends Component {
   render () {
     return (
       <div className='page'>
-        <ThemeProvider theme={this.state.settings.theme || lightTheme}>
+        <ThemeProvider theme={this.state.settings.theme}>
           <CssBaseline />
 
           <Header addCrypto={this.addCrypto.bind(this)} assets={this.state.data.assets} availableAssets={this.state.data.availableAssets} editSetting={this.editSetting.bind(this)} refreshData={this.fetchAssetData.bind(this)} settings={this.state.settings} toggleShowSettings={this.toggleShowSettings.bind(this)} />
@@ -289,7 +271,7 @@ class App extends Component {
           <div className='content'>
             <CardRow assets={this.state.data.assets} removeCrypto={this.removeCrypto.bind(this)} settings={this.state.settings} setAssetUtilityShown={this.setAssetUtilityShown.bind(this)} updateHoldings={this.updateHoldings.bind(this)} />
           </div>
-          <Settings data={this.state.data} editSetting={this.editSetting.bind(this)} settings={this.state.settings} showSettings={this.state.showSettings} theme={this.state.settings.theme || lightTheme} toggleShowSettings={this.toggleShowSettings.bind(this)} uploadData={this.uploadData.bind(this)} />
+          <Settings data={this.state.data} editSetting={this.editSetting.bind(this)} settings={this.state.settings} showSettings={this.state.showSettings} theme={this.state.settings.theme} toggleShowSettings={this.toggleShowSettings.bind(this)} uploadData={this.uploadData.bind(this)} />
           <AssetUtilities asset={this.state.assetUtilityShown} settings={this.state.settings} setAssetUtilityShown={this.setAssetUtilityShown.bind(this)} updateExitPlan={this.updateExitPlan.bind(this)} updateInterest={this.updateInterest.bind(this)} />
           <Hotkeys
             keyName='shift+/'
