@@ -2,11 +2,12 @@ import React, { Component } from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import '../styles/Card.css'
 import TextField from '@material-ui/core/TextField'
-import { Card, IconButton } from '@material-ui/core'
+import { Box, Card, CardContent, CardHeader, colors, Grid, IconButton, Typography } from '@material-ui/core'
 import { BarChart, Delete, Save, Settings as SettingsIcon } from '@material-ui/icons'
 import Button from '@material-ui/core/Button'
 import * as Util from '../Util/index'
 import { Skeleton } from '@material-ui/lab'
+import abbreviate from 'number-abbreviate'
 
 function MyBalance (props) {
   if (props.holdings > 0 && props.settings.showCardBalances) {
@@ -34,21 +35,25 @@ function PercentChange (props) {
   }
 
   if (showPeriodChange) {
-    const hourColor = String(props.percentChange).includes('-') ? 'red' : 'green'
+    const hourColor = String(props.percentChange).includes('-') ? colors.red[300] : colors.green[300]
 
     const percent = <span>{Util.getLocalizedPercent(props.percentChange * 0.01)}</span>
 
     return (props.percentChange)
       ? (
-        <div>
-          {props.period}
-          <b className={hourColor + ' ml-2'}>
+        <Typography className="d-inline-block m-1" component="div">
+          <Box className="d-inline-block" fontWeight="fontWeightLight">
+            {props.period}
+          </Box>
+          <Box className="d-inline-block" color={hourColor} fontWeight="fontWeightBold" p={1}>
             {percent}
-          </b>
-        </div>
+          </Box>
+        </Typography>
         )
       : <Skeleton className='m-auto' height={20} width='50%' />
   }
+
+  return null
 }
 
 class AssetCard extends Component {
@@ -67,105 +72,92 @@ class AssetCard extends Component {
   render () {
     const price = this.props.asset.price
 
-    const front = this.state.flip ? 'none' : ''
-    const back = this.state.flip ? '' : 'none'
-
     return (
-      <Card className='card'>
-        <div className={(window.innerWidth <= 760) ? 'row' : ''} style={{ display: front }} onClick={() => this.toggleSettings()}>
-          <div className={(window.innerWidth <= 760) ? 'ml-2 w-50' : ''}>
-            <IconButton
-              aria-label={this.props.asset.name + ' settings'}
-              className='settings pull-right'
-              color='inherit'
-              onClick={() => this.toggleSettings()}
-            >
-              <SettingsIcon />
-            </IconButton>
-            {
-              this.props.asset.imageURL
-                ? <img
-                    alt={this.props.asset.name + ' Logo'}
-                    className='card-img-top center'
-                    src={this.props.asset.imageURL}
-                  />
-                : <Skeleton className='card-img-top m-auto' variant='circle' height={100} />
-            }
-            <h4 className='card-title'>
-              {
-              (this.props.asset.name && this.props.asset.symbol)
-                ? `${this.props.asset.name} (${this.props.asset.symbol})`
-                : <Skeleton className='m-auto' height={28} width='50%' />
-            }
-            </h4>
-          </div>
-          <div className='card-body'>
-            <div className='card-text'>
-              {price ? <div>Price: {Util.getLocalizedPrice(price, this.props.settings)}</div> : <Skeleton className='m-auto' height={20} width='50%' />}
-              <PercentChange period='1h' percentChange={this.props.asset.percent_change_1h} settings={this.props.settings} />
-              <PercentChange period='24h' percentChange={this.props.asset.percent_change_24h} settings={this.props.settings} />
-              <PercentChange period='7d' percentChange={this.props.asset.percent_change_7d} settings={this.props.settings} />
-              <MyBalance holdings={this.props.asset.holdings} price={price} settings={this.props.settings} />
-            </div>
-          </div>
-        </div>
-        <div className='back' style={{ display: back }}>
-          <div className='card-body p-0'>
-            <div className='row'>
-              <IconButton
-                aria-label={'remove ' + this.props.asset.name}
-                className='settings pull-left visible'
-                color='inherit'
-                onClick={() => this.props.removeCrypto(this.props.asset.symbol)}
-              >
-                <Delete />
-              </IconButton>
+      <Card className='card' onClick={(event) => (window.innerWidth <= 760 && event.target.tagName !== "INPUT") ? this.toggleSettings() : null}>
+        <CardHeader
+          avatar={
+            this.props.asset.imageURL
+              ? <img
+                alt={this.props.asset.name + ' Logo'}
+                height={75}
+                src={this.props.asset.imageURL}
+              />
+              : <Skeleton className='card-img-top m-auto' variant='circle' height={100} />
+          }
+          action={
+            this.state.flip ?
               <IconButton
                 aria-label={'save ' + this.props.asset.name}
-                className='settings pull-right visible'
+                className='p-0 settings visible'
                 color='inherit'
                 onClick={() => this.toggleSettings()}
               >
                 <Save />
               </IconButton>
-            </div>
-            <h4 className='card-title settings-title'>
-              <a className='text-white' href={this.props.asset.url} rel='noopener noreferrer' target='_blank'>
-                {this.props.asset.name} ({this.props.asset.symbol})
-              </a>
-            </h4>
+              :
+              <IconButton
+                aria-label={this.props.asset.name + ' settings'}
+                className='p-0 settings'
+                color='inherit'
+                onClick={() => this.toggleSettings()}
+              >
+                <SettingsIcon />
+              </IconButton>
+          }
+          subheader={
+            price
+              ? <Grid container>
+                <Grid item xs={6}>{Util.getLocalizedPrice(price, this.props.settings)}</Grid>
+                <Grid item xs={6}>{Util.getCurrencySymbol(this.props.settings.currency) + abbreviate(this.props.asset.market_cap, 2, ['K', 'M', 'B', 'T'])}</Grid>
+                <Grid item xs={12}><MyBalance holdings={this.props.asset.holdings} price={price} settings={this.props.settings} /></Grid>
+              </Grid>
+              : <Skeleton className='m-auto' height={20} width='50%' />}
+          title={(this.props.asset.name && this.props.asset.symbol)
+            ? `${this.props.asset.name} (${this.props.asset.symbol})`
+            : <Skeleton className='m-auto' height={28} width='50%' />}
+        />
+        <CardContent className="p-0" hidden={this.state.flip}>
+          <PercentChange period='1h' percentChange={this.props.asset.percent_change_1h} settings={this.props.settings} />
+          <PercentChange period='24h' percentChange={this.props.asset.percent_change_24h} settings={this.props.settings} />
+          <PercentChange period='7d' percentChange={this.props.asset.percent_change_7d} settings={this.props.settings} />
+        </CardContent>
+        <CardContent hidden={!this.state.flip}>
+          <TextField
+            label='My Holdings'
+            onChange={
+              event => {
+                this.props.updateHoldings(event.target.value, this.props.asset.symbol)
+              }
+            }
+            size='small'
+            value={Util.getLocalizedNumber(this.props.asset.holdings, this.props.settings)}
+            variant='outlined'
+          />
 
-            <div className='card-text'>
-              <div className='mb-2'>Price: {Util.getLocalizedPrice(price, this.props.settings)}</div>
+          <MyBalance holdings={this.props.asset.holdings} price={price} settings={this.props.settings} />
 
-              <TextField
-                label='My Holdings'
-                onChange={
-                  event => {
-                    this.props.updateHoldings(event.target.value, this.props.asset.symbol)
-                  }
-                }
-                size='small'
-                value={Util.getLocalizedNumber(this.props.asset.holdings, this.props.settings)}
-                variant='outlined'
-              />
+          <hr />
 
-              <MyBalance holdings={this.props.asset.holdings} price={price} settings={this.props.settings} />
-            </div>
+          <Button
+            variant='contained'
+            className='mb-2'
+            color='primary'
+            startIcon={<BarChart />}
+            onClick={() => this.props.setAssetUtilityShown(this.props.asset)}
+          >
+            Simulation and more
+          </Button>
 
-            <hr />
-
-            <Button
-              variant='contained'
-              className='mb-2'
-              color='primary'
-              startIcon={<BarChart />}
-              onClick={() => this.props.setAssetUtilityShown(this.props.asset)}
-            >
-              Simulation and more
-            </Button>
-          </div>
-        </div>
+          <Button
+            variant='contained'
+            className='mb-2'
+            color='secondary'
+            startIcon={<Delete />}
+            onClick={() => this.props.removeCrypto(this.props.asset.symbol)}
+          >
+            Remove Asset
+          </Button>
+        </CardContent>
       </Card>
     )
   }

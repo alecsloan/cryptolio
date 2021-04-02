@@ -7,12 +7,6 @@
   height: 100%;
 }
 
-@media only screen and (min-width: 768px) {
-  .card:hover {
-    transform: scale(1.02);
-  }
-}
-
 .card:hover .settings{
   visibility: visible;
 }
@@ -140,12 +134,7 @@
 }
 
 .settings {
-  color: #FFF;
-  cursor: pointer;
-  margin: 10px;
-  position: absolute !important;
-  right: 0;
-  visibility: hidden;
+    visibility: hidden;
 }
 
 .settings-small{
