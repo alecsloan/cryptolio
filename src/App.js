@@ -12,8 +12,8 @@ import { colors, CssBaseline, IconButton, Snackbar } from '@material-ui/core'
 import CloseIcon from '@material-ui/icons/Close'
 import { Alert } from '@material-ui/lab'
 import AssetUtilities from './Components/AssetUtilities'
-
-const CORS_PROXY = 'https://cors.bridged.cc/'
+import * as CoinGecko from './Util/CoinGecko'
+import * as CoinMarketCap from './Util/CoinMarketCap'
 
 const darkTheme = createMuiTheme({
   palette: {
@@ -66,7 +66,7 @@ class App extends Component {
   constructor (props) {
     super(props)
 
-    const initialData = JSON.parse(window.localStorage.getItem('data')) || { assets: [{ cmcId: 1817, symbol: 'VGX' }], cryptoassets: [] }
+    const initialData = JSON.parse(window.localStorage.getItem('data')) || { assets: [{ cmcId: 1817, symbol: 'VGX' }], availableAssets: [] }
     const initialSettings = JSON.parse(window.localStorage.getItem('settings')) || {
       addDropdownHideable: false,
       assetUtilityShown: null,
@@ -92,7 +92,7 @@ class App extends Component {
     this.state = {
       data: {
         assets: initialData.assets,
-        cryptoassets: initialData.cryptoassets
+        availableAssets: initialData.availableAssets
       },
       dataUpdated: false,
       showSettings: false,
@@ -100,7 +100,7 @@ class App extends Component {
       timestamp: null
     }
 
-    if (!this.state.data.cryptoassets || this.state.data.cryptoassets.length === 0) {
+    if (!this.state.data.availableAssets || this.state.data.availableAssets.length === 0) {
       this.fetchAvailableAssets()
     }
   }
@@ -154,198 +154,51 @@ class App extends Component {
     window.localStorage.setItem('settings', JSON.stringify(settings))
   }
 
-  getCoinGeckoData (currency) {
-    if (!this.state.data.assets) { return }
+  async fetchAssetData (currency = this.state.settings.currency) {
+    const assets = this.state.data.assets
+    let symbols = null
 
-    const shownAssetSymbols = this.state.data.assets.map(asset => asset.symbol.toLowerCase())
-
-    try {
-      window.fetch(`https://api.coingecko.com/api/v3/coins/markets?vs_currency=${currency}&symbols=${shownAssetSymbols}&price_change_percentage=1h%2C24h%2C7d`)
-        .then(res => res.json())
-        .then(response => {
-          if (!response) { return }
-
-          const assets = []
-
-          Object.entries(response).forEach(responseAsset => {
-            responseAsset = responseAsset[1]
-
-            let cmcId = null
-            let exitPlan = []
-            let holdings = 0
-            let interest = 0
-
-            if (this.state.data.assets !== undefined) {
-              const existingAsset = this.state.data.assets.find(asset => asset.symbol === responseAsset.symbol.toUpperCase())
-
-              if (existingAsset) {
-                cmcId = existingAsset.cmcId
-                exitPlan = existingAsset.exitPlan || exitPlan
-                holdings = existingAsset.holdings || holdings
-                interest = existingAsset.interest || interest
-              }
-            }
-
-            assets.push({
-              circulating_supply: responseAsset.circulating_supply,
-              cmcId: cmcId,
-              exitPlan: exitPlan,
-              holdings: holdings,
-              imageURL: responseAsset.image,
-              interest: interest,
-              market_cap: responseAsset.market_cap,
-              max_supply: responseAsset.total_supply,
-              name: responseAsset.name,
-              percent_change_1h: responseAsset.price_change_percentage_1h_in_currency,
-              percent_change_24h: responseAsset.price_change_percentage_24h_in_currency,
-              percent_change_7d: responseAsset.price_change_percentage_7d_in_currency,
-              price: responseAsset.current_price,
-              symbol: responseAsset.symbol.toUpperCase(),
-              url: 'https://www.coingecko.com/en/coins/' + responseAsset.name.toLowerCase().replace(' ', '-'),
-              volume_24h: responseAsset.total_volume
-            })
-          })
-
-          this.storeData(assets)
-
-          this.setState({
-            dataUpdated: true,
-            timestamp: new Date()
-          })
-        })
-    } catch (e) {
-      console.log('Error getting CoinGecko data:', e)
+    if (assets) {
+      symbols = assets.map(asset => asset.symbol.toLowerCase())
     }
-  }
 
-  getCoinMarketCapData (currency) {
-    if (!this.state.data.assets) { return }
+    let data
 
-    const shownAssetSymbols = this.state.data.assets.map(asset => asset.symbol)
-
-    try {
-      window.fetch(`${CORS_PROXY}https://web-api.coinmarketcap.com/v1/cryptocurrency/quotes/latest?symbol=${shownAssetSymbols}&convert=${currency}`)
-        .then(res => res.json())
-        .then(response => {
-          if (!response.data) { return }
-
-          const assets = []
-
-          Object.entries(response.data).forEach(responseAsset => {
-            responseAsset = responseAsset[1]
-
-            let cmcId = null
-            let exitPlan = []
-            let holdings = 0
-            let interest = 0
-
-            if (this.state.data.assets) {
-              const existingAsset = this.state.data.assets.find(asset => asset.symbol === responseAsset.symbol)
-
-              if (existingAsset) {
-                cmcId = existingAsset.cmcId
-                exitPlan = existingAsset.exitPlan || exitPlan
-                holdings = existingAsset.holdings || holdings
-                interest = existingAsset.interest || interest
-              }
-            }
-
-            if (!cmcId) { cmcId = responseAsset.id }
-
-            assets.push({
-              circulating_supply: responseAsset.circulating_supply,
-              cmcId: cmcId,
-              exitPlan: exitPlan,
-              holdings: holdings,
-              imageURL: 'https://s2.coinmarketcap.com/static/img/coins/128x128/' + cmcId + '.png',
-              interest: interest,
-              market_cap: responseAsset.quote[currency].market_cap,
-              max_supply: responseAsset.total_supply,
-              name: responseAsset.name,
-              percent_change_1h: responseAsset.quote[currency].percent_change_1h,
-              percent_change_24h: responseAsset.quote[currency].percent_change_24h,
-              percent_change_7d: responseAsset.quote[currency].percent_change_7d,
-              price: responseAsset.quote[currency].price,
-              symbol: responseAsset.symbol,
-              url: 'https://coinmarketcap.com/currencies/' + responseAsset.slug,
-              volume_24h: responseAsset.quote[currency].volume_24h
-            })
-          })
-
-          this.storeData(assets)
-
-          this.setState({
-            dataUpdated: true,
-            timestamp: response.status.timestamp
-          })
-        })
-    } catch (e) {
-      console.log('Error getting Coinmarketcap data:', e)
+    if (this.state.settings.datasource === 'coingecko') {
+      data = await CoinGecko.getAssetData(currency, symbols, assets)
+    } else {
+      data = await CoinMarketCap.getAssetData(currency, symbols, assets)
     }
-  }
 
-  fetchAssetData (currency = this.state.settings.currency) {
-    if (this.state.settings.datasource === 'coingecko') { return this.getCoinGeckoData(currency) }
+    this.storeData(data.assets)
 
-    return this.getCoinMarketCapData(currency)
+    this.setState({
+      dataUpdated: true,
+      timestamp: data.timestamp
+    })
   }
 
   async fetchAvailableAssets () {
-    let cryptoassets = []
+    const coinmarketcap = await CoinMarketCap.getAvailableAssets()
 
-    const success = res => res.ok ? res.json() : Promise.resolve({})
+    const coingecko = await CoinGecko.getAvailableAssets()
 
-    const coingecko = window.fetch('https://api.coingecko.com/api/v3/coins/list?include_platform=false').then(success)
+    const assets =
+      coinmarketcap.map(asset => ({
+        ...coingecko.find((asset1) => (asset1.symbol === asset.symbol) && asset1),
+        ...asset
+      }))
 
-    const coinmarketcap = window.fetch(`${CORS_PROXY}https://web-api.coinmarketcap.com/v1/cryptocurrency/map`).then(success)
+    assets.sort((a, b) => a.rank - b.rank)
 
-    Promise.all([coingecko, coinmarketcap])
-      .then(([coingeckoResponse, coinmarketcapResponse]) => {
-        if (!coinmarketcapResponse) {
-          console.error('Error getting list of assets from CoinMarketCap. Check response.')
-        }
+    this.setState({
+      data: {
+        ...this.state.data,
+        availableAssets: assets
+      }
+    })
 
-        Object.entries(coinmarketcapResponse.data).forEach(responseAsset => {
-          responseAsset = responseAsset[1]
-
-          cryptoassets.push({
-            cmcId: responseAsset.id,
-            name: responseAsset.name,
-            rank: responseAsset.rank,
-            symbol: responseAsset.symbol
-          })
-        })
-
-        if (!coingeckoResponse) {
-          console.error('Error getting list of assets from CoinGecko. Check response.')
-        }
-
-        Object.entries(coingeckoResponse).forEach(responseAsset => {
-          responseAsset = responseAsset[1]
-
-          const existingAsset = cryptoassets.find(asset => asset.symbol === responseAsset.symbol)
-
-          if (!existingAsset) {
-            cryptoassets.push({
-              name: responseAsset.name,
-              symbol: responseAsset.symbol.toUpperCase()
-            })
-          }
-        })
-
-        // Get unique data
-        // Todo: Fix root cause
-        cryptoassets = Array.from(new Set(cryptoassets.map(a => a.symbol)))
-          .map(symbol => {
-            return cryptoassets.find(a => a.symbol === symbol)
-          })
-
-        cryptoassets = cryptoassets.sort((a, b) => a.rank - b.rank)
-
-        this.storeData(this.state.data.assets, cryptoassets)
-
-        this.fetchAssetData()
-      }).catch(e => console.error(e))
+    this.fetchAssetData()
   }
 
   removeCrypto (symbol) {
@@ -368,11 +221,11 @@ class App extends Component {
     }, this.state.settings.fetchInterval || 300000)
   }
 
-  async storeData (assets, cryptoassets = this.state.data.cryptoassets) {
+  async storeData (assets) {
     this.setState({
       data: {
-        assets: assets,
-        cryptoassets: cryptoassets
+        ...this.state.data,
+        assets: assets
       }
     })
 
@@ -431,7 +284,7 @@ class App extends Component {
         <ThemeProvider theme={this.state.settings.theme || lightTheme}>
           <CssBaseline />
 
-          <Header addCrypto={this.addCrypto.bind(this)} assets={this.state.data.assets} cryptoAssetData={this.state.data.cryptoassets} editSetting={this.editSetting.bind(this)} refreshData={this.fetchAssetData.bind(this)} settings={this.state.settings} toggleShowSettings={this.toggleShowSettings.bind(this)} />
+          <Header addCrypto={this.addCrypto.bind(this)} assets={this.state.data.assets} availableAssets={this.state.data.availableAssets} editSetting={this.editSetting.bind(this)} refreshData={this.fetchAssetData.bind(this)} settings={this.state.settings} toggleShowSettings={this.toggleShowSettings.bind(this)} />
           <hr />
           <div className='content'>
             <CardRow assets={this.state.data.assets} removeCrypto={this.removeCrypto.bind(this)} settings={this.state.settings} setAssetUtilityShown={this.setAssetUtilityShown.bind(this)} updateHoldings={this.updateHoldings.bind(this)} />

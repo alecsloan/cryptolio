@@ -6,7 +6,7 @@
 * Balance tracking.
 * Interest Calculator: See what you'll earn Daily, Weekly, Monthly, and Yearly.
 * Exit Planning: Add sell targets and set the percent you want to see to your potential profits. 
-* All symbols listed (6197 Assets Available v3.1.0)
+* All symbols listed (4570 Assets Available v3.1.0)
 * Full range configuration: Only see info on the assets you want to see
 * Multi-currency.
 * Source data from CoinMarketCap or CoinGecko

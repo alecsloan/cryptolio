@@ -17,6 +17,8 @@ import '../styles/Settings.css'
 import IntervalSelector from './IntervalSelector'
 import { Grid, IconButton } from '@material-ui/core'
 import { ArrowBack, GitHub } from '@material-ui/icons'
+import * as CoinGecko from '../Util/CoinGecko'
+import * as CoinMarketCap from '../Util/CoinMarketCap'
 
 class Settings extends Component {
   constructor (props) {
@@ -24,19 +26,7 @@ class Settings extends Component {
 
     const currencies = require('../currencies.json')
 
-    let cmcLogo = 'https://s2.coinmarketcap.com/static/cloud/img/coinmarketcap'
-    let cgLogo = 'https://static.coingecko.com/s/coingecko-logo-d13d6bcceddbb003f146b33c2f7e8193d72b93bb343d38e392897c3df3e78bdd.png'
-
-    if (this.props.theme.palette.type === 'dark') {
-      cmcLogo += '_white'
-      cgLogo = 'https://static.coingecko.com/s/coingecko-logo-white-3f2aeb48e13428b7199395259dbb96280bf47ea05b2940ef7d3e87c61e4d8408.png'
-    }
-
-    cmcLogo += '_1.svg'
-
     this.state = {
-      cgLogo: cgLogo,
-      cmcLogo: cmcLogo,
       currencies: currencies,
       currency: currencies.find(currency => currency.code === this.props.settings.currency)
     }
@@ -68,7 +58,6 @@ class Settings extends Component {
           <Grid className='mb-5' container>
             <Grid item xs={12} md={6}>
               <FormControlLabel
-                className='w-75'
                 control={
                   <Select
                     className='w-100'
@@ -76,8 +65,8 @@ class Settings extends Component {
                     value={this.props.settings.datasource}
                     variant='outlined'
                   >
-                    <MenuItem value='coingecko'><img alt='CoinGecko' src={this.state.cgLogo} /></MenuItem>
-                    <MenuItem value='coinmarketcap'><img alt='CoinMarketCap' src={this.state.cmcLogo} /></MenuItem>
+                    <MenuItem value='coingecko'><img alt='CoinGecko' src={(this.props.theme.palette.type === 'dark') ? CoinGecko.logoWhite : CoinGecko.logo} /></MenuItem>
+                    <MenuItem value='coinmarketcap'><img alt='CoinMarketCap' src={(this.props.theme.palette.type === 'dark') ? CoinMarketCap.logoWhite : CoinMarketCap.logo} /></MenuItem>
                   </Select>
                           }
                 label='Datasource'
@@ -204,7 +193,7 @@ class Settings extends Component {
           <Grid className='mb-5' container>
             <Grid item xs={12} md={3}>
               <FormControlLabel
-                className='m-0 w-75'
+                className='m-0 w-100'
                 control={
                   <Select
                     className='w-100'
@@ -227,7 +216,7 @@ class Settings extends Component {
             </Grid>
             <Grid item xs={12} md={5}>
               <FormControlLabel
-                className='m-0 w-75'
+                className='m-0 w-100'
                 control={
                   <Autocomplete
                     autoComplete={false}
@@ -257,7 +246,7 @@ class Settings extends Component {
             </Grid>
             <Grid item xs={12} md={4}>
               <FormControlLabel
-                className='m-0 w-75'
+                className='m-0 w-100'
                 control={
                   <TextField
                     InputLabelProps={{
@@ -349,7 +338,7 @@ class Settings extends Component {
           </Grid>
 
           <div>
-            <h6>{`Assets Available: ${(this.props.data.cryptoassets || 0).length}`}</h6>
+            <h6>{`Assets Available: ${(this.props.data.availableAssets || 0).length}`}</h6>
             Version: {process.env.REACT_APP_VERSION} |
             <a className='ml-2 mr-2 text-white' href='https://github.com/alecsloan/cryptolio' rel='noopener noreferrer' target='_blank'>
               <IconButton
