@@ -105,6 +105,10 @@
   }
 }
 
+.h-0 {
+    height: 0 !important;
+}
+
 .MuiDataGrid-viewport .rendering-zone,
 .MuiDataGrid-root .Mui-even.MuiDataGrid-row,
 .MuiDataGrid-root .Mui-odd.MuiDataGrid-row,

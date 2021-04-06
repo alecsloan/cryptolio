@@ -12,9 +12,11 @@ import abbreviate from 'number-abbreviate'
 function MyBalance (props) {
   if (props.holdings > 0 && props.settings.showCardBalances) {
     return (
-      <div className='mt-2'>
-        My Balance: {Util.getLocalizedPrice(props.price * props.holdings, props.settings)}
-      </div>
+      <Typography component="div">
+        <Box fontSize={17} fontWeight="fontWeightBold">
+          Balance: {Util.getLocalizedPrice(props.price * props.holdings, props.settings)}
+        </Box>
+      </Typography>
     )
   }
 
@@ -41,11 +43,11 @@ function PercentChange (props) {
 
     return (props.percentChange)
       ? (
-        <Typography className="d-inline-block m-1" component="div">
+        <Typography className={props.style === 'compact' ? "d-inline-block m-1" : ""} component="div">
           <Box className="d-inline-block" fontWeight="fontWeightLight">
             {props.period}
           </Box>
-          <Box className="d-inline-block" color={hourColor} fontWeight="fontWeightBold" p={1}>
+          <Box className="d-inline-block pl-2" color={hourColor} fontWeight="fontWeightBold">
             {percent}
           </Box>
         </Typography>
@@ -72,54 +74,95 @@ class AssetCard extends Component {
   render () {
     const price = this.props.asset.price
 
+    const assetImage =
+      this.props.asset.imageURL
+      ? <img
+        alt={this.props.asset.name + ' Logo'}
+        height={this.props.style === "compact" ? 75 : 100}
+        src={this.props.asset.imageURL}
+      />
+      : <Skeleton className='card-img-top m-auto' variant='circle' height={100} />
+
+    const assetInfo =
+      price
+        ? <Grid container>
+          {this.props.style === "compact"
+            ? <Grid item xs={6}>{Util.getLocalizedPrice(price, this.props.settings)}</Grid>
+            : <Grid item xs={12}>Price: {Util.getLocalizedPrice(price, this.props.settings)}</Grid>
+          }
+          {this.props.style === "compact"
+            ? <Grid item xs={6}>{Util.getCurrencySymbol(this.props.settings.currency) + abbreviate(this.props.asset.market_cap, 2, ['K', 'M', 'B', 'T'])}</Grid>
+            : <Grid item xs={12}>Marketcap: {Util.getCurrencySymbol(this.props.settings.currency) + abbreviate(this.props.asset.market_cap, 2, ['K', 'M', 'B', 'T'])}</Grid>
+          }
+          <Grid item xs={12}><MyBalance holdings={this.props.asset.holdings} price={price} settings={this.props.settings} /></Grid>
+        </Grid>
+        : <Skeleton className='m-auto' height={20} width='50%' />
+
+    const assetName =
+      (this.props.asset.name && this.props.asset.symbol)
+        ? `${this.props.asset.name} (${this.props.asset.symbol})`
+        : <Skeleton className='m-auto' height={28} width='50%' />
+
+    const percentChanges =
+      (<div><PercentChange period='1h' percentChange={this.props.asset.percent_change_1h} settings={this.props.settings} style={this.props.style} />
+      <PercentChange period='24h' percentChange={this.props.asset.percent_change_24h} settings={this.props.settings} style={this.props.style} />
+      <PercentChange period='7d' percentChange={this.props.asset.percent_change_7d} settings={this.props.settings} style={this.props.style} /></div>)
+
     return (
       <Card className='card' onClick={(event) => (window.innerWidth <= 760 && event.target.tagName !== "INPUT") ? this.toggleSettings() : null}>
-        <CardHeader
-          avatar={
-            this.props.asset.imageURL
-              ? <img
-                alt={this.props.asset.name + ' Logo'}
-                height={75}
-                src={this.props.asset.imageURL}
-              />
-              : <Skeleton className='card-img-top m-auto' variant='circle' height={100} />
-          }
-          action={
-            this.state.flip ?
-              <IconButton
-                aria-label={'save ' + this.props.asset.name}
-                className='p-0 settings visible'
-                color='inherit'
-                onClick={() => this.toggleSettings()}
-              >
-                <Save />
-              </IconButton>
-              :
-              <IconButton
-                aria-label={this.props.asset.name + ' settings'}
-                className='p-0 settings'
-                color='inherit'
-                onClick={() => this.toggleSettings()}
-              >
-                <SettingsIcon />
-              </IconButton>
-          }
-          subheader={
-            price
-              ? <Grid container>
-                <Grid item xs={6}>{Util.getLocalizedPrice(price, this.props.settings)}</Grid>
-                <Grid item xs={6}>{Util.getCurrencySymbol(this.props.settings.currency) + abbreviate(this.props.asset.market_cap, 2, ['K', 'M', 'B', 'T'])}</Grid>
-                <Grid item xs={12}><MyBalance holdings={this.props.asset.holdings} price={price} settings={this.props.settings} /></Grid>
+
+          <CardHeader
+            avatar={this.props.style === "compact" ? assetImage : null}
+            action={
+              this.state.flip ?
+                <IconButton
+                  aria-label={'save ' + this.props.asset.name}
+                  className='p-0 settings visible'
+                  color='inherit'
+                  onClick={() => this.toggleSettings()}
+                >
+                  <Save/>
+                </IconButton>
+                :
+                <IconButton
+                  aria-label={this.props.asset.name + ' settings'}
+                  className='p-0 settings'
+                  color='inherit'
+                  onClick={() => this.toggleSettings()}
+                >
+                  <SettingsIcon/>
+                </IconButton>
+            }
+            classes={
+              this.props.style === "compact" ? null : {
+              "action": "m-0 p-2",
+              "root": "h-0 p-0"
+            }}
+            subheader={this.props.style === "compact" ? assetInfo : null}
+            title={this.props.style === "compact" ? assetName : null}
+          />
+        {
+          this.props.style !== "compact" ?
+          (<CardContent>
+              <Grid container>
+                <Grid item xs={12}>{assetImage}</Grid>
+                <Grid item xs={12}>
+                  <Typography variant='h5'>{assetName}</Typography>
+                </Grid>
               </Grid>
-              : <Skeleton className='m-auto' height={20} width='50%' />}
-          title={(this.props.asset.name && this.props.asset.symbol)
-            ? `${this.props.asset.name} (${this.props.asset.symbol})`
-            : <Skeleton className='m-auto' height={28} width='50%' />}
-        />
-        <CardContent className="p-0" hidden={this.state.flip}>
-          <PercentChange period='1h' percentChange={this.props.asset.percent_change_1h} settings={this.props.settings} />
-          <PercentChange period='24h' percentChange={this.props.asset.percent_change_24h} settings={this.props.settings} />
-          <PercentChange period='7d' percentChange={this.props.asset.percent_change_7d} settings={this.props.settings} />
+            </CardContent>)
+            :
+            null
+        }
+        <CardContent hidden={this.state.flip}>
+          {this.props.style === "compact"
+            ? percentChanges
+            :
+            <Grid container>
+              <Grid item xs={6}>{percentChanges}</Grid>
+              <Grid item xs={6}>{assetInfo}</Grid>
+            </Grid>
+          }
         </CardContent>
         <CardContent hidden={!this.state.flip}>
           <TextField
