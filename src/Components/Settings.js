@@ -164,6 +164,23 @@ class Settings extends Component {
                 control={
                   <Select
                     className='w-100'
+                    onChange={event => this.props.editSetting('renderStyle', event.target.value)}
+                    value={this.props.settings.renderStyle}
+                    variant='outlined'
+                  >
+                    <MenuItem key='card-classic' value='card:classic'>Classic Card</MenuItem>
+                    <MenuItem key='card-compact' value='card:compact'>Compact Card</MenuItem>
+                  </Select>
+                }
+                label='Asset Render Style'
+                labelPlacement='top'
+                value='top'
+              />
+              <FormControlLabel
+                className='m-0 w-100'
+                control={
+                  <Select
+                    className='w-100'
                     onChange={event => this.props.editSetting('sorting', event.target.value)}
                     value={this.props.settings.sorting}
                     variant='outlined'

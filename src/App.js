@@ -40,7 +40,7 @@ function CardRow (props) {
   assets.forEach(asset => {
     cards.push(
       <Grid item xs={12} sm={6} md={4} key={asset.symbol}>
-        <AssetCard asset={asset} key={asset.symbol} removeCrypto={props.removeCrypto.bind(this)} settings={props.settings} setAssetUtilityShown={props.setAssetUtilityShown.bind(this)} style="classic" updateHoldings={props.updateHoldings.bind(this)} />
+        <AssetCard asset={asset} key={asset.symbol} removeCrypto={props.removeCrypto.bind(this)} settings={props.settings} setAssetUtilityShown={props.setAssetUtilityShown.bind(this)} renderStyle={props.renderStyle} updateHoldings={props.updateHoldings.bind(this)} />
       </Grid>
     )
   })
@@ -276,9 +276,7 @@ class App extends Component {
           <div className='content'>
             {
               (!this.state.settings.renderStyle || this.state.settings.renderStyle.includes("card")) ?
-                <CardRow assets={this.state.data.assets} removeCrypto={this.removeCrypto.bind(this)}
-                         settings={this.state.settings} setAssetUtilityShown={this.setAssetUtilityShown.bind(this)}
-                         updateHoldings={this.updateHoldings.bind(this)}/>
+                <CardRow assets={this.state.data.assets} removeCrypto={this.removeCrypto.bind(this)} renderStyle={this.state.settings.renderStyle} settings={this.state.settings} setAssetUtilityShown={this.setAssetUtilityShown.bind(this)} updateHoldings={this.updateHoldings.bind(this)}/>
                 : ""
             }
           </div>

@@ -63,7 +63,7 @@ class AssetCard extends Component {
     super(props)
     this.state = {
       flip: false,
-      settings: props.settings
+      settings: props.settings,
     }
   }
 
@@ -72,13 +72,15 @@ class AssetCard extends Component {
   }
 
   render () {
+    let renderStyle = this.props.renderStyle.replace("card:", "");
+
     const price = this.props.asset.price
 
     const assetImage =
       this.props.asset.imageURL
       ? <img
         alt={this.props.asset.name + ' Logo'}
-        height={this.props.style === "compact" ? 75 : 100}
+        height={this.props.renderStyle === "compact" ? 75 : 100}
         src={this.props.asset.imageURL}
       />
       : <Skeleton className='card-img-top m-auto' variant='circle' height={100} />
@@ -86,11 +88,11 @@ class AssetCard extends Component {
     const assetInfo =
       price
         ? <Grid container>
-          {this.props.style === "compact"
+          {renderStyle === "compact"
             ? <Grid item xs={6}>{Util.getLocalizedPrice(price, this.props.settings)}</Grid>
             : <Grid item xs={12}>Price: {Util.getLocalizedPrice(price, this.props.settings)}</Grid>
           }
-          {this.props.style === "compact"
+          {renderStyle === "compact"
             ? <Grid item xs={6}>{Util.getCurrencySymbol(this.props.settings.currency) + abbreviate(this.props.asset.market_cap, 2, ['K', 'M', 'B', 'T'])}</Grid>
             : <Grid item xs={12}>Marketcap: {Util.getCurrencySymbol(this.props.settings.currency) + abbreviate(this.props.asset.market_cap, 2, ['K', 'M', 'B', 'T'])}</Grid>
           }
@@ -104,15 +106,15 @@ class AssetCard extends Component {
         : <Skeleton className='m-auto' height={28} width='50%' />
 
     const percentChanges =
-      (<div><PercentChange period='1h' percentChange={this.props.asset.percent_change_1h} settings={this.props.settings} style={this.props.style} />
-      <PercentChange period='24h' percentChange={this.props.asset.percent_change_24h} settings={this.props.settings} style={this.props.style} />
-      <PercentChange period='7d' percentChange={this.props.asset.percent_change_7d} settings={this.props.settings} style={this.props.style} /></div>)
+      (<div><PercentChange period='1h' percentChange={this.props.asset.percent_change_1h} settings={this.props.settings} style={renderStyle} />
+      <PercentChange period='24h' percentChange={this.props.asset.percent_change_24h} settings={this.props.settings} style={renderStyle} />
+      <PercentChange period='7d' percentChange={this.props.asset.percent_change_7d} settings={this.props.settings} style={renderStyle} /></div>)
 
     return (
       <Card className='card' onClick={(event) => (window.innerWidth <= 760 && event.target.tagName !== "INPUT") ? this.toggleSettings() : null}>
 
           <CardHeader
-            avatar={this.props.style === "compact" ? assetImage : null}
+            avatar={renderStyle === "compact" ? assetImage : null}
             action={
               this.state.flip ?
                 <IconButton
@@ -134,15 +136,15 @@ class AssetCard extends Component {
                 </IconButton>
             }
             classes={
-              this.props.style === "compact" ? null : {
+              renderStyle === "compact" ? null : {
               "action": "m-0 p-2",
               "root": "h-0 p-0"
             }}
-            subheader={this.props.style === "compact" ? assetInfo : null}
-            title={this.props.style === "compact" ? assetName : null}
+            subheader={renderStyle === "compact" ? assetInfo : null}
+            title={renderStyle === "compact" ? assetName : null}
           />
         {
-          this.props.style !== "compact" ?
+          renderStyle !== "compact" ?
           (<CardContent>
               <Grid container>
                 <Grid item xs={12}>{assetImage}</Grid>
@@ -155,7 +157,7 @@ class AssetCard extends Component {
             null
         }
         <CardContent hidden={this.state.flip}>
-          {this.props.style === "compact"
+          {renderStyle === "compact"
             ? percentChanges
             :
             <Grid container>
