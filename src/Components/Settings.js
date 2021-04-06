@@ -56,7 +56,7 @@ class Settings extends Component {
         <h2 className='settings-title'>Settings</h2>
         <div className='settings-panel'>
           <Grid className='mb-5' container>
-            <Grid item xs={12} md={6}>
+            <Grid item xs={12} lg={6}>
               <FormControlLabel
                 control={
                   <Select
@@ -74,7 +74,7 @@ class Settings extends Component {
                 value='top'
               />
             </Grid>
-            <Grid className='m-auto' item xs={6} md={3}>
+            <Grid className='m-auto' item xs={6} lg={3}>
               <input
                 accept='application/json'
                 className='d-none'
@@ -93,7 +93,7 @@ class Settings extends Component {
                 </Button>
               </label>
             </Grid>
-            <Grid className='m-auto' item xs={6} md={3}>
+            <Grid className='m-auto' item xs={6} lg={3}>
               <Button
                 variant='contained'
                 color='primary'
@@ -105,7 +105,10 @@ class Settings extends Component {
             </Grid>
           </Grid>
           <Grid className='mb-5' container>
-            <Grid item xs={4} md={2}>
+            <Grid item xs={12}>
+              <h4 className='text-center mb-4'>Asset Display Settings</h4>
+            </Grid>
+            <Grid className="m-auto" item xs={12} md={6}>
               <FormControlLabel
                 control={
                   <Switch
@@ -118,8 +121,6 @@ class Settings extends Component {
                 labelPlacement='top'
                 value='top'
               />
-            </Grid>
-            <Grid item xs={4} md={2}>
               <FormControlLabel
                 control={
                   <Switch
@@ -132,8 +133,6 @@ class Settings extends Component {
                 labelPlacement='top'
                 value='top'
               />
-            </Grid>
-            <Grid item xs={4} md={2}>
               <FormControlLabel
                 control={
                   <Switch
@@ -146,22 +145,6 @@ class Settings extends Component {
                 labelPlacement='top'
                 value='top'
               />
-            </Grid>
-            <Grid item xs={4} md={2}>
-              <FormControlLabel
-                control={
-                  <Switch
-                    color='primary'
-                    defaultChecked={this.props.settings.addDropdownHideable}
-                    onChange={() => this.props.editSetting('addDropdownHideable', !this.props.settings.addDropdownHideable)}
-                  />
-                        }
-                label='Add Dropdown Collapsable'
-                labelPlacement='top'
-                value='top'
-              />
-            </Grid>
-            <Grid item xs={4} md={2}>
               <FormControlLabel
                 control={
                   <Switch
@@ -169,29 +152,13 @@ class Settings extends Component {
                     defaultChecked={this.props.settings.showCardBalances}
                     onChange={() => this.props.editSetting('showCardBalances', !this.props.settings.showCardBalances)}
                   />
-                        }
-                label='Show Asset Card Balance'
+                }
+                label='Show Asset Balance'
                 labelPlacement='top'
                 value='top'
               />
             </Grid>
-            <Grid item xs={4} md={2}>
-              <FormControlLabel
-                control={
-                  <Switch
-                    color='primary'
-                    defaultChecked={this.props.settings.showPortfolioBalance}
-                    onChange={() => this.props.editSetting('showPortfolioBalance', !this.props.settings.showPortfolioBalance)}
-                  />
-                        }
-                label='Show Portfolio Balance'
-                labelPlacement='top'
-                value='top'
-              />
-            </Grid>
-          </Grid>
-          <Grid className='mb-5' container>
-            <Grid item xs={12} md={3}>
+            <Grid item xs={12} md={6}>
               <FormControlLabel
                 className='m-0 w-100'
                 control={
@@ -208,13 +175,63 @@ class Settings extends Component {
                     <MenuItem key='24h' value='24h'>24 Hour Change</MenuItem>
                     <MenuItem key='7d' value='7d'>7 Day Change</MenuItem>
                   </Select>
-                    }
-                label='Card Sorting'
+                }
+                label='Asset Sorting'
+                labelPlacement='top'
+                value='top'
+              />
+              <FormControlLabel
+                className='m-0 w-100'
+                control={
+                  <TextField
+                    className="w-100"
+                    InputLabelProps={{
+                      shrink: true
+                    }}
+                    onInputCapture={event => this.props.editSetting('sliderMax', (event.target.value < 100) ? 100 : event.target.value)}
+                    size='small'
+                    type='number'
+                    value={this.props.settings.sliderMax}
+                    variant='outlined'
+                  />
+                }
+                label='Simulated Percent Slider Max'
                 labelPlacement='top'
                 value='top'
               />
             </Grid>
-            <Grid item xs={12} md={5}>
+          </Grid>
+          <Grid className='mb-4' container>
+            <Grid item xs={12}>
+              <h4 className='text-center mb-4'>General Settings</h4>
+            </Grid>
+            <Grid className="m-auto" item xs={12} md={6}>
+              <FormControlLabel
+                control={
+                  <Switch
+                    color='primary'
+                    defaultChecked={this.props.settings.addDropdownHideable}
+                    onChange={() => this.props.editSetting('addDropdownHideable', !this.props.settings.addDropdownHideable)}
+                  />
+                        }
+                label='Add Dropdown Collapsable'
+                labelPlacement='top'
+                value='top'
+              />
+              <FormControlLabel
+                control={
+                  <Switch
+                    color='primary'
+                    defaultChecked={this.props.settings.showPortfolioBalance}
+                    onChange={() => this.props.editSetting('showPortfolioBalance', !this.props.settings.showPortfolioBalance)}
+                  />
+                }
+                label='Show Portfolio Balance'
+                labelPlacement='top'
+                value='top'
+              />
+            </Grid>
+            <Grid item xs={12} md={6}>
               <FormControlLabel
                 className='m-0 w-100'
                 control={
@@ -226,46 +243,26 @@ class Settings extends Component {
                     getOptionLabel={(option) => `${option.currency} (${option.symbol})`}
                     id='currency'
                     onChange={
-                              (event, currency) => {
-                                if (currency) {
-                                  this.updateCurrency(currency.code)
-                                  this.props.editSetting('currency', currency.code)
-                                }
-                              }
-                          }
+                      (event, currency) => {
+                        if (currency) {
+                          this.updateCurrency(currency.code)
+                          this.props.editSetting('currency', currency.code)
+                        }
+                      }
+                    }
                     options={this.state.currencies}
                     renderInput={(params) => <TextField {...params} variant='outlined' />}
                     size='small'
                     value={this.state.currency}
                   />
-                      }
+                }
                 label='Currency'
                 labelPlacement='top'
                 value='top'
               />
             </Grid>
-            <Grid item xs={12} md={4}>
-              <FormControlLabel
-                className='m-0 w-100'
-                control={
-                  <TextField
-                    InputLabelProps={{
-                      shrink: true
-                    }}
-                    onInputCapture={event => this.props.editSetting('sliderMax', (event.target.value < 100) ? 100 : event.target.value)}
-                    size='small'
-                    type='number'
-                    value={this.props.settings.sliderMax}
-                    variant='outlined'
-                  />
-                      }
-                label='Simulated Percent Slider Max'
-                labelPlacement='top'
-                value='top'
-              />
-            </Grid>
           </Grid>
-          <Grid className='mb-5' container>
+          <Grid className='mb-4' container>
             <Grid item xs={12} md={6}>
               <IntervalSelector
                 value={this.props.settings.fetchInterval || 300000}
@@ -295,7 +292,7 @@ class Settings extends Component {
               />
             </Grid>
           </Grid>
-          <Grid className='mb-5' container>
+          <Grid className='mb-4' container>
             <Grid item xs={12} md={4}>
               <TextField
                 InputLabelProps={{
