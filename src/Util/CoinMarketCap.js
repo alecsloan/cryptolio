@@ -40,13 +40,14 @@ export const getAssetData = async (currency, symbols, assets) => {
             imageURL: 'https://s2.coinmarketcap.com/static/img/coins/128x128/' + cmcId + '.png',
             interest: interest,
             market_cap: responseAsset.quote[currency].market_cap,
-            max_supply: responseAsset.total_supply,
+            max_supply: responseAsset.max_supply,
             name: responseAsset.name,
             percent_change_1h: responseAsset.quote[currency].percent_change_1h,
             percent_change_24h: responseAsset.quote[currency].percent_change_24h,
             percent_change_7d: responseAsset.quote[currency].percent_change_7d,
             price: responseAsset.quote[currency].price,
             symbol: responseAsset.symbol,
+            total_supply: responseAsset.total_supply,
             url: 'https://coinmarketcap.com/currencies/' + responseAsset.slug,
             volume_24h: responseAsset.quote[currency].volume_24h
           })

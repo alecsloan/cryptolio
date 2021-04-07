@@ -36,13 +36,14 @@ export const getAssetData = async (currency, symbols, assets) => {
             imageURL: responseAsset.image,
             interest: interest,
             market_cap: responseAsset.market_cap,
-            max_supply: responseAsset.total_supply,
+            max_supply: responseAsset.max_supply,
             name: responseAsset.name,
             percent_change_1h: responseAsset.price_change_percentage_1h_in_currency,
             percent_change_24h: responseAsset.price_change_percentage_24h_in_currency,
             percent_change_7d: responseAsset.price_change_percentage_7d_in_currency,
             price: responseAsset.current_price,
             symbol: responseAsset.symbol.toUpperCase(),
+            total_supply: responseAsset.total_supply,
             url: 'https://www.coingecko.com/en/coins/' + responseAsset.name.toLowerCase().replace(' ', '-'),
             volume_24h: responseAsset.total_volume
           })

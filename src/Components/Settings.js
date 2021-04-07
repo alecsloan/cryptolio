@@ -170,9 +170,10 @@ class Settings extends Component {
                   >
                     <MenuItem key='card-classic' value='card:classic'>Classic Card</MenuItem>
                     <MenuItem key='card-compact' value='card:compact'>Compact Card</MenuItem>
+                    <MenuItem key='table' value='table'>Table</MenuItem>
                   </Select>
                 }
-                label='Asset Render Style'
+                label='Asset Display Style'
                 labelPlacement='top'
                 value='top'
               />
@@ -193,7 +194,7 @@ class Settings extends Component {
                     <MenuItem key='7d' value='7d'>7 Day Change</MenuItem>
                   </Select>
                 }
-                label='Asset Sorting'
+                label='Sort By'
                 labelPlacement='top'
                 value='top'
               />

@@ -15,6 +15,7 @@ import AssetUtilities from './Components/AssetUtilities'
 import * as CoinGecko from './Util/CoinGecko'
 import * as CoinMarketCap from './Util/CoinMarketCap'
 import * as Theme from './Theme'
+import AssetTable from './Components/AssetTable'
 
 function CardRow (props) {
   const cards = []
@@ -188,12 +189,20 @@ class App extends Component {
     this.fetchAssetData()
   }
 
-  removeCrypto (symbol) {
-    const assetIndex = this.state.data.assets.findIndex(asset => asset.symbol === symbol.toUpperCase())
+  removeCrypto (symbols) {
+    let assets = this.state.data.assets
 
-    this.state.data.assets.splice(assetIndex, 1)
+    if (!Array.isArray(symbols)) {
+      symbols = [symbols]
+    }
 
-    this.storeData(this.state.data.assets)
+    symbols.forEach((symbol) => {
+      const assetIndex = assets.findIndex(asset => asset.symbol === symbol.toUpperCase())
+
+      assets.splice(assetIndex, 1)
+    })
+
+    this.storeData(assets)
   }
 
   setAssetUtilityShown (asset) {
@@ -277,7 +286,7 @@ class App extends Component {
             {
               (!this.state.settings.renderStyle || this.state.settings.renderStyle.includes('card'))
                 ? <CardRow assets={this.state.data.assets} removeCrypto={this.removeCrypto.bind(this)} renderStyle={this.state.settings.renderStyle} settings={this.state.settings} setAssetUtilityShown={this.setAssetUtilityShown.bind(this)} updateHoldings={this.updateHoldings.bind(this)} />
-                : ''
+                : <AssetTable assets={this.state.data.assets} removeCrypto={this.removeCrypto.bind(this)} settings={this.state.settings} />
             }
           </div>
           <Settings data={this.state.data} editSetting={this.editSetting.bind(this)} settings={this.state.settings} showSettings={this.state.showSettings} theme={this.state.settings.theme} toggleShowSettings={this.toggleShowSettings.bind(this)} uploadData={this.uploadData.bind(this)} />

@@ -40,6 +40,6 @@ export function getLocalizedPrice (price, settings, style = 'currency') {
   )
 }
 
-export function getLocalizedPercent (number) {
-  return number.toLocaleString(window.navigator.language, { style: 'percent', minimumFractionDigits: 2 })
+export function getLocalizedPercent (number, minimumFractionDigits = 2) {
+  return number.toLocaleString(window.navigator.language, { style: 'percent', minimumFractionDigits: minimumFractionDigits })
 }
