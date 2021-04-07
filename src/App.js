@@ -63,7 +63,7 @@ class App extends Component {
       decimals3: 1,
       decimals4: null,
       fetchInterval: 300000,
-      renderStyle: "card:classic",
+      renderStyle: 'card:classic',
       show1hChange: true,
       show24hChange: true,
       show7dChange: true,
@@ -275,9 +275,9 @@ class App extends Component {
           <hr />
           <div className='content'>
             {
-              (!this.state.settings.renderStyle || this.state.settings.renderStyle.includes("card")) ?
-                <CardRow assets={this.state.data.assets} removeCrypto={this.removeCrypto.bind(this)} renderStyle={this.state.settings.renderStyle} settings={this.state.settings} setAssetUtilityShown={this.setAssetUtilityShown.bind(this)} updateHoldings={this.updateHoldings.bind(this)}/>
-                : ""
+              (!this.state.settings.renderStyle || this.state.settings.renderStyle.includes('card'))
+                ? <CardRow assets={this.state.data.assets} removeCrypto={this.removeCrypto.bind(this)} renderStyle={this.state.settings.renderStyle} settings={this.state.settings} setAssetUtilityShown={this.setAssetUtilityShown.bind(this)} updateHoldings={this.updateHoldings.bind(this)} />
+                : ''
             }
           </div>
           <Settings data={this.state.data} editSetting={this.editSetting.bind(this)} settings={this.state.settings} showSettings={this.state.showSettings} theme={this.state.settings.theme} toggleShowSettings={this.toggleShowSettings.bind(this)} uploadData={this.uploadData.bind(this)} />

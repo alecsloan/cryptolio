@@ -12,8 +12,8 @@ import abbreviate from 'number-abbreviate'
 function MyBalance (props) {
   if (props.holdings > 0 && props.settings.showCardBalances) {
     return (
-      <Typography component="div">
-        <Box fontSize={17} fontWeight="fontWeightBold">
+      <Typography component='div'>
+        <Box fontSize={17} fontWeight='fontWeightBold'>
           Balance: {Util.getLocalizedPrice(props.price * props.holdings, props.settings)}
         </Box>
       </Typography>
@@ -43,11 +43,11 @@ function PercentChange (props) {
 
     return (props.percentChange)
       ? (
-        <Typography className={props.style === 'compact' ? "d-inline-block m-1" : ""} component="div">
-          <Box className="d-inline-block" fontWeight="fontWeightLight">
+        <Typography className={props.style === 'compact' ? 'd-inline-block m-1' : ''} component='div'>
+          <Box className='d-inline-block' fontWeight='fontWeightLight'>
             {props.period}
           </Box>
-          <Box className="d-inline-block pl-2" color={hourColor} fontWeight="fontWeightBold">
+          <Box className='d-inline-block pl-2' color={hourColor} fontWeight='fontWeightBold'>
             {percent}
           </Box>
         </Typography>
@@ -63,7 +63,7 @@ class AssetCard extends Component {
     super(props)
     this.state = {
       flip: false,
-      settings: props.settings,
+      settings: props.settings
     }
   }
 
@@ -72,32 +72,34 @@ class AssetCard extends Component {
   }
 
   render () {
-    let renderStyle = this.props.renderStyle.replace("card:", "");
+    const renderStyle = this.props.renderStyle.replace('card:', '')
 
     const price = this.props.asset.price
 
     const assetImage =
       this.props.asset.imageURL
-      ? <img
-        alt={this.props.asset.name + ' Logo'}
-        height={this.props.renderStyle === "compact" ? 75 : 100}
-        src={this.props.asset.imageURL}
-      />
-      : <Skeleton className='card-img-top m-auto' variant='circle' height={100} />
+        ? (
+          <img
+            alt={this.props.asset.name + ' Logo'}
+            height={this.props.renderStyle === 'compact' ? 75 : 100}
+            src={this.props.asset.imageURL}
+          />
+          )
+        : <Skeleton className='card-img-top m-auto' variant='circle' height={100} />
 
     const assetInfo =
       price
-        ? <Grid container>
-          {renderStyle === "compact"
-            ? <Grid item xs={6}>{Util.getLocalizedPrice(price, this.props.settings)}</Grid>
-            : <Grid item xs={12}>Price: {Util.getLocalizedPrice(price, this.props.settings)}</Grid>
-          }
-          {renderStyle === "compact"
-            ? <Grid item xs={6}>{Util.getCurrencySymbol(this.props.settings.currency) + abbreviate(this.props.asset.market_cap, 2, ['K', 'M', 'B', 'T'])}</Grid>
-            : <Grid item xs={12}>Marketcap: {Util.getCurrencySymbol(this.props.settings.currency) + abbreviate(this.props.asset.market_cap, 2, ['K', 'M', 'B', 'T'])}</Grid>
-          }
-          <Grid item xs={12}><MyBalance holdings={this.props.asset.holdings} price={price} settings={this.props.settings} /></Grid>
-        </Grid>
+        ? (
+          <Grid container>
+            {renderStyle === 'compact'
+              ? <Grid item xs={6}>{Util.getLocalizedPrice(price, this.props.settings)}</Grid>
+              : <Grid item xs={12}>Price: {Util.getLocalizedPrice(price, this.props.settings)}</Grid>}
+            {renderStyle === 'compact'
+              ? <Grid item xs={6}>{Util.getCurrencySymbol(this.props.settings.currency) + abbreviate(this.props.asset.market_cap, 2, ['K', 'M', 'B', 'T'])}</Grid>
+              : <Grid item xs={12}>Marketcap: {Util.getCurrencySymbol(this.props.settings.currency) + abbreviate(this.props.asset.market_cap, 2, ['K', 'M', 'B', 'T'])}</Grid>}
+            <Grid item xs={12}><MyBalance holdings={this.props.asset.holdings} price={price} settings={this.props.settings} /></Grid>
+          </Grid>
+          )
         : <Skeleton className='m-auto' height={20} width='50%' />
 
     const assetName =
@@ -106,46 +108,51 @@ class AssetCard extends Component {
         : <Skeleton className='m-auto' height={28} width='50%' />
 
     const percentChanges =
-      (<div><PercentChange period='1h' percentChange={this.props.asset.percent_change_1h} settings={this.props.settings} style={renderStyle} />
-      <PercentChange period='24h' percentChange={this.props.asset.percent_change_24h} settings={this.props.settings} style={renderStyle} />
-      <PercentChange period='7d' percentChange={this.props.asset.percent_change_7d} settings={this.props.settings} style={renderStyle} /></div>)
+      (
+        <div><PercentChange period='1h' percentChange={this.props.asset.percent_change_1h} settings={this.props.settings} style={renderStyle} />
+          <PercentChange period='24h' percentChange={this.props.asset.percent_change_24h} settings={this.props.settings} style={renderStyle} />
+          <PercentChange period='7d' percentChange={this.props.asset.percent_change_7d} settings={this.props.settings} style={renderStyle} />
+        </div>
+      )
 
     return (
-      <Card className='card' onClick={(event) => (window.innerWidth <= 760 && event.target.tagName !== "INPUT") ? this.toggleSettings() : null}>
+      <Card className='card' onClick={(event) => (window.innerWidth <= 760 && event.target.tagName !== 'INPUT') ? this.toggleSettings() : null}>
 
-          <CardHeader
-            avatar={renderStyle === "compact" ? assetImage : null}
-            action={
-              this.state.flip ?
-                <IconButton
+        <CardHeader
+          avatar={renderStyle === 'compact' ? assetImage : null}
+          action={
+            this.state.flip
+              ? <IconButton
                   aria-label={'save ' + this.props.asset.name}
                   className='p-0 settings visible'
                   color='inherit'
                   onClick={() => this.toggleSettings()}
                 >
-                  <Save/>
+                <Save />
                 </IconButton>
-                :
-                <IconButton
+              : <IconButton
                   aria-label={this.props.asset.name + ' settings'}
                   className='p-0 settings'
                   color='inherit'
                   onClick={() => this.toggleSettings()}
                 >
-                  <SettingsIcon/>
+                <SettingsIcon />
                 </IconButton>
             }
-            classes={
-              renderStyle === "compact" ? null : {
-              "action": "m-0 p-2",
-              "root": "h-0 p-0"
-            }}
-            subheader={renderStyle === "compact" ? assetInfo : null}
-            title={renderStyle === "compact" ? assetName : null}
-          />
+          classes={
+              renderStyle === 'compact'
+                ? null
+                : {
+                    action: 'm-0 p-2',
+                    root: 'h-0 p-0'
+                  }
+}
+          subheader={renderStyle === 'compact' ? assetInfo : null}
+          title={renderStyle === 'compact' ? assetName : null}
+        />
         {
-          renderStyle !== "compact" ?
-          (<CardContent>
+          renderStyle !== 'compact'
+            ? (<CardContent>
               <Grid container>
                 <Grid item xs={12}>{assetImage}</Grid>
                 <Grid item xs={12}>
@@ -153,18 +160,15 @@ class AssetCard extends Component {
                 </Grid>
               </Grid>
             </CardContent>)
-            :
-            null
+            : null
         }
         <CardContent hidden={this.state.flip}>
-          {renderStyle === "compact"
+          {renderStyle === 'compact'
             ? percentChanges
-            :
-            <Grid container>
+            : <Grid container>
               <Grid item xs={6}>{percentChanges}</Grid>
               <Grid item xs={6}>{assetInfo}</Grid>
-            </Grid>
-          }
+            </Grid>}
         </CardContent>
         <CardContent hidden={!this.state.flip}>
           <TextField

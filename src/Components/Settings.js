@@ -108,7 +108,7 @@ class Settings extends Component {
             <Grid item xs={12}>
               <h4 className='text-center mb-4'>Asset Display Settings</h4>
             </Grid>
-            <Grid className="m-auto" item xs={12} md={6}>
+            <Grid className='m-auto' item xs={12} md={6}>
               <FormControlLabel
                 control={
                   <Switch
@@ -201,7 +201,7 @@ class Settings extends Component {
                 className='m-0 w-100'
                 control={
                   <TextField
-                    className="w-100"
+                    className='w-100'
                     InputLabelProps={{
                       shrink: true
                     }}
@@ -222,7 +222,7 @@ class Settings extends Component {
             <Grid item xs={12}>
               <h4 className='text-center mb-4'>General Settings</h4>
             </Grid>
-            <Grid className="m-auto" item xs={12} md={6}>
+            <Grid className='m-auto' item xs={12} md={6}>
               <FormControlLabel
                 control={
                   <Switch
