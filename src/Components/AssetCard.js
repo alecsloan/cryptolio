@@ -81,7 +81,7 @@ class AssetCard extends Component {
         ? (
           <img
             alt={this.props.asset.name + ' Logo'}
-            height={this.props.renderStyle === 'compact' ? 75 : 100}
+            height={renderStyle === 'compact' ? 75 : 100}
             src={this.props.asset.imageURL}
           />
           )
