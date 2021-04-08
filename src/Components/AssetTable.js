@@ -149,7 +149,15 @@ function AssetTable (props) {
   })
 
   return (
-    <DataGrid autoHeight columns={columns} pageSize={20} rows={rows} />
+    <DataGrid
+      autoHeight
+      columns={columns}
+      onSelectionModelChange={(row) => {
+        const asset = assets.find(asset => asset.symbol === row.selectionModel[0])
+
+        return props.setAssetUtilityShown(asset)
+      }}
+      pageSize={20} rows={rows} />
   );
 }
 

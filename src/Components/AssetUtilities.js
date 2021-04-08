@@ -51,7 +51,7 @@ class AssetUtilities extends Component {
     return (
       <Drawer
         anchor='right'
-        open={this.props.asset}
+        open={this.props.asset !== null}
         onClose={() => this.props.setAssetUtilityShown(null)}
       >
         <IconButton
