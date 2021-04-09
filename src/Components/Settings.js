@@ -187,11 +187,11 @@ class Settings extends Component {
                     variant='outlined'
                   >
                     <MenuItem key='balance' value='balance'>Balance</MenuItem>
-                    <MenuItem key='marketcap' value='marketcap'>Marketcap</MenuItem>
+                    <MenuItem key='market_cap' value='market_cap'>Market Cap</MenuItem>
                     <MenuItem key='price' value='price'>Price</MenuItem>
-                    <MenuItem key='1h' value='1h'>1 Hour Change</MenuItem>
-                    <MenuItem key='24h' value='24h'>24 Hour Change</MenuItem>
-                    <MenuItem key='7d' value='7d'>7 Day Change</MenuItem>
+                    <MenuItem key='percent_change_1h' value='percent_change_1h'>1 Hour Change</MenuItem>
+                    <MenuItem key='percent_change_24h' value='percent_change_24h'>24 Hour Change</MenuItem>
+                    <MenuItem key='percent_change_7d' value='percent_change_7d'>7 Day Change</MenuItem>
                   </Select>
                 }
                 label='Sort By'

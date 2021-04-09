@@ -6,39 +6,58 @@ import * as Util from '../Util/index'
 import abbreviate from 'number-abbreviate'
 import { DataGrid } from '@material-ui/data-grid'
 import { Delete } from '@material-ui/icons'
+import TextField from '@material-ui/core/TextField'
 
 function AssetTable (props) {
   let assets = props.assets
-
-  if (props.settings.sorting === 'price') {
-    assets = assets.sort((a, b) => b.price - a.price)
-  } else if (props.settings.sorting === 'marketcap') {
-    assets = assets.sort((a, b) => b.market_cap - a.market_cap)
-  } else if (props.settings.sorting === '1h') {
-    assets = assets.sort((a, b) => b.percent_change_1h - a.percent_change_1h)
-  } else if (props.settings.sorting === '24h') {
-    assets = assets.sort((a, b) => b.percent_change_24h - a.percent_change_24h)
-  } else if (props.settings.sorting === '7d') {
-    assets = assets.sort((a, b) => b.percent_change_7d - a.percent_change_7d)
-  } else {
-    assets = assets.sort((a, b) => ((b.holdings || 0.000001) * b.price) - ((a.holdings || 0.000001) * a.price))
-  }
 
   const columns = [
     {
       field: 'imageURL',
       filterable: false,
-      headerName: 'Logo',
+      headerName: ' ',
       renderCell: (params) => (
         <img alt="Logo" height={28} src={params.value} />
       ),
       sortable: false,
       width: 60
     },
-    { field: 'id', headerName: 'Symbol', width: 110 },
-    { field: 'name', headerName: 'Name', width: 120 },
-    { field: 'balance', headerName: 'Balance', hide: !props.settings.showCardBalances, width: 120 },
-    { field: 'price', headerName: 'Price' },
+    { field: 'id', headerName: 'Symbol', disableColumnMenu: false, width: 110 },
+    { field: 'name', headerName: 'Name', disableColumnMenu: false, width: 150 },
+    { field: 'balance', headerName: 'Balance', width: 150 },
+    {
+      field: 'holdings',
+      headerName: 'Holdings',
+      hide: !props.settings.showCardBalances,
+      renderCell: (params) => (
+        editHoldings && editHoldings === params.row.id
+        ? <TextField
+            onBlur={(event) => {
+              props.updateHoldings(event.target.value, params.row.id)
+            }}
+            onKeyDown={(event) => {
+              if (event.key === 'Enter') {
+                props.updateHoldings(event.target.value, params.row.id)
+              }
+              else if (event.key === 'Escape') {
+                event.target.blur()
+              }
+            }}
+            defaultValue={params.value}
+            variant='outlined'
+          />
+        :
+          Number(params.value) > 0 ? Util.getLocalizedNumber(Number(params.value), props.settings) : ' '
+      ),
+      width: 120
+    },
+    {
+      field: 'price',
+      headerName: 'Price',
+      renderCell: (params) => (
+        Util.getLocalizedPrice(params.value, props.settings)
+      )
+    },
     {
       field: 'percent_change_1h',
       headerName: '1h',
@@ -104,7 +123,7 @@ function AssetTable (props) {
     {
       field: "removeSymbol",
       filterable: false,
-      headerName: " ",
+      headerName: ' ',
       renderCell: (params) => (
         <IconButton
           aria-label='close'
@@ -123,8 +142,8 @@ function AssetTable (props) {
     }
   ]
 
-  function createData(id, imageURL, name, balance, price, percent_change_1h, percent_change_24h, percent_change_7d, market_cap, volume_24h, supply, removeSymbol) {
-    return { id, imageURL, name, price, balance, percent_change_1h, percent_change_24h, percent_change_7d, market_cap, volume_24h, supply, removeSymbol };
+  function createData(id, imageURL, name, balance, holdings, price, percent_change_1h, percent_change_24h, percent_change_7d, market_cap, volume_24h, supply, removeSymbol) {
+    return { id, imageURL, name, balance, holdings, price, percent_change_1h, percent_change_24h, percent_change_7d, market_cap, volume_24h, supply, removeSymbol };
   }
 
   const rows = []
@@ -136,7 +155,8 @@ function AssetTable (props) {
         asset.imageURL,
         asset.name,
         Util.getLocalizedPrice(asset.holdings * asset.price, props.settings),
-        Util.getLocalizedPrice(asset.price, props.settings),
+        asset.holdings,
+        asset.price,
         asset.percent_change_1h,
         asset.percent_change_24h,
         asset.percent_change_7d,
@@ -148,16 +168,33 @@ function AssetTable (props) {
     );
   })
 
+  let editHoldings = null;
+
   return (
     <DataGrid
       autoHeight
       columns={columns}
-      onSelectionModelChange={(row) => {
-        const asset = assets.find(asset => asset.symbol === row.selectionModel[0])
+      onCellClick = {(cell) => {
+        if (cell.field === "holdings") {
+          editHoldings = cell.row.id
+        }
+        else if(cell.field !== "removeSymbol") {
+          editHoldings = null
 
-        return props.setAssetUtilityShown(asset)
+          const asset = assets.find(asset => asset.symbol === cell.row.id)
+
+          return props.setAssetUtilityShown(asset)
+        }
       }}
-      pageSize={20} rows={rows} />
+      pageSize={20}
+      rows={rows}
+      sortModel={[
+        {
+          field: props.settings.sorting || 'balance',
+          sort: 'desc',
+        },
+      ]}
+    />
   );
 }
 

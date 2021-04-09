@@ -26,13 +26,13 @@ function CardRow (props) {
 
   if (props.settings.sorting === 'price') {
     assets = assets.sort((a, b) => b.price - a.price)
-  } else if (props.settings.sorting === 'marketcap') {
+  } else if (props.settings.sorting === 'market_cap') {
     assets = assets.sort((a, b) => b.market_cap - a.market_cap)
-  } else if (props.settings.sorting === '1h') {
+  } else if (props.settings.sorting === 'percent_change_1h') {
     assets = assets.sort((a, b) => b.percent_change_1h - a.percent_change_1h)
-  } else if (props.settings.sorting === '24h') {
+  } else if (props.settings.sorting === 'percent_change_24h') {
     assets = assets.sort((a, b) => b.percent_change_24h - a.percent_change_24h)
-  } else if (props.settings.sorting === '7d') {
+  } else if (props.settings.sorting === 'percent_change_7d') {
     assets = assets.sort((a, b) => b.percent_change_7d - a.percent_change_7d)
   } else {
     assets = assets.sort((a, b) => ((b.holdings || 0.000001) * b.price) - ((a.holdings || 0.000001) * a.price))
@@ -286,7 +286,7 @@ class App extends Component {
             {
               (!this.state.settings.renderStyle || this.state.settings.renderStyle.includes('card'))
                 ? <CardRow assets={this.state.data.assets} removeCrypto={this.removeCrypto.bind(this)} renderStyle={this.state.settings.renderStyle} settings={this.state.settings} setAssetUtilityShown={this.setAssetUtilityShown.bind(this)} updateHoldings={this.updateHoldings.bind(this)} />
-                : <AssetTable assets={this.state.data.assets} removeCrypto={this.removeCrypto.bind(this)} settings={this.state.settings} setAssetUtilityShown={this.setAssetUtilityShown.bind(this)} />
+                : <AssetTable assets={this.state.data.assets} removeCrypto={this.removeCrypto.bind(this)} settings={this.state.settings} setAssetUtilityShown={this.setAssetUtilityShown.bind(this)} updateHoldings={this.updateHoldings.bind(this)} />
             }
           </div>
           <Settings data={this.state.data} editSetting={this.editSetting.bind(this)} settings={this.state.settings} showSettings={this.state.showSettings} theme={this.state.settings.theme} toggleShowSettings={this.toggleShowSettings.bind(this)} uploadData={this.uploadData.bind(this)} />

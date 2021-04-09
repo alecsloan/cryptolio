@@ -96,7 +96,7 @@ class AssetCard extends Component {
               : <Grid item xs={12}>Price: {Util.getLocalizedPrice(price, this.props.settings)}</Grid>}
             {renderStyle === 'compact'
               ? <Grid item xs={6}>{Util.getCurrencySymbol(this.props.settings.currency) + abbreviate(this.props.asset.market_cap, 2, ['K', 'M', 'B', 'T'])}</Grid>
-              : <Grid item xs={12}>Marketcap: {Util.getCurrencySymbol(this.props.settings.currency) + abbreviate(this.props.asset.market_cap, 2, ['K', 'M', 'B', 'T'])}</Grid>}
+              : <Grid item xs={12}>Market Cap: {Util.getCurrencySymbol(this.props.settings.currency) + abbreviate(this.props.asset.market_cap, 2, ['K', 'M', 'B', 'T'])}</Grid>}
             <Grid item xs={12}><MyBalance holdings={this.props.asset.holdings} price={price} settings={this.props.settings} /></Grid>
           </Grid>
           )
