@@ -68,7 +68,7 @@ class App extends Component {
       show1hChange: true,
       show24hChange: true,
       show7dChange: true,
-      showCardBalances: true,
+      showAssetBalances: true,
       showPortfolioBalance: true,
       sliderMax: 10000,
       sorting: 'balance',

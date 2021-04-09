@@ -28,7 +28,7 @@ function AssetTable (props) {
     {
       field: 'holdings',
       headerName: 'Holdings',
-      hide: !props.settings.showCardBalances,
+      hide: !props.settings.showAssetBalances,
       renderCell: (params) => (
         editHoldings && editHoldings === params.row.id
         ? <TextField

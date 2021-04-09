@@ -10,7 +10,7 @@ import { Skeleton } from '@material-ui/lab'
 import abbreviate from 'number-abbreviate'
 
 function MyBalance (props) {
-  if (props.holdings > 0 && props.settings.showCardBalances) {
+  if (props.holdings > 0 && props.settings.showAssetBalances) {
     return (
       <Typography component='div'>
         <Box fontSize={17} fontWeight='fontWeightBold'>

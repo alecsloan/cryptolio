@@ -149,8 +149,8 @@ class Settings extends Component {
                 control={
                   <Switch
                     color='primary'
-                    defaultChecked={this.props.settings.showCardBalances}
-                    onChange={() => this.props.editSetting('showCardBalances', !this.props.settings.showCardBalances)}
+                    defaultChecked={this.props.settings.showAssetBalances}
+                    onChange={() => this.props.editSetting('showAssetBalances', !this.props.settings.showAssetBalances)}
                   />
                 }
                 label='Show Asset Balance'
