@@ -115,7 +115,7 @@ class Header extends Component {
         <div className='col-12' style={{ display: displayAddSection }}>
           <VirtualizedCryptoassetAutocomplete
             addCrypto={this.props.addCrypto.bind(this)}
-            options={this.props.cryptoAssetData}
+            options={this.props.availableAssets}
           />
         </div>
         <Hotkeys

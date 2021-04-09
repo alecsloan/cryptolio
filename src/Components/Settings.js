@@ -17,6 +17,8 @@ import '../styles/Settings.css'
 import IntervalSelector from './IntervalSelector'
 import { Grid, IconButton } from '@material-ui/core'
 import { ArrowBack, GitHub } from '@material-ui/icons'
+import * as CoinGecko from '../Util/CoinGecko'
+import * as CoinMarketCap from '../Util/CoinMarketCap'
 
 class Settings extends Component {
   constructor (props) {
@@ -24,19 +26,7 @@ class Settings extends Component {
 
     const currencies = require('../currencies.json')
 
-    let cmcLogo = 'https://s2.coinmarketcap.com/static/cloud/img/coinmarketcap'
-    let cgLogo = 'https://static.coingecko.com/s/coingecko-logo-d13d6bcceddbb003f146b33c2f7e8193d72b93bb343d38e392897c3df3e78bdd.png'
-
-    if (this.props.theme.palette.type === 'dark') {
-      cmcLogo += '_white'
-      cgLogo = 'https://static.coingecko.com/s/coingecko-logo-white-3f2aeb48e13428b7199395259dbb96280bf47ea05b2940ef7d3e87c61e4d8408.png'
-    }
-
-    cmcLogo += '_1.svg'
-
     this.state = {
-      cgLogo: cgLogo,
-      cmcLogo: cmcLogo,
       currencies: currencies,
       currency: currencies.find(currency => currency.code === this.props.settings.currency)
     }
@@ -66,9 +56,8 @@ class Settings extends Component {
         <h2 className='settings-title'>Settings</h2>
         <div className='settings-panel'>
           <Grid className='mb-5' container>
-            <Grid item xs={12} md={6}>
+            <Grid item xs={12} lg={6}>
               <FormControlLabel
-                className='w-75'
                 control={
                   <Select
                     className='w-100'
@@ -76,8 +65,8 @@ class Settings extends Component {
                     value={this.props.settings.datasource}
                     variant='outlined'
                   >
-                    <MenuItem value='coingecko'><img alt='CoinGecko' src={this.state.cgLogo} /></MenuItem>
-                    <MenuItem value='coinmarketcap'><img alt='CoinMarketCap' src={this.state.cmcLogo} /></MenuItem>
+                    <MenuItem value='coingecko'><img alt='CoinGecko' src={(this.props.theme.palette.type === 'dark') ? CoinGecko.logoWhite : CoinGecko.logo} /></MenuItem>
+                    <MenuItem value='coinmarketcap'><img alt='CoinMarketCap' src={(this.props.theme.palette.type === 'dark') ? CoinMarketCap.logoWhite : CoinMarketCap.logo} /></MenuItem>
                   </Select>
                           }
                 label='Datasource'
@@ -85,7 +74,7 @@ class Settings extends Component {
                 value='top'
               />
             </Grid>
-            <Grid className='m-auto' item xs={6} md={3}>
+            <Grid className='m-auto' item xs={6} lg={3}>
               <input
                 accept='application/json'
                 className='d-none'
@@ -104,7 +93,7 @@ class Settings extends Component {
                 </Button>
               </label>
             </Grid>
-            <Grid className='m-auto' item xs={6} md={3}>
+            <Grid className='m-auto' item xs={6} lg={3}>
               <Button
                 variant='contained'
                 color='primary'
@@ -116,7 +105,10 @@ class Settings extends Component {
             </Grid>
           </Grid>
           <Grid className='mb-5' container>
-            <Grid item xs={4} md={2}>
+            <Grid item xs={12}>
+              <h4 className='text-center mb-4'>Asset Display Settings</h4>
+            </Grid>
+            <Grid className='m-auto' item xs={12} md={6}>
               <FormControlLabel
                 control={
                   <Switch
@@ -129,8 +121,6 @@ class Settings extends Component {
                 labelPlacement='top'
                 value='top'
               />
-            </Grid>
-            <Grid item xs={4} md={2}>
               <FormControlLabel
                 control={
                   <Switch
@@ -143,8 +133,6 @@ class Settings extends Component {
                 labelPlacement='top'
                 value='top'
               />
-            </Grid>
-            <Grid item xs={4} md={2}>
               <FormControlLabel
                 control={
                   <Switch
@@ -157,8 +145,85 @@ class Settings extends Component {
                 labelPlacement='top'
                 value='top'
               />
+              <FormControlLabel
+                control={
+                  <Switch
+                    color='primary'
+                    defaultChecked={this.props.settings.showAssetBalances}
+                    onChange={() => this.props.editSetting('showAssetBalances', !this.props.settings.showAssetBalances)}
+                  />
+                }
+                label='Show Asset Balance'
+                labelPlacement='top'
+                value='top'
+              />
             </Grid>
-            <Grid item xs={4} md={2}>
+            <Grid item xs={12} md={6}>
+              <FormControlLabel
+                className='m-0 w-100'
+                control={
+                  <Select
+                    className='w-100'
+                    onChange={event => this.props.editSetting('renderStyle', event.target.value)}
+                    value={this.props.settings.renderStyle}
+                    variant='outlined'
+                  >
+                    <MenuItem key='card-classic' value='card:classic'>Classic Card</MenuItem>
+                    <MenuItem key='card-compact' value='card:compact'>Compact Card</MenuItem>
+                    <MenuItem key='table' value='table'>Table</MenuItem>
+                  </Select>
+                }
+                label='Asset Display Style'
+                labelPlacement='top'
+                value='top'
+              />
+              <FormControlLabel
+                className='m-0 w-100'
+                control={
+                  <Select
+                    className='w-100'
+                    onChange={event => this.props.editSetting('sorting', event.target.value)}
+                    value={this.props.settings.sorting}
+                    variant='outlined'
+                  >
+                    <MenuItem key='balance' value='balance'>Balance</MenuItem>
+                    <MenuItem key='market_cap' value='market_cap'>Market Cap</MenuItem>
+                    <MenuItem key='price' value='price'>Price</MenuItem>
+                    <MenuItem key='percent_change_1h' value='percent_change_1h'>1 Hour Change</MenuItem>
+                    <MenuItem key='percent_change_24h' value='percent_change_24h'>24 Hour Change</MenuItem>
+                    <MenuItem key='percent_change_7d' value='percent_change_7d'>7 Day Change</MenuItem>
+                  </Select>
+                }
+                label='Sort By'
+                labelPlacement='top'
+                value='top'
+              />
+              <FormControlLabel
+                className='m-0 w-100'
+                control={
+                  <TextField
+                    className='w-100'
+                    InputLabelProps={{
+                      shrink: true
+                    }}
+                    onInputCapture={event => this.props.editSetting('sliderMax', (event.target.value < 100) ? 100 : event.target.value)}
+                    size='small'
+                    type='number'
+                    value={this.props.settings.sliderMax}
+                    variant='outlined'
+                  />
+                }
+                label='Simulated Percent Slider Max'
+                labelPlacement='top'
+                value='top'
+              />
+            </Grid>
+          </Grid>
+          <Grid className='mb-4' container>
+            <Grid item xs={12}>
+              <h4 className='text-center mb-4'>General Settings</h4>
+            </Grid>
+            <Grid className='m-auto' item xs={12} md={6}>
               <FormControlLabel
                 control={
                   <Switch
@@ -171,22 +236,6 @@ class Settings extends Component {
                 labelPlacement='top'
                 value='top'
               />
-            </Grid>
-            <Grid item xs={4} md={2}>
-              <FormControlLabel
-                control={
-                  <Switch
-                    color='primary'
-                    defaultChecked={this.props.settings.showCardBalances}
-                    onChange={() => this.props.editSetting('showCardBalances', !this.props.settings.showCardBalances)}
-                  />
-                        }
-                label='Show Asset Card Balance'
-                labelPlacement='top'
-                value='top'
-              />
-            </Grid>
-            <Grid item xs={4} md={2}>
               <FormControlLabel
                 control={
                   <Switch
@@ -194,40 +243,15 @@ class Settings extends Component {
                     defaultChecked={this.props.settings.showPortfolioBalance}
                     onChange={() => this.props.editSetting('showPortfolioBalance', !this.props.settings.showPortfolioBalance)}
                   />
-                        }
+                }
                 label='Show Portfolio Balance'
                 labelPlacement='top'
                 value='top'
               />
             </Grid>
-          </Grid>
-          <Grid className='mb-5' container>
-            <Grid item xs={12} md={3}>
+            <Grid item xs={12} md={6}>
               <FormControlLabel
-                className='m-0 w-75'
-                control={
-                  <Select
-                    className='w-100'
-                    onChange={event => this.props.editSetting('sorting', event.target.value)}
-                    value={this.props.settings.sorting}
-                    variant='outlined'
-                  >
-                    <MenuItem key='balance' value='balance'>Balance</MenuItem>
-                    <MenuItem key='marketcap' value='marketcap'>Marketcap</MenuItem>
-                    <MenuItem key='price' value='price'>Price</MenuItem>
-                    <MenuItem key='1h' value='1h'>1 Hour Change</MenuItem>
-                    <MenuItem key='24h' value='24h'>24 Hour Change</MenuItem>
-                    <MenuItem key='7d' value='7d'>7 Day Change</MenuItem>
-                  </Select>
-                    }
-                label='Card Sorting'
-                labelPlacement='top'
-                value='top'
-              />
-            </Grid>
-            <Grid item xs={12} md={5}>
-              <FormControlLabel
-                className='m-0 w-75'
+                className='m-0 w-100'
                 control={
                   <Autocomplete
                     autoComplete={false}
@@ -237,46 +261,26 @@ class Settings extends Component {
                     getOptionLabel={(option) => `${option.currency} (${option.symbol})`}
                     id='currency'
                     onChange={
-                              (event, currency) => {
-                                if (currency) {
-                                  this.updateCurrency(currency.code)
-                                  this.props.editSetting('currency', currency.code)
-                                }
-                              }
-                          }
+                      (event, currency) => {
+                        if (currency) {
+                          this.updateCurrency(currency.code)
+                          this.props.editSetting('currency', currency.code)
+                        }
+                      }
+                    }
                     options={this.state.currencies}
                     renderInput={(params) => <TextField {...params} variant='outlined' />}
                     size='small'
                     value={this.state.currency}
                   />
-                      }
+                }
                 label='Currency'
                 labelPlacement='top'
                 value='top'
               />
             </Grid>
-            <Grid item xs={12} md={4}>
-              <FormControlLabel
-                className='m-0 w-75'
-                control={
-                  <TextField
-                    InputLabelProps={{
-                      shrink: true
-                    }}
-                    onInputCapture={event => this.props.editSetting('sliderMax', (event.target.value < 100) ? 100 : event.target.value)}
-                    size='small'
-                    type='number'
-                    value={this.props.settings.sliderMax}
-                    variant='outlined'
-                  />
-                      }
-                label='Simulated Percent Slider Max'
-                labelPlacement='top'
-                value='top'
-              />
-            </Grid>
           </Grid>
-          <Grid className='mb-5' container>
+          <Grid className='mb-4' container>
             <Grid item xs={12} md={6}>
               <IntervalSelector
                 value={this.props.settings.fetchInterval || 300000}
@@ -306,7 +310,7 @@ class Settings extends Component {
               />
             </Grid>
           </Grid>
-          <Grid className='mb-5' container>
+          <Grid className='mb-4' container>
             <Grid item xs={12} md={4}>
               <TextField
                 InputLabelProps={{
@@ -349,7 +353,7 @@ class Settings extends Component {
           </Grid>
 
           <div>
-            <h6>{`Assets Available: ${(this.props.data.cryptoassets || 0).length}`}</h6>
+            <h6>{`Assets Available: ${(this.props.data.availableAssets || 0).length}`}</h6>
             Version: {process.env.REACT_APP_VERSION} |
             <a className='ml-2 mr-2 text-white' href='https://github.com/alecsloan/cryptolio' rel='noopener noreferrer' target='_blank'>
               <IconButton
