@@ -1,12 +1,12 @@
-[![Netlify Status](https://api.netlify.com/api/v1/badges/1d54e4f5-13f5-4dec-a155-5d69e41b56b0/deploy-status)](https://app.netlify.com/sites/cryptolio/deploys)
-
+[![Netlify Status](https://api.netlify.com/api/v1/badges/c95c752f-a006-47bb-9b3f-8269fc9d0a14/deploy-status)](https://app.netlify.com/sites/cryptolio/deploys)
 # Explore the world of cryptoassets
 ## Simulate price gain to see your earning potential!
 
 * Balance tracking.
 * Interest Calculator: See what you'll earn Daily, Weekly, Monthly, and Yearly.
 * Exit Planning: Add sell targets and set the percent you want to see to your potential profits. 
-* All symbols listed (4570 Assets Available v3.1.0)
+* All symbols listed (4570 Assets Available v3.2.0)
+* Multiple Asset display styles by default (Classic Card, Compact Card, Table) with the extensability to implement your own.
 * Full range configuration: Only see info on the assets you want to see
 * Multi-currency.
 * Source data from CoinMarketCap or CoinGecko
