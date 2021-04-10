@@ -174,6 +174,7 @@ function AssetTable (props) {
     <DataGrid
       autoHeight
       columns={columns}
+      hideFooterSelectedRowCount={true}
       onCellClick = {(cell) => {
         if (cell.field === "holdings") {
           editHoldings = cell.row.id
