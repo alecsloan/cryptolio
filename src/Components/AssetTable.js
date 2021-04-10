@@ -99,8 +99,22 @@ function AssetTable (props) {
         </Box>
       )
     },
-    { field: 'market_cap', headerName: 'Market Cap', width: 140 },
-    { field: 'volume_24h', headerName: 'Volume', width: 110 },
+    {
+      field: 'market_cap',
+      headerName: 'Market Cap',
+      width: 140,
+      renderCell: (params) => (
+        Util.getCurrencySymbol(props.settings.currency) + abbreviate(params.value, 2, ['K', 'M', 'B', 'T'])
+      )
+    },
+    {
+      field: 'volume_24h',
+      headerName: 'Volume',
+      width: 110,
+      renderCell: (params) => (
+        Util.getCurrencySymbol(props.settings.currency) + abbreviate(params.value, 2, ['K', 'M', 'B', 'T'])
+      )
+    },
     {
       description: "Calculated by (Circulating Supply / Max Supply). However if Max Supply is not specified it is replaced by Total Supply",
       field: 'supply',
@@ -168,8 +182,8 @@ function AssetTable (props) {
         asset.percent_change_1h,
         asset.percent_change_24h,
         asset.percent_change_7d,
-        Util.getCurrencySymbol(props.settings.currency) + abbreviate(asset.market_cap, 2, ['K', 'M', 'B', 'T']),
-        Util.getCurrencySymbol(props.settings.currency) + abbreviate(asset.volume_24h, 2, ['K', 'M', 'B', 'T']),
+        asset.market_cap,
+        asset.volume_24h,
         (asset.circulating_supply / (asset.max_supply || asset.total_supply)),
         asset.symbol
       )
