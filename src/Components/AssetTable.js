@@ -15,7 +15,7 @@ function AssetTable (props) {
     {
       field: 'imageURL',
       filterable: false,
-      headerName: ' ',
+      headerName: 'Image',
       renderCell: (params) => (
         <img alt="Logo" height={28} src={params.value} />
       ),
@@ -131,7 +131,7 @@ function AssetTable (props) {
     {
       field: "removeSymbol",
       filterable: false,
-      headerName: ' ',
+      headerName: 'Remove Asset',
       renderCell: (params) => (
         <IconButton
           aria-label='close'
