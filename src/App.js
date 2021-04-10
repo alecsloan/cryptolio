@@ -110,6 +110,7 @@ class App extends Component {
 
   componentDidMount () {
     this.setFetchInterval()
+    this.fetchAssetData()
   }
 
   editSetting (settingName, value) {
