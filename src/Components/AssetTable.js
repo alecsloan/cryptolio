@@ -24,7 +24,15 @@ function AssetTable (props) {
     },
     { field: 'id', headerName: 'Symbol', disableColumnMenu: false, width: 110 },
     { field: 'name', headerName: 'Name', disableColumnMenu: false, width: 150 },
-    { field: 'balance', headerName: 'Balance', width: 150 },
+    {
+      field: 'balance',
+      headerName: 'Balance',
+      hide: !props.settings.showAssetBalances,
+      width: 150,
+      renderCell: (params) => (
+        Util.getLocalizedPrice(params.value, props.settings)
+      )
+    },
     {
       field: 'holdings',
       headerName: 'Holdings',
@@ -154,7 +162,7 @@ function AssetTable (props) {
         asset.symbol,
         asset.imageURL,
         asset.name,
-        Util.getLocalizedPrice(asset.holdings * asset.price, props.settings),
+        asset.holdings * asset.price,
         asset.holdings,
         asset.price,
         asset.percent_change_1h,
@@ -174,6 +182,7 @@ function AssetTable (props) {
     <DataGrid
       autoHeight
       columns={columns}
+      hideFooterSelectedRowCount={true}
       onCellClick = {(cell) => {
         if (cell.field === "holdings") {
           editHoldings = cell.row.id
