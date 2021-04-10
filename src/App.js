@@ -117,8 +117,8 @@ class App extends Component {
 
     if (settingName === 'currency' && !value) {
       value = 'USD'
-    } else if (settingName === 'fetchInterval' && value < 6000) {
-      value = 6000
+    } else if (settingName === 'fetchInterval' && value < 60000) {
+      value = 60000
     } else if (settingName === 'theme') {
       if (value === 'light') {
         value = Theme.dark
@@ -137,6 +137,8 @@ class App extends Component {
 
     if (settingName === 'currency' || settingName === 'datasource') {
       this.fetchAssetData()
+    } else if (settingName === 'fetchInterval') {
+      this.setFetchInterval()
     }
 
     window.localStorage.setItem('settings', JSON.stringify(settings))
