@@ -81,39 +81,43 @@ class AssetCard extends Component {
         ? (
           <img
             alt={this.props.asset.name + ' Logo'}
-            height={renderStyle === 'compact' ? 75 : 100}
+            height={renderStyle === 'compact' ? 70 : 100}
             src={this.props.asset.imageURL}
           />
           )
         : <Skeleton className='card-img-top m-auto' variant='circle' height={100} />
 
+    const percentChanges =
+      (
+        <Grid container>
+          <Grid item xs={renderStyle === 'compact' ? 4 : 12}><PercentChange period='1h' percentChange={this.props.asset.percent_change_1h} settings={this.props.settings} style={renderStyle} /></Grid>
+          <Grid item xs={renderStyle === 'compact' ? 4 : 12}><PercentChange period='24h' percentChange={this.props.asset.percent_change_24h} settings={this.props.settings} style={renderStyle} /></Grid>
+          <Grid item xs={renderStyle === 'compact' ? 4 : 12}><PercentChange period='7d' percentChange={this.props.asset.percent_change_7d} settings={this.props.settings} style={renderStyle} /></Grid>
+        </Grid>
+      )
+
     const assetInfo =
       price
         ? (
-          <Grid container>
-            {renderStyle === 'compact'
-              ? <Grid item xs={6}>{Util.getLocalizedPrice(price, this.props.settings)}</Grid>
-              : <Grid item xs={12}>Price: {Util.getLocalizedPrice(price, this.props.settings)}</Grid>}
-            {renderStyle === 'compact'
-              ? <Grid item xs={6}>{Util.getCurrencySymbol(this.props.settings.currency) + abbreviate(this.props.asset.market_cap, 2, ['K', 'M', 'B', 'T'])}</Grid>
-              : <Grid item xs={12}>Market Cap: {Util.getCurrencySymbol(this.props.settings.currency) + abbreviate(this.props.asset.market_cap, 2, ['K', 'M', 'B', 'T'])}</Grid>}
-            <Grid item xs={12}><MyBalance holdings={this.props.asset.holdings} price={price} settings={this.props.settings} /></Grid>
-          </Grid>
-          )
+          <div>
+            <Grid container>
+              {renderStyle === 'compact'
+                ? <Grid item xs={6}>{Util.getLocalizedPrice(price, this.props.settings)}</Grid>
+                : <Grid item xs={12}>Price: {Util.getLocalizedPrice(price, this.props.settings)}</Grid>}
+              {renderStyle === 'compact'
+                ? <Grid item xs={6}>{Util.getCurrencySymbol(this.props.settings.currency) + abbreviate(this.props.asset.market_cap, 2, ['K', 'M', 'B', 'T'])}</Grid>
+                : <Grid item xs={12}>Market Cap: {Util.getCurrencySymbol(this.props.settings.currency) + abbreviate(this.props.asset.market_cap, 2, ['K', 'M', 'B', 'T'])}</Grid>}
+              <Grid item xs={12}><MyBalance holdings={this.props.asset.holdings} price={price} settings={this.props.settings} /></Grid>
+            </Grid>
+            {renderStyle === 'compact' ? percentChanges : null}
+          </div>
+        )
         : <Skeleton className='m-auto' height={20} width='50%' />
 
     const assetName =
       (this.props.asset.name && this.props.asset.symbol)
         ? `${this.props.asset.name} (${this.props.asset.symbol})`
         : <Skeleton className='m-auto' height={28} width='50%' />
-
-    const percentChanges =
-      (
-        <div><PercentChange period='1h' percentChange={this.props.asset.percent_change_1h} settings={this.props.settings} style={renderStyle} />
-          <PercentChange period='24h' percentChange={this.props.asset.percent_change_24h} settings={this.props.settings} style={renderStyle} />
-          <PercentChange period='7d' percentChange={this.props.asset.percent_change_7d} settings={this.props.settings} style={renderStyle} />
-        </div>
-      )
 
     return (
       <Card className='card' onClick={(event) => (window.innerWidth <= 760 && event.target.tagName !== 'INPUT') ? this.toggleSettings() : null}>
@@ -140,15 +144,15 @@ class AssetCard extends Component {
                 </IconButton>
             }
           classes={
-              renderStyle === 'compact'
-                ? null
-                : {
-                    action: 'm-0 p-2',
-                    root: 'h-0 p-0'
-                  }
-}
+            renderStyle === 'compact'
+              ? null
+              : {
+                action: 'm-0 p-2',
+                root: 'h-0 p-0'
+              }
+          }
           subheader={renderStyle === 'compact' ? assetInfo : null}
-          title={renderStyle === 'compact' ? assetName : null}
+          title={renderStyle === 'compact' ? <Box component='h5'>{assetName}</Box> : null}
         />
         {
           renderStyle !== 'compact'
@@ -162,13 +166,11 @@ class AssetCard extends Component {
             </CardContent>)
             : null
         }
-        <CardContent hidden={this.state.flip}>
-          {renderStyle === 'compact'
-            ? percentChanges
-            : <Grid container>
-              <Grid item xs={6}>{percentChanges}</Grid>
-              <Grid item xs={6}>{assetInfo}</Grid>
-            </Grid>}
+        <CardContent hidden={this.state.flip || renderStyle === 'compact'}>
+          <Grid container>
+            <Grid item xs={6}>{percentChanges}</Grid>
+            <Grid item xs={6}>{assetInfo}</Grid>
+          </Grid>
         </CardContent>
         <CardContent hidden={!this.state.flip}>
           <TextField
