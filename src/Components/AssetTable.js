@@ -24,7 +24,7 @@ function AssetTable (props) {
     },
     { field: 'id', headerName: 'Symbol', disableColumnMenu: false, width: 110 },
     { field: 'name', headerName: 'Name', disableColumnMenu: false, width: 150 },
-    { field: 'balance', headerName: 'Balance', width: 150 },
+    { field: 'balance', headerName: 'Balance', hide: !props.settings.showAssetBalances, width: 150 },
     {
       field: 'holdings',
       headerName: 'Holdings',
