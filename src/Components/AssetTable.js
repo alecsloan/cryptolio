@@ -7,8 +7,13 @@ import abbreviate from 'number-abbreviate'
 import { DataGrid } from '@material-ui/data-grid'
 import { Delete } from '@material-ui/icons'
 import TextField from '@material-ui/core/TextField'
+import MobileAssetTable from './MobileAssetTable'
 
 function AssetTable (props) {
+  if (window.innerWidth <= 500) {
+    return <MobileAssetTable {...props} />
+  }
+
   let assets = props.assets
 
   const columns = [

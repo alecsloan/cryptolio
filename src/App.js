@@ -161,12 +161,14 @@ class App extends Component {
       data = await CoinMarketCap.getAssetData(currency, symbols, assets)
     }
 
-    this.storeData(data.assets)
+    if (data && data.assets) {
+      this.storeData(data.assets)
 
-    this.setState({
-      dataUpdated: true,
-      timestamp: data.timestamp
-    })
+      this.setState({
+        dataUpdated: true,
+        timestamp: data.timestamp
+      })
+    }
   }
 
   async fetchAvailableAssets () {
