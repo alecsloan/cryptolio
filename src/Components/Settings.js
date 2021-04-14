@@ -58,6 +58,7 @@ class Settings extends Component {
           <Grid className='mb-5' container>
             <Grid item xs={12} lg={6}>
               <FormControlLabel
+                className='m-0 w-100'
                 control={
                   <Select
                     className='w-100'
@@ -74,7 +75,7 @@ class Settings extends Component {
                 value='top'
               />
             </Grid>
-            <Grid className='m-auto' item xs={6} lg={3}>
+            <Grid className='m-auto' item xs={12} lg={3}>
               <input
                 accept='application/json'
                 className='d-none'
@@ -93,7 +94,7 @@ class Settings extends Component {
                 </Button>
               </label>
             </Grid>
-            <Grid className='m-auto' item xs={6} lg={3}>
+            <Grid className='m-auto' item xs={12} lg={3}>
               <Button
                 variant='contained'
                 color='primary'
