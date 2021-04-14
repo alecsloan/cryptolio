@@ -65,7 +65,7 @@ class App extends Component {
       decimals3: 1,
       decimals4: null,
       fetchInterval: 300000,
-      renderStyle: 'card:classic',
+      renderStyle: (window.innerWidth <= 500) ? 'table' : 'card:classic',
       show1hChange: true,
       show24hChange: true,
       show7dChange: true,
