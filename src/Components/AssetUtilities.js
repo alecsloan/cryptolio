@@ -9,7 +9,7 @@ import {
   InputAdornment,
   Slider
 } from '@material-ui/core'
-import { ArrowBack, BarChart, Delete } from '@material-ui/icons'
+import { ArrowBack, Delete } from '@material-ui/icons'
 import TextField from '@material-ui/core/TextField'
 import ExitPlanningTable from './ExitPlanningTable'
 import * as Util from '../Util/index'
