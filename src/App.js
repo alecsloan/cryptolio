@@ -58,6 +58,7 @@ class App extends Component {
       addDropdownHideable: false,
       assetUtilityShown: null,
       autoHideFetchNotification: 20000,
+      balanceChangeTimeframe: 'percent_change_24h',
       currency: 'USD',
       datasource: 'coinmarketcap',
       decimals2: 100,

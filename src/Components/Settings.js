@@ -278,6 +278,24 @@ class Settings extends Component {
                 labelPlacement='top'
                 value='top'
               />
+              <FormControlLabel
+                className='m-0 w-100'
+                control={
+                  <Select
+                    className='w-100'
+                    onChange={event => this.props.editSetting('balanceChangeTimeframe', event.target.value)}
+                    value={this.props.settings.balanceChangeTimeframe}
+                    variant='outlined'
+                  >
+                    <MenuItem key='percent_change_1h' value='percent_change_1h'>1 Hour Change</MenuItem>
+                    <MenuItem key='percent_change_24h' value='percent_change_24h'>24 Hour Change</MenuItem>
+                    <MenuItem key='percent_change_7d' value='percent_change_7d'>7 Day Change</MenuItem>
+                  </Select>
+                }
+                label='Portfolio Change Period'
+                labelPlacement='top'
+                value='top'
+              />
             </Grid>
           </Grid>
           <Grid className='mb-4' container>
