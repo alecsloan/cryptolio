@@ -118,6 +118,7 @@ class Settings extends Component {
                     onChange={() => this.props.editSetting('show1hChange', !this.props.settings.show1hChange)}
                   />
                           }
+                hidden={(this.props.settings.renderStyle === 'table' && window.innerWidth <= 500)}
                 label='Show 1h Change'
                 labelPlacement='top'
                 value='top'
@@ -130,6 +131,7 @@ class Settings extends Component {
                     onChange={() => this.props.editSetting('show24hChange', !this.props.settings.show24hChange)}
                   />
                           }
+                hidden={(this.props.settings.renderStyle === 'table' && window.innerWidth <= 500)}
                 label='Show 24 Change'
                 labelPlacement='top'
                 value='top'
@@ -142,6 +144,7 @@ class Settings extends Component {
                     onChange={() => this.props.editSetting('show7dChange', !this.props.settings.show7dChange)}
                   />
                           }
+                hidden={(this.props.settings.renderStyle === 'table' && window.innerWidth <= 500)}
                 label='Show 7d Change'
                 labelPlacement='top'
                 value='top'
