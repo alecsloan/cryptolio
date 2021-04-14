@@ -58,6 +58,7 @@ class Settings extends Component {
           <Grid className='mb-5' container>
             <Grid item xs={12} lg={6}>
               <FormControlLabel
+                className='m-0 w-100'
                 control={
                   <Select
                     className='w-100'
@@ -74,7 +75,7 @@ class Settings extends Component {
                 value='top'
               />
             </Grid>
-            <Grid className='m-auto' item xs={6} lg={3}>
+            <Grid className='m-auto' item xs={12} lg={3}>
               <input
                 accept='application/json'
                 className='d-none'
@@ -93,7 +94,7 @@ class Settings extends Component {
                 </Button>
               </label>
             </Grid>
-            <Grid className='m-auto' item xs={6} lg={3}>
+            <Grid className='m-auto' item xs={12} lg={3}>
               <Button
                 variant='contained'
                 color='primary'
@@ -117,6 +118,7 @@ class Settings extends Component {
                     onChange={() => this.props.editSetting('show1hChange', !this.props.settings.show1hChange)}
                   />
                           }
+                hidden={(this.props.settings.renderStyle === 'table' && window.innerWidth <= 500)}
                 label='Show 1h Change'
                 labelPlacement='top'
                 value='top'
@@ -129,6 +131,7 @@ class Settings extends Component {
                     onChange={() => this.props.editSetting('show24hChange', !this.props.settings.show24hChange)}
                   />
                           }
+                hidden={(this.props.settings.renderStyle === 'table' && window.innerWidth <= 500)}
                 label='Show 24 Change'
                 labelPlacement='top'
                 value='top'
@@ -141,6 +144,7 @@ class Settings extends Component {
                     onChange={() => this.props.editSetting('show7dChange', !this.props.settings.show7dChange)}
                   />
                           }
+                hidden={(this.props.settings.renderStyle === 'table' && window.innerWidth <= 500)}
                 label='Show 7d Change'
                 labelPlacement='top'
                 value='top'
@@ -275,6 +279,24 @@ class Settings extends Component {
                   />
                 }
                 label='Currency'
+                labelPlacement='top'
+                value='top'
+              />
+              <FormControlLabel
+                className='m-0 w-100'
+                control={
+                  <Select
+                    className='w-100'
+                    onChange={event => this.props.editSetting('balanceChangeTimeframe', event.target.value)}
+                    value={this.props.settings.balanceChangeTimeframe}
+                    variant='outlined'
+                  >
+                    <MenuItem key='percent_change_1h' value='percent_change_1h'>1 Hour Change</MenuItem>
+                    <MenuItem key='percent_change_24h' value='percent_change_24h'>24 Hour Change</MenuItem>
+                    <MenuItem key='percent_change_7d' value='percent_change_7d'>7 Day Change</MenuItem>
+                  </Select>
+                }
+                label='Portfolio Change Period'
                 labelPlacement='top'
                 value='top'
               />

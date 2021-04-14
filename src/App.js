@@ -41,7 +41,7 @@ function CardRow (props) {
   assets.forEach(asset => {
     cards.push(
       <Grid item xs={12} sm={6} md={4} key={asset.symbol}>
-        <AssetCard asset={asset} key={asset.symbol} removeCrypto={props.removeCrypto.bind(this)} settings={props.settings} setAssetUtilityShown={props.setAssetUtilityShown.bind(this)} renderStyle={props.renderStyle} updateHoldings={props.updateHoldings.bind(this)} />
+        <AssetCard asset={asset} key={asset.symbol} renderStyle={props.renderStyle} settings={props.settings} setAssetUtilityShown={props.setAssetUtilityShown.bind(this)} />
       </Grid>
     )
   })
@@ -58,13 +58,14 @@ class App extends Component {
       addDropdownHideable: false,
       assetUtilityShown: null,
       autoHideFetchNotification: 20000,
+      balanceChangeTimeframe: 'percent_change_24h',
       currency: 'USD',
       datasource: 'coinmarketcap',
       decimals2: 100,
       decimals3: 1,
       decimals4: null,
       fetchInterval: 300000,
-      renderStyle: 'card:classic',
+      renderStyle: (window.innerWidth <= 500) ? 'table' : 'card:classic',
       show1hChange: true,
       show24hChange: true,
       show7dChange: true,
@@ -110,6 +111,7 @@ class App extends Component {
 
   componentDidMount () {
     this.setFetchInterval()
+    this.fetchAssetData()
   }
 
   editSetting (settingName, value) {
@@ -117,8 +119,8 @@ class App extends Component {
 
     if (settingName === 'currency' && !value) {
       value = 'USD'
-    } else if (settingName === 'fetchInterval' && value < 6000) {
-      value = 6000
+    } else if (settingName === 'fetchInterval' && value < 60000) {
+      value = 60000
     } else if (settingName === 'theme') {
       if (value === 'light') {
         value = Theme.dark
@@ -137,6 +139,8 @@ class App extends Component {
 
     if (settingName === 'currency' || settingName === 'datasource') {
       this.fetchAssetData()
+    } else if (settingName === 'fetchInterval') {
+      this.setFetchInterval()
     }
 
     window.localStorage.setItem('settings', JSON.stringify(settings))
@@ -158,12 +162,14 @@ class App extends Component {
       data = await CoinMarketCap.getAssetData(currency, symbols, assets)
     }
 
-    this.storeData(data.assets)
+    if (data && data.assets) {
+      this.storeData(data.assets)
 
-    this.setState({
-      dataUpdated: true,
-      timestamp: data.timestamp
-    })
+      this.setState({
+        dataUpdated: true,
+        timestamp: data.timestamp
+      })
+    }
   }
 
   async fetchAvailableAssets () {
@@ -285,12 +291,12 @@ class App extends Component {
           <div className='content'>
             {
               (!this.state.settings.renderStyle || this.state.settings.renderStyle.includes('card'))
-                ? <CardRow assets={this.state.data.assets} removeCrypto={this.removeCrypto.bind(this)} renderStyle={this.state.settings.renderStyle} settings={this.state.settings} setAssetUtilityShown={this.setAssetUtilityShown.bind(this)} updateHoldings={this.updateHoldings.bind(this)} />
-                : <AssetTable assets={this.state.data.assets} removeCrypto={this.removeCrypto.bind(this)} settings={this.state.settings} setAssetUtilityShown={this.setAssetUtilityShown.bind(this)} updateHoldings={this.updateHoldings.bind(this)} />
+                ? <CardRow assets={this.state.data.assets} renderStyle={this.state.settings.renderStyle} settings={this.state.settings} setAssetUtilityShown={this.setAssetUtilityShown.bind(this)} />
+                : <AssetTable assets={this.state.data.assets} settings={this.state.settings} setAssetUtilityShown={this.setAssetUtilityShown.bind(this)} />
             }
           </div>
           <Settings data={this.state.data} editSetting={this.editSetting.bind(this)} settings={this.state.settings} showSettings={this.state.showSettings} theme={this.state.settings.theme} toggleShowSettings={this.toggleShowSettings.bind(this)} uploadData={this.uploadData.bind(this)} />
-          <AssetUtilities asset={this.state.assetUtilityShown} settings={this.state.settings} setAssetUtilityShown={this.setAssetUtilityShown.bind(this)} updateExitPlan={this.updateExitPlan.bind(this)} updateInterest={this.updateInterest.bind(this)} />
+          <AssetUtilities asset={this.state.assetUtilityShown} settings={this.state.settings} removeCrypto={this.removeCrypto.bind(this)} setAssetUtilityShown={this.setAssetUtilityShown.bind(this)} updateExitPlan={this.updateExitPlan.bind(this)} updateHoldings={this.updateHoldings.bind(this)} updateInterest={this.updateInterest.bind(this)} />
           <Hotkeys
             keyName='shift+/'
             onKeyDown={this.toggleShowSettings.bind(this)}

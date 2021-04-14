@@ -46,6 +46,7 @@ export const getAssetData = async (currency, symbols, assets) => {
             percent_change_24h: responseAsset.quote[currency].percent_change_24h,
             percent_change_7d: responseAsset.quote[currency].percent_change_7d,
             price: responseAsset.quote[currency].price,
+            rank: responseAsset.cmc_rank,
             symbol: responseAsset.symbol,
             total_supply: responseAsset.total_supply,
             url: 'https://coinmarketcap.com/currencies/' + responseAsset.slug,

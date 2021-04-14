@@ -42,6 +42,7 @@ export const getAssetData = async (currency, symbols, assets) => {
             percent_change_24h: responseAsset.price_change_percentage_24h_in_currency,
             percent_change_7d: responseAsset.price_change_percentage_7d_in_currency,
             price: responseAsset.current_price,
+            rank: responseAsset.market_cap_rank,
             symbol: responseAsset.symbol.toUpperCase(),
             total_supply: responseAsset.total_supply,
             url: 'https://www.coingecko.com/en/coins/' + responseAsset.name.toLowerCase().replace(' ', '-'),

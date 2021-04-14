@@ -5,9 +5,9 @@ import { DataGrid } from '@material-ui/data-grid'
 
 function InterestCalculator (props) {
   const columns = [
-    { field: 'id', headerName: props.asset.symbol + ' Earned', width: '33%', sortable: false },
-    { field: 'amount', headerName: 'Amount', width: '33%', sortable: false },
-    { field: 'value', headerName: Util.getCurrencySymbol(props.settings.currency) + ' Value', width: '33%', sortable: false }
+    { field: 'id', flex: 1, headerName: 'Period', sortable: false },
+    { field: 'amount', flex: .8, headerName: 'Amount', sortable: false },
+    { field: 'value', flex: 1, headerName: 'Value', sortable: false }
   ]
 
   const price = props.price || props.asset.price

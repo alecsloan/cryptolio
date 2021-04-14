@@ -1,3 +1,6 @@
+import { Box, Typography } from '@material-ui/core'
+import React from 'react'
+
 export function getCurrencySymbol (currency) {
   return (0).toLocaleString(
     window.navigator.language,
@@ -42,4 +45,20 @@ export function getLocalizedPrice (price, settings, style = 'currency') {
 
 export function getLocalizedPercent (number, minimumFractionDigits = 2) {
   return number.toLocaleString(window.navigator.language, { style: 'percent', minimumFractionDigits: minimumFractionDigits })
+}
+
+export function MyBalance (props) {
+  if (props.holdings > 0 && props.settings.showAssetBalances) {
+    return (
+      <Typography component='div'>
+        <Box fontSize={17} fontWeight='fontWeightBold'>
+          Balance: {getLocalizedPrice(props.price * props.holdings, props.settings)}
+        </Box>
+      </Typography>
+    )
+  }
+
+  return (
+    <div />
+  )
 }

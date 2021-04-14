@@ -7,15 +7,20 @@ import abbreviate from 'number-abbreviate'
 import { DataGrid } from '@material-ui/data-grid'
 import { Delete } from '@material-ui/icons'
 import TextField from '@material-ui/core/TextField'
+import MobileAssetTable from './MobileAssetTable'
 
 function AssetTable (props) {
+  if (window.innerWidth <= 500) {
+    return <MobileAssetTable {...props} />
+  }
+
   let assets = props.assets
 
   const columns = [
     {
       field: 'imageURL',
       filterable: false,
-      headerName: ' ',
+      headerName: 'Image',
       renderCell: (params) => (
         <img alt="Logo" height={28} src={params.value} />
       ),
@@ -99,8 +104,22 @@ function AssetTable (props) {
         </Box>
       )
     },
-    { field: 'market_cap', headerName: 'Market Cap', width: 140 },
-    { field: 'volume_24h', headerName: 'Volume', width: 110 },
+    {
+      field: 'market_cap',
+      headerName: 'Market Cap',
+      width: 140,
+      renderCell: (params) => (
+        Util.getCurrencySymbol(props.settings.currency) + abbreviate(params.value, 2, ['K', 'M', 'B', 'T'])
+      )
+    },
+    {
+      field: 'volume_24h',
+      headerName: 'Volume',
+      width: 110,
+      renderCell: (params) => (
+        Util.getCurrencySymbol(props.settings.currency) + abbreviate(params.value, 2, ['K', 'M', 'B', 'T'])
+      )
+    },
     {
       description: "Calculated by (Circulating Supply / Max Supply). However if Max Supply is not specified it is replaced by Total Supply",
       field: 'supply',
@@ -131,7 +150,7 @@ function AssetTable (props) {
     {
       field: "removeSymbol",
       filterable: false,
-      headerName: ' ',
+      headerName: 'Remove Asset',
       renderCell: (params) => (
         <IconButton
           aria-label='close'
@@ -168,8 +187,8 @@ function AssetTable (props) {
         asset.percent_change_1h,
         asset.percent_change_24h,
         asset.percent_change_7d,
-        Util.getCurrencySymbol(props.settings.currency) + abbreviate(asset.market_cap, 2, ['K', 'M', 'B', 'T']),
-        Util.getCurrencySymbol(props.settings.currency) + abbreviate(asset.volume_24h, 2, ['K', 'M', 'B', 'T']),
+        asset.market_cap,
+        asset.volume_24h,
         (asset.circulating_supply / (asset.max_supply || asset.total_supply)),
         asset.symbol
       )

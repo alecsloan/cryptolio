@@ -9,11 +9,13 @@ import {
   InputAdornment,
   Slider
 } from '@material-ui/core'
-import { ArrowBack } from '@material-ui/icons'
+import { ArrowBack, Delete } from '@material-ui/icons'
 import TextField from '@material-ui/core/TextField'
 import ExitPlanningTable from './ExitPlanningTable'
 import * as Util from '../Util/index'
 import InterestCalculator from './InterestCalculator'
+import Button from '@material-ui/core/Button'
+import { MyBalance } from '../Util/index'
 
 class AssetUtilities extends Component {
   UNSAFE_componentWillReceiveProps (nextProps, nextContext) {
@@ -62,8 +64,44 @@ class AssetUtilities extends Component {
         >
           <ArrowBack />
         </IconButton>
-        <h2 className='settings-title'>{this.props.asset.name} ({this.props.asset.symbol})</h2>
+        <h2 className='settings-title'>
+          {this.props.asset.name} ({this.props.asset.symbol})
+          <MyBalance holdings={this.props.asset.holdings} price={price} settings={this.props.settings} />
+        </h2>
+
+        <hr />
+
         <div className='settings-panel'>
+          <Grid container>
+            <Grid item xs={12} md={6}>
+              <TextField
+                label='My Holdings'
+                onChange={
+                  event => {
+                    this.props.updateHoldings(event.target.value, this.props.asset.symbol)
+                  }
+                }
+                size='small'
+                value={Util.getLocalizedNumber(this.props.asset.holdings, this.props.settings)}
+                variant='outlined'
+              />
+            </Grid>
+
+            <Grid item xs={12} md={6}>
+              <Button
+                variant='contained'
+                className='mb-2'
+                color='secondary'
+                startIcon={<Delete />}
+                onClick={() => {
+                  this.props.removeCrypto(this.props.asset.symbol);
+                  this.props.setAssetUtilityShown(null);
+                }}
+              >
+                Remove Asset
+              </Button>
+            </Grid>
+          </Grid>
           <Grid container>
             <Grid item xs={12} md={6}>
               <h4>Simulation</h4>
