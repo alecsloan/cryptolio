@@ -8,22 +8,7 @@ import Button from '@material-ui/core/Button'
 import * as Util from '../Util/index'
 import { Skeleton } from '@material-ui/lab'
 import abbreviate from 'number-abbreviate'
-
-function MyBalance (props) {
-  if (props.holdings > 0 && props.settings.showAssetBalances) {
-    return (
-      <Typography component='div'>
-        <Box fontSize={17} fontWeight='fontWeightBold'>
-          Balance: {Util.getLocalizedPrice(props.price * props.holdings, props.settings)}
-        </Box>
-      </Typography>
-    )
-  }
-
-  return (
-    <div />
-  )
-}
+import { MyBalance } from '../Util/index'
 
 function PercentChange (props) {
   let showPeriodChange = false
@@ -62,13 +47,8 @@ class AssetCard extends Component {
   constructor (props) {
     super(props)
     this.state = {
-      flip: false,
       settings: props.settings
     }
-  }
-
-  toggleSettings () {
-    this.setState({ flip: !this.state.flip })
   }
 
   render () {
@@ -120,28 +100,18 @@ class AssetCard extends Component {
         : <Skeleton className='m-auto' height={28} width='50%' />
 
     return (
-      <Card className='card' onClick={(event) => (window.innerWidth <= 760 && event.target.tagName !== 'INPUT') ? this.toggleSettings() : null}>
-
+      <Card className='card' onClick={() => this.props.setAssetUtilityShown(this.props.asset)}>
         <CardHeader
           avatar={renderStyle === 'compact' ? assetImage : null}
           action={
-            this.state.flip
-              ? <IconButton
-                  aria-label={'save ' + this.props.asset.name}
-                  className='p-0 settings visible'
-                  color='inherit'
-                  onClick={() => this.toggleSettings()}
-                >
-                <Save />
-                </IconButton>
-              : <IconButton
-                  aria-label={this.props.asset.name + ' settings'}
-                  className='p-0 settings'
-                  color='inherit'
-                  onClick={() => this.toggleSettings()}
-                >
-                <SettingsIcon />
-                </IconButton>
+            <IconButton
+              aria-label={this.props.asset.name + ' settings'}
+              className='p-0 settings'
+              color='inherit'
+              onClick={() => this.props.setAssetUtilityShown(this.props.asset)}
+            >
+              <SettingsIcon />
+            </IconButton>
             }
           classes={
             renderStyle === 'compact'
@@ -166,48 +136,11 @@ class AssetCard extends Component {
             </CardContent>)
             : null
         }
-        <CardContent hidden={this.state.flip || renderStyle === 'compact'}>
+        <CardContent hidden={renderStyle === 'compact'}>
           <Grid container>
             <Grid item xs={6}>{percentChanges}</Grid>
             <Grid item xs={6}>{assetInfo}</Grid>
           </Grid>
-        </CardContent>
-        <CardContent hidden={!this.state.flip}>
-          <TextField
-            label='My Holdings'
-            onChange={
-              event => {
-                this.props.updateHoldings(event.target.value, this.props.asset.symbol)
-              }
-            }
-            size='small'
-            value={Util.getLocalizedNumber(this.props.asset.holdings, this.props.settings)}
-            variant='outlined'
-          />
-
-          <MyBalance holdings={this.props.asset.holdings} price={price} settings={this.props.settings} />
-
-          <hr />
-
-          <Button
-            variant='contained'
-            className='mb-2'
-            color='primary'
-            startIcon={<BarChart />}
-            onClick={() => this.props.setAssetUtilityShown(this.props.asset)}
-          >
-            Simulation and more
-          </Button>
-
-          <Button
-            variant='contained'
-            className='mb-2'
-            color='secondary'
-            startIcon={<Delete />}
-            onClick={() => this.props.removeCrypto(this.props.asset.symbol)}
-          >
-            Remove Asset
-          </Button>
         </CardContent>
       </Card>
     )
