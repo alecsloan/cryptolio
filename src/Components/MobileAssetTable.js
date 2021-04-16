@@ -13,6 +13,7 @@ function MobileAssetTable (props) {
 
   const handlePercentChange = (event, newPercentChange) => {
     setPercentChange(newPercentChange);
+    props.editSetting('balanceChangeTimeframe', newPercentChange)
   };
 
   const columns = [

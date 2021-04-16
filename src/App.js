@@ -292,11 +292,11 @@ class App extends Component {
             {
               (!this.state.settings.renderStyle || this.state.settings.renderStyle.includes('card'))
                 ? <CardRow assets={this.state.data.assets} renderStyle={this.state.settings.renderStyle} settings={this.state.settings} setAssetUtilityShown={this.setAssetUtilityShown.bind(this)} />
-                : <AssetTable assets={this.state.data.assets} settings={this.state.settings} setAssetUtilityShown={this.setAssetUtilityShown.bind(this)} />
+                : <AssetTable assets={this.state.data.assets} editSetting={this.editSetting.bind(this)} settings={this.state.settings} setAssetUtilityShown={this.setAssetUtilityShown.bind(this)} />
             }
           </div>
           <Settings data={this.state.data} editSetting={this.editSetting.bind(this)} settings={this.state.settings} showSettings={this.state.showSettings} theme={this.state.settings.theme} toggleShowSettings={this.toggleShowSettings.bind(this)} uploadData={this.uploadData.bind(this)} />
-          <AssetUtilities asset={this.state.assetUtilityShown} settings={this.state.settings} removeCrypto={this.removeCrypto.bind(this)} setAssetUtilityShown={this.setAssetUtilityShown.bind(this)} updateExitPlan={this.updateExitPlan.bind(this)} updateHoldings={this.updateHoldings.bind(this)} updateInterest={this.updateInterest.bind(this)} />
+          <AssetUtilities asset={this.state.assetUtilityShown} editSetting={this.editSetting.bind(this)} settings={this.state.settings} removeCrypto={this.removeCrypto.bind(this)} setAssetUtilityShown={this.setAssetUtilityShown.bind(this)} updateExitPlan={this.updateExitPlan.bind(this)} updateHoldings={this.updateHoldings.bind(this)} updateInterest={this.updateInterest.bind(this)} />
           <Hotkeys
             keyName='shift+/'
             onKeyDown={this.toggleShowSettings.bind(this)}
