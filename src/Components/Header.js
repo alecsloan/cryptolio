@@ -16,7 +16,7 @@ import {
   Settings as SettingsIcon
 } from '@material-ui/icons'
 import VirtualizedCryptoassetAutocomplete from './VirtualizedCryptoassetAutocomplete'
-import { Box, colors, Grid, Typography } from '@material-ui/core'
+import { Box, CircularProgress, colors, Grid } from '@material-ui/core'
 import * as Util from '../Util'
 import abbreviate from 'number-abbreviate'
 
@@ -51,7 +51,7 @@ class Header extends Component {
       }
     })
 
-    return <Typography className="d-inline-block">
+    return <div className="d-inline-block">
       <Box className="d-inline-block m-0 align-middle" component={'h5'} color={change < 0 ? colors.red[300] : colors.green[300]}>
         {Util.getLocalizedPrice(balance, this.props.settings)}
       </Box>
@@ -64,12 +64,12 @@ class Header extends Component {
               : <ArrowUpward/>
           }
           <span className="align-middle">
-            {Util.getCurrencySymbol(this.props.settings.currency) + abbreviate(change, 2, ['K', 'M', 'B', 'T'])}
+            {Util.getCurrencySymbol(this.props.settings.currency) + abbreviate(change.toFixed(2), 2, ['K', 'M', 'B', 'T'])}
           </span>
         </Box>
         : null
       }
-    </Typography>
+    </div>
   }
 
   toggleAddSection () {
@@ -102,7 +102,11 @@ class Header extends Component {
                 onClick={() => this.props.refreshData()}
                 title='Refresh Asset Data'
               >
-                <Refresh />
+                {
+                  (this.props.updatingData)
+                  ? <CircularProgress color='secondary' style={{ height: 24, margin: 5, width: 24}} />
+                  : <Refresh/>
+                }
               </IconButton>
               <IconButton
                 className={addIconClass}

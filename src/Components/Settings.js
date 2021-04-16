@@ -198,6 +198,7 @@ class Settings extends Component {
                     <MenuItem key='percent_change_7d' value='percent_change_7d'>7 Day Change</MenuItem>
                   </Select>
                 }
+                hidden={(this.props.settings.renderStyle === 'table' && window.innerWidth <= 500)}
                 label='Sort By'
                 labelPlacement='top'
                 value='top'
@@ -296,6 +297,7 @@ class Settings extends Component {
                     <MenuItem key='percent_change_7d' value='percent_change_7d'>7 Day Change</MenuItem>
                   </Select>
                 }
+                hidden={(this.props.settings.renderStyle === 'table' && window.innerWidth <= 500)}
                 label='Portfolio Change Period'
                 labelPlacement='top'
                 value='top'
