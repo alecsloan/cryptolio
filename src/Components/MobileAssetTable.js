@@ -67,7 +67,7 @@ function MobileAssetTable (props) {
       renderCell: (params) => (
         <Grid container>
           <Grid item style={{lineHeight: 'normal', textAlign: 'right'}} xs={12}>{Util.getLocalizedPrice(params.value, props.settings)}</Grid>
-          <Grid item style={{lineHeight: 'normal', textAlign: 'right'}} xs={12}><small>{Util.getLocalizedNumber(Number(params.row.holdings), props.settings)} {params.row.id}</small></Grid>
+          <Grid item style={{lineHeight: 'normal', textAlign: 'right'}} xs={12}><small>{Util.getLocalizedNumber(Number(params.row.holdings), props.settings) || 0} {params.row.id}</small></Grid>
         </Grid>
       )
     }
