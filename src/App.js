@@ -287,7 +287,7 @@ class App extends Component {
           <CssBaseline />
 
           <Header addCrypto={this.addCrypto.bind(this)} assets={this.state.data.assets} availableAssets={this.state.data.availableAssets} editSetting={this.editSetting.bind(this)} refreshData={this.fetchAssetData.bind(this)} settings={this.state.settings} toggleShowSettings={this.toggleShowSettings.bind(this)} />
-          <hr />
+          <hr hidden={(this.state.settings.renderStyle === 'table' && window.innerWidth <= 500)} />
           <div className='content'>
             {
               (!this.state.settings.renderStyle || this.state.settings.renderStyle.includes('card'))
