@@ -16,7 +16,7 @@ import {
   Settings as SettingsIcon
 } from '@material-ui/icons'
 import VirtualizedCryptoassetAutocomplete from './VirtualizedCryptoassetAutocomplete'
-import { Box, colors, Grid, Typography } from '@material-ui/core'
+import { Box, colors, Grid } from '@material-ui/core'
 import * as Util from '../Util'
 import abbreviate from 'number-abbreviate'
 
