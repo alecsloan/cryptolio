@@ -16,7 +16,7 @@ import {
   Settings as SettingsIcon
 } from '@material-ui/icons'
 import VirtualizedCryptoassetAutocomplete from './VirtualizedCryptoassetAutocomplete'
-import { Box, colors, Grid } from '@material-ui/core'
+import { Box, CircularProgress, colors, Grid } from '@material-ui/core'
 import * as Util from '../Util'
 import abbreviate from 'number-abbreviate'
 
@@ -102,7 +102,11 @@ class Header extends Component {
                 onClick={() => this.props.refreshData()}
                 title='Refresh Asset Data'
               >
-                <Refresh />
+                {
+                  (this.props.updatingData)
+                  ? <CircularProgress color='secondary' style={{ height: 24, margin: 5, width: 24}} />
+                  : <Refresh/>
+                }
               </IconButton>
               <IconButton
                 className={addIconClass}

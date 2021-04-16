@@ -86,6 +86,7 @@ class App extends Component {
       dataUpdated: false,
       showSettings: false,
       settings: initialSettings,
+      updatingData: false,
       timestamp: null
     }
 
@@ -147,6 +148,10 @@ class App extends Component {
   }
 
   async fetchAssetData (currency = this.state.settings.currency) {
+    this.setState({
+      updatingData: true
+    })
+
     const assets = this.state.data.assets
     let symbols = null
 
@@ -167,7 +172,8 @@ class App extends Component {
 
       this.setState({
         dataUpdated: true,
-        timestamp: data.timestamp
+        timestamp: data.timestamp,
+        updatingData: false
       })
     }
   }
@@ -286,7 +292,7 @@ class App extends Component {
         <ThemeProvider theme={this.state.settings.theme}>
           <CssBaseline />
 
-          <Header addCrypto={this.addCrypto.bind(this)} assets={this.state.data.assets} availableAssets={this.state.data.availableAssets} editSetting={this.editSetting.bind(this)} refreshData={this.fetchAssetData.bind(this)} settings={this.state.settings} toggleShowSettings={this.toggleShowSettings.bind(this)} />
+          <Header addCrypto={this.addCrypto.bind(this)} assets={this.state.data.assets} availableAssets={this.state.data.availableAssets} editSetting={this.editSetting.bind(this)} refreshData={this.fetchAssetData.bind(this)} settings={this.state.settings} toggleShowSettings={this.toggleShowSettings.bind(this)} updatingData={this.state.updatingData || false} />
           <hr hidden={(this.state.settings.renderStyle === 'table' && window.innerWidth <= 500)} />
           <div className='content'>
             {
