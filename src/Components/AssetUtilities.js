@@ -127,7 +127,7 @@ class AssetUtilities extends Component {
 
               <Slider
                 className='slider'
-                max={this.props.settings.sliderMax}
+                max={10000}
                 min={-100}
                 onChange={
                     (event, value) =>

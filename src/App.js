@@ -71,7 +71,6 @@ class App extends Component {
       show7dChange: true,
       showAssetBalances: true,
       showPortfolioBalance: true,
-      sliderMax: 10000,
       sorting: 'balance',
       theme: Theme.dark
     }
