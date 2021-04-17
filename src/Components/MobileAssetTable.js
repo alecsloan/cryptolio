@@ -153,7 +153,7 @@ function MobileAssetTable (props) {
           const asset = assets.find(asset => asset.symbol === params.row.id)
 
           if (asset) {
-            return props.setAssetUtilityShown(asset)
+            return props.setassetPanelShown(asset)
           }
         }}
         pageSize={20}

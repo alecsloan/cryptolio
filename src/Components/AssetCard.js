@@ -98,7 +98,7 @@ class AssetCard extends Component {
         : <Skeleton className='m-auto' height={28} width='50%' />
 
     return (
-      <Card className='card' onClick={() => this.props.setAssetUtilityShown(this.props.asset)}>
+      <Card className='card' onClick={() => this.props.setassetPanelShown(this.props.asset)}>
         <CardHeader
           avatar={renderStyle === 'compact' ? assetImage : null}
           action={
@@ -106,7 +106,7 @@ class AssetCard extends Component {
               aria-label={this.props.asset.name + ' settings'}
               className='p-0 settings'
               color='inherit'
-              onClick={() => this.props.setAssetUtilityShown(this.props.asset)}
+              onClick={() => this.props.setassetPanelShown(this.props.asset)}
             >
               <SettingsIcon />
             </IconButton>

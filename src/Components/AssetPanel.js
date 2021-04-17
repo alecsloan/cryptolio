@@ -17,7 +17,7 @@ import InterestCalculator from './InterestCalculator'
 import Button from '@material-ui/core/Button'
 import { MyBalance } from '../Util/index'
 
-class AssetUtilities extends Component {
+class AssetPanel extends Component {
   UNSAFE_componentWillReceiveProps (nextProps, nextContext) {
     let assetSymbol = null
     let simulatedPrice = 0
@@ -54,13 +54,13 @@ class AssetUtilities extends Component {
       <Drawer
         anchor='right'
         open={this.props.asset !== null}
-        onClose={() => this.props.setAssetUtilityShown(null)}
+        onClose={() => this.props.setassetPanelShown(null)}
       >
         <IconButton
-          aria-label='close asset utility'
+          aria-label='close asset panel'
           className='back-arrow'
           color='inherit'
-          onClick={() => this.props.setAssetUtilityShown(null)}
+          onClick={() => this.props.setassetPanelShown(null)}
         >
           <ArrowBack />
         </IconButton>
@@ -95,7 +95,7 @@ class AssetUtilities extends Component {
                 startIcon={<Delete />}
                 onClick={() => {
                   this.props.removeCrypto(this.props.asset.symbol);
-                  this.props.setAssetUtilityShown(null);
+                  this.props.setassetPanelShown(null);
                 }}
               >
                 Remove Asset
@@ -227,4 +227,4 @@ class AssetUtilities extends Component {
   }
 }
 
-export default AssetUtilities
+export default AssetPanel

@@ -211,7 +211,7 @@ function AssetTable (props) {
 
           const asset = assets.find(asset => asset.symbol === cell.row.id)
 
-          return props.setAssetUtilityShown(asset)
+          return props.setassetPanelShown(asset)
         }
       }}
       pageSize={20}
