@@ -54,13 +54,13 @@ class AssetPanel extends Component {
       <Drawer
         anchor='right'
         open={this.props.asset !== null}
-        onClose={() => this.props.setassetPanelShown(null)}
+        onClose={() => this.props.setAssetPanelShown(null)}
       >
         <IconButton
           aria-label='close asset panel'
           className='back-arrow'
           color='inherit'
-          onClick={() => this.props.setassetPanelShown(null)}
+          onClick={() => this.props.setAssetPanelShown(null)}
         >
           <ArrowBack />
         </IconButton>
@@ -95,7 +95,7 @@ class AssetPanel extends Component {
                 startIcon={<Delete />}
                 onClick={() => {
                   this.props.removeCrypto(this.props.asset.symbol);
-                  this.props.setassetPanelShown(null);
+                  this.props.setAssetPanelShown(null);
                 }}
               >
                 Remove Asset
