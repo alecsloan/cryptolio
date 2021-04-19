@@ -109,7 +109,9 @@ function MobileAssetTable (props) {
                   props.editSetting('sorting', value)
                 }
 
-                props.editSetting('balanceChangeTimeframe', value);
+                if (value) {
+                  props.editSetting('balanceChangeTimeframe', value);
+                }
               }
             }
             value={props.settings.balanceChangeTimeframe}
