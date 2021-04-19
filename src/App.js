@@ -11,7 +11,7 @@ import './styles/App.css'
 import { CssBaseline, Grid, IconButton, Snackbar } from '@material-ui/core'
 import CloseIcon from '@material-ui/icons/Close'
 import { Alert } from '@material-ui/lab'
-import AssetUtilities from './Components/AssetUtilities'
+import AssetPanel from './Components/AssetPanel'
 import * as CoinGecko from './Util/CoinGecko'
 import * as CoinMarketCap from './Util/CoinMarketCap'
 import * as Theme from './Theme'
@@ -41,7 +41,7 @@ function CardRow (props) {
   assets.forEach(asset => {
     cards.push(
       <Grid item xs={12} sm={6} md={4} key={asset.symbol}>
-        <AssetCard asset={asset} key={asset.symbol} renderStyle={props.renderStyle} settings={props.settings} setAssetUtilityShown={props.setAssetUtilityShown.bind(this)} />
+        <AssetCard asset={asset} key={asset.symbol} renderStyle={props.renderStyle} settings={props.settings} setAssetPanelShown={props.setAssetPanelShown.bind(this)} />
       </Grid>
     )
   })
@@ -56,7 +56,7 @@ class App extends Component {
     const initialData = JSON.parse(window.localStorage.getItem('data')) || { assets: [{ cmcId: 1817, symbol: 'VGX' }], availableAssets: [] }
     const initialSettings = JSON.parse(window.localStorage.getItem('settings')) || {
       addDropdownHideable: false,
-      assetUtilityShown: null,
+      assetPanelShown: null,
       autoHideFetchNotification: 20000,
       balanceChangeTimeframe: 'percent_change_24h',
       currency: 'USD',
@@ -71,7 +71,6 @@ class App extends Component {
       show7dChange: true,
       showAssetBalances: true,
       showPortfolioBalance: true,
-      sliderMax: 10000,
       sorting: 'balance',
       theme: Theme.dark
     }
@@ -217,9 +216,9 @@ class App extends Component {
     this.storeData(assets)
   }
 
-  setAssetUtilityShown (asset) {
+  setAssetPanelShown (asset) {
     this.setState({
-      assetUtilityShown: asset
+      assetPanelShown: asset
     })
   }
 
@@ -230,11 +229,18 @@ class App extends Component {
   }
 
   async storeData (assets) {
+    let assetPanelShown = this.state.assetPanelShown
+
+    if (assetPanelShown) {
+      assetPanelShown = assets.find(asset => asset.symbol === this.state.assetPanelShown.symbol)
+    }
+
     this.setState({
       data: {
         ...this.state.data,
         assets: assets
-      }
+      },
+      assetPanelShown: assetPanelShown
     })
 
     window.localStorage.setItem('data', JSON.stringify(this.state.data))
@@ -297,12 +303,12 @@ class App extends Component {
           <div className='content'>
             {
               (!this.state.settings.renderStyle || this.state.settings.renderStyle.includes('card'))
-                ? <CardRow assets={this.state.data.assets} renderStyle={this.state.settings.renderStyle} settings={this.state.settings} setAssetUtilityShown={this.setAssetUtilityShown.bind(this)} />
-                : <AssetTable assets={this.state.data.assets} editSetting={this.editSetting.bind(this)} settings={this.state.settings} setAssetUtilityShown={this.setAssetUtilityShown.bind(this)} />
+                ? <CardRow assets={this.state.data.assets} renderStyle={this.state.settings.renderStyle} settings={this.state.settings} setAssetPanelShown={this.setAssetPanelShown.bind(this)} />
+                : <AssetTable assets={this.state.data.assets} editSetting={this.editSetting.bind(this)} settings={this.state.settings} setAssetPanelShown={this.setAssetPanelShown.bind(this)} />
             }
           </div>
           <Settings data={this.state.data} editSetting={this.editSetting.bind(this)} settings={this.state.settings} showSettings={this.state.showSettings} theme={this.state.settings.theme} toggleShowSettings={this.toggleShowSettings.bind(this)} uploadData={this.uploadData.bind(this)} />
-          <AssetUtilities asset={this.state.assetUtilityShown} editSetting={this.editSetting.bind(this)} settings={this.state.settings} removeCrypto={this.removeCrypto.bind(this)} setAssetUtilityShown={this.setAssetUtilityShown.bind(this)} updateExitPlan={this.updateExitPlan.bind(this)} updateHoldings={this.updateHoldings.bind(this)} updateInterest={this.updateInterest.bind(this)} />
+          <AssetPanel asset={this.state.assetPanelShown} editSetting={this.editSetting.bind(this)} settings={this.state.settings} removeCrypto={this.removeCrypto.bind(this)} setAssetPanelShown={this.setAssetPanelShown.bind(this)} updateExitPlan={this.updateExitPlan.bind(this)} updateHoldings={this.updateHoldings.bind(this)} updateInterest={this.updateInterest.bind(this)} />
           <Hotkeys
             keyName='shift+/'
             onKeyDown={this.toggleShowSettings.bind(this)}

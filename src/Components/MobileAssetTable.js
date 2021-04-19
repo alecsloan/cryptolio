@@ -109,7 +109,9 @@ function MobileAssetTable (props) {
                   props.editSetting('sorting', value)
                 }
 
-                props.editSetting('balanceChangeTimeframe', value);
+                if (value) {
+                  props.editSetting('balanceChangeTimeframe', value);
+                }
               }
             }
             value={props.settings.balanceChangeTimeframe}
@@ -153,7 +155,7 @@ function MobileAssetTable (props) {
           const asset = assets.find(asset => asset.symbol === params.row.id)
 
           if (asset) {
-            return props.setAssetUtilityShown(asset)
+            return props.setAssetPanelShown(asset)
           }
         }}
         pageSize={20}

@@ -203,25 +203,6 @@ class Settings extends Component {
                 labelPlacement='top'
                 value='top'
               />
-              <FormControlLabel
-                className='m-0 w-100'
-                control={
-                  <TextField
-                    className='w-100'
-                    InputLabelProps={{
-                      shrink: true
-                    }}
-                    onInputCapture={event => this.props.editSetting('sliderMax', (event.target.value < 100) ? 100 : event.target.value)}
-                    size='small'
-                    type='number'
-                    value={this.props.settings.sliderMax}
-                    variant='outlined'
-                  />
-                }
-                label='Simulated Percent Slider Max'
-                labelPlacement='top'
-                value='top'
-              />
             </Grid>
           </Grid>
           <Grid className='mb-4' container>
