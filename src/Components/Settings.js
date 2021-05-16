@@ -234,6 +234,18 @@ class Settings extends Component {
                 labelPlacement='top'
                 value='top'
               />
+              <FormControlLabel
+                control={
+                  <Switch
+                    color='primary'
+                    defaultChecked={this.props.settings.showPortfolioDonut}
+                    onChange={() => this.props.editSetting('showPortfolioDonut', !this.props.settings.showPortfolioDonut)}
+                  />
+                }
+                label='Show Portfolio Breakdown '
+                labelPlacement='top'
+                value='top'
+              />
             </Grid>
             <Grid item xs={12} md={6}>
               <FormControlLabel
