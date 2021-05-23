@@ -14,6 +14,7 @@ export const getAssetData = async (currency, symbols, assets) => {
         Object.entries(response.data).forEach(responseAsset => {
           responseAsset = responseAsset[1]
 
+          let cgId = null
           let cmcId = null
           let exitPlan = []
           let holdings = 0
@@ -23,6 +24,7 @@ export const getAssetData = async (currency, symbols, assets) => {
             const existingAsset = assets.find(asset => asset.symbol === responseAsset.symbol)
 
             if (existingAsset) {
+              cgId = existingAsset.cgId
               cmcId = existingAsset.cmcId
               exitPlan = existingAsset.exitPlan || exitPlan
               holdings = existingAsset.holdings || holdings
@@ -33,6 +35,7 @@ export const getAssetData = async (currency, symbols, assets) => {
           if (!cmcId) { cmcId = responseAsset.id }
 
           newAssets.push({
+            cgId: cgId,
             circulating_supply: responseAsset.circulating_supply,
             cmcId: cmcId,
             exitPlan: exitPlan,
@@ -84,6 +87,24 @@ export const getAvailableAssets = async () => {
       })
   } catch (e) {
     console.log('Error getting list of assets from CoinMarketCap. Check response.', e)
+  }
+}
+
+export const getHistoricalAssetData = async (currency, symbols, days = 7) => {
+  if (!currency || !symbols) { return }
+
+  let interval = 'daily';
+  let time_end = (new Date().getTime() / 1000).toFixed(0);
+  let time_start = time_end - (86400 * days);
+
+  try {
+    return await window.fetch(`${CORS_PROXY}https://web-api.coinmarketcap.com/v1/cryptocurrency/quotes/historical?format=chart_crypto_details&symbol=${symbols}&convert=${currency}&interval=${interval}&time_end=${time_end}&time_start=${time_start}`)
+      .then(res => res.json())
+      .then(response => {
+        return response.data || null;
+      })
+  } catch (e) {
+    console.log('Error getting Coinmarketcap historical data:', e)
   }
 }
 

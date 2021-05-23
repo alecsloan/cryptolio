@@ -1,8 +1,8 @@
-export const getAssetData = async (currency, symbols, assets) => {
-  if (!currency || !symbols) { return }
+export const getAssetData = async (currency, ids, assets) => {
+  if (!currency || !ids) { return }
 
   try {
-    return await window.fetch(`https://api.coingecko.com/api/v3/coins/markets?vs_currency=${currency}&symbols=${symbols}&price_change_percentage=1h%2C24h%2C7d`)
+    return await window.fetch(`https://api.coingecko.com/api/v3/coins/markets?vs_currency=${currency}&ids=${ids}&price_change_percentage=1h%2C24h%2C7d`)
       .then(res => res.json())
       .then(response => {
         if (!response) { return }
@@ -29,6 +29,7 @@ export const getAssetData = async (currency, symbols, assets) => {
           }
 
           newAssets.push({
+            cgId: responseAsset.id,
             circulating_supply: responseAsset.circulating_supply,
             cmcId: cmcId,
             exitPlan: exitPlan,
@@ -69,6 +70,7 @@ export const getAvailableAssets = async () => {
 
         response.forEach(responseAsset => {
           assets.push({
+            cgId: responseAsset.id,
             name: responseAsset.name,
             symbol: responseAsset.symbol
           })
@@ -78,6 +80,23 @@ export const getAvailableAssets = async () => {
       })
   } catch (e) {
     console.log('Error getting list of assets from CoinGecko. Check response.', e)
+  }
+}
+
+export const getHistoricalAssetData = async (currency, id, days = 1) => {
+  if (!currency || !id) { return }
+
+  let time_end = (new Date().getTime() / 1000).toFixed(0);
+  let time_start = time_end - (86400 * days);
+
+  try {
+    return await window.fetch(`https://api.coingecko.com/api/v3/coins/${id}/market_chart/range?vs_currency=${currency}&to=${time_end}&from=${time_start}`)
+      .then(res => res.json())
+      .then(response => {
+        return response || null;
+      })
+  } catch (e) {
+    console.log('Error getting Coinmarketcap historical data:', e)
   }
 }
 
