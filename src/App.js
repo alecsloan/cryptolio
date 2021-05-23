@@ -53,7 +53,7 @@ class App extends Component {
   constructor (props) {
     super(props)
 
-    const initialData = JSON.parse(window.localStorage.getItem('data')) || { assets: [{ cmcId: 1817, symbol: 'VGX' }], availableAssets: [] }
+    const initialData = JSON.parse(window.localStorage.getItem('data')) || { assets: [{ cgId: "ethos", cmcId: 1817, symbol: 'VGX' }], availableAssets: [] }
     const initialSettings = JSON.parse(window.localStorage.getItem('settings')) || {
       addDropdownHideable: false,
       assetPanelShown: null,
@@ -94,12 +94,13 @@ class App extends Component {
     }
   }
 
-  addCrypto (cmcId, symbol) {
+  addCrypto (cgId, cmcId, symbol) {
     if (this.state.data.assets.find(asset => asset.symbol === symbol)) { return }
 
     const assets = this.state.data.assets
 
     assets.push({
+      cgId: cgId,
       cmcId: cmcId,
       symbol: symbol
     })
@@ -152,17 +153,22 @@ class App extends Component {
     })
 
     const assets = this.state.data.assets
-    let symbols = null
-
-    if (assets) {
-      symbols = assets.map(asset => asset.symbol.toLowerCase())
-    }
 
     let data
 
     if (this.state.settings.datasource === 'coingecko') {
-      data = await CoinGecko.getAssetData(currency, symbols, assets)
+      if (assets) {
+        let ids = assets.map(asset => asset.cgId)
+
+        data = await CoinGecko.getAssetData(currency, ids, assets)
+      }
     } else {
+      let symbols = null
+
+      if (assets) {
+        symbols = assets.map(asset => asset.symbol)
+      }
+
       data = await CoinMarketCap.getAssetData(currency, symbols, assets)
     }
 
@@ -184,7 +190,7 @@ class App extends Component {
 
     const assets =
       coinmarketcap.map(asset => ({
-        ...coingecko.find((asset1) => (asset1.symbol === asset.symbol) && asset1),
+        ...coingecko.find((asset1) => (asset1.symbol === asset.symbol.toLowerCase())),
         ...asset
       }))
 
