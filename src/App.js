@@ -309,7 +309,7 @@ class App extends Component {
           <Header addCrypto={this.addCrypto.bind(this)} assets={this.state.data.assets} availableAssets={this.state.data.availableAssets} editSetting={this.editSetting.bind(this)} refreshData={this.fetchAssetData.bind(this)} settings={this.state.settings} toggleShowSettings={this.toggleShowSettings.bind(this)} updatingData={this.state.updatingData || false} />
           <hr hidden={(this.state.settings.renderStyle === 'table' && window.innerWidth <= 500)} />
           <Grid container style={{ width: '99%' }}>
-            <Grid item xs={this.state.settings.showPortfolioDonut ? 12 : 0} md={this.state.settings.showPortfolioDonut ? 2 : 0}>
+            <Grid item xs={this.state.settings.showPortfolioDonut ? 12 : false} md={this.state.settings.showPortfolioDonut ? 2 : false}>
               <PortfolioDonutChart assets={this.state.data.assets} settings={this.state.settings} />
             </Grid>
             <Grid item xs={12} md={this.state.settings.showPortfolioDonut ? 10 : 12}>
