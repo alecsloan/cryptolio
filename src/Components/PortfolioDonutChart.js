@@ -15,7 +15,7 @@ function PortfolioDonutChart (props) {
       trigger: 'item'
     },
     legend: {
-      orient: 'verticcal',
+      orient: 'vertical',
       top: '175px',
       textStyle: {
         color: 'white'
