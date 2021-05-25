@@ -111,7 +111,7 @@ class VirtualizedCryptoassetAutocomplete extends Component {
         onChange={
           (event, cryptoasset) => {
             if (cryptoasset) {
-              this.props.addCrypto(cryptoasset.cmcId, cryptoasset.symbol)
+              this.props.addCrypto(cryptoasset.cgId, cryptoasset.cmcId, cryptoasset.symbol)
 
               this.setState({
                 inputValue: ''
