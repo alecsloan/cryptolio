@@ -190,7 +190,7 @@ class App extends Component {
 
     const assets =
       coinmarketcap.map(asset => ({
-        ...coingecko.find((asset1) => (asset1.symbol === asset.symbol.toLowerCase())),
+        ...coingecko.find((asset1) => (asset1.symbol === asset.symbol.toLowerCase() && asset1.name === asset.name)),
         ...asset
       }))
 
