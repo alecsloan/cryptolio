@@ -49,7 +49,7 @@ function PortfolioDonutChart (props) {
   }
 
   return (
-    props.settings.showPortfolioDonut
+    props.settings.portfolioBreakdown === "donut"
       ? <ReactECharts option={option} style={{ height: '100%', minHeight: '300px' }} />
       : null
   )

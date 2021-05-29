@@ -17,6 +17,7 @@ import * as CoinMarketCap from './Util/CoinMarketCap'
 import * as Theme from './Theme'
 import AssetTable from './Components/AssetTable'
 import PortfolioDonutChart from './Components/PortfolioDonutChart'
+import PortfolioAreaStackChart from './Components/PortfolioAreaStackChart'
 
 function CardRow (props) {
   const cards = []
@@ -62,17 +63,18 @@ class App extends Component {
       balanceChangeTimeframe: 'percent_change_24h',
       currency: 'USD',
       datasource: 'coinmarketcap',
+      days: 7,
       decimals2: 100,
       decimals3: 1,
       decimals4: null,
       fetchInterval: 300000,
+      portfolioBreakdown: "none",
       renderStyle: (window.innerWidth <= 500) ? 'table' : 'card:classic',
       show1hChange: true,
       show24hChange: true,
       show7dChange: true,
       showAssetBalances: true,
       showPortfolioBalance: true,
-      showPortfolioDonut: false,
       sorting: 'balance',
       theme: Theme.dark
     }
@@ -308,11 +310,20 @@ class App extends Component {
 
           <Header addCrypto={this.addCrypto.bind(this)} assets={this.state.data.assets} availableAssets={this.state.data.availableAssets} editSetting={this.editSetting.bind(this)} refreshData={this.fetchAssetData.bind(this)} settings={this.state.settings} toggleShowSettings={this.toggleShowSettings.bind(this)} updatingData={this.state.updatingData || false} />
           <hr hidden={(this.state.settings.renderStyle === 'table' && window.innerWidth <= 500)} />
+          {
+            this.state.settings.portfolioBreakdown === "stacked_line"
+            ? <PortfolioAreaStackChart assets={this.state.data.assets} days={this.state.settings.days || 7} settings={this.state.settings}/>
+            : null
+          }
           <Grid container style={{ width: '99%' }}>
-            <Grid item xs={this.state.settings.showPortfolioDonut ? 12 : false} md={this.state.settings.showPortfolioDonut ? 2 : false}>
-              <PortfolioDonutChart assets={this.state.data.assets} settings={this.state.settings} />
-            </Grid>
-            <Grid item xs={12} md={this.state.settings.showPortfolioDonut ? 10 : 12}>
+            {
+              this.state.settings.portfolioBreakdown === "donut"
+                ? <Grid item xs={12} md={2}>
+                    <PortfolioDonutChart assets={this.state.data.assets} settings={this.state.settings} />
+                  </Grid>
+                : null
+            }
+            <Grid item xs={12} md={this.state.settings.portfolioBreakdown === "donut" ? 10 : 12}>
               {
                 (!this.state.settings.renderStyle || this.state.settings.renderStyle.includes('card'))
                   ? <CardRow assets={this.state.data.assets} renderStyle={this.state.settings.renderStyle} settings={this.state.settings} setAssetPanelShown={this.setAssetPanelShown.bind(this)} />
