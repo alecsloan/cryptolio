@@ -192,7 +192,7 @@ class App extends Component {
 
     const assets =
       coinmarketcap.map(asset => ({
-        ...coingecko.find((asset1) => (asset1.symbol === asset.symbol.toLowerCase() && asset1.name === asset.name)),
+        ...coingecko.find((asset1) => !asset1.cgId.includes("binance-peg") && (asset1.symbol === asset.symbol.toLowerCase() && asset1.circulating_supply === asset.circulating_supply)),
         ...asset
       }))
 
