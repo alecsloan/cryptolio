@@ -83,21 +83,29 @@ export const getAvailableAssets = async () => {
   }
 }
 
-export const getHistoricalAssetData = async (currency, id, days = 1) => {
-  if (!currency || !id) { return }
+export const getHistoricalAssetData = async (currency, ids, days = 1) => {
+  if (!currency || !ids) { return }
 
   let time_end = (new Date().getTime() / 1000).toFixed(0);
   let time_start = time_end - (86400 * days);
 
-  try {
-    return await window.fetch(`https://api.coingecko.com/api/v3/coins/${id}/market_chart/range?vs_currency=${currency}&to=${time_end}&from=${time_start}`)
-      .then(res => res.json())
-      .then(response => {
-        return response || null;
+    return Promise.all(
+        ids.map((id) => {
+          return window.fetch(`https://api.coingecko.com/api/v3/coins/${id}/market_chart/range?vs_currency=${currency}&to=${time_end}&from=${time_start}`)
+        })
+      )
+      .then((responses) => {
+        return Promise.all(
+          responses.map((res) => {
+            return res.json();
+          }));
       })
-  } catch (e) {
-    console.log('Error getting Coinmarketcap historical data:', e)
-  }
+      .then((response) => {
+        return response
+      })
+      .catch((e) => {
+        console.log('Error getting CoinGecko historical data:', e)
+      })
 }
 
 export const logo = 'https://static.coingecko.com/s/coingecko-logo-d13d6bcceddbb003f146b33c2f7e8193d72b93bb343d38e392897c3df3e78bdd.png'

@@ -203,6 +203,49 @@ class Settings extends Component {
                 labelPlacement='top'
                 value='top'
               />
+              <FormControlLabel
+                className='m-0 w-100'
+                control={
+                  <Select
+                    className='w-100'
+                    onChange={event => this.props.editSetting('portfolioBreakdown', event.target.value)}
+                    value={this.props.settings.portfolioBreakdown}
+                    variant='outlined'
+                  >
+                    <MenuItem key='none' value='none'>None</MenuItem>
+                    <MenuItem key='stacked_line' value='stacked_line'>Stacked Line</MenuItem>
+                    <MenuItem key='donut' value='donut'>Donut</MenuItem>
+                  </Select>
+                }
+                hidden={(this.props.settings.renderStyle === 'table' && window.innerWidth <= 500)}
+                label='Portfolio Breakdown'
+                labelPlacement='top'
+                value='top'
+              />
+              <FormControlLabel
+                className='m-0 w-100'
+                control={
+                  <Select
+                    className='w-100'
+                    onChange={event => this.props.editSetting('days', event.target.value)}
+                    size={'small'}
+                    value={this.props.settings.days || 7}
+                    variant='outlined'
+                  >
+                    <MenuItem key='7' value='7'>7 Days</MenuItem>
+                    <MenuItem key='14' value='14'>14 Days</MenuItem>
+                    <MenuItem key='30' value='30'>30 Days</MenuItem>
+                    <MenuItem key='60' value='60'>60 Days</MenuItem>
+                    <MenuItem key='90' value='90'>90 Days</MenuItem>
+                    <MenuItem key='120' value='120'>120 Days</MenuItem>
+                    <MenuItem key='365' value='365'>365 Days</MenuItem>
+                  </Select>
+                }
+                hidden={this.props.settings.portfolioBreakdown !== "stacked_line"}
+                label='Portfolio Chart Time Span'
+                labelPlacement='top'
+                value='top'
+              />
             </Grid>
           </Grid>
           <Grid className='mb-4' container>

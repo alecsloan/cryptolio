@@ -45,5 +45,4 @@ npm run start
 
 # Todo
 * Add multi-language support
-* Add different layout views (table, main portfolio change chart with small cards, etc.)
 * Add more info about the asset on the back of the card (Circ supply, max supply, market cap, etc)
