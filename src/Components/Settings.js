@@ -217,7 +217,6 @@ class Settings extends Component {
                     <MenuItem key='donut' value='donut'>Donut</MenuItem>
                   </Select>
                 }
-                hidden={(this.props.settings.renderStyle === 'table' && window.innerWidth <= 500)}
                 label='Portfolio Breakdown'
                 labelPlacement='top'
                 value='top'
