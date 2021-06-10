@@ -15,6 +15,7 @@ import AssetPanel from './Components/AssetPanel'
 import * as CoinGecko from './Util/CoinGecko'
 import * as CoinMarketCap from './Util/CoinMarketCap'
 import * as Theme from './Theme'
+import LayoutHandler from './Components/LayoutHandler'
 
 class App extends Component {
   constructor (props) {
@@ -28,13 +29,13 @@ class App extends Component {
       balanceChangeTimeframe: 'percent_change_24h',
       currency: 'USD',
       datasource: 'coinmarketcap',
-      days: 7,
       decimals2: 100,
       decimals3: 1,
       decimals4: null,
       fetchInterval: 300000,
       portfolioBreakdown: "none",
       renderStyle: (window.innerWidth <= 500) ? 'table' : 'card:classic',
+      renderSubStyle: 'table',
       show1hChange: true,
       show24hChange: true,
       show7dChange: true,
@@ -274,28 +275,8 @@ class App extends Component {
           <CssBaseline />
 
           <Header addCrypto={this.addCrypto.bind(this)} assets={this.state.data.assets} availableAssets={this.state.data.availableAssets} editSetting={this.editSetting.bind(this)} refreshData={this.fetchAssetData.bind(this)} settings={this.state.settings} toggleShowSettings={this.toggleShowSettings.bind(this)} updatingData={this.state.updatingData || false} />
-          <hr hidden={(this.state.settings.renderStyle === 'table' && window.innerWidth <= 500)} />
-          {
-            this.state.settings.portfolioBreakdown === "stacked_line"
-            ? <PortfolioAreaStackChart assets={this.state.data.assets} days={this.state.settings.days || 7} settings={this.state.settings}/>
-            : null
-          }
-          <Grid container style={{ width: '99%' }}>
-            {
-              this.state.settings.portfolioBreakdown === "donut"
-                ? <Grid item xs={12} md={2}>
-                    <PortfolioDonutChart assets={this.state.data.assets} settings={this.state.settings} />
-                  </Grid>
-                : null
-            }
-            <Grid item xs={12} md={this.state.settings.portfolioBreakdown === "donut" ? 10 : 12}>
-              {
-                (!this.state.settings.renderStyle || this.state.settings.renderStyle.includes('card'))
-                  ? <CardRow assets={this.state.data.assets} renderStyle={this.state.settings.renderStyle} settings={this.state.settings} setAssetPanelShown={this.setAssetPanelShown.bind(this)} />
-                  : <AssetTable assets={this.state.data.assets} editSetting={this.editSetting.bind(this)} settings={this.state.settings} setAssetPanelShown={this.setAssetPanelShown.bind(this)} />
-              }
-            </Grid>
-          </Grid>
+          <hr hidden={window.innerWidth <= 500} />
+          <LayoutHandler assets={this.state.data.assets} editSetting={this.editSetting.bind(this)} settings={this.state.settings} setAssetPanelShown={this.setAssetPanelShown.bind(this)} />
           <Settings data={this.state.data} editSetting={this.editSetting.bind(this)} settings={this.state.settings} showSettings={this.state.showSettings} theme={this.state.settings.theme} toggleShowSettings={this.toggleShowSettings.bind(this)} uploadData={this.uploadData.bind(this)} />
           <AssetPanel asset={this.state.assetPanelShown} editSetting={this.editSetting.bind(this)} settings={this.state.settings} removeCrypto={this.removeCrypto.bind(this)} setAssetPanelShown={this.setAssetPanelShown.bind(this)} updateExitPlan={this.updateExitPlan.bind(this)} updateHoldings={this.updateHoldings.bind(this)} updateInterest={this.updateInterest.bind(this)} />
           <Hotkeys
