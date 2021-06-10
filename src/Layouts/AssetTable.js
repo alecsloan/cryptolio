@@ -200,6 +200,7 @@ function AssetTable (props) {
   return (
     <DataGrid
       autoHeight
+      className="m-2"
       columns={columns}
       hideFooterSelectedRowCount={true}
       onCellClick = {(cell) => {
