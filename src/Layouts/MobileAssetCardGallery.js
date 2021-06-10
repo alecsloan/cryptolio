@@ -23,7 +23,7 @@ function MobileAssetCardGallery (props) {
   console.log(index)
   return (
     <div>
-      <AssetCard asset={props.assets[index]} key={props.assets[index].symbol} renderStyle={"card:compact"} settings={props.settings} setAssetPanelShown={props.setAssetPanelShown.bind(this)} />
+      <AssetCard asset={props.assets[index]} key={props.assets[index].symbol} renderStyle={props.renderStyle || "card:compact"} settings={props.settings} setAssetPanelShown={props.setAssetPanelShown.bind(this)} />
       <Grid container>
         <Grid item style={{display: 'flex', justifyContent: 'center'}} xs={6}>
           <IconButton

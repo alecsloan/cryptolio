@@ -5,6 +5,11 @@ import * as CoinMarketCap from '../Util/CoinMarketCap'
 import * as CoinGecko from '../Util/CoinGecko'
 import abbreviate from 'number-abbreviate'
 import { Skeleton } from '@material-ui/lab'
+import { Grid } from '@material-ui/core'
+import TimeframeSelector from './TimeframeSelector'
+import SortSelector from './SortSelector'
+import LayoutHandler from './LayoutHandler'
+import MobileAssetCardGallery from '../Layouts/MobileAssetCardGallery'
 
 class PortfolioAreaStackChart extends Component {
   constructor (props) {
@@ -216,6 +221,22 @@ class PortfolioAreaStackChart extends Component {
           style={{ height: '100%', minHeight: '300px' }}
         />
         <Skeleton animation="wave" className="m-auto" hidden={this.state.option.series} height={300} width={'90%'} />
+
+        <Grid container>
+          <Grid item xs={6}>
+            <TimeframeSelector balanceChangeTimeframe={this.props.settings.balanceChangeTimeframe} editSetting={this.props.editSetting} />
+          </Grid>
+
+          <Grid item xs={6}>
+            <SortSelector editSetting={this.props.editSetting} sorting={this.props.settings.sorting} />
+          </Grid>
+        </Grid>
+
+        {
+          (window.innerWidth <= 500 && this.props.assets.length > 0)
+            ? <MobileAssetCardGallery assets={this.props.assets} settings={this.props.settings} setAssetPanelShown={this.props.setAssetPanelShown.bind(this)} />
+            : <LayoutHandler assets={this.props.assets} editSetting={this.props.editSetting.bind(this)} renderStyle={this.props.settings.renderSubStyle || "card:classic"} settings={this.props.settings} setAssetPanelShown={this.props.setAssetPanelShown.bind(this)} />
+        }
       </div>
     )
   }
