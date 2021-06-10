@@ -6,16 +6,14 @@ import AssetCard from '../Components/AssetCard'
 import { ArrowBack, ArrowForward } from '@material-ui/icons'
 import IconButton from '@material-ui/core/IconButton'
 
-let index = 0
-
 function MobileAssetCardGallery (props) {
   const [index, setIndex] = React.useState(0)
 
   function getAssetCard(delta) {
-    if (index > 0 && delta == -1) {
+    if (index > 0 && delta === -1) {
       setIndex(index - 1)
     }
-    else if (index < props.assets.length -1 && delta == 1) {
+    else if (index < props.assets.length -1 && delta === 1) {
       setIndex(index + 1)
     }
   }

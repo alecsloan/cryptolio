@@ -1,4 +1,3 @@
-import AssetCard from './Components/AssetCard.js'
 import Header from './Components/Header.js'
 import Hotkeys from 'react-hot-keys'
 import React, { Component } from 'react'

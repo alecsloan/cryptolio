@@ -90,7 +90,7 @@ class PortfolioAreaStackChart extends Component {
       days = 1
     }
     else {
-      days = Number(settings.balanceChangeTimeframe.replace(/[^0-9\.]/g, ''))
+      days = Number(settings.balanceChangeTimeframe.replace(/[^0-9]/g, ''))
     }
 
     const currency = settings.currency

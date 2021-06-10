@@ -30,10 +30,9 @@ function LayoutHandler (props) {
     case "portfolio:donut":
       return <PortfolioDonutChart assets={assets} editSetting={props.editSetting.bind(this)} settings={props.settings} setAssetPanelShown={props.setAssetPanelShown.bind(this)} />
     case "table":
+    default:
       return <AssetTable assets={assets} editSetting={props.editSetting.bind(this)} settings={props.settings} setAssetPanelShown={props.setAssetPanelShown.bind(this)} />
   }
-
-  return null
 }
 
 export default LayoutHandler
