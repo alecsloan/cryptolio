@@ -144,9 +144,8 @@ class PortfolioAreaStackChart extends Component {
             }
             else if (index === 0) {
               let date = new Date(key)
-              let min = date.getMinutes()
 
-              date.setMinutes(Math.ceil(min / 10) * 10)
+              date.setMinutes(0)
               date.setSeconds(0)
 
               dates.push(date.toLocaleString());
