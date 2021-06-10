@@ -69,14 +69,25 @@ class PortfolioAreaStackChart extends Component {
     }
 
     this.state = {
-      hasAssets: props.assets.filter(asset => asset.holdings > 0).length > 0,
       option: option
     }
 
     this.getData(props.settings, props.assets);
   }
 
-  async getData (settings, assets, days = 7) {
+  async getData (settings, assets) {
+    let days = 7
+
+    if (settings.balanceChangeTimeframe === "percent_change_1h") {
+      days = .0417
+    }
+    else if (settings.balanceChangeTimeframe === "percent_change_24h") {
+      days = 1
+    }
+    else {
+      days = Number(settings.balanceChangeTimeframe.replace(/[^0-9\.]/g, ''))
+    }
+
     const currency = settings.currency
     const assetsHeld = assets.filter(asset => asset.holdings > 0).sort((a, b) => (b.holdings * b.price) - (a.holdings  * a.price))
 
@@ -110,7 +121,7 @@ class PortfolioAreaStackChart extends Component {
 
         if (this.props.settings.datasource === 'coinmarketcap') {
           for (let [key, value] of Object.entries(assetData)) {
-            const index = key
+            const i = key
 
             if (assetsHeld.length > 1) {
               key = value.timestamp
@@ -119,13 +130,24 @@ class PortfolioAreaStackChart extends Component {
               value = value[currency][0]
             }
 
-            let date = `${new Date(key).getMonth() + 1}/${new Date(key).getDate()}`;
+            if (days > 29) {
+              let date = `${new Date(key).getMonth() + 1}/${new Date(key).getDate()}`;
 
-            if (!dates.includes(date)) {
-              dates.push(date);
+              if (!dates.includes(date)) {
+                dates.push(date);
+              }
+            }
+            else if (index === 0) {
+              let date = new Date(key)
+              let min = date.getMinutes()
+
+              date.setMinutes(Math.ceil(min / 10) * 10)
+              date.setSeconds(0)
+
+              dates.push(date.toLocaleString());
             }
 
-            if (Number(index) === assetData.length - 1) {
+            if (Number(i) === assetData.length - 1) {
               values.push(asset.price * asset.holdings)
             } else {
               values.push(value * asset.holdings);
@@ -134,7 +156,6 @@ class PortfolioAreaStackChart extends Component {
         }
         else {
           assetData.map((granularDataset) => {
-
             if (index === 0) {
               let date = new Date(granularDataset[0])
               let min = date.getMinutes()
@@ -178,8 +199,8 @@ class PortfolioAreaStackChart extends Component {
   UNSAFE_componentWillReceiveProps (nextProps, nextContext) {
     const assetsHeld = nextProps.assets.filter(asset => asset.holdings > 0)
 
-    if (nextProps.days || assetsHeld.length === 0) {
-      this.getData(nextProps.settings, nextProps.assets, nextProps.days);
+    if (nextProps.settings || assetsHeld.length === 0) {
+      this.getData(nextProps.settings, nextProps.assets);
     }
   }
 

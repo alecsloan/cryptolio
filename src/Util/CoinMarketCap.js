@@ -93,15 +93,20 @@ export const getAvailableAssets = async () => {
 export const getHistoricalAssetData = async (currency, symbols, days = 7) => {
   if (!currency || !symbols) { return }
 
-  let interval = 'daily';
-  let time_end = (new Date().getTime() / 1000).toFixed(0);
-  let time_start = time_end - (86400 * days);
+  let interval = 'hourly'
+
+  if (days > 29) {
+    interval = 'daily'
+  }
+
+  let time_end = (new Date().getTime() / 1000).toFixed(0)
+  let time_start = time_end - Math.round(86400 * days)
 
   try {
     return await window.fetch(`${CORS_PROXY}https://web-api.coinmarketcap.com/v1/cryptocurrency/quotes/historical?format=chart_crypto_details&symbol=${symbols}&convert=${currency}&interval=${interval}&time_end=${time_end}&time_start=${time_start}`)
       .then(res => res.json())
       .then(response => {
-        return response.data || null;
+        return response.data || null
       })
   } catch (e) {
     console.log('Error getting Coinmarketcap historical data:', e)
