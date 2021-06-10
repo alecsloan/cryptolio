@@ -8,48 +8,13 @@ import { createMuiTheme } from '@material-ui/core/styles'
 import { ThemeProvider } from '@material-ui/styles'
 
 import './styles/App.css'
-import { CssBaseline, Grid, IconButton, Snackbar } from '@material-ui/core'
+import { CssBaseline, IconButton, Snackbar } from '@material-ui/core'
 import CloseIcon from '@material-ui/icons/Close'
 import { Alert } from '@material-ui/lab'
 import AssetPanel from './Components/AssetPanel'
 import * as CoinGecko from './Util/CoinGecko'
 import * as CoinMarketCap from './Util/CoinMarketCap'
 import * as Theme from './Theme'
-import AssetTable from './Components/AssetTable'
-import PortfolioDonutChart from './Components/PortfolioDonutChart'
-import PortfolioAreaStackChart from './Components/PortfolioAreaStackChart'
-
-function CardRow (props) {
-  const cards = []
-
-  let assets = props.assets
-
-  if (!assets) { return null }
-
-  if (props.settings.sorting === 'price') {
-    assets = assets.sort((a, b) => b.price - a.price)
-  } else if (props.settings.sorting === 'market_cap') {
-    assets = assets.sort((a, b) => b.market_cap - a.market_cap)
-  } else if (props.settings.sorting === 'percent_change_1h') {
-    assets = assets.sort((a, b) => b.percent_change_1h - a.percent_change_1h)
-  } else if (props.settings.sorting === 'percent_change_24h') {
-    assets = assets.sort((a, b) => b.percent_change_24h - a.percent_change_24h)
-  } else if (props.settings.sorting === 'percent_change_7d') {
-    assets = assets.sort((a, b) => b.percent_change_7d - a.percent_change_7d)
-  } else {
-    assets = assets.sort((a, b) => ((b.holdings || 0.000001) * b.price) - ((a.holdings || 0.000001) * a.price))
-  }
-
-  assets.forEach(asset => {
-    cards.push(
-      <Grid item xs={12} sm={6} md={4} key={asset.symbol}>
-        <AssetCard asset={asset} key={asset.symbol} renderStyle={props.renderStyle} settings={props.settings} setAssetPanelShown={props.setAssetPanelShown.bind(this)} />
-      </Grid>
-    )
-  })
-
-  return <Grid container spacing={2}>{cards}</Grid>
-}
 
 class App extends Component {
   constructor (props) {
