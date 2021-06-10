@@ -2,7 +2,7 @@ import React from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import '../styles/Card.css'
 import { Box, CircularProgress, colors, IconButton, Typography } from '@material-ui/core'
-import * as Util from '../Util/index'
+import * as Util from '../Util'
 import abbreviate from 'number-abbreviate'
 import { DataGrid } from '@material-ui/data-grid'
 import { Delete } from '@material-ui/icons'
@@ -200,6 +200,7 @@ function AssetTable (props) {
   return (
     <DataGrid
       autoHeight
+      className="m-2"
       columns={columns}
       hideFooterSelectedRowCount={true}
       onCellClick = {(cell) => {

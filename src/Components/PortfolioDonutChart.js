@@ -1,6 +1,9 @@
 import React from 'react'
 import ReactECharts from 'echarts-for-react';
 import * as Util from '../Util/index'
+import { Grid } from '@material-ui/core'
+import LayoutHandler from './LayoutHandler'
+import MobileAssetTable from '../Layouts/MobileAssetTable'
 
 function PortfolioDonutChart (props) {
   const option = {
@@ -49,9 +52,18 @@ function PortfolioDonutChart (props) {
   }
 
   return (
-    props.settings.portfolioBreakdown === "donut"
-      ? <ReactECharts option={option} style={{ height: '100%', minHeight: '300px' }} />
-      : null
+    <Grid container style={{ width: '99%' }}>
+      <Grid item xs={12} md={2}>
+        <ReactECharts option={option} style={{ height: '100%', minHeight: '300px' }} />
+      </Grid>
+      <Grid item xs={12} md={10}>
+        {
+          (window.innerWidth <= 500 && props.assets.length > 0)
+            ? <MobileAssetTable {...props} />
+            : <LayoutHandler assets={props.assets} editSetting={props.editSetting.bind(this)} renderStyle={props.settings.renderSubStyle || "card:classic"} settings={props.settings} setAssetPanelShown={props.setAssetPanelShown.bind(this)} />
+        }
+      </Grid>
+    </Grid>
   )
 }
 

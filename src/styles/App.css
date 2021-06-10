@@ -1,6 +1,11 @@
-.page {
+.header {
   margin: auto;
   max-width: 1200px;
+}
+
+.page {
+  margin: auto;
+  max-width: 1400px;
 }
 
 body {

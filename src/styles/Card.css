@@ -5,6 +5,7 @@
 .card {
   border: 0;
   height: 100%;
+  margin: 8px;
 }
 
 .card:hover .settings{

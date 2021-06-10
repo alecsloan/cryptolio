@@ -50,7 +50,7 @@ class AssetCard extends Component {
   }
 
   render () {
-    const renderStyle = this.props.renderStyle.replace('card:', '')
+    const renderStyle = (this.props.renderStyle || this.props.settings.renderStyle).replace('card:', '')
 
     const price = this.props.asset.price
 

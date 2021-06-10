@@ -1,6 +1,7 @@
 {
+  "author": "Alec Sloan <sloan.alec@gmail.com> (https://alecsloan.codes/)",
   "name": "cryptolio",
-  "version": "3.5.0",
+  "version": "3.6.0",
   "private": true,
   "dependencies": {
     "@material-ui/core": "latest",

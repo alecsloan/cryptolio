@@ -163,89 +163,34 @@ class Settings extends Component {
               />
             </Grid>
             <Grid item xs={12} md={6}>
-              <FormControlLabel
-                className='m-0 w-100'
-                control={
-                  <Select
-                    className='w-100'
-                    onChange={event => this.props.editSetting('renderStyle', event.target.value)}
-                    value={this.props.settings.renderStyle}
-                    variant='outlined'
-                  >
-                    <MenuItem key='card-classic' value='card:classic'>Classic Card</MenuItem>
-                    <MenuItem key='card-compact' value='card:compact'>Compact Card</MenuItem>
-                    <MenuItem key='table' value='table'>Table</MenuItem>
-                  </Select>
-                }
+              <TextField
+                className='w-100'
                 label='Asset Display Style'
-                labelPlacement='top'
-                value='top'
-              />
-              <FormControlLabel
-                className='m-0 w-100'
-                control={
-                  <Select
-                    className='w-100'
-                    onChange={event => this.props.editSetting('sorting', event.target.value)}
-                    value={this.props.settings.sorting}
-                    variant='outlined'
-                  >
-                    <MenuItem key='balance' value='balance'>Balance</MenuItem>
-                    <MenuItem key='market_cap' value='market_cap'>Market Cap</MenuItem>
-                    <MenuItem key='price' value='price'>Price</MenuItem>
-                    <MenuItem key='percent_change_1h' value='percent_change_1h'>1 Hour Change</MenuItem>
-                    <MenuItem key='percent_change_24h' value='percent_change_24h'>24 Hour Change</MenuItem>
-                    <MenuItem key='percent_change_7d' value='percent_change_7d'>7 Day Change</MenuItem>
-                  </Select>
-                }
-                hidden={(this.props.settings.renderStyle === 'table' && window.innerWidth <= 500)}
-                label='Sort By'
-                labelPlacement='top'
-                value='top'
-              />
-              <FormControlLabel
-                className='m-0 w-100'
-                control={
-                  <Select
-                    className='w-100'
-                    onChange={event => this.props.editSetting('portfolioBreakdown', event.target.value)}
-                    value={this.props.settings.portfolioBreakdown}
-                    variant='outlined'
-                  >
-                    <MenuItem key='none' value='none'>None</MenuItem>
-                    <MenuItem key='stacked_line' value='stacked_line'>Stacked Line</MenuItem>
-                    <MenuItem key='donut' value='donut'>Donut</MenuItem>
-                  </Select>
-                }
-                hidden={(this.props.settings.renderStyle === 'table' && window.innerWidth <= 500)}
-                label='Portfolio Breakdown'
-                labelPlacement='top'
-                value='top'
-              />
-              <FormControlLabel
-                className='m-0 w-100'
-                control={
-                  <Select
-                    className='w-100'
-                    onChange={event => this.props.editSetting('days', event.target.value)}
-                    size={'small'}
-                    value={this.props.settings.days || 7}
-                    variant='outlined'
-                  >
-                    <MenuItem key='7' value='7'>7 Days</MenuItem>
-                    <MenuItem key='14' value='14'>14 Days</MenuItem>
-                    <MenuItem key='30' value='30'>30 Days</MenuItem>
-                    <MenuItem key='60' value='60'>60 Days</MenuItem>
-                    <MenuItem key='90' value='90'>90 Days</MenuItem>
-                    <MenuItem key='120' value='120'>120 Days</MenuItem>
-                    <MenuItem key='365' value='365'>365 Days</MenuItem>
-                  </Select>
-                }
-                hidden={this.props.settings.portfolioBreakdown !== "stacked_line"}
-                label='Portfolio Chart Time Span'
-                labelPlacement='top'
-                value='top'
-              />
+                onChange={event => this.props.editSetting('renderStyle', event.target.value)}
+                select
+                value={this.props.settings.renderStyle}
+                variant='outlined'
+              >
+                <MenuItem key='card-classic' value='card:classic'>Classic Card</MenuItem>
+                <MenuItem key='card-compact' value='card:compact'>Compact Card</MenuItem>
+                <MenuItem key='portfolio-chart' value='portfolio:chart'>Portfolio Chart</MenuItem>
+                <MenuItem key='portfolio-donut' value='portfolio:donut'>Portfolio Donut</MenuItem>
+                <MenuItem key='table' value='table'>Table</MenuItem>
+              </TextField>
+
+              <TextField
+                className='w-100'
+                hidden={window.innerWidth <= 500 || !this.props.settings.renderStyle.includes("portfolio")}
+                label='Asset Display Sub-Style'
+                onChange={event => this.props.editSetting('renderSubStyle', event.target.value)}
+                select
+                value={this.props.settings.renderSubStyle}
+                variant='outlined'
+              >
+                <MenuItem key='card-classic' value='card:classic'>Classic Card</MenuItem>
+                <MenuItem key='card-compact' value='card:compact'>Compact Card</MenuItem>
+                <MenuItem key='table' value='table'>Table</MenuItem>
+              </TextField>
             </Grid>
           </Grid>
           <Grid className='mb-4' container>
