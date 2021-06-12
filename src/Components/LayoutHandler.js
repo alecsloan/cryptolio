@@ -24,14 +24,14 @@ function LayoutHandler (props) {
   switch (props.renderStyle || props.settings.renderStyle) {
     case "card:classic":
     case "card:compact":
-      return <CardGrid assets={assets} renderStyle={props.renderStyle || props.settings.renderStyle} settings={props.settings} setAssetPanelShown={props.setAssetPanelShown.bind(this)} />
+      return <CardGrid assets={assets} renderStyle={props.renderStyle || props.settings.renderStyle} {...props} />
     case "portfolio:chart":
-      return <PortfolioAreaStackChart assets={assets} editSetting={props.editSetting.bind(this)} settings={props.settings} setAssetPanelShown={props.setAssetPanelShown.bind(this)} />
+      return <PortfolioAreaStackChart assets={assets} {...props} />
     case "portfolio:donut":
-      return <PortfolioDonutChart assets={assets} editSetting={props.editSetting.bind(this)} settings={props.settings} setAssetPanelShown={props.setAssetPanelShown.bind(this)} />
+      return <PortfolioDonutChart assets={assets} {...props} />
     case "table":
     default:
-      return <AssetTable assets={assets} editSetting={props.editSetting.bind(this)} settings={props.settings} setAssetPanelShown={props.setAssetPanelShown.bind(this)} />
+      return <AssetTable assets={assets} {...props} />
   }
 }
 

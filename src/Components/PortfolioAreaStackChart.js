@@ -234,7 +234,7 @@ class PortfolioAreaStackChart extends Component {
         {
           (window.innerWidth <= 500 && this.props.assets.length > 0)
             ? <MobileAssetCardGallery assets={this.props.assets} settings={this.props.settings} setAssetPanelShown={this.props.setAssetPanelShown.bind(this)} />
-            : <LayoutHandler assets={this.props.assets} editSetting={this.props.editSetting.bind(this)} renderStyle={this.props.settings.renderSubStyle || "card:classic"} settings={this.props.settings} setAssetPanelShown={this.props.setAssetPanelShown.bind(this)} />
+            : <LayoutHandler assets={this.props.assets} editSetting={this.props.editSetting.bind(this)} removeCrypto={this.props.removeCrypto.bind(this)} renderStyle={this.props.settings.renderSubStyle || "card:classic"} settings={this.props.settings} setAssetPanelShown={this.props.setAssetPanelShown.bind(this)} />
         }
       </div>
     )
