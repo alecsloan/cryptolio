@@ -18,8 +18,8 @@ function PortfolioDonutChart (props) {
       trigger: 'item'
     },
     legend: {
-      orient: 'vertical',
-      top: '175px',
+      orient: window.innerWidth <= 959 ? 'horizontal' : 'vertical',
+      top: '200px',
       textStyle: {
         color: 'white'
       }
@@ -27,7 +27,7 @@ function PortfolioDonutChart (props) {
     series: [
       {
         avoidLabelOverlap: true,
-        center: ['50%', '75px'],
+        center: ['50%', '100px'],
         data: props.assets.sort((a, b) => ((b.holdings || 0.000001) * b.price) - ((a.holdings || 0.000001) * a.price)).map(asset => ({holdings: asset.holdings, name: `${asset.name} (${asset.symbol})`, price: asset.price, value: (asset.holdings * asset.price).toFixed(2)})),
         itemStyle: {
           borderRadius: 5,
@@ -38,17 +38,17 @@ function PortfolioDonutChart (props) {
           position: 'center'
         },
         name: 'Asset',
-        radius: ['40%', '70%'],
+        radius: ['40%', '65%'],
         type: 'pie'
       }
     ]
   };
 
   if (window.innerWidth <= 959) {
-    option.legend.top = '80%';
+    option.legend.top = '85%';
     option.legend.type = 'scroll';
     option.tooltip.position = 'bottom';
-    option.series[0].center = ['50%', '35%'];
+    option.series[0].center = ['50%', '40%'];
   }
 
   return (
