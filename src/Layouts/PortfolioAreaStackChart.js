@@ -64,6 +64,9 @@ class PortfolioAreaStackChart extends Component {
               return Util.getCurrencySymbol(props.settings.currency) + abbreviate(params.toFixed(2), 2, ['K', 'M'])
             }
           },
+          max: (value) => {
+            return value.max
+          },
           type: 'value'
         }
       ]
