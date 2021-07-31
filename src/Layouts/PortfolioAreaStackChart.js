@@ -212,7 +212,7 @@ class PortfolioAreaStackChart extends Component {
     return (
       <div>
         <ReactECharts
-          className={!this.state.option.series ? "d-none" : null}
+          className={!this.state.option.series ? "d-none" : "mb-2"}
           option={this.state.option}
           ref={(e) => {
             this.echartsReactRef = e;
