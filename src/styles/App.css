@@ -30,6 +30,10 @@ body .MuiTypography-colorTextSecondary {
   margin: 5px;
 }
 
+legend {
+  float: initial;
+}
+
 .MuiAlert-message {
   margin: auto;
 }
