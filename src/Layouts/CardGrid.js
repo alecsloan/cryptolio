@@ -19,7 +19,7 @@ function CardGrid (props) {
     )
   })
 
-  return <Grid container spacing={2}>{cards}</Grid>
+  return <Grid className='m-0 w-100' container spacing={2}>{cards}</Grid>
 }
 
 export default CardGrid
