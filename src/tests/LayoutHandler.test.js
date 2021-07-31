@@ -1,6 +1,6 @@
 import React from 'react'
 import * as Util from '../Util/index'
-import LayoutHandler from '../Components/LayoutHandler'
+import LayoutHandler from '../Layouts/LayoutHandler'
 import { render, screen } from '@testing-library/react'
 
 const asset = {

@@ -1,6 +1,6 @@
 import React from 'react'
-import CardGrid from '../Layouts/CardGrid'
-import AssetTable from '../Layouts/AssetTable'
+import CardGrid from './CardGrid'
+import AssetTable from './AssetTable'
 import PortfolioAreaStackChart from './PortfolioAreaStackChart'
 import PortfolioDonutChart from './PortfolioDonutChart'
 

@@ -1,9 +1,9 @@
 import React from 'react'
 import ReactECharts from 'echarts-for-react';
-import * as Util from '../Util/index'
+import * as Util from '../Util'
 import { Grid } from '@material-ui/core'
 import LayoutHandler from './LayoutHandler'
-import MobileAssetTable from '../Layouts/MobileAssetTable'
+import MobileAssetTable from './MobileAssetTable'
 
 function PortfolioDonutChart (props) {
   const option = {

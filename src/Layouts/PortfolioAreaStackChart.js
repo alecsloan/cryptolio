@@ -1,15 +1,15 @@
 import React, { Component } from 'react'
 import ReactECharts from 'echarts-for-react';
-import * as Util from '../Util/index'
+import * as Util from '../Util'
 import * as CoinMarketCap from '../Util/CoinMarketCap'
 import * as CoinGecko from '../Util/CoinGecko'
 import abbreviate from 'number-abbreviate'
 import { Skeleton } from '@material-ui/lab'
 import { Grid } from '@material-ui/core'
-import TimeframeSelector from './TimeframeSelector'
-import SortSelector from './SortSelector'
+import TimeframeSelector from '../Components/TimeframeSelector'
+import SortSelector from '../Components/SortSelector'
 import LayoutHandler from './LayoutHandler'
-import MobileAssetCardGallery from '../Layouts/MobileAssetCardGallery'
+import MobileAssetCardGallery from './MobileAssetCardGallery'
 
 class PortfolioAreaStackChart extends Component {
   constructor (props) {

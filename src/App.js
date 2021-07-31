@@ -14,7 +14,7 @@ import AssetPanel from './Components/AssetPanel'
 import * as CoinGecko from './Util/CoinGecko'
 import * as CoinMarketCap from './Util/CoinMarketCap'
 import * as Theme from './Theme'
-import LayoutHandler from './Components/LayoutHandler'
+import LayoutHandler from './Layouts/LayoutHandler'
 
 class App extends Component {
   constructor (props) {
