@@ -3,7 +3,7 @@ import Hotkeys from 'react-hot-keys'
 import React, { Component } from 'react'
 import Settings from './Components/Settings.js'
 
-import { createMuiTheme } from '@material-ui/core/styles'
+import { createTheme } from '@material-ui/core/styles'
 import { ThemeProvider } from '@material-ui/styles'
 
 import './styles/App.css'
@@ -44,7 +44,7 @@ class App extends Component {
       theme: Theme.dark
     }
 
-    initialSettings.theme = createMuiTheme(initialSettings.theme) || Theme.dark
+    initialSettings.theme = createTheme(initialSettings.theme) || Theme.dark
 
     this.state = {
       data: {

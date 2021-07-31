@@ -6,7 +6,6 @@ import * as Util from '../Util'
 import abbreviate from 'number-abbreviate'
 import { DataGrid } from '@material-ui/data-grid'
 import { Delete } from '@material-ui/icons'
-import TextField from '@material-ui/core/TextField'
 import MobileAssetTable from './MobileAssetTable'
 
 function AssetTable (props) {
@@ -22,7 +21,7 @@ function AssetTable (props) {
       filterable: false,
       headerName: 'Image',
       renderCell: (params) => (
-        <img alt="Logo" height={28} src={params.value} />
+        <img alt={params.row.name + " Logo"} height={28} src={params.value} />
       ),
       sortable: false,
       width: 60
@@ -43,23 +42,6 @@ function AssetTable (props) {
       headerName: 'Holdings',
       hide: !props.settings.showAssetBalances,
       renderCell: (params) => (
-        editHoldings && editHoldings === params.row.id
-        ? <TextField
-            onBlur={(event) => {
-              props.updateHoldings(event.target.value, params.row.id)
-            }}
-            onKeyDown={(event) => {
-              if (event.key === 'Enter') {
-                props.updateHoldings(event.target.value, params.row.id)
-              }
-              else if (event.key === 'Escape') {
-                event.target.blur()
-              }
-            }}
-            defaultValue={params.value}
-            variant='outlined'
-          />
-        :
           Number(params.value) > 0 ? Util.getLocalizedNumber(Number(params.value), props.settings) : ' '
       ),
       width: 120
@@ -202,6 +184,7 @@ function AssetTable (props) {
       autoHeight
       className="m-2"
       columns={columns}
+      columnBuffer={columns.length}
       hideFooterSelectedRowCount={true}
       onCellClick = {(cell) => {
         if (cell.field === "holdings") {

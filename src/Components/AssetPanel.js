@@ -53,7 +53,7 @@ class AssetPanel extends Component {
     return (
       <Drawer
         anchor='right'
-        open={this.props.asset !== null}
+        open={this.props.asset}
         onClose={() => this.props.setAssetPanelShown(null)}
       >
         <IconButton
@@ -121,7 +121,7 @@ class AssetPanel extends Component {
                       })
                   }
                 size='small'
-                value={Util.getLocalizedNumber(this.state.simulatedPercentChange, settings)}
+                value={Util.getLocalizedNumber(this.state ? this.state.simulatedPercentChange : 0, settings)}
                 variant='outlined'
               />
 
@@ -146,7 +146,7 @@ class AssetPanel extends Component {
                     }
                   }
                 valueLabelDisplay='auto'
-                value={this.state.simulatedPercentChange}
+                value={this.state ? this.state.simulatedPercentChange : 0}
               />
 
               <TextField
@@ -164,7 +164,7 @@ class AssetPanel extends Component {
                       })
                   }
                 size='small'
-                value={Util.getLocalizedNumber(this.state.simulatedPrice, settings)}
+                value={Util.getLocalizedNumber(this.state ? this.state.simulatedPrice : 0, settings)}
                 variant='outlined'
               />
 
@@ -183,7 +183,7 @@ class AssetPanel extends Component {
                       })
                   }
                 size='small'
-                value={Util.getLocalizedNumber(this.state.simulatedValue, settings)}
+                value={Util.getLocalizedNumber(this.state ? this.state.simulatedValue : 0, settings)}
                 variant='outlined'
               />
 
@@ -202,7 +202,7 @@ class AssetPanel extends Component {
                       })
                   }
                 size='small'
-                value={Util.getLocalizedNumber(this.state.simulatedCap, settings)}
+                value={Util.getLocalizedNumber(this.state ? this.state.simulatedCap : 0, settings)}
                 variant='outlined'
               />
             </Grid>
@@ -210,7 +210,7 @@ class AssetPanel extends Component {
             <Grid item xs={12} md={6}>
               <h4>Interest Calculator</h4>
 
-              <InterestCalculator asset={this.props.asset} price={this.state.simulatedPrice} settings={settings} updateInterest={this.props.updateInterest.bind(this)} />
+              <InterestCalculator asset={this.props.asset} price={this.state ? this.state.simulatedPrice : 0} settings={settings} updateInterest={this.props.updateInterest.bind(this)} />
             </Grid>
 
             <hr />

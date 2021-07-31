@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MyBalance renders 1`] = `
+<div>
+  <div
+    class="MuiTypography-root MuiTypography-body1"
+    id="balance"
+  >
+    <div
+      class="MuiBox-root MuiBox-root-1 d-inline-block me-1"
+    >
+      Balance:
+    </div>
+    <div
+      class="MuiBox-root MuiBox-root-2 d-inline-block pl-2"
+    >
+      $124
+    </div>
+  </div>
+</div>
+`;

@@ -48,6 +48,9 @@ window.it('MyBalance renders', () => {
   
   const div = document.createElement('div')
   ReactDOM.render(<MyBalance holdings={holdings} price={price} settings={settings} />, div)
-  expect(div.textContent).toBe('Balance: $124')
+
+  expect(div).toMatchSnapshot()
+  expect(div.textContent).toBe('Balance:$124')
+
   ReactDOM.unmountComponentAtNode(div)
 })
