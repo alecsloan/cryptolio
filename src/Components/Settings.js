@@ -1,7 +1,5 @@
 import Autocomplete from '@material-ui/lab/Autocomplete'
 import Button from '@material-ui/core/Button'
-import CloudDownloadIcon from '@material-ui/icons/CloudDownloadOutlined'
-import CloudUploadIcon from '@material-ui/icons/CloudUploadOutlined'
 import Drawer from '@material-ui/core/Drawer'
 import exportFromJSON from 'export-from-json'
 import FormControlLabel from '@material-ui/core/FormControlLabel'
@@ -88,7 +86,6 @@ class Settings extends Component {
                   variant='contained'
                   color='primary'
                   component='span'
-                  startIcon={<CloudUploadIcon />}
                 >
                   Upload Data
                 </Button>
@@ -98,7 +95,6 @@ class Settings extends Component {
               <Button
                 variant='contained'
                 color='primary'
-                startIcon={<CloudDownloadIcon />}
                 onClick={() => exportFromJSON({ data: this.props.data, fileName: 'cryptolio_data', exportType: 'json' })}
               >
                 Download Data
