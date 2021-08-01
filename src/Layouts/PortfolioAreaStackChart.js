@@ -10,6 +10,7 @@ import TimeframeSelector from '../Components/TimeframeSelector'
 import SortSelector from '../Components/SortSelector'
 import LayoutHandler from './LayoutHandler'
 import MobileAssetCardGallery from './MobileAssetCardGallery'
+import * as Theme from '../Theme'
 
 class PortfolioAreaStackChart extends Component {
   constructor (props) {
@@ -47,7 +48,7 @@ class PortfolioAreaStackChart extends Component {
         bottom: 0,
         orient: 'horizontal',
         textStyle: {
-          color: 'white'
+          color: props.settings.theme.palette.text.primary
         },
         type: 'scroll'
       },
@@ -208,6 +209,14 @@ class PortfolioAreaStackChart extends Component {
 
     if (nextProps.settings || assetsHeld.length === 0) {
       this.getData(nextProps.settings, nextProps.assets);
+
+      let option = this.state.option
+
+      option.legend.textStyle.color = nextProps.settings.theme.palette.text.primary
+
+      this.setState({
+        option: option
+      })
     }
   }
 
