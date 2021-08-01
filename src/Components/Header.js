@@ -31,6 +31,10 @@ class Header extends Component {
   }
 
   focusAddCryptoasset () {
+    this.setState({
+      displayAddSection: true
+    })
+
     setTimeout(() => {
       document.getElementById('cryptoassets').focus()
     }, 50)
