@@ -76,8 +76,16 @@ class Header extends Component {
     </div>
   }
 
+  refreshData () {
+    this.props.refreshData()
+  }
+
   toggleAddSection () {
     this.setState({ displayAddSection: !this.state.displayAddSection })
+  }
+
+  toggleTheme () {
+    this.props.editSetting('theme', this.props.settings.theme.palette.type)
   }
 
   render () {
@@ -103,7 +111,7 @@ class Header extends Component {
                 aria-label='mode'
                 className='p-1 pull-left'
                 color='inherit'
-                onClick={() => this.props.refreshData()}
+                onClick={() => this.refreshData()}
                 title='Refresh Asset Data'
               >
                 {
@@ -138,7 +146,7 @@ class Header extends Component {
                 color='inherit'
                 className='p-1 pull-right'
                 aria-label='mode'
-                onClick={() => this.props.editSetting('theme', this.props.settings.theme.palette.type)}
+                onClick={() => this.toggleTheme()}
               >
                 {this.props.settings.theme.palette.type === 'dark' ? <Brightness7 /> : <Brightness2 />}
               </IconButton>
@@ -157,6 +165,14 @@ class Header extends Component {
         <Hotkeys
           keyName='/'
           onKeyDown={this.focusAddCryptoasset.bind(this)}
+        />
+        <Hotkeys
+          keyName='t'
+          onKeyDown={this.toggleTheme.bind(this)}
+        />
+        <Hotkeys
+          keyName='r'
+          onKeyDown={this.refreshData.bind(this)}
         />
       </div>
     )
