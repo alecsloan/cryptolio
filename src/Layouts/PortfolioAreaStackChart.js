@@ -26,6 +26,7 @@ class PortfolioAreaStackChart extends Component {
           },
           type: 'cross'
         },
+        confine: window.innerWidth > 500 ? true : false,
         formatter: (params) => {
           let tooltip = params[0].axisValue + "<br />"
 
