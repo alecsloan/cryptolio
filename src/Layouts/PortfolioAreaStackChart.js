@@ -10,7 +10,6 @@ import TimeframeSelector from '../Components/TimeframeSelector'
 import SortSelector from '../Components/SortSelector'
 import LayoutHandler from './LayoutHandler'
 import MobileAssetCardGallery from './MobileAssetCardGallery'
-import * as Theme from '../Theme'
 
 class PortfolioAreaStackChart extends Component {
   constructor (props) {
