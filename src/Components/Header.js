@@ -56,16 +56,16 @@ class Header extends Component {
     })
 
     return <div className="d-inline-block">
-      <Box className="d-inline-block m-0 align-middle" component={'h5'} color={change < 0 ? colors.red[300] : colors.green[300]}>
+      <Box className="align-middle d-inline-block m-0 align-middle" color={change < 0 ? colors.red[300] : colors.green[300]}>
         {Util.getLocalizedPrice(balance, this.props.settings)}
       </Box>
       {
         (change)
-        ? <Box className="d-inline-block pl-2" component={'small'} color={change < 0 ? colors.red[300] : colors.green[300]}>
+        ? <Box className="align-middle d-inline-block pl-2" component={'h6'} color={change < 0 ? colors.red[300] : colors.green[300]}>
           {
             (change < 0)
-              ? <ArrowDownward/>
-              : <ArrowUpward/>
+              ? <ArrowDownward className="me-0" />
+              : <ArrowUpward className="me-0" />
           }
           <span className="align-middle">
             {Util.getCurrencySymbol(this.props.settings.currency) + abbreviate(change.toFixed(2), 2, ['K', 'M', 'B', 'T'])}
@@ -131,7 +131,7 @@ class Header extends Component {
               </IconButton>
             </Grid>
             <Grid item xs={6}>
-              <h2>Cryptolio</h2>
+              <h2>{this.getPortfolioBalance()}</h2>
             </Grid>
             <Grid item xs={3}>
               <IconButton
@@ -152,9 +152,6 @@ class Header extends Component {
               </IconButton>
             </Grid>
           </Grid>
-        </div>
-        <div className='col-12'>
-          {this.getPortfolioBalance()}
         </div>
         <div className='col-12' style={{ display: displayAddSection }}>
           <VirtualizedCryptoassetAutocomplete
