@@ -27,7 +27,7 @@ function PercentChange (props) {
     return (props.percentChange)
       ? (
         <Typography className={props.style === 'compact' ? 'd-inline-block m-1' : ''} component='div' id={props.period + "-change"}>
-          <Box className='d-inline-block me-2' fontWeight='fontWeightLight'>
+          <Box className={props.style === 'compact' ? '' : 'd-inline-block me-2'} fontWeight='fontWeightLight'>
             {props.period}
           </Box>
           <Box className='d-inline-block pl-2' color={hourColor} fontWeight='fontWeightBold'>
