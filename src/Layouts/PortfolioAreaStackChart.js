@@ -171,7 +171,7 @@ class PortfolioAreaStackChart extends Component {
               date.setMinutes(Math.ceil(min / 10) * 10)
               date.setSeconds(0)
 
-              dates.push(date.toLocaleString());
+              dates.push(date.toLocaleString(navigator.language, { dateStyle: "medium", hour12: true, timeStyle: "short" }));
             }
 
             return values.push(granularDataset[1] * asset.holdings)
