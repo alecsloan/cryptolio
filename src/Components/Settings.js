@@ -42,6 +42,7 @@ class Settings extends Component {
         anchor='right'
         open={this.props.showSettings}
         onClose={() => this.props.toggleShowSettings()}
+        transitionDuration={250}
       >
         <IconButton
           aria-label='close settings'

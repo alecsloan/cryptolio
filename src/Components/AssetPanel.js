@@ -41,20 +41,32 @@ class AssetPanel extends Component {
   }
 
   render () {
-    if (!this.props.asset) {
-      return null
+    let asset = this.props.asset
+    let open = true
+
+    if (!asset) {
+      asset = {
+        circulating_supply: 0,
+        holdings: 0,
+        name: "",
+        price: 0,
+        symbol: ""
+      }
+
+      open = false
     }
 
     const currency = this.props.settings.currency
     const settings = this.props.settings
 
-    const price = this.props.asset.price
+    const price = asset.price
 
     return (
       <Drawer
         anchor='right'
-        open={this.props.asset !== null}
+        open={open}
         onClose={() => this.props.setAssetPanelShown(null)}
+        transitionDuration={250}
       >
         <IconButton
           aria-label='close asset panel'
@@ -65,8 +77,8 @@ class AssetPanel extends Component {
           <ArrowBack />
         </IconButton>
         <h2 className='settings-title'>
-          {this.props.asset.name} ({this.props.asset.symbol})
-          <MyBalance holdings={this.props.asset.holdings} price={price} settings={this.props.settings} />
+          {asset.name && asset.symbol ? `${asset.name} (${asset.symbol})` : null }
+          <MyBalance holdings={asset.holdings} price={price} settings={this.props.settings} />
         </h2>
 
         <hr />
@@ -78,11 +90,11 @@ class AssetPanel extends Component {
                 label='My Holdings'
                 onChange={
                   event => {
-                    this.props.updateHoldings(event.target.value, this.props.asset.symbol)
+                    this.props.updateHoldings(event.target.value, asset.symbol)
                   }
                 }
                 size='small'
-                value={Util.getLocalizedNumber(this.props.asset.holdings, this.props.settings)}
+                value={Util.getLocalizedNumber(asset.holdings, this.props.settings)}
                 variant='outlined'
               />
             </Grid>
@@ -94,7 +106,7 @@ class AssetPanel extends Component {
                 color='secondary'
                 startIcon={<Delete />}
                 onClick={() => {
-                  this.props.removeCrypto(this.props.asset.symbol);
+                  this.props.removeCrypto(asset.symbol);
                   this.props.setAssetPanelShown(null);
                 }}
               >
@@ -116,8 +128,8 @@ class AssetPanel extends Component {
                       this.setState({
                         simulatedPercentChange: event.target.value,
                         simulatedPrice: (((event.target.value * 0.01) * price) + price),
-                        simulatedValue: ((((event.target.value * 0.01) * price) + price) * this.props.asset.holdings),
-                        simulatedCap: ((((event.target.value * 0.01) * price) + price) * this.props.asset.circulating_supply)
+                        simulatedValue: ((((event.target.value * 0.01) * price) + price) * asset.holdings),
+                        simulatedCap: ((((event.target.value * 0.01) * price) + price) * asset.circulating_supply)
                       })
                   }
                 size='small'
@@ -134,8 +146,8 @@ class AssetPanel extends Component {
                       this.setState({
                         simulatedPercentChange: value,
                         simulatedPrice: (((value * 0.01) * price) + price),
-                        simulatedValue: ((((value * 0.01) * price) + price) * this.props.asset.holdings),
-                        simulatedCap: ((((value * 0.01) * price) + price) * this.props.asset.circulating_supply)
+                        simulatedValue: ((((value * 0.01) * price) + price) * asset.holdings),
+                        simulatedCap: ((((value * 0.01) * price) + price) * asset.circulating_supply)
                       })
                   }
                 valueLabelFormat={
@@ -159,8 +171,8 @@ class AssetPanel extends Component {
                       this.setState({
                         simulatedPercentChange: (100 * ((event.target.value - price) / price)),
                         simulatedPrice: event.target.value,
-                        simulatedValue: (event.target.value * this.props.asset.holdings),
-                        simulatedCap: (event.target.value * this.props.asset.circulating_supply)
+                        simulatedValue: (event.target.value * asset.holdings),
+                        simulatedCap: (event.target.value * asset.circulating_supply)
                       })
                   }
                 size='small'
@@ -176,10 +188,10 @@ class AssetPanel extends Component {
                 onChange={
                     event =>
                       this.setState({
-                        simulatedPercentChange: (100 * (((event.target.value / this.props.asset.holdings) - price) / price)),
-                        simulatedPrice: (event.target.value / this.props.asset.holdings),
+                        simulatedPercentChange: (100 * (((event.target.value / asset.holdings) - price) / price)),
+                        simulatedPrice: (event.target.value / asset.holdings),
                         simulatedValue: event.target.value,
-                        simulatedCap: ((event.target.value / this.props.asset.holdings) * this.props.asset.circulating_supply)
+                        simulatedCap: ((event.target.value / asset.holdings) * asset.circulating_supply)
                       })
                   }
                 size='small'
@@ -195,9 +207,9 @@ class AssetPanel extends Component {
                 onChange={
                     event =>
                       this.setState({
-                        simulatedPercentChange: (100 * ((event.target.value - (this.props.asset.circulating_supply * price)) / (this.props.asset.circulating_supply * price))),
-                        simulatedPrice: (event.target.value / this.props.asset.circulating_supply),
-                        simulatedValue: ((event.target.value / this.props.asset.circulating_supply) * this.props.asset.holdings),
+                        simulatedPercentChange: (100 * ((event.target.value - (asset.circulating_supply * price)) / (asset.circulating_supply * price))),
+                        simulatedPrice: (event.target.value / asset.circulating_supply),
+                        simulatedValue: ((event.target.value / asset.circulating_supply) * asset.holdings),
                         simulatedCap: event.target.value
                       })
                   }
@@ -210,7 +222,7 @@ class AssetPanel extends Component {
             <Grid item xs={12} md={6}>
               <h4>Interest Calculator</h4>
 
-              <InterestCalculator asset={this.props.asset} price={this.state ? this.state.simulatedPrice : 0} settings={settings} updateInterest={this.props.updateInterest.bind(this)} />
+              <InterestCalculator asset={asset} price={this.state ? this.state.simulatedPrice : 0} settings={settings} updateInterest={this.props.updateInterest.bind(this)} />
             </Grid>
 
             <hr />
@@ -218,7 +230,7 @@ class AssetPanel extends Component {
             <Grid item xs={12}>
               <h4>Exit Planning</h4>
 
-              <ExitPlanningTable holdings={this.props.asset.holdings} rows={this.props.asset.exitPlan} settings={settings} setRows={this.props.updateExitPlan.bind(this)} symbol={this.props.asset.symbol} />
+              <ExitPlanningTable holdings={asset.holdings} rows={asset.exitPlan} settings={settings} setRows={this.props.updateExitPlan.bind(this)} symbol={asset.symbol} />
             </Grid>
           </Grid>
         </div>
