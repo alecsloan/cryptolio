@@ -191,8 +191,10 @@ class PortfolioAreaStackChart extends Component {
       })
     }
 
-    option.xAxis[0].data = dates
     option.series = series
+    option.tooltip.show = settings.showPortfolioBalance
+    option.xAxis[0].data = dates
+    option.yAxis[0].show = settings.showPortfolioBalance
 
     this.setState({
       option: option
