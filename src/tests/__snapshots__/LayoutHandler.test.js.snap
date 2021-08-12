@@ -294,7 +294,7 @@ exports[`Compact AssetCard renders via the LayoutHandler 2`] = `
                 id="1h-change"
               >
                 <div
-                  class="MuiBox-root MuiBox-root-16 d-inline-block me-2"
+                  class="MuiBox-root MuiBox-root-16"
                 >
                   1h
                 </div>
@@ -315,7 +315,7 @@ exports[`Compact AssetCard renders via the LayoutHandler 2`] = `
                 id="24h-change"
               >
                 <div
-                  class="MuiBox-root MuiBox-root-18 d-inline-block me-2"
+                  class="MuiBox-root MuiBox-root-18"
                 >
                   24h
                 </div>
@@ -336,7 +336,7 @@ exports[`Compact AssetCard renders via the LayoutHandler 2`] = `
                 id="7d-change"
               >
                 <div
-                  class="MuiBox-root MuiBox-root-20 d-inline-block me-2"
+                  class="MuiBox-root MuiBox-root-20"
                 >
                   7d
                 </div>
@@ -403,7 +403,7 @@ exports[`Compact AssetCard renders via the LayoutHandler 2`] = `
               id="1h-change"
             >
               <div
-                class="MuiBox-root MuiBox-root-22 d-inline-block me-2"
+                class="MuiBox-root MuiBox-root-22"
               >
                 1h
               </div>
@@ -424,7 +424,7 @@ exports[`Compact AssetCard renders via the LayoutHandler 2`] = `
               id="24h-change"
             >
               <div
-                class="MuiBox-root MuiBox-root-24 d-inline-block me-2"
+                class="MuiBox-root MuiBox-root-24"
               >
                 24h
               </div>
@@ -445,7 +445,7 @@ exports[`Compact AssetCard renders via the LayoutHandler 2`] = `
               id="7d-change"
             >
               <div
-                class="MuiBox-root MuiBox-root-26 d-inline-block me-2"
+                class="MuiBox-root MuiBox-root-26"
               >
                 7d
               </div>
@@ -510,7 +510,7 @@ exports[`Compact AssetCard renders via the LayoutHandler 2`] = `
                 id="1h-change"
               >
                 <div
-                  class="MuiBox-root MuiBox-root-30 d-inline-block me-2"
+                  class="MuiBox-root MuiBox-root-30"
                 >
                   1h
                 </div>
@@ -531,7 +531,7 @@ exports[`Compact AssetCard renders via the LayoutHandler 2`] = `
                 id="24h-change"
               >
                 <div
-                  class="MuiBox-root MuiBox-root-32 d-inline-block me-2"
+                  class="MuiBox-root MuiBox-root-32"
                 >
                   24h
                 </div>
@@ -552,7 +552,7 @@ exports[`Compact AssetCard renders via the LayoutHandler 2`] = `
                 id="7d-change"
               >
                 <div
-                  class="MuiBox-root MuiBox-root-34 d-inline-block me-2"
+                  class="MuiBox-root MuiBox-root-34"
                 >
                   7d
                 </div>

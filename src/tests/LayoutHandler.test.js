@@ -30,7 +30,14 @@ let settings = {
   show24hChange: true,
   show7dChange: true,
   showAssetBalances: true,
-  showPortfolioBalance: true
+  showPortfolioBalance: true,
+  theme: {
+    palette: {
+      text: {
+        primary: 'black'
+      }
+    }
+  }
 }
 
 function testCard(div, type) {

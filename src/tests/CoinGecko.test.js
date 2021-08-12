@@ -57,9 +57,9 @@ window.it('get single asset historical data from CoinGecko', async () => {
 
   const data = response[0]
 
-  expect(data.market_caps.length).toBe(168 || 169)
-  expect(data.prices.length).toBe(168 || 169)
-  expect(data.total_volumes.length).toBe(168 || 169)
+  expect(Math.floor(data.market_caps.length / 7)).toBe(24)
+  expect(Math.floor(data.prices.length / 7)).toBe(24)
+  expect(Math.floor(data.total_volumes.length / 7)).toBe(24)
 
   const currentUnixTimeSeconds = new Date().getTime() / 1000
   const latestDataPointUnixTimeSeconds = data.market_caps[data.prices.length - 1][0] / 1000
@@ -76,9 +76,9 @@ window.it('get multiple asset historical data from CoinGecko', async () => {
 
   const bitcoin = response[0]
 
-  expect(bitcoin.market_caps.length).toBe(168 || 169)
-  expect(bitcoin.prices.length).toBe(168 || 169)
-  expect(bitcoin.total_volumes.length).toBe(168 || 169)
+  expect(Math.floor(bitcoin.market_caps.length / 7)).toBe(24)
+  expect(Math.floor(bitcoin.prices.length / 7)).toBe(24)
+  expect(Math.floor(bitcoin.total_volumes.length / 7)).toBe(24)
 
   const bitcoinCurrentUnixTimeSeconds = new Date().getTime() / 1000
   const bitcoinLatestDataPointUnixTimeSeconds = bitcoin.prices[bitcoin.prices.length - 1][0] / 1000
@@ -89,9 +89,9 @@ window.it('get multiple asset historical data from CoinGecko', async () => {
 
   const xrp = response[0]
 
-  expect(xrp.market_caps.length).toBe(168)
-  expect(xrp.prices.length).toBe(168)
-  expect(xrp.total_volumes.length).toBe(168)
+  expect(Math.floor(xrp.market_caps.length / 7)).toBe(24)
+  expect(Math.floor(xrp.prices.length / 7)).toBe(24)
+  expect(Math.floor(xrp.total_volumes.length / 7)).toBe(24)
 
   const xrpCurrentUnixTimeSeconds = new Date().getTime() / 1000
   const xrpLatestDataPointUnixTimeSeconds = xrp.prices[xrp.prices.length - 1][0] / 1000
