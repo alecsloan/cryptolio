@@ -3,7 +3,7 @@ import Hotkeys from 'react-hot-keys'
 import React, { Component } from 'react'
 import Settings from './Components/Settings.js'
 
-import { createMuiTheme } from '@material-ui/core/styles'
+import { createTheme } from '@material-ui/core/styles'
 import { ThemeProvider } from '@material-ui/styles'
 
 import './styles/App.css'
@@ -14,7 +14,7 @@ import AssetPanel from './Components/AssetPanel'
 import * as CoinGecko from './Util/CoinGecko'
 import * as CoinMarketCap from './Util/CoinMarketCap'
 import * as Theme from './Theme'
-import LayoutHandler from './Components/LayoutHandler'
+import LayoutHandler from './Layouts/LayoutHandler'
 
 class App extends Component {
   constructor (props) {
@@ -44,7 +44,7 @@ class App extends Component {
       theme: Theme.dark
     }
 
-    initialSettings.theme = createMuiTheme(initialSettings.theme) || Theme.dark
+    initialSettings.theme = createTheme(initialSettings.theme) || Theme.dark
 
     this.state = {
       data: {
@@ -274,8 +274,7 @@ class App extends Component {
           <CssBaseline />
 
           <Header addCrypto={this.addCrypto.bind(this)} assets={this.state.data.assets} availableAssets={this.state.data.availableAssets} editSetting={this.editSetting.bind(this)} refreshData={this.fetchAssetData.bind(this)} settings={this.state.settings} toggleShowSettings={this.toggleShowSettings.bind(this)} updatingData={this.state.updatingData || false} />
-          <hr hidden={window.innerWidth <= 500} />
-          <LayoutHandler assets={this.state.data.assets} editSetting={this.editSetting.bind(this)} settings={this.state.settings} setAssetPanelShown={this.setAssetPanelShown.bind(this)} />
+          <LayoutHandler assets={this.state.data.assets} editSetting={this.editSetting.bind(this)} removeCrypto={this.removeCrypto.bind(this)} settings={this.state.settings} setAssetPanelShown={this.setAssetPanelShown.bind(this)} />
           <Settings data={this.state.data} editSetting={this.editSetting.bind(this)} settings={this.state.settings} showSettings={this.state.showSettings} theme={this.state.settings.theme} toggleShowSettings={this.toggleShowSettings.bind(this)} uploadData={this.uploadData.bind(this)} />
           <AssetPanel asset={this.state.assetPanelShown} editSetting={this.editSetting.bind(this)} settings={this.state.settings} removeCrypto={this.removeCrypto.bind(this)} setAssetPanelShown={this.setAssetPanelShown.bind(this)} updateExitPlan={this.updateExitPlan.bind(this)} updateHoldings={this.updateHoldings.bind(this)} updateInterest={this.updateInterest.bind(this)} />
           <Hotkeys

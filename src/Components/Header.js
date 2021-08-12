@@ -31,6 +31,10 @@ class Header extends Component {
   }
 
   focusAddCryptoasset () {
+    this.setState({
+      displayAddSection: true
+    })
+
     setTimeout(() => {
       document.getElementById('cryptoassets').focus()
     }, 50)
@@ -52,16 +56,16 @@ class Header extends Component {
     })
 
     return <div className="d-inline-block">
-      <Box className="d-inline-block m-0 align-middle" component={'h5'} color={change < 0 ? colors.red[300] : colors.green[300]}>
+      <Box className="align-middle d-inline-block m-0 align-middle" color={change < 0 ? colors.red[300] : colors.green[300]}>
         {Util.getLocalizedPrice(balance, this.props.settings)}
       </Box>
       {
         (change)
-        ? <Box className="d-inline-block pl-2" component={'small'} color={change < 0 ? colors.red[300] : colors.green[300]}>
+        ? <Box className="align-middle d-inline-block pl-2" component={'h6'} color={change < 0 ? colors.red[300] : colors.green[300]}>
           {
             (change < 0)
-              ? <ArrowDownward/>
-              : <ArrowUpward/>
+              ? <ArrowDownward className="me-0" />
+              : <ArrowUpward className="me-0" />
           }
           <span className="align-middle">
             {Util.getCurrencySymbol(this.props.settings.currency) + abbreviate(change.toFixed(2), 2, ['K', 'M', 'B', 'T'])}
@@ -72,8 +76,16 @@ class Header extends Component {
     </div>
   }
 
+  refreshData () {
+    this.props.refreshData()
+  }
+
   toggleAddSection () {
     this.setState({ displayAddSection: !this.state.displayAddSection })
+  }
+
+  toggleTheme () {
+    this.props.editSetting('theme', this.props.settings.theme.palette.type)
   }
 
   render () {
@@ -99,7 +111,7 @@ class Header extends Component {
                 aria-label='mode'
                 className='p-1 pull-left'
                 color='inherit'
-                onClick={() => this.props.refreshData()}
+                onClick={() => this.refreshData()}
                 title='Refresh Asset Data'
               >
                 {
@@ -119,7 +131,7 @@ class Header extends Component {
               </IconButton>
             </Grid>
             <Grid item xs={6}>
-              <h2>Cryptolio</h2>
+              <h2>{this.getPortfolioBalance()}</h2>
             </Grid>
             <Grid item xs={3}>
               <IconButton
@@ -134,15 +146,12 @@ class Header extends Component {
                 color='inherit'
                 className='p-1 pull-right'
                 aria-label='mode'
-                onClick={() => this.props.editSetting('theme', this.props.settings.theme.palette.type)}
+                onClick={() => this.toggleTheme()}
               >
                 {this.props.settings.theme.palette.type === 'dark' ? <Brightness7 /> : <Brightness2 />}
               </IconButton>
             </Grid>
           </Grid>
-        </div>
-        <div className='col-12'>
-          {this.getPortfolioBalance()}
         </div>
         <div className='col-12' style={{ display: displayAddSection }}>
           <VirtualizedCryptoassetAutocomplete
@@ -153,6 +162,14 @@ class Header extends Component {
         <Hotkeys
           keyName='/'
           onKeyDown={this.focusAddCryptoasset.bind(this)}
+        />
+        <Hotkeys
+          keyName='t'
+          onKeyDown={this.toggleTheme.bind(this)}
+        />
+        <Hotkeys
+          keyName='r'
+          onKeyDown={this.refreshData.bind(this)}
         />
       </div>
     )

@@ -50,9 +50,12 @@ export function getLocalizedPercent (number, minimumFractionDigits = 2) {
 export function MyBalance (props) {
   if (props.holdings > 0 && props.settings.showAssetBalances) {
     return (
-      <Typography component='div'>
-        <Box fontSize={17} fontWeight='fontWeightBold'>
-          Balance: {getLocalizedPrice(props.price * props.holdings, props.settings)}
+      <Typography component='div' id='balance'>
+        <Box className='d-inline-block me-1' fontWeight='fontWeightBold'>
+          Balance:
+        </Box>
+        <Box className='d-inline-block pl-2' fontWeight='fontWeightBold'>
+          {getLocalizedPrice(props.price * props.holdings, props.settings)}
         </Box>
       </Typography>
     )

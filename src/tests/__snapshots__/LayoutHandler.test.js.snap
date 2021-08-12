@@ -1,0 +1,688 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Compact AssetCard renders via the LayoutHandler 1`] = `
+<div
+  class="MuiPaper-root MuiCard-root card MuiPaper-elevation1 MuiPaper-rounded"
+>
+  <div
+    class="MuiCardHeader-root h-0 p-0"
+  >
+    <div
+      class="MuiCardHeader-content"
+    />
+    <div
+      class="MuiCardHeader-action m-0 p-2"
+    >
+      <button
+        aria-label="Voyager Token settings"
+        class="MuiButtonBase-root MuiIconButton-root p-0 settings MuiIconButton-colorInherit"
+        tabindex="0"
+        type="button"
+      >
+        <span
+          class="MuiIconButton-label"
+        >
+          <svg
+            aria-hidden="true"
+            class="MuiSvgIcon-root"
+            focusable="false"
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M19.14 12.94c.04-.3.06-.61.06-.94 0-.32-.02-.64-.07-.94l2.03-1.58c.18-.14.23-.41.12-.61l-1.92-3.32c-.12-.22-.37-.29-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54c-.04-.24-.24-.41-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96c-.22-.08-.47 0-.59.22L2.74 8.87c-.12.21-.08.47.12.61l2.03 1.58c-.05.3-.09.63-.09.94s.02.64.07.94l-2.03 1.58c-.18.14-.23.41-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.47-.12-.61l-2.01-1.58zM12 15.6c-1.98 0-3.6-1.62-3.6-3.6s1.62-3.6 3.6-3.6 3.6 1.62 3.6 3.6-1.62 3.6-3.6 3.6z"
+            />
+          </svg>
+        </span>
+        <span
+          class="MuiTouchRipple-root"
+        />
+      </button>
+    </div>
+  </div>
+  <div
+    class="MuiCardContent-root"
+  >
+    <div
+      class="MuiGrid-root MuiGrid-container"
+    >
+      <div
+        class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12"
+      >
+        <img
+          alt="Voyager Token Logo"
+          height="100"
+          src="https://s2.coinmarketcap.com/static/img/coins/128x128/1817.png"
+        />
+      </div>
+      <div
+        class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12"
+      >
+        <h5
+          class="MuiTypography-root MuiTypography-h5"
+        >
+          Voyager Token (VGX)
+        </h5>
+      </div>
+    </div>
+  </div>
+  <div
+    class="MuiCardContent-root"
+  >
+    <div
+      class="MuiGrid-root MuiGrid-container"
+    >
+      <div
+        class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-6"
+      >
+        <div
+          class="MuiGrid-root MuiGrid-container"
+        >
+          <div
+            class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12"
+          >
+            <div
+              class="MuiTypography-root MuiTypography-body1"
+              id="1h-change"
+            >
+              <div
+                class="MuiBox-root MuiBox-root-1 d-inline-block me-2"
+              >
+                1h
+              </div>
+              <div
+                class="MuiBox-root MuiBox-root-2 d-inline-block pl-2"
+              >
+                <span>
+                  0.44%
+                </span>
+              </div>
+            </div>
+          </div>
+          <div
+            class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12"
+          >
+            <div
+              class="MuiTypography-root MuiTypography-body1"
+              id="24h-change"
+            >
+              <div
+                class="MuiBox-root MuiBox-root-3 d-inline-block me-2"
+              >
+                24h
+              </div>
+              <div
+                class="MuiBox-root MuiBox-root-4 d-inline-block pl-2"
+              >
+                <span>
+                  -1.45%
+                </span>
+              </div>
+            </div>
+          </div>
+          <div
+            class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12"
+          >
+            <div
+              class="MuiTypography-root MuiTypography-body1"
+              id="7d-change"
+            >
+              <div
+                class="MuiBox-root MuiBox-root-5 d-inline-block me-2"
+              >
+                7d
+              </div>
+              <div
+                class="MuiBox-root MuiBox-root-6 d-inline-block pl-2"
+              >
+                <span>
+                  9.05%
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-6"
+      >
+        <div>
+          <div
+            class="MuiGrid-root MuiGrid-container"
+          >
+            <div
+              class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12"
+              id="price"
+            >
+              <div
+                class="MuiTypography-root MuiTypography-body1"
+                id="undefined-change"
+              >
+                <div
+                  class="MuiBox-root MuiBox-root-7 d-inline-block me-1"
+                >
+                  Price:
+                </div>
+                <div
+                  class="MuiBox-root MuiBox-root-8 d-inline-block pl-2"
+                >
+                  $2.525
+                </div>
+              </div>
+            </div>
+            <div
+              class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12"
+              id="market-cap"
+            >
+              <div
+                class="MuiTypography-root MuiTypography-body1"
+                id="undefined-change"
+              >
+                <div
+                  class="MuiBox-root MuiBox-root-9 d-inline-block me-1"
+                >
+                  Market Cap:
+                </div>
+                <div
+                  class="MuiBox-root MuiBox-root-10 d-inline-block pl-2"
+                >
+                  $561.19M
+                </div>
+              </div>
+            </div>
+            <div
+              class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12"
+            >
+              <div
+                class="MuiTypography-root MuiTypography-body1"
+                id="balance"
+              >
+                <div
+                  class="MuiBox-root MuiBox-root-11 d-inline-block me-1"
+                >
+                  Balance:
+                </div>
+                <div
+                  class="MuiBox-root MuiBox-root-12 d-inline-block pl-2"
+                >
+                  $252
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Compact AssetCard renders via the LayoutHandler 2`] = `
+<div
+  class="MuiPaper-root MuiCard-root card MuiPaper-elevation1 MuiPaper-rounded"
+>
+  <div
+    class="MuiCardHeader-root"
+  >
+    <div
+      class="MuiCardHeader-avatar"
+    >
+      <img
+        alt="Voyager Token Logo"
+        height="70"
+        src="https://s2.coinmarketcap.com/static/img/coins/128x128/1817.png"
+      />
+    </div>
+    <div
+      class="MuiCardHeader-content"
+    >
+      <span
+        class="MuiTypography-root MuiCardHeader-title MuiTypography-body2 MuiTypography-displayBlock"
+      >
+        <h5
+          class="MuiBox-root MuiBox-root-13"
+        >
+          Voyager Token (VGX)
+        </h5>
+      </span>
+      <span
+        class="MuiTypography-root MuiCardHeader-subheader MuiTypography-body2 MuiTypography-colorTextSecondary MuiTypography-displayBlock"
+      >
+        <div>
+          <div
+            class="MuiGrid-root MuiGrid-container"
+          >
+            <div
+              class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-6"
+              id="price"
+            >
+              $2.525
+            </div>
+            <div
+              class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-6"
+              id="market-cap"
+            >
+              $561.19M
+            </div>
+            <div
+              class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12"
+            >
+              <div
+                class="MuiTypography-root MuiTypography-body1"
+                id="balance"
+              >
+                <div
+                  class="MuiBox-root MuiBox-root-14 d-inline-block me-1"
+                >
+                  Balance:
+                </div>
+                <div
+                  class="MuiBox-root MuiBox-root-15 d-inline-block pl-2"
+                >
+                  $252
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            class="MuiGrid-root MuiGrid-container"
+          >
+            <div
+              class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-4"
+            >
+              <div
+                class="MuiTypography-root d-inline-block m-1 MuiTypography-body1"
+                id="1h-change"
+              >
+                <div
+                  class="MuiBox-root MuiBox-root-16"
+                >
+                  1h
+                </div>
+                <div
+                  class="MuiBox-root MuiBox-root-17 d-inline-block pl-2"
+                >
+                  <span>
+                    0.44%
+                  </span>
+                </div>
+              </div>
+            </div>
+            <div
+              class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-4"
+            >
+              <div
+                class="MuiTypography-root d-inline-block m-1 MuiTypography-body1"
+                id="24h-change"
+              >
+                <div
+                  class="MuiBox-root MuiBox-root-18"
+                >
+                  24h
+                </div>
+                <div
+                  class="MuiBox-root MuiBox-root-19 d-inline-block pl-2"
+                >
+                  <span>
+                    -1.45%
+                  </span>
+                </div>
+              </div>
+            </div>
+            <div
+              class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-4"
+            >
+              <div
+                class="MuiTypography-root d-inline-block m-1 MuiTypography-body1"
+                id="7d-change"
+              >
+                <div
+                  class="MuiBox-root MuiBox-root-20"
+                >
+                  7d
+                </div>
+                <div
+                  class="MuiBox-root MuiBox-root-21 d-inline-block pl-2"
+                >
+                  <span>
+                    9.05%
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </span>
+    </div>
+    <div
+      class="MuiCardHeader-action"
+    >
+      <button
+        aria-label="Voyager Token settings"
+        class="MuiButtonBase-root MuiIconButton-root p-0 settings MuiIconButton-colorInherit"
+        tabindex="0"
+        type="button"
+      >
+        <span
+          class="MuiIconButton-label"
+        >
+          <svg
+            aria-hidden="true"
+            class="MuiSvgIcon-root"
+            focusable="false"
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M19.14 12.94c.04-.3.06-.61.06-.94 0-.32-.02-.64-.07-.94l2.03-1.58c.18-.14.23-.41.12-.61l-1.92-3.32c-.12-.22-.37-.29-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54c-.04-.24-.24-.41-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96c-.22-.08-.47 0-.59.22L2.74 8.87c-.12.21-.08.47.12.61l2.03 1.58c-.05.3-.09.63-.09.94s.02.64.07.94l-2.03 1.58c-.18.14-.23.41-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.47-.12-.61l-2.01-1.58zM12 15.6c-1.98 0-3.6-1.62-3.6-3.6s1.62-3.6 3.6-3.6 3.6 1.62 3.6 3.6-1.62 3.6-3.6 3.6z"
+            />
+          </svg>
+        </span>
+        <span
+          class="MuiTouchRipple-root"
+        />
+      </button>
+    </div>
+  </div>
+  <div
+    class="MuiCardContent-root"
+    hidden=""
+  >
+    <div
+      class="MuiGrid-root MuiGrid-container"
+    >
+      <div
+        class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-6"
+      >
+        <div
+          class="MuiGrid-root MuiGrid-container"
+        >
+          <div
+            class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-4"
+          >
+            <div
+              class="MuiTypography-root d-inline-block m-1 MuiTypography-body1"
+              id="1h-change"
+            >
+              <div
+                class="MuiBox-root MuiBox-root-22"
+              >
+                1h
+              </div>
+              <div
+                class="MuiBox-root MuiBox-root-23 d-inline-block pl-2"
+              >
+                <span>
+                  0.44%
+                </span>
+              </div>
+            </div>
+          </div>
+          <div
+            class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-4"
+          >
+            <div
+              class="MuiTypography-root d-inline-block m-1 MuiTypography-body1"
+              id="24h-change"
+            >
+              <div
+                class="MuiBox-root MuiBox-root-24"
+              >
+                24h
+              </div>
+              <div
+                class="MuiBox-root MuiBox-root-25 d-inline-block pl-2"
+              >
+                <span>
+                  -1.45%
+                </span>
+              </div>
+            </div>
+          </div>
+          <div
+            class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-4"
+          >
+            <div
+              class="MuiTypography-root d-inline-block m-1 MuiTypography-body1"
+              id="7d-change"
+            >
+              <div
+                class="MuiBox-root MuiBox-root-26"
+              >
+                7d
+              </div>
+              <div
+                class="MuiBox-root MuiBox-root-27 d-inline-block pl-2"
+              >
+                <span>
+                  9.05%
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-6"
+      >
+        <div>
+          <div
+            class="MuiGrid-root MuiGrid-container"
+          >
+            <div
+              class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-6"
+              id="price"
+            >
+              $2.525
+            </div>
+            <div
+              class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-6"
+              id="market-cap"
+            >
+              $561.19M
+            </div>
+            <div
+              class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12"
+            >
+              <div
+                class="MuiTypography-root MuiTypography-body1"
+                id="balance"
+              >
+                <div
+                  class="MuiBox-root MuiBox-root-28 d-inline-block me-1"
+                >
+                  Balance:
+                </div>
+                <div
+                  class="MuiBox-root MuiBox-root-29 d-inline-block pl-2"
+                >
+                  $252
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            class="MuiGrid-root MuiGrid-container"
+          >
+            <div
+              class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-4"
+            >
+              <div
+                class="MuiTypography-root d-inline-block m-1 MuiTypography-body1"
+                id="1h-change"
+              >
+                <div
+                  class="MuiBox-root MuiBox-root-30"
+                >
+                  1h
+                </div>
+                <div
+                  class="MuiBox-root MuiBox-root-31 d-inline-block pl-2"
+                >
+                  <span>
+                    0.44%
+                  </span>
+                </div>
+              </div>
+            </div>
+            <div
+              class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-4"
+            >
+              <div
+                class="MuiTypography-root d-inline-block m-1 MuiTypography-body1"
+                id="24h-change"
+              >
+                <div
+                  class="MuiBox-root MuiBox-root-32"
+                >
+                  24h
+                </div>
+                <div
+                  class="MuiBox-root MuiBox-root-33 d-inline-block pl-2"
+                >
+                  <span>
+                    -1.45%
+                  </span>
+                </div>
+              </div>
+            </div>
+            <div
+              class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-4"
+            >
+              <div
+                class="MuiTypography-root d-inline-block m-1 MuiTypography-body1"
+                id="7d-change"
+              >
+                <div
+                  class="MuiBox-root MuiBox-root-34"
+                >
+                  7d
+                </div>
+                <div
+                  class="MuiBox-root MuiBox-root-35 d-inline-block pl-2"
+                >
+                  <span>
+                    9.05%
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Mobile Asset Table renders via the LayoutHandler 1`] = `
+<div
+  aria-label="percent change"
+  class="MuiToggleButtonGroup-root mb-2"
+  role="group"
+>
+  <button
+    aria-label="1h percent change"
+    aria-pressed="false"
+    class="MuiButtonBase-root MuiToggleButton-root MuiToggleButtonGroup-grouped MuiToggleButtonGroup-groupedHorizontal"
+    tabindex="0"
+    type="button"
+    value="percent_change_1h"
+  >
+    <span
+      class="MuiToggleButton-label"
+    >
+      1h
+    </span>
+    <span
+      class="MuiTouchRipple-root"
+    />
+  </button>
+  <button
+    aria-label="24h percent change"
+    aria-pressed="true"
+    class="MuiButtonBase-root MuiToggleButton-root MuiToggleButtonGroup-grouped MuiToggleButtonGroup-groupedHorizontal Mui-selected"
+    tabindex="0"
+    type="button"
+    value="percent_change_24h"
+  >
+    <span
+      class="MuiToggleButton-label"
+    >
+      24h
+    </span>
+    <span
+      class="MuiTouchRipple-root"
+    />
+  </button>
+  <button
+    aria-label="7d percent change"
+    aria-pressed="false"
+    class="MuiButtonBase-root MuiToggleButton-root MuiToggleButtonGroup-grouped MuiToggleButtonGroup-groupedHorizontal"
+    tabindex="0"
+    type="button"
+    value="percent_change_7d"
+  >
+    <span
+      class="MuiToggleButton-label"
+    >
+      7d
+    </span>
+    <span
+      class="MuiTouchRipple-root"
+    />
+  </button>
+</div>
+`;
+
+exports[`Portfolio Area Stack Chart renders via the LayoutHandler 1`] = `
+<canvas
+  data-zr-dom-id="zr_0"
+  height="100"
+  style="position: absolute; left: 0px; top: 0px; width: 0px; height: 100px; webkit-user-select: none; user-select: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); padding: 0px; margin: 0px; border-width: 0px;"
+  width="0"
+/>
+`;
+
+exports[`Portfolio Area Stack Chart with Compact Card sub style renders via the LayoutHandler 1`] = `
+<canvas
+  data-zr-dom-id="zr_0"
+  height="100"
+  style="position: absolute; left: 0px; top: 0px; width: 0px; height: 100px; webkit-user-select: none; user-select: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); padding: 0px; margin: 0px; border-width: 0px;"
+  width="0"
+/>
+`;
+
+exports[`Portfolio Area Stack Chart with Table sub style renders via the LayoutHandler 1`] = `
+<canvas
+  data-zr-dom-id="zr_0"
+  height="100"
+  style="position: absolute; left: 0px; top: 0px; width: 0px; height: 100px; webkit-user-select: none; user-select: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); padding: 0px; margin: 0px; border-width: 0px;"
+  width="0"
+/>
+`;
+
+exports[`Portfolio Donut Chart renders via the LayoutHandler 1`] = `
+<canvas
+  data-zr-dom-id="zr_0"
+  height="100"
+  style="position: absolute; left: 0px; top: 0px; width: 0px; height: 100px; webkit-user-select: none; user-select: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); padding: 0px; margin: 0px; border-width: 0px;"
+  width="0"
+/>
+`;
+
+exports[`Portfolio Donut Chart with Classic Card sub style renders via the LayoutHandler 1`] = `
+<canvas
+  data-zr-dom-id="zr_0"
+  height="100"
+  style="position: absolute; left: 0px; top: 0px; width: 0px; height: 100px; webkit-user-select: none; user-select: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); padding: 0px; margin: 0px; border-width: 0px;"
+  width="0"
+/>
+`;
+
+exports[`Portfolio Donut Chart with Compact Card sub style renders via the LayoutHandler 1`] = `
+<canvas
+  data-zr-dom-id="zr_0"
+  height="100"
+  style="position: absolute; left: 0px; top: 0px; width: 0px; height: 100px; webkit-user-select: none; user-select: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); padding: 0px; margin: 0px; border-width: 0px;"
+  width="0"
+/>
+`;

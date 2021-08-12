@@ -19,7 +19,7 @@ function MobileAssetTable (props) {
       renderCell: (params) => (
         <Grid container>
           <Grid item style={{lineHeight: 'normal', }} xs={3}>
-            <img alt="Logo" height={20} src={params.row.imageURL} />
+            <img alt={params.row.name + " Logo"} height={20} src={params.row.imageURL} />
           </Grid>
           <Grid
             item

@@ -1,15 +1,15 @@
 import React, { Component } from 'react'
 import ReactECharts from 'echarts-for-react';
-import * as Util from '../Util/index'
+import * as Util from '../Util'
 import * as CoinMarketCap from '../Util/CoinMarketCap'
 import * as CoinGecko from '../Util/CoinGecko'
 import abbreviate from 'number-abbreviate'
 import { Skeleton } from '@material-ui/lab'
 import { Grid } from '@material-ui/core'
-import TimeframeSelector from './TimeframeSelector'
-import SortSelector from './SortSelector'
+import TimeframeSelector from '../Components/TimeframeSelector'
+import SortSelector from '../Components/SortSelector'
 import LayoutHandler from './LayoutHandler'
-import MobileAssetCardGallery from '../Layouts/MobileAssetCardGallery'
+import MobileAssetCardGallery from './MobileAssetCardGallery'
 
 class PortfolioAreaStackChart extends Component {
   constructor (props) {
@@ -25,6 +25,7 @@ class PortfolioAreaStackChart extends Component {
           },
           type: 'cross'
         },
+        confine: window.innerWidth > 500 ? true : false,
         formatter: (params) => {
           let tooltip = params[0].axisValue + "<br />"
 
@@ -47,7 +48,7 @@ class PortfolioAreaStackChart extends Component {
         bottom: 0,
         orient: 'horizontal',
         textStyle: {
-          color: 'white'
+          color: props.settings.theme.palette.text.primary
         },
         type: 'scroll'
       },
@@ -63,6 +64,9 @@ class PortfolioAreaStackChart extends Component {
             formatter: (params) => {
               return Util.getCurrencySymbol(props.settings.currency) + abbreviate(params.toFixed(2), 2, ['K', 'M'])
             }
+          },
+          max: (value) => {
+            return value.max
           },
           type: 'value'
         }
@@ -144,9 +148,8 @@ class PortfolioAreaStackChart extends Component {
             }
             else if (index === 0) {
               let date = new Date(key)
-              let min = date.getMinutes()
 
-              date.setMinutes(Math.ceil(min / 10) * 10)
+              date.setMinutes(0)
               date.setSeconds(0)
 
               dates.push(date.toLocaleString());
@@ -168,7 +171,7 @@ class PortfolioAreaStackChart extends Component {
               date.setMinutes(Math.ceil(min / 10) * 10)
               date.setSeconds(0)
 
-              dates.push(date.toLocaleString());
+              dates.push(date.toLocaleString(navigator.language, { dateStyle: "medium", hour12: true, timeStyle: "short" }));
             }
 
             return values.push(granularDataset[1] * asset.holdings)
@@ -188,8 +191,10 @@ class PortfolioAreaStackChart extends Component {
       })
     }
 
-    option.xAxis[0].data = dates
     option.series = series
+    option.tooltip.show = settings.showPortfolioBalance
+    option.xAxis[0].data = dates
+    option.yAxis[0].show = settings.showPortfolioBalance
 
     this.setState({
       option: option
@@ -206,6 +211,14 @@ class PortfolioAreaStackChart extends Component {
 
     if (nextProps.settings || assetsHeld.length === 0) {
       this.getData(nextProps.settings, nextProps.assets);
+
+      let option = this.state.option
+
+      option.legend.textStyle.color = nextProps.settings.theme.palette.text.primary
+
+      this.setState({
+        option: option
+      })
     }
   }
 
@@ -213,7 +226,7 @@ class PortfolioAreaStackChart extends Component {
     return (
       <div>
         <ReactECharts
-          className={!this.state.option.series ? "d-none" : null}
+          className={!this.state.option.series ? "d-none" : "mb-2"}
           option={this.state.option}
           ref={(e) => {
             this.echartsReactRef = e;
@@ -235,7 +248,7 @@ class PortfolioAreaStackChart extends Component {
         {
           (window.innerWidth <= 500 && this.props.assets.length > 0)
             ? <MobileAssetCardGallery assets={this.props.assets} settings={this.props.settings} setAssetPanelShown={this.props.setAssetPanelShown.bind(this)} />
-            : <LayoutHandler assets={this.props.assets} editSetting={this.props.editSetting.bind(this)} renderStyle={this.props.settings.renderSubStyle || "card:classic"} settings={this.props.settings} setAssetPanelShown={this.props.setAssetPanelShown.bind(this)} />
+            : <LayoutHandler assets={this.props.assets} editSetting={this.props.editSetting.bind(this)} removeCrypto={this.props.removeCrypto.bind(this)} renderStyle={this.props.settings.renderSubStyle || "card:classic"} settings={this.props.settings} setAssetPanelShown={this.props.setAssetPanelShown.bind(this)} />
         }
       </div>
     )

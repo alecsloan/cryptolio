@@ -26,8 +26,8 @@ function PercentChange (props) {
 
     return (props.percentChange)
       ? (
-        <Typography className={props.style === 'compact' ? 'd-inline-block m-1' : ''} component='div'>
-          <Box className='d-inline-block' fontWeight='fontWeightLight'>
+        <Typography className={props.style === 'compact' ? 'd-inline-block m-1' : ''} component='div' id={props.period + "-change"}>
+          <Box className={props.style === 'compact' ? '' : 'd-inline-block me-2'} fontWeight='fontWeightLight'>
             {props.period}
           </Box>
           <Box className='d-inline-block pl-2' color={hourColor} fontWeight='fontWeightBold'>
@@ -80,11 +80,29 @@ class AssetCard extends Component {
           <div>
             <Grid container>
               {renderStyle === 'compact'
-                ? <Grid item xs={6}>{Util.getLocalizedPrice(price, this.props.settings)}</Grid>
-                : <Grid item xs={12}>Price: {Util.getLocalizedPrice(price, this.props.settings)}</Grid>}
+                ? <Grid item xs={6} id="price">{Util.getLocalizedPrice(price, this.props.settings)}</Grid>
+                : <Grid item xs={12} id="price">
+                    <Typography className={this.props.style === 'compact' ? 'd-inline-block m-1' : ''} component='div' id={this.props.period + "-change"}>
+                      <Box className='d-inline-block me-1' fontWeight='fontWeightLight'>
+                        Price:
+                      </Box>
+                      <Box className='d-inline-block pl-2' fontWeight='fontWeightBold'>
+                        {Util.getLocalizedPrice(price, this.props.settings)}
+                      </Box>
+                    </Typography>
+                  </Grid>}
               {renderStyle === 'compact'
-                ? <Grid item xs={6}>{Util.getCurrencySymbol(this.props.settings.currency) + abbreviate(this.props.asset.market_cap, 2, ['K', 'M', 'B', 'T'])}</Grid>
-                : <Grid item xs={12}>Market Cap: {Util.getCurrencySymbol(this.props.settings.currency) + abbreviate(this.props.asset.market_cap, 2, ['K', 'M', 'B', 'T'])}</Grid>}
+                ? <Grid item xs={6} id="market-cap">{Util.getCurrencySymbol(this.props.settings.currency) + abbreviate(this.props.asset.market_cap, 2, ['K', 'M', 'B', 'T'])}</Grid>
+                : <Grid item xs={12} id="market-cap">
+                    <Typography className={this.props.style === 'compact' ? 'd-inline-block m-1' : ''} component='div' id={this.props.period + "-change"}>
+                      <Box className='d-inline-block me-1' fontWeight='fontWeightLight'>
+                        Market Cap:
+                      </Box>
+                      <Box className='d-inline-block pl-2' fontWeight='fontWeightBold'>
+                        {Util.getCurrencySymbol(this.props.settings.currency) + abbreviate(this.props.asset.market_cap, 2, ['K', 'M', 'B', 'T'])}
+                      </Box>
+                    </Typography>
+                  </Grid>}
               <Grid item xs={12}><MyBalance holdings={this.props.asset.holdings} price={price} settings={this.props.settings} /></Grid>
             </Grid>
             {renderStyle === 'compact' ? percentChanges : null}

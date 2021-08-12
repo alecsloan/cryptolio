@@ -12,7 +12,8 @@
     width: 100% !important;
 }
 
-.MuiDrawer-paper {
+.settings-panel .MuiDrawer-paper {
+    max-width: 500px;
     width: 80%;
 }
 
@@ -27,23 +28,27 @@
     height: 50px;
 }
 
-.settings-panel .col-12 {
-    margin-top: 15px;
+@media only screen and (max-width: 500px) {
+    .MuiListItem-root img,
+    .MuiSelect-select img{
+        height: 40px;
+    }
 }
 
-.settings-panel .MuiFormControl-root,
 .settings-panel .MuiDataGrid-root {
     width: 90%;
     margin: auto;
 }
 
+.settings-panel .MuiFormControl-root,
+.settings-panel .MuiInputBase-root,
+.dataSource {
+    max-width: 375px;
+}
+
 .settings-panel input {
     height: 38px;
     width: 100%;
-}
-
-.settings-panel .row {
-    margin-top: 15px;
 }
 
 .settings-title {

@@ -6,7 +6,6 @@ import * as Util from '../Util'
 import abbreviate from 'number-abbreviate'
 import { DataGrid } from '@material-ui/data-grid'
 import { Delete } from '@material-ui/icons'
-import TextField from '@material-ui/core/TextField'
 import MobileAssetTable from './MobileAssetTable'
 
 function AssetTable (props) {
@@ -19,16 +18,14 @@ function AssetTable (props) {
   const columns = [
     {
       field: 'imageURL',
-      filterable: false,
-      headerName: 'Image',
+      headerName: ' ',
       renderCell: (params) => (
-        <img alt="Logo" height={28} src={params.value} />
+        <img alt={params.row.name + " Logo"} height={28} src={params.value} />
       ),
-      sortable: false,
       width: 60
     },
-    { field: 'id', headerName: 'Symbol', disableColumnMenu: false, width: 110 },
-    { field: 'name', headerName: 'Name', disableColumnMenu: false, width: 150 },
+    { field: 'id', headerName: 'Symbol', width: 110 },
+    { field: 'name', headerName: 'Name', width: 150 },
     {
       field: 'balance',
       headerName: 'Balance',
@@ -43,23 +40,6 @@ function AssetTable (props) {
       headerName: 'Holdings',
       hide: !props.settings.showAssetBalances,
       renderCell: (params) => (
-        editHoldings && editHoldings === params.row.id
-        ? <TextField
-            onBlur={(event) => {
-              props.updateHoldings(event.target.value, params.row.id)
-            }}
-            onKeyDown={(event) => {
-              if (event.key === 'Enter') {
-                props.updateHoldings(event.target.value, params.row.id)
-              }
-              else if (event.key === 'Escape') {
-                event.target.blur()
-              }
-            }}
-            defaultValue={params.value}
-            variant='outlined'
-          />
-        :
           Number(params.value) > 0 ? Util.getLocalizedNumber(Number(params.value), props.settings) : ' '
       ),
       width: 120
@@ -123,7 +103,6 @@ function AssetTable (props) {
     {
       description: "Calculated by (Circulating Supply / Max Supply). However if Max Supply is not specified it is replaced by Total Supply",
       field: 'supply',
-      filterable: false,
       headerName: 'Supply',
       renderCell: (params) => (
         <Box position="relative" display="inline-flex">
@@ -144,13 +123,11 @@ function AssetTable (props) {
           </Box>
         </Box>
       ),
-      sortable: false,
       width: 106
     },
     {
       field: "removeSymbol",
-      filterable: false,
-      headerName: 'Remove Asset',
+      headerName: ' ',
       renderCell: (params) => (
         <IconButton
           aria-label='close'
@@ -164,10 +141,13 @@ function AssetTable (props) {
           <Delete />
         </IconButton>
       ),
-      sortable: false,
       width: 60
     }
   ]
+
+  columns.forEach(column => {
+    column.sortable = false
+  })
 
   function createData(id, imageURL, name, balance, holdings, price, percent_change_1h, percent_change_24h, percent_change_7d, market_cap, volume_24h, supply, removeSymbol) {
     return { id, imageURL, name, balance, holdings, price, percent_change_1h, percent_change_24h, percent_change_7d, market_cap, volume_24h, supply, removeSymbol };
@@ -195,21 +175,17 @@ function AssetTable (props) {
     );
   })
 
-  let editHoldings = null;
-
   return (
     <DataGrid
       autoHeight
       className="m-2"
       columns={columns}
+      columnBuffer={columns.length}
+      disableColumnFilter={true}
+      disableColumnMenu={true}
       hideFooterSelectedRowCount={true}
       onCellClick = {(cell) => {
-        if (cell.field === "holdings") {
-          editHoldings = cell.row.id
-        }
-        else if(cell.field !== "removeSymbol") {
-          editHoldings = null
-
+        if(cell.field !== "removeSymbol") {
           const asset = assets.find(asset => asset.symbol === cell.row.id)
 
           return props.setAssetPanelShown(asset)
