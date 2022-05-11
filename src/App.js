@@ -20,7 +20,7 @@ class App extends Component {
   constructor (props) {
     super(props)
 
-    const initialData = JSON.parse(window.localStorage.getItem('data')) || { assets: [{ cgId: "ethos", cmcId: 1817, symbol: 'VGX' }], availableAssets: [] }
+    const initialData = JSON.parse(window.localStorage.getItem('data')) || { assets: [{ cgId: "btc", cmcId: 1, holdings: 1, symbol: 'BTC' }], availableAssets: [] }
     const initialSettings = JSON.parse(window.localStorage.getItem('settings')) || {
       addDropdownHideable: false,
       assetPanelShown: null,
@@ -33,7 +33,7 @@ class App extends Component {
       decimals4: null,
       fetchInterval: 300000,
       portfolioBreakdown: "none",
-      renderStyle: (window.innerWidth <= 500) ? 'table' : 'card:classic',
+      renderStyle: (window.innerWidth <= 500) ? 'table' : 'portfolio:chart',
       renderSubStyle: 'table',
       show1hChange: true,
       show24hChange: true,
