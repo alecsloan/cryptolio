@@ -104,7 +104,7 @@ class VirtualizedCryptoassetAutocomplete extends Component {
         clearOnBlur
         disableListWrap
         disablePortal
-        getOptionLabel={(option) => `${option.name || ''} (${option.symbol})`}
+        getOptionLabel={(option) => `${option.name || ''} (${option.symbol.toUpperCase()})`}
         id='cryptoassets'
         inputValue={this.state.inputValue}
         ListboxComponent={ListboxComponent}

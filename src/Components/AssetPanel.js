@@ -162,6 +162,7 @@ class AssetPanel extends Component {
               />
 
               <TextField
+                className="w-100"
                 InputProps={{
                   startAdornment: <InputAdornment position='start'>{Util.getCurrencySymbol(currency)}</InputAdornment>
                 }}
@@ -181,6 +182,7 @@ class AssetPanel extends Component {
               />
 
               <TextField
+                className="w-100"
                 InputProps={{
                   startAdornment: <InputAdornment position='start'>{Util.getCurrencySymbol(currency)}</InputAdornment>
                 }}
@@ -200,6 +202,7 @@ class AssetPanel extends Component {
               />
 
               <TextField
+                className="w-100"
                 InputProps={{
                   startAdornment: <InputAdornment position='start'>{Util.getCurrencySymbol(currency)}</InputAdornment>
                 }}

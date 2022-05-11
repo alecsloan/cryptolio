@@ -1,5 +1,5 @@
 export const getAssetData = async (currency, ids, assets) => {
-  if (!currency || !ids) { return }
+  if (!currency) { return }
 
   try {
     return await window.fetch(`https://api.coingecko.com/api/v3/coins/markets?vs_currency=${currency}&ids=${ids}&price_change_percentage=1h%2C24h%2C7d`)

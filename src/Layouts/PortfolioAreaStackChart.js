@@ -25,7 +25,7 @@ class PortfolioAreaStackChart extends Component {
           },
           type: 'cross'
         },
-        confine: window.innerWidth > 500 ? true : false,
+        confine: true,
         formatter: (params) => {
           let tooltip = params[0].axisValue + "<br />"
 
@@ -62,7 +62,7 @@ class PortfolioAreaStackChart extends Component {
         {
           axisLabel: {
             formatter: (params) => {
-              return Util.getCurrencySymbol(props.settings.currency) + abbreviate(params.toFixed(2), 2, ['K', 'M'])
+              return Util.getCurrencySymbol(props.settings.currency) + abbreviate(params, 0, ['K', 'M'])
             }
           },
           max: (value) => {
@@ -74,7 +74,8 @@ class PortfolioAreaStackChart extends Component {
     };
 
     if (window.innerWidth <= 959) {
-      option.yAxis[0].offset = -6
+      option.yAxis[0].axisLabel.fontSize = 10
+      option.yAxis[0].offset = -3
     }
 
     this.state = {
@@ -152,7 +153,7 @@ class PortfolioAreaStackChart extends Component {
               date.setMinutes(0)
               date.setSeconds(0)
 
-              dates.push(date.toLocaleString());
+              dates.push(date.toLocaleString(navigator.language, { dateStyle: "medium", hour12: true, timeStyle: "short" }));
             }
 
             if (Number(i) === assetData.length - 1) {
@@ -163,7 +164,7 @@ class PortfolioAreaStackChart extends Component {
           }
         }
         else {
-          assetData.map((granularDataset) => {
+          assetData?.map((granularDataset) => {
             if (index === 0) {
               let date = new Date(granularDataset[0])
               let min = date.getMinutes()

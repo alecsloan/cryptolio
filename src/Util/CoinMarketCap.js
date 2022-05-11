@@ -1,10 +1,18 @@
 const CORS_PROXY = 'https://cors.bridged.cc/'
+const GIRDA_API_KEY = '' //See https://github.com/girdaco/base/issues/23
 
 export const getAssetData = async (currency, symbols, assets) => {
-  if (!currency || !symbols) { return }
+  if (!currency || !symbols || !GIRDA_API_KEY) { return }
 
   try {
-    return await window.fetch(`${CORS_PROXY}https://web-api.coinmarketcap.com/v1/cryptocurrency/quotes/latest?symbol=${symbols}&convert=${currency}`)
+    return await window.fetch(
+        `${CORS_PROXY}https://web-api.coinmarketcap.com/v1/cryptocurrency/quotes/latest?symbol=${symbols}&convert=${currency}`,
+      {
+          headers: {
+            'x-cors-grida-api-key': `${GIRDA_API_KEY}`
+          }
+        }
+      )
       .then(res => res.json())
       .then(response => {
         if (!response.data) { return }
@@ -68,8 +76,17 @@ export const getAssetData = async (currency, symbols, assets) => {
 }
 
 export const getAvailableAssets = async () => {
+  if (!GIRDA_API_KEY) return []
+
   try {
-    return window.fetch(`${CORS_PROXY}https://web-api.coinmarketcap.com/v1/cryptocurrency/map`)
+    return window.fetch(
+        `${CORS_PROXY}https://web-api.coinmarketcap.com/v1/cryptocurrency/map`,
+        {
+          headers: {
+            'x-cors-grida-api-key': `${GIRDA_API_KEY}`
+          }
+        }
+      )
       .then(res => res.json())
       .then(response => {
         const assets = []
@@ -91,7 +108,7 @@ export const getAvailableAssets = async () => {
 }
 
 export const getHistoricalAssetData = async (currency, symbols, days = 7) => {
-  if (!currency || !symbols) { return }
+  if (!currency || !symbols || !GIRDA_API_KEY) { return }
 
   let interval = 'hourly'
 
@@ -103,7 +120,14 @@ export const getHistoricalAssetData = async (currency, symbols, days = 7) => {
   let time_start = time_end - Math.round(86400 * days)
 
   try {
-    return await window.fetch(`${CORS_PROXY}https://web-api.coinmarketcap.com/v1/cryptocurrency/quotes/historical?format=chart_crypto_details&symbol=${symbols}&convert=${currency}&interval=${interval}&time_end=${time_end}&time_start=${time_start}`)
+    return await window.fetch(
+        `${CORS_PROXY}https://web-api.coinmarketcap.com/v1/cryptocurrency/quotes/historical?format=chart_crypto_details&symbol=${symbols}&convert=${currency}&interval=${interval}&time_end=${time_end}&time_start=${time_start}`,
+        {
+          headers: {
+            'x-cors-grida-api-key': `${GIRDA_API_KEY}`
+          }
+        }
+      )
       .then(res => res.json())
       .then(response => {
         return response.data || null
