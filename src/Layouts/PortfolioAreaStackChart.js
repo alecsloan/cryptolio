@@ -164,7 +164,7 @@ class PortfolioAreaStackChart extends Component {
           }
         }
         else {
-          assetData.map((granularDataset) => {
+          assetData?.map((granularDataset) => {
             if (index === 0) {
               let date = new Date(granularDataset[0])
               let min = date.getMinutes()

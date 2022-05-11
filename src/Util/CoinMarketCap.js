@@ -2,7 +2,7 @@ const CORS_PROXY = 'https://cors.bridged.cc/'
 const GIRDA_API_KEY = '' //See https://github.com/girdaco/base/issues/23
 
 export const getAssetData = async (currency, symbols, assets) => {
-  if (!currency || !symbols) { return }
+  if (!currency || !symbols || !GIRDA_API_KEY) { return }
 
   try {
     return await window.fetch(
@@ -76,6 +76,8 @@ export const getAssetData = async (currency, symbols, assets) => {
 }
 
 export const getAvailableAssets = async () => {
+  if (!GIRDA_API_KEY) return []
+
   try {
     return window.fetch(
         `${CORS_PROXY}https://web-api.coinmarketcap.com/v1/cryptocurrency/map`,
@@ -106,7 +108,7 @@ export const getAvailableAssets = async () => {
 }
 
 export const getHistoricalAssetData = async (currency, symbols, days = 7) => {
-  if (!currency || !symbols) { return }
+  if (!currency || !symbols || !GIRDA_API_KEY) { return }
 
   let interval = 'hourly'
 

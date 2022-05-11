@@ -20,14 +20,14 @@ class App extends Component {
   constructor (props) {
     super(props)
 
-    const initialData = JSON.parse(window.localStorage.getItem('data')) || { assets: [{ cgId: "btc", cmcId: 1, holdings: 1, symbol: 'BTC' }], availableAssets: [] }
+    const initialData = JSON.parse(window.localStorage.getItem('data')) || { assets: [{ cgId: "bitcoin", cmcId: 1, holdings: 1, symbol: 'BTC' }], availableAssets: [] }
     const initialSettings = JSON.parse(window.localStorage.getItem('settings')) || {
       addDropdownHideable: false,
       assetPanelShown: null,
       autoHideFetchNotification: 20000,
       balanceChangeTimeframe: 'percent_change_24h',
       currency: 'USD',
-      datasource: 'coinmarketcap',
+      datasource: 'coingecko',
       decimals2: 100,
       decimals3: 1,
       decimals4: null,
@@ -157,13 +157,23 @@ class App extends Component {
 
     const coingecko = await CoinGecko.getAvailableAssets()
 
-    const assets =
-      coinmarketcap.map(asset => ({
+    let assets
+
+    if (coinmarketcap?.length > 0)
+      assets = coinmarketcap.map(asset => ({
         ...coingecko.find((asset1) => !asset1.cgId.includes("binance-peg") && (asset1.symbol === asset.symbol.toLowerCase() && asset1.circulating_supply === asset.circulating_supply)),
         ...asset
       }))
+    else {
+    const top100 = await CoinGecko.getAssetData(this.state.settings.currency, "")
 
-    assets.sort((a, b) => a.rank - b.rank)
+      assets = coingecko.map(asset => ({
+        ...top100.assets.find((asset1) => !asset.cgId.includes('binance-peg') && !asset.cgId.includes('avalanche-bridged') && !asset.cgId.includes('wormhole') && !asset.cgId.includes("heco-peg") && (asset1.symbol.toLowerCase() === asset.symbol.toLowerCase())),
+        ...asset
+      }))
+    }
+
+    assets.sort((a, b) => a.rank - (b.rank || 101))
 
     this.setState({
       data: {
